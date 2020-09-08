@@ -33,65 +33,66 @@ raw_.extend(raw_input.parse(r"D:\Users\Brian\Downloads\chk.csv",
 #TODO replace with named tuple or custom class so keys aren't just strings
 #TODO functionality to add/modify the description (i.e. Spotify)
 #TODO splitting (i.e. Aritom into rent and utilities)
+#TODO save off as a file (JSON needs lots of formatting and custom re parser)
 
 # Regex notes:
 #   \*{11} matches exactly 11 asterisks
 common = [# Utilities / Rent
           {#//Phone
-           'desc':'SPRINT *WIRELESS         800-639-6111 KS',
-           'category': 'Utilities', 'split': 30},
+           'old': {'desc':'SPRINT *WIRELESS         800-639-6111 KS'},
+           'new': {'category': 'Utilities', 'split': 30}},
           {#//PECO
-           'desc': re.compile('^PECOENERGY       UTIL_BIL   \*{11}'),
-           'category': 'Utilities', 'split': 30},
+           'old': {'desc': re.compile('^PECOENERGY       UTIL_BIL   \*{11}')},
+           'new': {'category': 'Utilities', 'split': 30}},
           {#//PGW
-           'desc': re.compile('^PGW WEBPAY       UTILITY    \*{11}'),
-           'category': 'Utilities', 'split': 30},
+           'old': {'desc': re.compile('^PGW WEBPAY       UTILITY    \*{11}')},
+           'new': {'category': 'Utilities', 'split': 30}},
           {#//Aritom water bill
-           'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-           'value': -40,
-           'category': 'Utilities', 'split': 30},
+           'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
+                   'value': -40},
+           'new': {'category': 'Utilities', 'split': 30}},
           {#//Aritom rent
-           'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-           'value': -1650,
-           'category': 'Rent', 'split': 30},
+           'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
+                   'value': -1650},
+           'new': {'category': 'Rent', 'split': 30}},
           {#//Aritom rent and water bill
-           'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-           'value': -1690,
-           'category': 'Rent', 'split': 30},
+           'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
+                   'value': -1690},
+           'new': {'category': 'Rent', 'split': 30}},
 
           # Banking
           {#//CC Payments
-           'desc': re.compile('^USAA CREDIT CARD PAYMENT*'),
-           'category': 'CC Payments', 'split': 1},
+           'old': {'desc': re.compile('^USAA CREDIT CARD PAYMENT*')},
+           'new': {'category': 'CC Payments', 'split': 1}},
           {#//Cash rewards credit
-           'desc': 'CASH REWARDS CREDIT',
-           'value': (0, 20),
-           'category': 'Income - Other', 'split': 1},
+           'old': {'desc': 'CASH REWARDS CREDIT',
+                   'value': (0, 20)},
+           'new': {'category': 'Income - Other', 'split': 1}},
           {#//Interest
-           'desc': 'INTEREST PAID',
-           'value': (0, 5),
-           'category': 'Income - Other', 'split': 1},
+           'old': {'desc': 'INTEREST PAID',
+                   'value': (0, 5)},
+           'new': {'category': 'Income - Other', 'split': 1}},
 
           # Other
           {#//Grubhub
-           'desc': re.compile('^PAYPAL \*GRUBHUBFOOD'),
-           'category': 'Food - nice', 'split': 1},
+           'old': {'desc': re.compile('^PAYPAL \*GRUBHUBFOOD')},
+           'new': {'category': 'Food - nice', 'split': 1}},
           {#//Salary
-           'desc': re.compile('^AGUSTAWESTLAND P DIRECT DEP \*{11}'),
-           # TODO will need a smarter system to handle entries with different pay rates
-           'value': (1902.79, 1902.81),
-           'category': 'Salary', 'split': 14},
+           'old': {'desc': re.compile('^AGUSTAWESTLAND P DIRECT DEP \*{11}'),
+                   # TODO add entries for other pay rates, with dates
+                   'value': (1902.79, 1902.81)},
+           'new': {'category': 'Salary', 'split': 14}},
           {#//Spotify
-           'desc': 'PAYPAL           INST XFER  ***********USAI',
-           'value': -10.81,
-           'category': 'Entertainment - Other', 'split': 30},
+           'old': {'desc': 'PAYPAL           INST XFER  ***********USAI',
+                   'value': -10.81},
+           'new': {'category': 'Entertainment - Other', 'split': 30}},
           {#//Car note
-           'desc': re.compile('^HONDA PMT        8004489307 \*{11}'),
-           'value': -320,
-           'category': 'Car - Note', 'split': 30},
+           'old': {'desc': re.compile('^HONDA PMT        8004489307 \*{11}'),
+                   'value': -320},
+           'new': {'category': 'Car - Note', 'split': 30}},
           {#//Insurance
-           'desc': 'USAA P&amp;C INT     AUTOPAY    ***********1608',
-           'category': 'Car/Rental Insurance', 'split': 30},
+           'old': {'desc': 'USAA P&amp;C INT     AUTOPAY    ***********1608'},
+           'new': {'category': 'Car/Rental Insurance', 'split': 30}},
           ]
 
 # Helper functions to check different fields
@@ -122,18 +123,21 @@ def _check_value(transaction, template):
 
 # Main function to check RawTransaction against a template
 def template_check(raw):
+    #TODO more automaticish, given old/new are separate dicts
     assert isinstance(raw, raw_input.RawTransaction)
     matched = None
     for template in common:
+        old = template['old']
+        new = template['new']
         match = True
-        if 'desc' in template:
-            match = match and _check_desc(raw, template)
-        if 'value' in template:
-            match = match and _check_value(raw, template)
+        if 'desc' in old:
+            match = match and _check_desc(raw, old)
+        if 'value' in old:
+            match = match and _check_value(raw, old)
 
         if match:
             # Template matched, stop searching
-            matched = template
+            matched = new
             break
     if matched is None:
         # No template matched
@@ -144,8 +148,8 @@ def template_check(raw):
         return raw_input.Transaction(date = raw.date,
                                      value = raw.value,
                                      desc = raw.desc,
-                                     category = template['category'],
-                                     recurrence = template['split'])
+                                     category = new['category'],
+                                     recurrence = new['split'])
 
 #%% Check transactions against templates
 found = []
