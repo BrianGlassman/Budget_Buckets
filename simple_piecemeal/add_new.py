@@ -18,7 +18,7 @@ DOES NOT AND WILL NOT:
 
 import re
 
-import raw_input
+import raw_input_pm as raw_input
 
 #%% Read in raw transactions
 raw_ = []
@@ -29,10 +29,12 @@ raw_.extend(raw_input.parse(r"D:\Users\Brian\Downloads\chk.csv",
                             raw_input.USAA_parser,
                             account='Checking'))
 
+# FIXME TEMP MOD TO TEST
+raw_.pop(21)
+raw_[20].value = -1690
+
 #%% Define common templates
 #TODO replace with named tuple or custom class so keys aren't just strings
-#TODO functionality to add/modify the description (i.e. Spotify)
-#TODO splitting (i.e. Aritom into rent and utilities)
 #TODO save off as a file (JSON needs lots of formatting and custom re parser)
 
 # Regex notes:
@@ -58,7 +60,8 @@ common = [# Utilities / Rent
           {#//Aritom rent and water bill
            'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
                    'value': -1690},
-           'new': {'category': 'Rent', 'split': 30}},
+           'new': [{'value': -1650, 'category': 'Rent', 'split': 30},
+                   {'value': -40, 'category': 'Utilities', 'split': 30}]},
 
           # Banking
           {#//CC Payments
@@ -85,7 +88,8 @@ common = [# Utilities / Rent
           {#//Spotify
            'old': {'desc': 'PAYPAL           INST XFER  ***********USAI',
                    'value': -10.81},
-           'new': {'category': 'Entertainment - Other', 'split': 30}},
+           'new': {'desc': 'Spotify',
+                   'category': 'Entertainment - Other', 'split': 30}},
           {#//Car note
            'old': {'desc': re.compile('^HONDA PMT        8004489307 \*{11}'),
                    'value': -320},
@@ -137,7 +141,7 @@ def template_check(raw):
         for key in old:
             # Run the checker for each field that has a pattern
             match = match and _checker[key](raw, old)
-            if not matched: break # Exit loop if any pattern fails
+            if not match: break # Exit loop if any pattern fails
 
         if match:
             # Template matched, stop searching
@@ -148,13 +152,32 @@ def template_check(raw):
         return None
     else:
         # Template matched, apply it
-        # TODO use alternate constructor once implemented
-        #   Or some other smart way of converting RawTransaction to Transaction
-        d = raw.to_dict()
-        d.update(new)
-        # Keep only keys that are used for Transaction
-        d = {k:v for k,v in d.items() if k in raw_input.Transaction.fields()}
-        return raw_input.Transaction(**d)
+
+        if isinstance(new, dict):
+            # One-to-one conversion, make a list for iterating
+            new = [new]
+        else:
+            # Assume one-to-many conversion, already a list
+            pass
+
+        ret = []
+        for n in new:
+            # TODO use alternate constructor once implemented
+            #   Or some other smart way of converting RawTransaction to Transaction
+            # Deep copy n to avoid changing the base common templates
+            n = dict(n)
+            n['recurrence'] = n.pop('split')
+
+            d = raw.to_dict()
+            d.update(n)
+            # Keep only keys that are used for Transaction
+            d = {k:v for k,v in d.items() if k in raw_input.Transaction.fields()}
+            ret.append(raw_input.Transaction(**d))
+        return ret
+
+#TODO test splitting transaction
+#TODO test trivial cases
+#TODO test value range matching
 
 #%% Check transactions against templates
 found = []
@@ -166,6 +189,6 @@ for raw in raw_:
         not_found.append(raw)
     else:
         # Template matched, Transaction created
-        found.append(trans)
+        found.extend(trans)
 
 print('\n'.join(str(x) for x in not_found))
