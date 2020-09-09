@@ -46,6 +46,9 @@ class RawTransaction:
         else:
             return dateutil.parser.parse(raw).date()
 
+    def to_dict(self):
+        return self.__dict__
+
 
 def test_RawTransaction():
     # TODO
@@ -69,6 +72,7 @@ def test_RawTransaction():
 # TODO move to library
 import datetime
 import dateutil
+import dataclasses
 from dataclasses import dataclass
 @dataclass
 class Transaction:
@@ -101,6 +105,11 @@ class Transaction:
             return raw.date()
         else:
             return dateutil.parser.parse(raw).date()
+
+    @staticmethod
+    def fields():
+        """Return a list of field names as strings"""
+        return [x.name for x in dataclasses.fields(Transaction)]
 
 #%% Definitions
 import csv

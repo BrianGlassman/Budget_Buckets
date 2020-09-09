@@ -120,20 +120,24 @@ def _check_value(transaction, template):
         assert len(mask) == 2
         assert mask[0] < mask[1]
         return mask[0] <= val <= mask[1]
+_checker = {'desc': _check_desc,
+            'value': _check_value,
+            }
 
 # Main function to check RawTransaction against a template
 def template_check(raw):
     #TODO more automaticish, given old/new are separate dicts
     assert isinstance(raw, raw_input.RawTransaction)
     matched = None
+    # Check the transaction against all templates in order
     for template in common:
         old = template['old']
         new = template['new']
         match = True
-        if 'desc' in old:
-            match = match and _check_desc(raw, old)
-        if 'value' in old:
-            match = match and _check_value(raw, old)
+        for key in old:
+            # Run the checker for each field that has a pattern
+            match = match and _checker[key](raw, old)
+            if not matched: break # Exit loop if any pattern fails
 
         if match:
             # Template matched, stop searching
@@ -145,11 +149,12 @@ def template_check(raw):
     else:
         # Template matched, apply it
         # TODO use alternate constructor once implemented
-        return raw_input.Transaction(date = raw.date,
-                                     value = raw.value,
-                                     desc = raw.desc,
-                                     category = new['category'],
-                                     recurrence = new['split'])
+        #   Or some other smart way of converting RawTransaction to Transaction
+        d = raw.to_dict()
+        d.update(new)
+        # Keep only keys that are used for Transaction
+        d = {k:v for k,v in d.items() if k in raw_input.Transaction.fields()}
+        return raw_input.Transaction(**d)
 
 #%% Check transactions against templates
 found = []
