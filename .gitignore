@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pyLint (probably from Kite)
+.pylint.d/
+
+# Weird file that git seems to output
+.goutputstream*
