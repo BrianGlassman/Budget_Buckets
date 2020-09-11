@@ -33,7 +33,7 @@ def get_desc(raw):
     c = raw['Custom Description']
     a = raw['Auto Description']
     if c and a:
-        return f"c: a"
+        return f"{a} --- {c}"
     elif c and (not a):
         return c
     elif (not c) and a:
@@ -126,9 +126,10 @@ json_log = {str(k):v for k,v in log.items()}
 
 jstr = json.dumps(json_log, default=str, indent=2)
 
-print(jstr)
+# print(jstr)
 
-json.dump(json_log, open('mod_log.txt', 'w'), indent=2, default=str)
+if __name__ == "__main__":
+    json.dump(json_log, open('mod_log.txt', 'w'), indent=2, default=str)
 
 #%% NOTES ON LOG FORMAT
 """

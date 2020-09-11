@@ -34,14 +34,14 @@ if __name__ == '__main__':
     wb = openpyxl.load_workbook(filename=xlfile, read_only=False, data_only=True)
     try:
         # Different years are stored in different sheets
-        sheets = ['Log 2020']
+        sheets = ['Log 2018']
         for ws in (wb[sheetname] for sheetname in sheets):
             # Each row after the header is one transaction
             # Skip header in row 1
             # Columns A-G (1-7) are original data, columns H+ are post-processed
             # Columns J (10) and L (12) are used to categorize and split
             #   Only needed for these temporary versions
-            for raw_row in ws.iter_rows(min_row=2, max_row=20, max_col=12, values_only=True):
+            for raw_row in ws.iter_rows(min_row=2, min_col=2, max_col=13, values_only=True):
                 transaction = {k:v for k,v in zip(transaction_keys, raw_row)}
                 transaction['Date'] = transaction['Date'].date()
                 transaction['temp'] = {k:v for k,v in zip(temp_keys, raw_row[n:]) if k != '_'}
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     jstr = json.dumps(log, default=str, indent=2)
 
-    print(jstr)
+    # print(jstr)
 
     json.dump(log, open(logfile, 'w'), indent=2, default=str)
 
