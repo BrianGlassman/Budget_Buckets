@@ -18,7 +18,7 @@ DOES NOT AND WILL NOT:
 
 import re
 
-import raw_input
+from database import raw_input
 
 #%% Read in raw transactions
 raw_ = []
