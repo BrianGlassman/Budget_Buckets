@@ -22,6 +22,9 @@ templates = [# Utilities / Rent
              {#//PGW
                  'old': {'desc': re.compile('^PGW WEBPAY       UTILITY    \*{11}')},
                  'new': {'category': 'Utilities', 'split': 30}},
+             {#//Internet
+                 'old': {'desc': 'VERIZON          PAYMENTREC ***********0001'},
+                 'new': {'category': 'Utilities', 'split': 30}},
              {#//Aritom water bill
                  'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
                          'value': -40},
@@ -61,7 +64,7 @@ templates = [# Utilities / Rent
              {#//Spotify
                  'old': {'desc': 'PAYPAL           INST XFER  ***********USAI',
                          'value': -10.81},
-                 'new': {'desc': 'Spotify',
+                 'new': {'desc': 'Spotify --- PAYPAL           INST XFER  ***********USAI',
                          'category': 'Entertainment - Other', 'split': 30}},
              {#//Car note
                  'old': {'desc': re.compile('^HONDA PMT        8004489307 \*{11}'),
