@@ -46,9 +46,14 @@ class RawTransaction:
         else:
             return dateutil.parser.parse(raw).date()
 
-    def to_dict(self):
-        """Return a dictionary of the contained values"""
-        return self.__dict__
+    def to_dict(self, reference=False):
+        """Return a dictionary of the contained values
+        reference - True = reference to self for inplace editing
+                    False (default) = copy for not-inplace usage"""
+        if reference:
+            return self.__dict__
+        else:
+            return dict(self.__dict__)
 
     # Helper functions to check different fields
     def __check_desc(self, pattern):
