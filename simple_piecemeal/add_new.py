@@ -16,8 +16,6 @@ DOES NOT AND WILL NOT:
 
 #%% Imports
 
-import re
-
 from database import raw_input
 
 #%% Read in raw transactions
@@ -29,20 +27,51 @@ raw_.extend(raw_input.parse(r"D:\Users\Brian\Downloads\chk.csv",
                             raw_input.USAA_parser,
                             account='Checking'))
 
-# FIXME TEMP MOD TO TEST
-raw_.pop(21)
-raw_[20].value = -1690
-
 #%% Check transactions against templates
-found = []
-not_found = []
-for raw in raw_:
+found = {} # dict of {raw_ index: [Transactions(s)]}
+not_found = {} # dict of {raw_ index: [Transactions(s)]}
+for idx, raw in enumerate(raw_):
     template = raw.match_templates()
     if template is None:
         # No template matched
-        not_found.append(raw)
+        not_found[idx] = [raw]
     else:
         # Template matched, Transaction created
-        found.extend(raw.apply_template(template))
+        found[idx] = raw.apply_template(template)
 
-print('\n'.join(str(x) for x in not_found))
+#%% Output in a way that's easy to copy to Excel
+
+columns = ['Status', 'idk', 'Date', 'Custome Description', 'Auto Description',
+            'USAA Category', 'Raw Amount', 'Amount', 'Abs Amt',
+            'Split_raw', 'Split_apply', 'My Category', 'Account']
+
+out = []
+# Do not found first so that when I paste into Excel the new and old
+# transactions are separated
+for t_list in not_found.values():
+    t = t_list[0]
+    desc = t.desc
+    if '---' in desc:
+        c_desc, a_desc = desc.split(' --- ')
+    else:
+        c_desc = ''
+        a_desc = desc
+    line = ['posted', '', t.date, c_desc, a_desc,
+            t.auto_cat, t.value, '', '',
+            '', '', '', t.account]
+    out.append(line)
+for idx, t_list in found.items():
+    r = raw_[idx]
+    for t in t_list:
+        desc = t.desc
+        if '---' in desc:
+            c_desc, a_desc = desc.split(' --- ')
+        else:
+            c_desc = ''
+            a_desc = desc
+        line = ['posted', '', t.date, c_desc, a_desc,
+                r.auto_cat, t.value, '', '',
+                t.recurrence, '', t.category, r.account]
+        out.append(line)
+
+print('\n'.join(','.join(str(x) for x in line) for line in out))
