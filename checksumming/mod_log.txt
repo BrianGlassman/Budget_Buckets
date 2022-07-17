@@ -1,0 +1,137 @@
+[
+  {
+    "date": "2018-01-01",
+    "value": 693.79,
+    "desc": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "raw_id": 1,
+    "mod_id": 0,
+    "category": "CC Payments",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-01",
+    "value": -7.5,
+    "desc": "WHISKEY RIVER            HOUSTON      TX",
+    "raw_id": 0,
+    "mod_id": 1,
+    "category": "Going out",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-02",
+    "value": -10,
+    "desc": "PAYPAL *RIOTGAMESIN      xxx-xxx-7733 CA",
+    "raw_id": 2,
+    "mod_id": 2,
+    "category": "Games",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-02",
+    "value": -35,
+    "desc": "Pho Ton Restaurant       Houston      TX",
+    "raw_id": 3,
+    "mod_id": 3,
+    "category": "Going out",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-04",
+    "value": -40,
+    "desc": "HCTRA EZ TAG ONLINE      xxx-xxx3279  TX",
+    "raw_id": 4,
+    "mod_id": 4,
+    "category": "Car - Other",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-07",
+    "value": -249.5,
+    "desc": "AMERICAN AIRxxxxxxxxx3337FORT WORTH   TX --- Danielle flight",
+    "raw_id": 5,
+    "mod_id": 5,
+    "category": "Big Fun",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-07",
+    "value": 158.44,
+    "desc": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "raw_id": 6,
+    "mod_id": 6,
+    "category": "CC Payments",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-08",
+    "value": -10.81,
+    "desc": "PAYPAL *SPOTIFYUSAI      xxx-xxx-7733 NY --- Spotify",
+    "raw_id": 7,
+    "mod_id": 7,
+    "category": "Entertainment - Other",
+    "recurrence": "1m"
+  },
+  {
+    "date": "2018-01-09",
+    "value": -28.56,
+    "desc": "AMC WILLOWBROOK 24 #162  HOUSTON      TX",
+    "raw_id": 8,
+    "mod_id": 8,
+    "category": "Going out",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-10",
+    "value": 249.5,
+    "desc": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "raw_id": 9,
+    "mod_id": 9,
+    "category": "CC Payments",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-11",
+    "value": -17.95,
+    "desc": "SUPERCUTS ELDRIDGE       HOUSTON      TX --- Haircut",
+    "raw_id": 10,
+    "mod_id": 10,
+    "category": "Clothes/Personal care",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-11",
+    "value": -29,
+    "desc": "TX DPS DL                xxx-xxx-5967 TX",
+    "raw_id": 11,
+    "mod_id": 11,
+    "category": "Car - Other",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-12",
+    "value": 86.32,
+    "desc": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "raw_id": 12,
+    "mod_id": 12,
+    "category": "CC Payments",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-19",
+    "value": 1516.55,
+    "desc": "PAYMENT - THANK YOU --- CD close-out",
+    "raw_id": 13,
+    "mod_id": 13,
+    "category": "Income - Other",
+    "recurrence": null
+  },
+  {
+    "date": "2018-01-23",
+    "value": -1516.55,
+    "desc": "ADJUSTMENT TO ACCOUNT    SAN ANTONIO  TX --- Dump to checking",
+    "raw_id": 14,
+    "mod_id": 14,
+    "category": "Internal Transfers",
+    "recurrence": null
+  }
+]

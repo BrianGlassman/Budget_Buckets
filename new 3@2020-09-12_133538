@@ -1,0 +1,13 @@
+want a way to keep my real data and settings separate from "fake" ones
+	this way I don't upload my real info to the internet at large
+	
+worktrees - not really sure what these are or how they work yet
+separate branches, setting push.default = matching MIGHT keep the private one from being pushed (or the default git setting might work, idk)
+separate files/folders, use gitignore to avoid pushing the real stuff and have some non-VC way to switch between them
+
+
+IDEA:
+	all of my data is in a directory
+	the local ignore file ignores this directory
+	directory is itself a repo, for tracking changes to the data
+	maybe use git submodules, which are pointers to a repo (not subtrees, which are copies)

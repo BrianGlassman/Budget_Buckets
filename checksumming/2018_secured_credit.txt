@@ -1,0 +1,122 @@
+[
+  {
+    "Date": "2018-01-01",
+    "Custom Description": "",
+    "Auto Description": "WHISKEY RIVER            HOUSTON      TX",
+    "Auto Category": "Restaurants/Dining",
+    "Raw Amount": -7.5,
+    "Raw ID": 0
+  },
+  {
+    "Date": "2018-01-01",
+    "Custom Description": "",
+    "Auto Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "Auto Category": "Credit Card Payments",
+    "Raw Amount": 693.79,
+    "Raw ID": 1
+  },
+  {
+    "Date": "2018-01-02",
+    "Custom Description": "",
+    "Auto Description": "PAYPAL *RIOTGAMESIN      xxx-xxx-7733 CA",
+    "Auto Category": "Online Services",
+    "Raw Amount": -10.0,
+    "Raw ID": 2
+  },
+  {
+    "Date": "2018-01-02",
+    "Custom Description": "",
+    "Auto Description": "Pho Ton Restaurant       Houston      TX",
+    "Auto Category": "Restaurants/Dining",
+    "Raw Amount": -35.0,
+    "Raw ID": 3
+  },
+  {
+    "Date": "2018-01-04",
+    "Custom Description": "",
+    "Auto Description": "HCTRA EZ TAG ONLINE      xxx-xxx3279  TX",
+    "Auto Category": "Travel",
+    "Raw Amount": -40.0,
+    "Raw ID": 4
+  },
+  {
+    "Date": "2018-01-07",
+    "Custom Description": "",
+    "Auto Description": "AMERICAN AIRxxxxxxxxx3337FORT WORTH   TX",
+    "Auto Category": "Travel",
+    "Raw Amount": -249.5,
+    "Raw ID": 5
+  },
+  {
+    "Date": "2018-01-07",
+    "Custom Description": "",
+    "Auto Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "Auto Category": "Credit Card Payments",
+    "Raw Amount": 158.44,
+    "Raw ID": 6
+  },
+  {
+    "Date": "2018-01-08",
+    "Custom Description": "",
+    "Auto Description": "PAYPAL *SPOTIFYUSAI      xxx-xxx-7733 NY",
+    "Auto Category": "Entertainment",
+    "Raw Amount": -10.81,
+    "Raw ID": 7
+  },
+  {
+    "Date": "2018-01-09",
+    "Custom Description": "",
+    "Auto Description": "AMC WILLOWBROOK 24 #162  HOUSTON      TX",
+    "Auto Category": "Service Charges/Fees",
+    "Raw Amount": -28.56,
+    "Raw ID": 8
+  },
+  {
+    "Date": "2018-01-10",
+    "Custom Description": "",
+    "Auto Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "Auto Category": "Credit Card Payments",
+    "Raw Amount": 249.5,
+    "Raw ID": 9
+  },
+  {
+    "Date": "2018-01-11",
+    "Custom Description": "",
+    "Auto Description": "SUPERCUTS ELDRIDGE       HOUSTON      TX",
+    "Auto Category": "Personal Care",
+    "Raw Amount": -17.95,
+    "Raw ID": 10
+  },
+  {
+    "Date": "2018-01-11",
+    "Custom Description": "",
+    "Auto Description": "TX DPS DL                xxx-xxx-5967 TX",
+    "Auto Category": "Automotive Expenses",
+    "Raw Amount": -29.0,
+    "Raw ID": 11
+  },
+  {
+    "Date": "2018-01-12",
+    "Custom Description": "",
+    "Auto Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+    "Auto Category": "Credit Card Payments",
+    "Raw Amount": 86.32,
+    "Raw ID": 12
+  },
+  {
+    "Date": "2018-01-19",
+    "Custom Description": "",
+    "Auto Description": "PAYMENT - THANK YOU",
+    "Auto Category": "Credit Card Payments",
+    "Raw Amount": 1516.55,
+    "Raw ID": 13
+  },
+  {
+    "Date": "2018-01-23",
+    "Custom Description": "",
+    "Auto Description": "ADJUSTMENT TO ACCOUNT    SAN ANTONIO  TX",
+    "Auto Category": "Other Expenses",
+    "Raw Amount": -1516.55,
+    "Raw ID": 14
+  }
+]

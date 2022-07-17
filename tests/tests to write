@@ -1,0 +1,5 @@
+Tests to write:
+	date field matches the date key
+	total value of mod_log matches raw_log
+	reading in empty fields gives the appropriate value
+    	auto_cat --> None
