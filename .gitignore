@@ -1,3 +1,13 @@
+# Data files
+# TODO create false data to use for testing
+cc.csv
+chk.csv
+
+# Visual Studio
+.vs
+*.sln
+*.pyproj
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
