@@ -2,8 +2,8 @@
 
 import tkinter
 
-from . import Functions as _import_Functions
-from . import Values as _import_Values
+import TkinterPlus.Functions as _import_Functions
+import TkinterPlus.Values as _import_Values
 
 class Tk(tkinter.Tk):
     gridconfigure = _import_Functions.gridconfigure
@@ -82,14 +82,6 @@ class ScrollableFrame(Frame):
         self.canvas.pack(side = "left", fill = "both", expand = True)
         self.canvas.create_window((4, 4), window=self.frame, anchor="nw", tags="self.frame")
         self.frame.bind("<Configure>", self.onFrameConfigure)
-
-    def populate(self):
-        '''Put in some fake data'''
-        for row in range(100):
-            tkinter.Label(self.frame, text="%s" % row, width=3, borderwidth="1",
-                     relief="solid").grid(row=row, column=0)
-            t="this is the second column for row %s" %row
-            tkinter.Label(self.frame, text=t).grid(row=row, column=1)
 
     def onFrameConfigure(self, event):
         '''Reset the scroll region to encompass the inner frame'''
