@@ -1,4 +1,9 @@
+#%% Parsing
 import Parsing
 
 parser = Parsing.USAAParser("USAA Credit Card", "cc.csv")
-print('\n'.join(str(x) for x in parser.transactions))
+
+#%% Display
+import TkinterPlus as gui
+root = gui.Root(10, 10)
+root.mainloop()
