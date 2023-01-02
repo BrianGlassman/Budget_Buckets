@@ -41,9 +41,13 @@ class Button(tkinter.Button):
     def __init__(self, *args, **kwargs):
         # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
         # FIXME - using the big font makes all the buttons weird sizes
-        kwargs.update(relief='ridge', borderwidth=1*scale)
+        kwargs.update(relief='ridge', borderwidth=1*Values.scale)
 
         super().__init__(*args, **kwargs)
+
+class Canvas(tkinter.Canvas):
+    gridconfigure = _import_Functions.gridconfigure
+    grid = _import_Functions.grid
 
 class Frame(tkinter.Frame):
     gridconfigure = _import_Functions.gridconfigure
@@ -52,6 +56,41 @@ class Frame(tkinter.Frame):
     def __init__(self, *args, **kwargs):
         # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
         # FIXME - using the big font makes all the buttons weird sizes
-        kwargs.update(relief='ridge', borderwidth=1*scale)
+        kwargs.update(relief='ridge', borderwidth=1*Values.scale)
 
         super().__init__(*args, **kwargs)
+
+class ScrollableFrame(Frame):
+    """A frame with vertical and horizontal scrolling
+    Adapted from: https://stackoverflow.com/a/3092341/14501840
+    """
+
+    # FIXME the table contents overlap the frame border and scrollbars
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.canvas = Canvas(master = self) # Need a canvas to scroll
+        self.frame = Frame(master = self) # The frame inside the canvas
+
+        self.vScroll = tkinter.Scrollbar(master = self, orient = "vertical", command = self.canvas.yview)
+        self.hScroll = tkinter.Scrollbar(master = self, orient = "horizontal", command = self.canvas.xview)
+        self.canvas.configure(yscrollcommand=self.vScroll.set)
+        self.canvas.configure(xscrollcommand=self.hScroll.set)
+        self.vScroll.pack(side = "right", fill = "y")
+        self.hScroll.pack(side = "bottom", fill = "x")
+
+        self.canvas.pack(side = "left", fill = "both", expand = True)
+        self.canvas.create_window((4, 4), window=self.frame, anchor="nw", tags="self.frame")
+        self.frame.bind("<Configure>", self.onFrameConfigure)
+
+    def populate(self):
+        '''Put in some fake data'''
+        for row in range(100):
+            tkinter.Label(self.frame, text="%s" % row, width=3, borderwidth="1",
+                     relief="solid").grid(row=row, column=0)
+            t="this is the second column for row %s" %row
+            tkinter.Label(self.frame, text=t).grid(row=row, column=1)
+
+    def onFrameConfigure(self, event):
+        '''Reset the scroll region to encompass the inner frame'''
+        self.canvas.configure(scrollregion=self.canvas.bbox("all"))
