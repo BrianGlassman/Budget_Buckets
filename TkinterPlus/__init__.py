@@ -5,13 +5,11 @@ import tkinter
 import TkinterPlus.Functions as _import_Functions
 import TkinterPlus.Values as _import_Values
 
-class Tk(tkinter.Tk):
-    gridconfigure = _import_Functions.gridconfigure
-    grid = _import_Functions.grid
+class Tk(tkinter.Tk): pass
+_import_Functions.add_functions(Tk)
 
 class Root(Tk):
     """A root window with useful settings"""
-
     def __init__(self, x_stretch=1, y_stretch=1):
         super().__init__()
         res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
@@ -33,32 +31,28 @@ class Root(Tk):
         self.geometry('%dx%d+%d+%d' % (res[0], res[1], x, y))
         
         self.gridconfigure()
+_import_Functions.add_functions(Root)
 
 class Button(tkinter.Button):
-    gridconfigure = _import_Functions.gridconfigure
-    grid = _import_Functions.grid
-
     def __init__(self, *args, **kwargs):
         # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
         # FIXME - using the big font makes all the buttons weird sizes
         kwargs.update(relief='ridge', borderwidth=1*Values.scale)
 
         super().__init__(*args, **kwargs)
+_import_Functions.add_functions(Button)
 
-class Canvas(tkinter.Canvas):
-    gridconfigure = _import_Functions.gridconfigure
-    grid = _import_Functions.grid
+class Canvas(tkinter.Canvas): pass
+_import_Functions.add_functions(Canvas)
 
 class Frame(tkinter.Frame):
-    gridconfigure = _import_Functions.gridconfigure
-    grid = _import_Functions.grid
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, master = None, cnf = {}, **kwargs):
         # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
         # FIXME - using the big font makes all the buttons weird sizes
         kwargs.update(relief='ridge', borderwidth=1*Values.scale)
 
-        super().__init__(*args, **kwargs)
+        super().__init__(master, cnf, **kwargs)
+_import_Functions.add_functions(Frame)
 
 class ScrollableFrame(Frame):
     """A frame with vertical and horizontal scrolling
@@ -86,12 +80,14 @@ class ScrollableFrame(Frame):
     def onFrameConfigure(self, event):
         '''Reset the scroll region to encompass the inner frame'''
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+_import_Functions.add_functions(ScrollableFrame)
 
 class Text(tkinter.Text):
     def __init__(self, master = None, cnf = {}, text = '', **kwargs):
         super().__init__(master, cnf, **kwargs)
         assert isinstance(text, str)
         self.insert('1.0', text)
+_import_Functions.add_functions(Text)
 
 class WatchedText(Text):
     """A text widget that generates an event when the contents are modified"""
@@ -117,3 +113,4 @@ class WatchedText(Text):
     
     def watch(self, func):
         self.bind("<<TextModified>>", func)
+_import_Functions.add_functions(WatchedText)

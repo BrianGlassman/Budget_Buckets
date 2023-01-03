@@ -1,4 +1,4 @@
-def gridconfigure(self, rw=None, cw=None):
+def gridconfigure(self, rw=None, cw=None) -> None:
     """
     Convenience function to configure the grid for a TKinter object
     Parameters
@@ -20,8 +20,25 @@ def gridconfigure(self, rw=None, cw=None):
     for i, weight in enumerate(cw):
         self.columnconfigure(i, weight=weight)
 
-def grid(obj, row=0, column=0, *args, **kwargs):
+def grid(obj, row=0, column=0, *args, **kwargs) -> None:
     """Sugar syntax for TKinter's grid function"""
     if 'sticky' not in kwargs:
         kwargs['sticky'] = 'NSEW'
-    obj.grid(*args, row=row, column=column, **kwargs)
+
+    try:
+        # Assume it's a TkinterPlus object
+        obj._grid(*args, row=row, column=column, **kwargs)
+    except AttributeError:
+        obj.grid(*args, row=row, column=column, **kwargs)
+
+def add_functions(obj) -> None:
+    # Use a flag to check if functionality has already been added
+    if hasattr(obj, "_TkinterPlus"):
+        return
+    obj._TkinterPlus = True
+
+    if hasattr(obj, "rowconfigure") and hasattr(obj, "columnconfigure"):
+        obj.gridconfigure = gridconfigure
+    if hasattr(obj, "grid"):
+        obj._grid = obj.grid
+        obj.grid = grid
