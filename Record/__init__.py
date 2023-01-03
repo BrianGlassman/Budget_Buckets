@@ -14,6 +14,12 @@ class BaseRecord:
     def values(self):
         return [self.account, self.date, self.desc, self.amt, self.source_specific]
 
+    def keys(self):
+        return ['account', 'date', 'desc', 'amt', 'source_specific']
+
+    def items(self):
+        return {k:v for k,v in zip(self.keys(), self.values())}
+
     def __str__(self):
         return str(self.values())
     def __repr__(self):
@@ -37,3 +43,6 @@ class CategorizedRecord(BaseRecord):
 
     def values(self):
         return super().values() + [self.category]
+
+    def keys(self):
+        return super().keys() + ['category']
