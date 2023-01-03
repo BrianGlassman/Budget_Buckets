@@ -1,0 +1,8 @@
+Allow setting new categorization templates
+	Make Category a textbox (dropdown later)
+	Track what changes were made
+	Save the changes as new Templates (just use the full info, don't try to be clever)
+	
+Switch to using a dropdown for Category
+
+Some system for creating generic templates
