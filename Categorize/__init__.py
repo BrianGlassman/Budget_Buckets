@@ -90,7 +90,6 @@ def _flatten(dct: dict) -> None:
         for v in dct.values():
             _flatten(v)
 _flatten(_nested_templates)
-print(templates)
 
 # For writing to file
 if False:
