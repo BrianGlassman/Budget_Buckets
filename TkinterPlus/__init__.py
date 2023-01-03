@@ -35,9 +35,11 @@ _import_Functions.add_functions(Root)
 
 class Button(tkinter.Button):
     def __init__(self, *args, **kwargs):
-        # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
+        kwargs.setdefault('relief', 'ridge')
+        if 'borderwidth' not in kwargs and 'bd' not in kwargs:
+            kwargs['borderwidth'] = 1*Values.scale
         # FIXME - using the big font makes all the buttons weird sizes
-        kwargs.update(relief='ridge', borderwidth=1*Values.scale)
+        #kwargs.setdefault('font', font)
 
         super().__init__(*args, **kwargs)
 _import_Functions.add_functions(Button)
@@ -47,9 +49,11 @@ _import_Functions.add_functions(Canvas)
 
 class Frame(tkinter.Frame):
     def __init__(self, master = None, cnf = {}, **kwargs):
-        # kwargs.update(relief='ridge', borderwidth=1*scale, font=font)
+        kwargs.setdefault('relief', 'ridge')
+        if 'borderwidth' not in kwargs and 'bd' not in kwargs:
+            kwargs['borderwidth'] = 1*Values.scale
         # FIXME - using the big font makes all the buttons weird sizes
-        kwargs.update(relief='ridge', borderwidth=1*Values.scale)
+        #kwargs.setdefault('font', font)
 
         super().__init__(master, cnf, **kwargs)
 _import_Functions.add_functions(Frame)
