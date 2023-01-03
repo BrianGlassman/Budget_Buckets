@@ -2,7 +2,7 @@ from abc import ABC as _import_ABC
 from abc import abstractmethod as _import_abstractmethod
 import csv as _import_csv
 
-from Record import Record
+from Record import RawRecord
 
 class BaseParser(_import_ABC):
     def __init__(self, account, infile):
@@ -54,13 +54,13 @@ class USAAParser(BaseParser):
         elif (not custom_desc) and (not auto_desc): return ""
         else: raise RuntimeError # Shouldn't be possible
 
-    def _make_transaction(self, line) -> Record:
+    def _make_transaction(self, line) -> RawRecord:
         line = dict(line) # Copy so that it can be modified
         date = line.pop('date')
         desc = self._combine_desc(line.pop("custom_desc"), line.pop("auto_desc"))
         amt = float(line.pop('value').replace('--', ''))
         # Anything left in the line is source-specific values
-        return Record(account = self.account, date = date, desc = desc, amt = amt, source_specific = line)
+        return RawRecord(account = self.account, date = date, desc = desc, amt = amt, source_specific = line)
 
 if __name__ == "__main__":
     # This should fail because it's an ABC
