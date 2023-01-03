@@ -58,9 +58,9 @@ class USAAParser(BaseParser):
         line = dict(line) # Copy so that it can be modified
         date = line.pop('date')
         desc = self._combine_desc(line.pop("custom_desc"), line.pop("auto_desc"))
-        amt = float(line.pop('value').replace('--', ''))
+        value = float(line.pop('value').replace('--', ''))
         # Anything left in the line is source-specific values
-        return RawRecord(account = self.account, date = date, desc = desc, amt = amt, source_specific = line)
+        return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
 
 if __name__ == "__main__":
     # This should fail because it's an ABC

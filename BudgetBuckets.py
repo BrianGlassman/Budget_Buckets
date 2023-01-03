@@ -29,7 +29,7 @@ def onModification(event):
     print(f"text changed to {text}")
 
 # Populate the table
-widths = {'account': 10, 'date': 10, 'desc': 40, 'amt': 8, 'source-specific': None, 'category': 10}
+widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 10}
 widths = list(widths.values())
 for r, row in enumerate(categorized_transactions):
     for c, cell in enumerate(row.values()):
