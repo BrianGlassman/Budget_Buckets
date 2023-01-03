@@ -86,3 +86,34 @@ class ScrollableFrame(Frame):
     def onFrameConfigure(self, event):
         '''Reset the scroll region to encompass the inner frame'''
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
+class Text(tkinter.Text):
+    def __init__(self, master = None, cnf = {}, text = '', **kwargs):
+        super().__init__(master, cnf, **kwargs)
+        assert isinstance(text, str)
+        self.insert('1.0', text)
+
+class WatchedText(Text):
+    """A text widget that generates an event when the contents are modified"""
+    # Based on https://stackoverflow.com/a/40618152/14501840
+    def __init__(self, master = None, cnf = {}, text = '', **kwargs):
+        super().__init__(master, cnf, text, **kwargs)
+
+        # Create a proxy for the underlying widget
+        self._orig = self._w + "_orig"
+        self.tk.call("rename", self._w, self._orig)
+        self.tk.createcommand(self._w, self._proxy)
+
+    def _proxy(self, command, *args):
+        # Pass the command through to the underlying widget
+        cmd = (self._orig, command) + args
+        result = self.tk.call(cmd)
+
+        # Generate the event
+        if command in ("insert", "delete", "replace"):
+            self.event_generate("<<TextModified>>")
+
+        return result
+    
+    def watch(self, func):
+        self.bind("<<TextModified>>", func)

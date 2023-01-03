@@ -5,4 +5,7 @@ Allow setting new categorization templates
 	
 Switch to using a dropdown for Category
 
+Make Category font match other cells (should also help with sizing)
+	unless OBE
+
 Some system for creating generic templates
