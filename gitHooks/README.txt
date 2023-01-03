@@ -1,0 +1,1 @@
+Have to replace the ____.sample file(s) in .git/hooks with a symlink to the appropriate file in this directory because .git isn't tracked
