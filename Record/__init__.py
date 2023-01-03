@@ -14,6 +14,11 @@ class BaseRecord:
     def values(self):
         return [self.account, self.date, self.desc, self.amt, self.source_specific]
 
+    def __str__(self):
+        return str(self.values())
+    def __repr__(self):
+        return str(self)
+
 class RawRecord(BaseRecord):
     """A record (mostly) as read-in from the source data, with minimal processing and no categorization"""
     pass
