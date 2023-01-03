@@ -1,73 +1,12 @@
 import re as _imported_re
+import json as _imported_json
 
-#TODO replace with named tuple or custom class so keys aren't just strings
-#TODO save off as a file (JSON needs lots of formatting and custom re parser)
+#TODO validate field names against the appropriate data structures somehow
 
 # Regex notes:
 #   \*{11} matches exactly 11 asterisks
-templates = [
-    # Utilities / Rent
-    {#//Phone
-        'old': {'desc':'SPRINT *WIRELESS         800-639-6111 KS'},
-        'new': {'category': 'Utilities', 'split': 30}},
-    {#//PECO
-        'old': {'desc': _imported_re.compile('^PECOENERGY       UTIL_BIL   \*{11}')},
-        'new': {'category': 'Utilities', 'split': 30}},
-    {#//PGW
-        'old': {'desc': _imported_re.compile('^PGW WEBPAY       UTILITY    \*{11}')},
-        'new': {'category': 'Utilities', 'split': 30}},
-    {#//Internet
-        'old': {'desc': 'VERIZON          PAYMENTREC ***********0001'},
-        'new': {'category': 'Utilities', 'split': 30}},
-    {#//Aritom water bill
-        'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-                'value': -40},
-        'new': {'category': 'Utilities', 'split': 30}},
-    {#//Aritom rent
-        'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-                'value': -1650},
-        'new': {'category': 'Rent', 'split': 30}},
-    {#//Aritom rent and water bill
-        'old': {'desc': 'ARITOM PROPERTIES        610-353-4925 PA',
-                'value': -1690},
-        'new': [{'value': -1650, 'category': 'Rent', 'split': 30},
-                {'value': -40, 'category': 'Utilities', 'split': 30}]},
 
-    # Banking
-    {#//CC Payments
-        'old': {'desc': _imported_re.compile('^USAA CREDIT CARD PAYMENT*')},
-        'new': {'category': 'CC Payments', 'split': 1}},
-    {#//Cash rewards credit
-        'old': {'desc': 'CASH REWARDS CREDIT',
-                'value': (0, 20)},
-        'new': {'category': 'Income - Other', 'split': 1}},
-    {#//Interest
-        'old': {'desc': 'INTEREST PAID',
-                'value': (0, 5)},
-        'new': {'category': 'Income - Other', 'split': 1}},
-
-    # Other
-    {#//Grubhub
-        'old': {'desc': _imported_re.compile('^PAYPAL \*GRUBHUBFOOD')},
-        'new': {'category': 'Food - nice', 'split': 1}},
-    {#//Salary
-        'old': {'desc': _imported_re.compile('^AGUSTAWESTLAND P DIRECT DEP \*{11}'),
-                # TODO add entries for other pay rates, with dates
-                'value': (1902.79, 1902.81)},
-        'new': {'category': 'Salary', 'split': 14}},
-    {#//Spotify
-        'old': {'desc': 'PAYPAL           INST XFER  ***********USAI',
-                'value': -10.81},
-        'new': {'desc': 'Spotify --- PAYPAL           INST XFER  ***********USAI',
-                'category': 'Entertainment - Other', 'split': 30}},
-    {#//Car note
-        'old': {'desc': _imported_re.compile('^HONDA PMT        8004489307 \*{11}'),
-                'value': -320},
-        'new': {'category': 'Car - Note', 'split': 30}},
-    {#//Insurance
-        'old': {'desc': 'USAA P&amp;C INT     AUTOPAY    ***********1608'},
-        'new': {'category': 'Car/Rental Insurance', 'split': 30}},
-]
+# TODO add entries for other pay rates at Leonardo, with dates
 
 # Helper functions to check different fields
 def __check_desc(record, pattern) -> bool:
@@ -106,7 +45,7 @@ def match_templates(record):
     matched = None
     # Check the transaction against all templates in order
     for template in templates:
-        pattern = template['old']
+        pattern = template['pattern']
         match = True
         # Run the checker for each field that has a pattern, break if any fail
         for key in pattern:
@@ -119,3 +58,49 @@ def match_templates(record):
             matched = template
             break
     return matched
+
+templates_file = "Categorize/Templates.json"
+_re_prefix = 'REGEX:'
+
+# Specialized encoding/decoding https://docs.python.org/3/library/json.html
+def _as_regex(dct):
+    if 'desc' in dct and dct['desc'].startswith(_re_prefix):
+        # Convert it back into a compiled regex
+        pattern = dct['desc'].replace(_re_prefix, '')
+        dct['desc'] = _imported_re.compile(pattern)
+        return dct
+    else:
+        # Normal processing
+        return dct
+
+with open(templates_file, 'r') as f:
+    _nested_templates = _imported_json.load(f, object_hook=_as_regex)
+
+# Templates file is nested to help with organization, flatten it to be directly useful
+templates = []
+def _flatten(dct: dict) -> None:
+    if isinstance(dct, list):
+        for v in dct:
+            _flatten(v)
+    elif all(k in dct for k in ('name', 'pattern', 'new')):
+        # Found a template, add it
+        templates.append(dct)
+    else:
+        # Recurse
+        for v in dct.values():
+            _flatten(v)
+_flatten(_nested_templates)
+print(templates)
+
+# For writing to file
+if False:
+    class _RegexEncoder(_imported_json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, _imported_re.Pattern):
+                return _re_prefix + obj.pattern
+            else:
+                # Let the base class default method raise the TypeError
+                return super().default(obj)
+
+    with open(templates_file, 'w') as f:
+        _imported_json.json.dump(templates, f, indent=2, cls=_RegexEncoder)

@@ -1,0 +1,184 @@
+{
+  "Utilities / Rent": [
+    {
+      "name": "Phone",
+      "pattern": {
+        "desc": "SPRINT *WIRELESS         800-639-6111 KS"
+      },
+      "new": {
+        "category": "Utilities",
+        "split": 30
+      }
+    },
+    {
+      "name": "PECO",
+      "pattern": {
+        "desc": "REGEX:^PECOENERGY       UTIL_BIL   \\*{11}"
+      },
+      "new": {
+        "category": "Utilities",
+        "split": 30
+      }
+    },
+    {
+      "name": "PGW",
+      "pattern": {
+        "desc": "REGEX:^PGW WEBPAY       UTILITY    \\*{11}"
+      },
+      "new": {
+        "category": "Utilities",
+        "split": 30
+      }
+    },
+    {
+      "name": "Internet",
+      "pattern": {
+        "desc": "VERIZON          PAYMENTREC ***********0001"
+      },
+      "new": {
+        "category": "Utilities",
+        "split": 30
+      }
+    },
+    {
+      "name": "Aritom water bill",
+      "pattern": {
+        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
+        "value": -40
+      },
+      "new": {
+        "category": "Utilities",
+        "split": 30
+      }
+    },
+    {
+      "name": "Aritom rent",
+      "pattern": {
+        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
+        "value": -1650
+      },
+      "new": {
+        "category": "Rent",
+        "split": 30
+      }
+    },
+    {
+      "name": "Aritom rent and water bill",
+      "pattern": {
+        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
+        "value": -1690
+      },
+      "new": [
+        {
+          "value": -1650,
+          "category": "Rent",
+          "split": 30
+        },
+        {
+          "value": -40,
+          "category": "Utilities",
+          "split": 30
+        }
+      ]
+    }
+  ],
+  "Banking": [
+    {
+      "name": "CC Payments",
+      "pattern": {
+        "desc": "REGEX:^USAA CREDIT CARD PAYMENT*"
+      },
+      "new": {
+        "category": "CC Payments",
+        "split": 1
+      }
+    },
+    {
+      "name": "Cash rewards credit",
+      "pattern": {
+        "desc": "CASH REWARDS CREDIT",
+        "value": [
+          0,
+          20
+        ]
+      },
+      "new": {
+        "category": "Income - Other",
+        "split": 1
+      }
+    },
+    {
+      "name": "Interest",
+      "pattern": {
+        "desc": "INTEREST PAID",
+        "value": [
+          0,
+          5
+        ]
+      },
+      "new": {
+        "category": "Income - Other",
+        "split": 1
+      }
+    }
+  ],
+  "Other": [
+    {
+      "name": "Grubhub",
+      "pattern": {
+        "desc": "REGEX:^PAYPAL \\*GRUBHUBFOOD"
+      },
+      "new": {
+        "category": "Food - nice",
+        "split": 1
+      }
+    },
+    {
+      "name": "Salary",
+      "pattern": {
+        "desc": "REGEX:^AGUSTAWESTLAND P DIRECT DEP \\*{11}",
+        "value": [
+          1902.79,
+          1902.81
+        ]
+      },
+      "new": {
+        "category": "Salary",
+        "split": 14
+      }
+    },
+    {
+      "name": "Spotify",
+      "pattern": {
+        "desc": "PAYPAL           INST XFER  ***********USAI",
+        "value": -10.81
+      },
+      "new": {
+        "desc": "Spotify --- PAYPAL           INST XFER  ***********USAI",
+        "category": "Entertainment - Other",
+        "split": 30
+      }
+    },
+    {
+      "name": "Car note",
+      "pattern": {
+        "desc": "REGEX:^HONDA PMT        8004489307 \\*{11}",
+        "value": -320
+      },
+      "new": {
+        "category": "Car - Note",
+        "split": 30
+      }
+    },
+    {
+      "name": "Insurance",
+      "pattern": {
+        "desc": "USAA P&amp;C INT     AUTOPAY    ***********1608"
+      },
+      "new": {
+        "category": "Car/Rental Insurance",
+        "split": 30
+      }
+    }
+  ]
+}
