@@ -61,25 +61,6 @@
         "category": "Rent",
         "split": 30
       }
-    },
-    {
-      "name": "Aritom rent and water bill",
-      "pattern": {
-        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
-        "value": -1690
-      },
-      "new": [
-        {
-          "value": -1650,
-          "category": "Rent",
-          "split": 30
-        },
-        {
-          "value": -40,
-          "category": "Utilities",
-          "split": 30
-        }
-      ]
     }
   ],
   "Banking": [
