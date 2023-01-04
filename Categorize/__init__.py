@@ -9,6 +9,8 @@ from functools import partial
 
 # TODO add entries for other pay rates at Leonardo, with dates
 
+categories = {'Car/Rental Insurance', 'Utilities', 'Food - nice', 'Income - Other', 'Entertainment - Other', 'Car - Note', 'CC Payments', 'Rent', 'Salary'}
+
 # Helper functions to check different fields
 def __check_desc(record, pattern) -> bool:
     """Assumes that pattern contains a desc field"""
@@ -85,6 +87,8 @@ def add_template(group, name, pattern, new):
     assert isinstance(name, str)
     assert isinstance(pattern, dict)
     assert isinstance(new, dict)
+    if 'category' in new:
+        assert new['category'] in categories
 
     template = {'name': name, 'pattern': pattern, 'new': new}
     _nested_templates[group].append(template)
