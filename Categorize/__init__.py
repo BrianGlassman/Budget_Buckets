@@ -57,7 +57,7 @@ def match_templates(record):
 
     matched = None
     # Check the transaction against all templates in order
-    for template in templates:
+    for template in _templates:
         pattern = template['pattern']
         match = True
         # Run the checker for each field that has a pattern, break if any fail
@@ -81,19 +81,6 @@ def match_templates(record):
 templates_file = "Categorize/Templates.json"
 _re_prefix = 'REGEX:'
 
-def add_template(group, name, pattern, new):
-    assert isinstance(group, str)
-    assert group in _nested_templates, f"Group '{group}' not found"
-    assert isinstance(name, str)
-    assert isinstance(pattern, dict)
-    assert isinstance(new, dict)
-    if 'category' in new:
-        assert new['category'] in categories
-
-    template = {'name': name, 'pattern': pattern, 'new': new}
-    _nested_templates[group].append(template)
-    templates.append(template)
-
 # Specialized encoding/decoding https://docs.python.org/3/library/json.html
 def _as_regex(dct):
     if 'desc' in dct and dct['desc'].startswith(_re_prefix):
@@ -109,19 +96,32 @@ with open(templates_file, 'r') as f:
     _nested_templates = _imported_json.load(f, object_hook=_as_regex)
 
 # Templates file is nested to help with organization, flatten it to be directly useful
-templates = []
+_templates = []
 def _flatten(dct: dict) -> None:
     if isinstance(dct, list):
         for v in dct:
             _flatten(v)
     elif all(k in dct for k in ('name', 'pattern', 'new')):
         # Found a template, add it
-        templates.append(dct)
+        _templates.append(dct)
     else:
         # Recurse
         for v in dct.values():
             _flatten(v)
 _flatten(_nested_templates)
+
+def add_template(group, name, pattern, new):
+    assert isinstance(group, str)
+    assert group in _nested_templates, f"Group '{group}' not found"
+    assert isinstance(name, str)
+    assert isinstance(pattern, dict)
+    assert isinstance(new, dict)
+    if 'category' in new:
+        assert new['category'] in categories
+
+    template = {'name': name, 'pattern': pattern, 'new': new}
+    _nested_templates[group].append(template)
+    _templates.append(template)
 
 def save_templates():
     class _RegexEncoder(_imported_json.JSONEncoder):
