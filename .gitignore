@@ -1,7 +1,9 @@
 # Data files
 # TODO create false data to use for testing
 cc.csv
+2022_cc.csv
 chk.csv
+2022_chk.csv
 
 # Visual Studio
 .vs

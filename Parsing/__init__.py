@@ -16,10 +16,31 @@ class BaseParser(_import_ABC):
         self.transactions = self._parse()
 
     @_import_abstractmethod
+    def _parse(self): pass
+
+class BaseUSAAParser(BaseParser):
+    pass
+
+class USAAParser(BaseUSAAParser):
+    """
+    Parser for handling csv output files from USAA.
+    File has a header with fields:
+    Date, Description, Original Description, Category, Amount, Status
+    """
+    # Somewhere (maybe around late 2022?) USAA changed the export format. This is for parsing things after that change
     def _parse(self):
-        pass
+        with open(self.infile, 'r') as f:
+            return [self._make_transaction(line) for line in _import_csv.DictReader(f)]
+
+    def _make_transaction(self, line) -> RawRecord:
+        line = dict(line) # Copy so that it can be modified
+        date = line.pop('Date')
+        desc = line.pop('Description')
+        value = float(line.pop('Amount'))
+        # Anything left in the line is source-specific values
+        return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
     
-class USAAParser(BaseParser):
+class OldUSAAParser(BaseUSAAParser):
     """
     Parser for handling csv output files from USAA.
     Files have no header, csv with lines of the form:
@@ -27,13 +48,12 @@ class USAAParser(BaseParser):
 
     Note: value is -[float] for expenses, --[float] for income
     """
+    # Somewhere (maybe around late 2022?) USAA changed the export format. This is for parsing things before that change
+
     _fieldnames = ['status', 'idk', 'date', 'custom_desc', 'auto_desc', 'auto_cat', 'value']
 
     def _parse(self):
-        """Parse the file into transactions.
-        Args:
-            infile (file path): path to the input file to open
-        """
+        """Parse the file into transactions."""
         with open(self.infile, 'r') as f:
             return [self._make_transaction(line) for line in _import_csv.DictReader(f, self._fieldnames)]
 
@@ -61,11 +81,3 @@ class USAAParser(BaseParser):
         value = float(line.pop('value').replace('--', ''))
         # Anything left in the line is source-specific values
         return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
-
-if __name__ == "__main__":
-    # This should fail because it's an ABC
-    # TODO assert failure or whatever
-    #bp = BaseParser("test", "not_a_file.csv")
-
-    parser = USAAParser("USAA Credit Card", "cc.csv")
-    print('\n'.join(str(x) for x in parser.transactions))

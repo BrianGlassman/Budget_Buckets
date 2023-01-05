@@ -1,77 +1,144 @@
 {
-  "Utilities / Rent": [
+  "Car": [
     {
-      "name": "Phone",
+      "name": "Car note",
       "pattern": {
-        "desc": "SPRINT *WIRELESS         800-639-6111 KS"
+        "desc": "Honda Financial",
+        "value": -320
       },
       "new": {
-        "category": "Utilities",
+        "category": "Car - Note",
         "split": 30
       }
     },
     {
-      "name": "PECO",
+      "name": "Insurance",
       "pattern": {
-        "desc": "REGEX:^PECOENERGY       UTIL_BIL   \\*{11}"
+        "desc": "USAA Property and Casualty Insurance",
+        "value": [
+          -100,
+          -200
+        ]
       },
       "new": {
-        "category": "Utilities",
+        "category": "Car/Rental Insurance",
+        "split": 30
+      }
+    }
+  ],
+  "Education": [],
+  "Entertainment": [
+    {
+      "name": "Spotify",
+      "pattern": {
+        "desc": "Spotify",
+        "value": -10.81
+      },
+      "new": {
+        "category": "Entertainment - Other",
         "split": 30
       }
     },
     {
-      "name": "PGW",
+      "name": "Spotify - Student",
       "pattern": {
-        "desc": "REGEX:^PGW WEBPAY       UTILITY    \\*{11}"
+        "desc": "Spotify",
+        "value": -5.40
       },
       "new": {
-        "category": "Utilities",
+        "category": "Entertainment - Other",
         "split": 30
       }
-    },
+    }
+  ],
+  "Food": [],
+  "Housing": [
     {
-      "name": "Internet",
+      "name": "Bluff St rent",
       "pattern": {
-        "desc": "VERIZON          PAYMENTREC ***********0001"
-      },
-      "new": {
-        "category": "Utilities",
-        "split": 30
-      }
-    },
-    {
-      "name": "Aritom water bill",
-      "pattern": {
-        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
-        "value": -40
-      },
-      "new": {
-        "category": "Utilities",
-        "split": 30
-      }
-    },
-    {
-      "name": "Aritom rent",
-      "pattern": {
-        "desc": "ARITOM PROPERTIES        610-353-4925 PA",
-        "value": -1650
+        "desc": "REGEX:^Check #[0-9]*",
+        "value": -1850
       },
       "new": {
         "category": "Rent",
         "split": 30
       }
-    }
-  ],
-  "Banking": [
+    },
     {
-      "name": "CC Payments",
+      "name": "Bluff St Electric/Gas",
       "pattern": {
-        "desc": "REGEX:^USAA CREDIT CARD PAYMENT*"
+        "desc": "Xcel Energy",
+        "value": [
+          -30,
+          -70
+        ]
       },
       "new": {
-        "category": "CC Payments",
+        "category": "Utilities",
+        "split": 30
+      }
+    }
+  ],
+  "Investments/Savings": [],
+  "Medical/Dental": [],
+  "Other": [
+    {
+      "name": "ATM Withdrawal",
+      "pattern": {
+        "desc": "ATM Withdrawal",
+        "value": [
+          -20,
+          -150
+        ]
+      },
+      "new": {
+        "category": "ATM",
         "split": 1
+      }
+    },
+    {
+      "name": "ATM Fee Rebate",
+      "pattern": {
+        "desc": "ATM Fee Rebate",
+        "value": [
+          0,
+          5
+        ]
+      },
+      "new": {
+        "category": "ATM",
+        "split": 1
+      }
+    }
+  ],
+  "Personal Care / Clothing": [],
+  "Income": [
+    {
+      "name": "AIS Salary - 1 week",
+      "pattern": {
+        "desc": "Ai Solutions Payroll",
+        "value": [
+          900,
+          1000
+        ]
+      },
+      "new": {
+        "category": "Salary",
+        "split": 7
+      }
+    },
+    {
+      "name": "AIS Salary - 2 weeks",
+      "pattern": {
+        "desc": "Ai Solutions Payroll",
+        "value": [
+          1001,
+          2000
+        ]
+      },
+      "new": {
+        "category": "Salary",
+        "split": 14
       }
     },
     {
@@ -91,7 +158,7 @@
     {
       "name": "Interest",
       "pattern": {
-        "desc": "INTEREST PAID",
+        "desc": "Interest Paid",
         "value": [
           0,
           5
@@ -103,107 +170,19 @@
       }
     }
   ],
-  "Food - nice": [
+  "Internal": [
     {
-      "name": "Grubhub",
+      "name": "CC Payments",
       "pattern": {
-        "desc": "REGEX:^PAYPAL \\*GRUBHUBFOOD"
+        "desc": "USAA Credit Card"
       },
       "new": {
-        "category": "Food - nice",
-        "split": 1
-      }
-    },
-    {
-      "name": "Torchys",
-      "pattern": {
-        "desc": "045 TORCHYS BOULDER      BOULDER      CO"
-      },
-      "new": {
-        "category": "Food - nice",
-        "split": 1
-      }
-    },
-    {
-      "name": "Qdoba",
-      "pattern": {
-        "desc": "QDOBA 2030               BOULDER      CO"
-      },
-      "new": {
-        "category": "Food - nice",
+        "category": "CC Payments",
         "split": 1
       }
     }
   ],
-  "Other": [
-    {
-      "name": "Safeway",
-      "pattern": {
-        "desc": "SAFEWAY #2911            BOULDER      CO"
-      },
-      "new": {
-        "category": "Groceries",
-        "split": 1
-      }
-    },
-    {
-      "name": "Salary",
-      "pattern": {
-        "desc": "REGEX:^AGUSTAWESTLAND P DIRECT DEP \\*{11}",
-        "value": [
-          1902.79,
-          1902.81
-        ]
-      },
-      "new": {
-        "category": "Salary",
-        "split": 14
-      }
-    },
-    {
-      "name": "Spotify",
-      "pattern": {
-        "desc": "PAYPAL           INST XFER  ***********USAI",
-        "value": -10.81
-      },
-      "new": {
-        "desc": "Spotify --- PAYPAL           INST XFER  ***********USAI",
-        "category": "Entertainment - Other",
-        "split": 30
-      }
-    },
-    {
-      "name": "Car note",
-      "pattern": {
-        "desc": "REGEX:^HONDA PMT        8004489307 \\*{11}",
-        "value": -320
-      },
-      "new": {
-        "category": "Car - Note",
-        "split": 30
-      }
-    },
-    {
-      "name": "Insurance",
-      "pattern": {
-        "desc": "USAA P&amp;C INT     AUTOPAY    ***********1608"
-      },
-      "new": {
-        "category": "Car/Rental Insurance",
-        "split": 30
-      }
-    },
-    {
-      "name": "Steam",
-      "pattern": {
-        "desc": "REGEX:STEAM GAMES"
-      },
-      "new": {
-        "category": "Games",
-        "split": 30
-      }
-    }
-  ],
+
   "Auto-generated": [
   ]
 }

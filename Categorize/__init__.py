@@ -80,7 +80,10 @@ def __check_desc(record, pattern) -> bool:
     else:
         raise NotImplementedError("Unknown mask type")
 def __check_value(record, pattern) -> bool:
-    """Assumes that pattern contains a value field"""
+    """Assumes that pattern contains a value field
+    Pattern must be a number or range (list of two numbers)
+    True if record value matches the number or is within the given range (inclusive)
+    """
     mask = pattern['value']
     if isinstance(mask, (int, float)):
         # Exact value matching
@@ -88,8 +91,8 @@ def __check_value(record, pattern) -> bool:
     else:
         # Range matching
         assert len(mask) == 2
-        assert mask[0] < mask[1]
-        return mask[0] <= record.value <= mask[1]
+        assert mask[0] != mask[1]
+        return min(mask) <= record.value <= max(mask)
 
 def __check_generic(record, pattern, key) -> bool:
     """record - BaseRecord

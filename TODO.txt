@@ -1,5 +1,7 @@
 
-Make separate file for auto-generated templates, so that it's easier to track in git
+Update to the new USAA format and descriptions
+
+Make the Transactions JSON multi-layer nestable
 
 Make Category font match other cells (should also help with sizing)
 	unless OBE
@@ -17,3 +19,8 @@ Some way to validate all templates
 Allow typing with autocomplete for category
 
 Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
+
+Make a module to convert from the old system (with categorizations and descriptions) to the new one
+	This is better than doing it manually, or making something temporary
+	Actually... this should probably be lower priority
+	Just start fresh from some date, and ignore the old stuff for now
