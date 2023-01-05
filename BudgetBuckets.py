@@ -49,6 +49,13 @@ def onModification(event: gui.tkinter.Event):
     if create:
         added_templates.append((pattern, new))
 
+# Mouse wheel changes the combobox selection, which I don't want
+def empty_scroll(event): return "break"
+def disable_scroll(obj):
+    obj.bind("<MouseWheel>", empty_scroll)
+    obj.bind("<ButtonPress-4>", empty_scroll)
+    obj.bind("<ButtonPress-5>", empty_scroll)
+
 # Populate the table
 widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20}
 widths = list(widths.values())
@@ -63,6 +70,7 @@ for r, row in enumerate(categorized_transactions):
             cat.grid(row=r, column=c)
             cat.bind(func = onModification)
             cat.transaction = row
+            disable_scroll(cat)
         else:
             if c < len(widths) and (widths[c] is not None):
                 gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)

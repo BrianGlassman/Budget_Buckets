@@ -1,4 +1,3 @@
-Allow typing with autocomplete for category
 
 Get the fuller list of categories
 
@@ -14,3 +13,7 @@ There should probably be a section for "overrides" at the top of the templates t
 Some way to remove duplicate templates
 
 Some way to validate all templates
+
+Allow typing with autocomplete for category
+
+Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
