@@ -1,6 +1,7 @@
 """Wrappers around base tkinter classes to add my expanded functionality"""
 
 import tkinter
+from tkinter import ttk
 
 import TkinterPlus.Functions as _import_Functions
 import TkinterPlus.Values as _import_Values
@@ -46,6 +47,49 @@ _import_Functions.add_functions(Button)
 
 class Canvas(tkinter.Canvas): pass
 _import_Functions.add_functions(Canvas)
+
+class Combobox(ttk.Combobox):
+    def __init__(self, master, values=[], initial=None, **kwargs):
+        super().__init__(master, **kwargs)
+        self.values = values
+
+        if initial is not None:
+            self.set(initial)
+
+    def bind(self, sequence="<<ComboboxSelected>>", func=None, add=None):
+        assert sequence is None or isinstance(sequence, str)
+        super().bind(sequence, func, add)
+
+    #%% State
+    @property
+    def state(self):
+        return self['state']
+    @state.setter
+    def state(self, state):
+        """Sets the state:
+        normal - text field is directly editable
+        readonly - user can only select from the dropdown
+        disabled - no interaction is possible
+        """
+        assert state in ("normal", "readonly", "disabled")
+        self['state'] = state
+    def set_state_normal(self):   self.state = "normal"
+    def set_state_readonly(self): self.state = "readonly"
+    def set_state_disabled(self): self.state = "disabled"
+
+    #%% Values
+    @property
+    def values(self):
+        return self['values']
+    @values.setter
+    def values(self, values):
+        if not isinstance(values, list):
+            # I know Set doesn't work, so just always make it a list
+            values = list(values)
+        self['values'] = values
+
+    #%%
+_import_Functions.add_functions(Combobox)
 
 class Frame(tkinter.Frame):
     def __init__(self, master = None, cnf = {}, **kwargs):

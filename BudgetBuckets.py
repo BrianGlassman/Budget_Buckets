@@ -31,7 +31,7 @@ table.pack(side = "top", fill="both", expand=True)
 # [(pattern, new)]
 added_templates = []
 def onModification(event: gui.tkinter.Event):
-    text = event.widget.get("1.0", "end-1c")
+    text = event.widget.get()
 
     t = event.widget.transaction
     pattern = t.items()
@@ -50,7 +50,7 @@ def onModification(event: gui.tkinter.Event):
         added_templates.append((pattern, new))
 
 # Populate the table
-widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 10}
+widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20}
 widths = list(widths.values())
 for r, row in enumerate(categorized_transactions):
     for c, cell in enumerate(row.values()):
@@ -58,10 +58,11 @@ for r, row in enumerate(categorized_transactions):
         if c == 4: continue # Skip the source-specific data
         if c == 5:
             # Category
-            txt = gui.WatchedText(table.frame, text = str(cell), width = widths[c], height = 1)
-            txt.grid(row=r, column=c)
-            txt.watch(onModification)
-            txt.transaction = row
+            cat = gui.Combobox(master = table.frame, values = Categorize.categories, initial = row.category, width = widths[c])
+            cat.set_state_readonly()
+            cat.grid(row=r, column=c)
+            cat.bind(func = onModification)
+            cat.transaction = row
         else:
             if c < len(widths) and (widths[c] is not None):
                 gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)

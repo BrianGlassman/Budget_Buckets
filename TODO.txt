@@ -1,4 +1,6 @@
-Switch to using a dropdown for Category
+Allow typing with autocomplete for category
+
+Get the fuller list of categories
 
 Make Category font match other cells (should also help with sizing)
 	unless OBE
