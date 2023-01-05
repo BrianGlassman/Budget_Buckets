@@ -103,7 +103,7 @@
       }
     }
   ],
-  "Other": [
+  "Food - nice": [
     {
       "name": "Grubhub",
       "pattern": {
@@ -111,6 +111,38 @@
       },
       "new": {
         "category": "Food - nice",
+        "split": 1
+      }
+    },
+    {
+      "name": "Torchys",
+      "pattern": {
+        "desc": "045 TORCHYS BOULDER      BOULDER      CO"
+      },
+      "new": {
+        "category": "Food - nice",
+        "split": 1
+      }
+    },
+    {
+      "name": "Qdoba",
+      "pattern": {
+        "desc": "QDOBA 2030               BOULDER      CO"
+      },
+      "new": {
+        "category": "Food - nice",
+        "split": 1
+      }
+    }
+  ],
+  "Other": [
+    {
+      "name": "Safeway",
+      "pattern": {
+        "desc": "SAFEWAY #2911            BOULDER      CO"
+      },
+      "new": {
+        "category": "Groceries",
         "split": 1
       }
     },
@@ -158,6 +190,16 @@
       },
       "new": {
         "category": "Car/Rental Insurance",
+        "split": 30
+      }
+    },
+    {
+      "name": "Steam",
+      "pattern": {
+        "desc": "REGEX:STEAM GAMES"
+      },
+      "new": {
+        "category": "Games",
         "split": 30
       }
     }

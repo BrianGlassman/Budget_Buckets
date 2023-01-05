@@ -1,5 +1,5 @@
 
-Get the fuller list of categories
+Make separate file for auto-generated templates, so that it's easier to track in git
 
 Make Category font match other cells (should also help with sizing)
 	unless OBE

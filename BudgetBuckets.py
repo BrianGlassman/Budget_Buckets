@@ -14,11 +14,9 @@ for baseRecord in parser.transactions:
         category = 'TODO'
     else:
         category = match['new']['category']
+        assert category in Categorize.categories, f"Bad category: {category}"
     ct = Record.CategorizedRecord(baseRecord, category)
     categorized_transactions.append(ct)
-
-    if len(categorized_transactions) == 10:
-        break
 
 #%% Display
 import TkinterPlus as gui
