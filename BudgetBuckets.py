@@ -1,19 +1,23 @@
 #%% Parsing
 import Parsing
 
-#parser = Parsing.USAAParser("USAA CC", "2022_cc.csv")
-parser = Parsing.USAAParser("Checking", "2022_chk.csv")
+transactions = []
+for parser in [
+    Parsing.USAAParser("Checking", "2022_chk.csv"),
+    Parsing.USAAParser("Credit Card", "2022_cc.csv")
+    ]:
+    transactions.extend(parser.transactions)
 
 #%% Categorizing
 import Record
 import Categorize
 
-limit = -1 # Use -1 for all
+limit = 50 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = False # Whether to show categorized items
 
 categorized_transactions = []
-for baseRecord in parser.transactions:
+for baseRecord in transactions:
     match = Categorize.match_templates(baseRecord)
     if match is None:
         if use_uncat:
@@ -33,6 +37,8 @@ for baseRecord in parser.transactions:
 
 #%% Display
 import TkinterPlus as gui
+
+gui.Values.scale *= 2
 
 root = gui.Root(10, 10)
 
@@ -67,12 +73,30 @@ def disable_scroll(obj):
     obj.bind("<ButtonPress-4>", empty_scroll)
     obj.bind("<ButtonPress-5>", empty_scroll)
 
+# Group together by Category, then description
+# Sort to have the largest groups first
+def sort_transactions(transactions):
+    annotated = ((t.category + "<>" + t.desc, t) for t in transactions)
+    grouped = {}
+    for key, t in annotated:
+        if key not in grouped:
+            grouped[key] = []
+        grouped[key].append(t)
+
+    _sorted = sorted(grouped.items(), key=lambda item: len(item[1]))
+    _reversed = reversed(_sorted)
+
+    ret = []
+    for k,v in _reversed:
+        ret.extend(v)
+    return ret
+categorized_transactions = sort_transactions(categorized_transactions)
+
 # Populate the table
 widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20}
 widths = list(widths.values())
 for r, row in enumerate(categorized_transactions):
     for c, cell in enumerate(row.values()):
-        if c == 0: continue # Skip the Account
         if c == 4: continue # Skip the source-specific data
         if c == 5:
             # Category
