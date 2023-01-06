@@ -1,7 +1,8 @@
 
-Update to the new USAA format and descriptions
-
-Make the Transactions JSON multi-layer nestable
+Be able to sort columns
+Also columns should have a header
+	make header separate from the scrollable canvas, that way it stays at the top
+	PROBLEM: then header won't have horizontal scrolling
 
 Make Category font match other cells (should also help with sizing)
 	unless OBE
@@ -9,6 +10,7 @@ Make Category font match other cells (should also help with sizing)
 Remove the separation between rows (how long has that been there?)
 
 Some system for creating generic templates
+	will probably need to figure out how to put it in the right nested group
 
 There should probably be a section for "overrides" at the top of the templates to manually override generic templates
 

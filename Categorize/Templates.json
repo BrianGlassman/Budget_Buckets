@@ -1,188 +1,233 @@
 {
-  "Car": [
-    {
-      "name": "Car note",
-      "pattern": {
-        "desc": "Honda Financial",
-        "value": -320
-      },
-      "new": {
-        "category": "Car - Note",
-        "split": 30
+  "Car": {
+    "Car - Note": [
+      {
+        "name": "Car note",
+        "pattern": {
+          "desc": "Honda Financial",
+          "value": -320
+        },
+        "new": {
+          "category": "Car - Note",
+          "split": 30
+        }
       }
-    },
-    {
-      "name": "Insurance",
-      "pattern": {
-        "desc": "USAA Property and Casualty Insurance",
-        "value": [
-          -100,
-          -200
-        ]
-      },
-      "new": {
-        "category": "Car/Rental Insurance",
-        "split": 30
+    ],
+    "Car/Rental Insurance": [
+      {
+        "name": "Insurance",
+        "pattern": {
+          "desc": "USAA Property and Casualty Insurance",
+          "value": [
+            -100,
+            -200
+          ]
+        },
+        "new": {
+          "category": "Car/Rental Insurance",
+          "split": 30
+        }
       }
-    }
-  ],
-  "Education": [],
-  "Entertainment": [
-    {
-      "name": "Spotify",
-      "pattern": {
-        "desc": "Spotify",
-        "value": -10.81
+    ],
+    "Car - Other": [],
+    "Car - Parking Pass": []
+  },
+  "Education": {
+    "Self-improvement": []
+  },
+  "Entertainment": {
+    "Dates": [],
+    "Entertainment - Other": [
+      {
+        "name": "Spotify",
+        "pattern": {
+          "desc": "Spotify",
+          "value": -10.81
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "split": 30
+        }
       },
-      "new": {
-        "category": "Entertainment - Other",
-        "split": 30
+      {
+        "name": "Spotify - Student",
+        "pattern": {
+          "desc": "Spotify",
+          "value": -5.4
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "split": 30
+        }
       }
-    },
-    {
-      "name": "Spotify - Student",
-      "pattern": {
-        "desc": "Spotify",
-        "value": -5.40
+    ],
+    "Games": [],
+    "Going Out": [],
+    "Books": [],
+    "Big Fun": []
+  },
+  "Food": {
+    "Groceries": [],
+    "Food - nice": []
+  },
+  "Housing": {
+    "Rent": [
+      {
+        "name": "Bluff St rent",
+        "pattern": {
+          "desc": "REGEX:^Check #[0-9]*",
+          "value": -1850
+        },
+        "new": {
+          "category": "Rent",
+          "split": 30
+        }
+      }
+    ],
+    "Utilities": [
+      {
+        "name": "Bluff St Electric/Gas",
+        "pattern": {
+          "desc": "Xcel Energy",
+          "value": [
+            -30,
+            -70
+          ]
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 30
+        }
+      }
+    ],
+    "Housing - Other": [],
+    "Decoration": []
+  },
+  "Investments/Savings": {
+    "401k": [],
+    "Retirement": [],
+    "Long-term": [],
+    "Unexpected Fund": []
+  },
+  "Medical/Dental": {
+    "Medical - Other": [],
+    "Medical Insurance": []
+  },
+  "Other": {
+    "ATM": [
+      {
+        "name": "ATM Withdrawal",
+        "pattern": {
+          "desc": "ATM Withdrawal",
+          "value": [
+            -20,
+            -150
+          ]
+        },
+        "new": {
+          "category": "ATM",
+          "split": 1
+        }
       },
-      "new": {
-        "category": "Entertainment - Other",
-        "split": 30
+      {
+        "name": "ATM Fee Rebate",
+        "pattern": {
+          "desc": "ATM Fee Rebate",
+          "value": [
+            0,
+            5
+          ]
+        },
+        "new": {
+          "category": "ATM",
+          "split": 1
+        }
       }
-    }
-  ],
-  "Food": [],
-  "Housing": [
-    {
-      "name": "Bluff St rent",
-      "pattern": {
-        "desc": "REGEX:^Check #[0-9]*",
-        "value": -1850
+    ],
+    "Other - Other": []
+  },
+  "Personal Care / Clothing": {
+    "Clothes/Personal care": []
+  },
+  "Income": {
+    "Parental Funds": [],
+    "Loans": [],
+    "Salary": [
+      {
+        "name": "AIS Salary - 1 week",
+        "pattern": {
+          "desc": "Ai Solutions Payroll",
+          "value": [
+            900,
+            1000
+          ]
+        },
+        "new": {
+          "category": "Salary",
+          "split": 7
+        }
       },
-      "new": {
-        "category": "Rent",
-        "split": 30
+      {
+        "name": "AIS Salary - 2 weeks",
+        "pattern": {
+          "desc": "Ai Solutions Payroll",
+          "value": [
+            1001,
+            2000
+          ]
+        },
+        "new": {
+          "category": "Salary",
+          "split": 14
+        }
       }
-    },
-    {
-      "name": "Bluff St Electric/Gas",
-      "pattern": {
-        "desc": "Xcel Energy",
-        "value": [
-          -30,
-          -70
-        ]
+    ],
+    "Income - Other": [
+      {
+        "name": "Cash rewards credit",
+        "pattern": {
+          "desc": "CASH REWARDS CREDIT",
+          "value": [
+            0,
+            20
+          ]
+        },
+        "new": {
+          "category": "Income - Other",
+          "split": 1
+        }
       },
-      "new": {
-        "category": "Utilities",
-        "split": 30
+      {
+        "name": "Interest",
+        "pattern": {
+          "desc": "Interest Paid",
+          "value": [
+            0,
+            5
+          ]
+        },
+        "new": {
+          "category": "Income - Other",
+          "split": 1
+        }
       }
-    }
-  ],
-  "Investments/Savings": [],
-  "Medical/Dental": [],
-  "Other": [
-    {
-      "name": "ATM Withdrawal",
-      "pattern": {
-        "desc": "ATM Withdrawal",
-        "value": [
-          -20,
-          -150
-        ]
-      },
-      "new": {
-        "category": "ATM",
-        "split": 1
+    ]
+  },
+  "Internal": {
+    "CC Payments": [
+      {
+        "name": "CC Payments",
+        "pattern": {
+          "desc": "USAA Credit Card"
+        },
+        "new": {
+          "category": "CC Payments",
+          "split": 1
+        }
       }
-    },
-    {
-      "name": "ATM Fee Rebate",
-      "pattern": {
-        "desc": "ATM Fee Rebate",
-        "value": [
-          0,
-          5
-        ]
-      },
-      "new": {
-        "category": "ATM",
-        "split": 1
-      }
-    }
-  ],
-  "Personal Care / Clothing": [],
-  "Income": [
-    {
-      "name": "AIS Salary - 1 week",
-      "pattern": {
-        "desc": "Ai Solutions Payroll",
-        "value": [
-          900,
-          1000
-        ]
-      },
-      "new": {
-        "category": "Salary",
-        "split": 7
-      }
-    },
-    {
-      "name": "AIS Salary - 2 weeks",
-      "pattern": {
-        "desc": "Ai Solutions Payroll",
-        "value": [
-          1001,
-          2000
-        ]
-      },
-      "new": {
-        "category": "Salary",
-        "split": 14
-      }
-    },
-    {
-      "name": "Cash rewards credit",
-      "pattern": {
-        "desc": "CASH REWARDS CREDIT",
-        "value": [
-          0,
-          20
-        ]
-      },
-      "new": {
-        "category": "Income - Other",
-        "split": 1
-      }
-    },
-    {
-      "name": "Interest",
-      "pattern": {
-        "desc": "Interest Paid",
-        "value": [
-          0,
-          5
-        ]
-      },
-      "new": {
-        "category": "Income - Other",
-        "split": 1
-      }
-    }
-  ],
-  "Internal": [
-    {
-      "name": "CC Payments",
-      "pattern": {
-        "desc": "USAA Credit Card"
-      },
-      "new": {
-        "category": "CC Payments",
-        "split": 1
-      }
-    }
-  ],
-
+    ],
+    "Internal Transfers": []
+  },
   "Auto-generated": [
   ]
 }
