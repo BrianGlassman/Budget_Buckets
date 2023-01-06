@@ -2,69 +2,14 @@ import re as _imported_re
 import json as _imported_json
 from functools import partial
 
+from Root.Constants import categories as _imported_categories
+
 #TODO validate field names against the appropriate data structures somehow
 
 # Regex notes:
 #   \*{11} matches exactly 11 asterisks
 
 # TODO add entries for other pay rates at Leonardo, with dates
-
-categories = (
-    # Car
-    'Car - Note',
-    'Car/Rental Insurance',
-    'Car - Other',
-    'Car - Parking Pass', # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
-
-    # Education
-    'Self-improvement',
-
-    # Entertainment
-    'Dates',
-    'Entertainment - Other',
-    'Games',
-    'Going Out',
-    'Books',
-    'Big Fun',
-
-    # Food
-    'Groceries',
-    'Food - nice',
-
-    # Housing
-    'Rent',
-    'Utilities',
-    'Internet',
-    'Housing - Other',
-    'Decoration',
-
-    # Investments/Savings
-    '401k',
-    'Retirement',
-    'Long-term',
-    'Unexpected Fund',
-
-    # Medical/Dental
-    'Medical - Other',
-    'Medical Insurance',
-
-    # Other
-    'ATM',
-    'Other - Other',
-
-    # Personal Care / Clothing
-    'Clothes/Personal care',
-
-    # Income
-    'Parental Funds',
-    'Loans',
-    'Salary',
-    'Income - Other',
-
-    # Internal
-    'CC Payments',
-    'Internal Transfers',
-    )
 
 # Helper functions to check different fields
 def __check_desc(record, pattern) -> bool:
@@ -187,7 +132,7 @@ def add_template(group, name, pattern, new):
     assert isinstance(pattern, dict)
     assert isinstance(new, dict)
     if 'category' in new:
-        assert new['category'] in categories
+        assert new['category'] in _imported_categories
 
     template = {'name': name, 'pattern': pattern, 'new': new}
     _nested_templates[group].append(template)

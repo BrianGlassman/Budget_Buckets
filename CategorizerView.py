@@ -11,6 +11,7 @@ for parser in [
 #%% Categorizing
 import Record
 import Categorize
+from Root import Constants
 
 limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
@@ -26,7 +27,7 @@ for baseRecord in transactions:
             continue
     else:
         category = match['new']['category']
-        assert category in Categorize.categories, f"Bad category: {category}"
+        assert category in Constants.categories, f"Bad category: {category}"
         if not use_cat:
             continue
     ct = Record.CategorizedRecord(baseRecord, category)
@@ -100,7 +101,7 @@ for r, row in enumerate(categorized_transactions):
         if c == 4: continue # Skip the source-specific data
         if c == 5:
             # Category
-            cat = gui.Combobox(master = table.frame, values = Categorize.categories, initial = row.category, width = widths[c])
+            cat = gui.Combobox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
             cat.set_state_readonly()
             cat.grid(row=r, column=c)
             cat.bind(func = onModification)

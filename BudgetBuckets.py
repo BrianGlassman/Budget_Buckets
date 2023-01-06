@@ -11,6 +11,7 @@ for parser in [
 #%% Categorizing
 import Record
 import Categorize
+from Root import Constants
 
 limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
@@ -26,7 +27,7 @@ for baseRecord in transactions:
             continue
     else:
         category = match['new']['category']
-        assert category in Categorize.categories, f"Bad category: {category}"
+        assert category in Constants.categories, f"Bad category: {category}"
         if not use_cat:
             continue
     ct = Record.CategorizedRecord(baseRecord, category)
