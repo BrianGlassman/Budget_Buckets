@@ -113,27 +113,33 @@ def match_templates(record):
     """Check against the common templates. Return whichever template
     matches, or None if no match"""
 
-    matched = None
-    # Check the transaction against all templates in order
-    for template in _templates:
-        pattern = template['pattern']
-        match = True
-        # Run the checker for each field that has a pattern, break if any fail
-        for key in pattern:
-            try:
-                checker = _checker[key]
-                if not checker(record, pattern):
-                    match = False
-                    break
-            except TypeError:
-                val = _checker[key](record, pattern)
-                print(val)
-                raise
+    try:
+        matched = None
+        # Check the transaction against all templates in order
+        for template in _templates:
+            pattern = template['pattern']
+            match = True
+            # Run the checker for each field that has a pattern, break if any fail
+            for key in pattern:
+                try:
+                    checker = _checker[key]
+                    if not checker(record, pattern):
+                        match = False
+                        break
+                except TypeError:
+                    val = _checker[key](record, pattern)
+                    print(val)
+                    raise
 
-        if match:
-            # Template matched, stop searching
-            matched = template
-            break
+            if match:
+                # Template matched, stop searching
+                matched = template
+                break
+    except Exception:
+        print(r" \/ \/ \/ FAILED RECORD \/ \/ \/ ")
+        print(record)
+        print(r" /\ /\ /\ FAILED RECORD /\ /\ /\ ")
+        raise
     return matched
 
 templates_file = "Categorize/Templates.json"
@@ -156,16 +162,22 @@ with open(templates_file, 'r') as f:
 # Templates file is nested to help with organization, flatten it to be directly useful
 _templates = []
 def _flatten(dct: dict) -> None:
-    if isinstance(dct, list):
-        for v in dct:
-            _flatten(v)
-    elif all(k in dct for k in ('name', 'pattern', 'new')):
-        # Found a template, add it
-        _templates.append(dct)
-    else:
-        # Recurse
-        for v in dct.values():
-            _flatten(v)
+    try:
+        if isinstance(dct, list):
+            # Recurse into Array
+            for v in dct:
+                _flatten(v)
+        elif all(k in dct for k in ('name', 'pattern', 'new')):
+            # Found a template, add it
+            _templates.append(dct)
+        else:
+            # Recurse into Object
+            for k,v in dct.items():
+                if k == "$schema": continue
+                _flatten(v)
+    except Exception:
+        print("Failed:" + str(dct))
+        raise
 _flatten(_nested_templates)
 
 def add_template(group, name, pattern, new):

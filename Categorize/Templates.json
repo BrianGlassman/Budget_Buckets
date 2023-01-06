@@ -1,4 +1,6 @@
 {
+  "$schema": "Schemas/TemplatesSchema.json#",
+
   "Car": {
     "Car - Note": [
       {
@@ -29,8 +31,34 @@
         }
       }
     ],
-    "Car - Other": [],
-    "Car - Parking Pass": []
+    "Car - Other": [
+      {
+        "name": "Gas (Circle K)",
+        "pattern": {
+          "desc": "Circle K",
+          "value": [ -18, -30 ]
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1
+        }
+      }
+    ],
+    "Car - Parking Pass": [
+      {
+        "name": "ParkMobile",
+        "pattern": {
+          "desc": "ParkMobile",
+          "value": [
+            -0,
+            -10
+          ]
+        },
+        "new": {
+          "category": "Car - Parking Pass"
+        }
+      }
+    ]
   },
   "Education": {
     "Self-improvement": []
@@ -61,14 +89,123 @@
         }
       }
     ],
-    "Games": [],
-    "Going Out": [],
+    "Games": [
+      {
+        "name": "Steam",
+        "pattern": {
+          "desc": "Steam",
+          "value": [
+            -0,
+            -80
+          ]
+        },
+        "new": {
+          "category": "Games"
+        }
+      }
+    ],
+    "Going Out": [
+      {
+        "name": "Dark Horse",
+        "pattern": { "desc": "The Dark Horse" },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      },
+      {
+        "name": "Rayback",
+        "pattern": { "desc": "Rayback Collective" },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      }
+    ],
     "Books": [],
-    "Big Fun": []
+    "Big Fun": [
+      {
+        "name": "Spirit Halloween",
+        "pattern": { "desc": "Spirit Halloween" },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      }
+    ]
   },
   "Food": {
-    "Groceries": [],
-    "Food - nice": []
+    "Groceries": [
+      {
+        "name": "Safeway",
+        "pattern": {
+          "desc": "Safeway"
+        },
+        "new": {
+          "category": "Groceries",
+          "split": 1
+        }
+      },
+      {
+        "name": "HelloFresh",
+        "pattern": {
+          "desc": "HelloFresh",
+          "value": -49.81
+        },
+        "new": {
+          "category": "Groceries",
+          "split": 1
+        }
+      }
+    ],
+    "Food - nice": [
+      {
+        "name": "Qdoba",
+        "pattern": {
+          "desc": "Qdoba",
+          "value": [
+            -5,
+            -20
+          ]
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Torchys",
+        "pattern": { "desc": "Torchys Boulder" },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Panda Express",
+        "pattern": { "desc": "Panda Express" },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Dominos",
+        "pattern": { "desc": "Domino's" },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Cosmos",
+        "pattern": { "desc": "Cosmos Pizza North Boul" },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      }
+    ]
   },
   "Housing": {
     "Rent": [
@@ -98,9 +235,55 @@
           "category": "Utilities",
           "split": 30
         }
+      },
+      {
+        "name": "Phone (T-Mobile)",
+        "pattern": {
+          "desc": "T-Mobile",
+          "value": -30.0
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 30
+        }
+      },
+      {
+        "name": "Phone (Sprint)",
+        "pattern": {
+          "desc": "Sprint",
+          "value": [ -30.0, -31.0 ]
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 30
+        }
       }
     ],
-    "Housing - Other": [],
+    "Internet": [
+      {
+        "name": "Comcast",
+        "pattern": {
+          "desc": "Comcast",
+          "value": -40.41
+        },
+        "new": {
+          "category": "Internet",
+          "split": 30
+        }
+      }
+    ],
+    "Housing - Other": [
+      {
+        "name": "Mcguckin",
+        "pattern": {
+          "desc": "Mcguckin Hardware"
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1
+        }
+      }
+    ],
     "Decoration": []
   },
   "Investments/Savings": {
@@ -227,7 +410,5 @@
       }
     ],
     "Internal Transfers": []
-  },
-  "Auto-generated": [
-  ]
+  }
 }

@@ -1,6 +1,4 @@
 
-Make a bunch of generic rules since it's easier to find things now
-
 Be able to sort columns
 Also columns should have a header
 	make header separate from the scrollable canvas, that way it stays at the top

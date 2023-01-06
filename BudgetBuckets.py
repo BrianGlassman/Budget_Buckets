@@ -12,7 +12,7 @@ for parser in [
 import Record
 import Categorize
 
-limit = 50 # Use -1 for all
+limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = False # Whether to show categorized items
 
@@ -113,6 +113,9 @@ for r, row in enumerate(categorized_transactions):
                 gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1).grid(row=r, column=c)
 
 root.mainloop()
+
+if added_templates:
+    raise RuntimeError("Auto-generating templates temporarily disabled")
 
 for pattern, new in added_templates:
     Categorize.add_template("Auto-generated", "", pattern, new)

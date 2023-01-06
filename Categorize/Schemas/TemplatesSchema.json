@@ -1,0 +1,23 @@
+{
+  "id": "TemplatesSchema",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Templates Schema",
+  "description": "Schema for the entire Templates file",
+  "version": "0.0",
+  "type": "object",
+
+  "patternProperties": {
+    "^.*$": {
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "TemplateSchema.json#"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

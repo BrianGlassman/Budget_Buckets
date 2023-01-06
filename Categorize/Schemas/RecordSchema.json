@@ -1,0 +1,57 @@
+{
+  "id": "Record",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Record Schema",
+  "description": "Schema for a single record or partial record",
+  "version": "0.0",
+  "type": "object",
+
+  "properties": {
+    "account": { "type": "string" },
+    "date": { "type": "string" },
+    "desc": { "type": "string" },
+    "value": { "type": [ "number", "array" ] },
+
+    "source_specific": { "type": "object" },
+
+    "category": {
+      "type": "string",
+      "enum": [
+        "Car - Note",
+        "Car/Rental Insurance",
+        "Car - Other",
+        "Car - Parking Pass",
+        "Self-improvement",
+        "Dates",
+        "Entertainment - Other",
+        "Games",
+        "Going Out",
+        "Books",
+        "Big Fun",
+        "Groceries",
+        "Food - nice",
+        "Rent",
+        "Utilities",
+        "Internet",
+        "Housing - Other",
+        "Decoration",
+        "401k",
+        "Retirement",
+        "Long-term",
+        "Unexpected Fund",
+        "Medical - Other",
+        "Medical Insurance",
+        "ATM",
+        "Other - Other",
+        "Clothes/Personal care",
+        "Parental Funds",
+        "Loans",
+        "Salary",
+        "Income - Other",
+        "CC Payments",
+        "Internal Transfers"
+      ]
+    },
+    "split": { "type": "integer" }
+  }
+}
