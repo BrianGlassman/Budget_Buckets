@@ -1,5 +1,7 @@
+MView:
+	add graph to summary sheet
 
-Create a view that copies M's sheet
+	separate based on super-category
 
 Probably a way to load the JSON schema enum to create Constants.categories
 
