@@ -51,8 +51,19 @@
           "desc": "ParkMobile",
           "value": [
             -0,
-            -10
+            -15
           ]
+        },
+        "new": {
+          "category": "Car - Parking Pass",
+          "split": 1
+        }
+      },
+      {
+        "name": "CU Parking",
+        "pattern": {
+          "desc": "CU Parking Remote",
+          "value": 5
         },
         "new": {
           "category": "Car - Parking Pass",

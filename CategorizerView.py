@@ -24,7 +24,7 @@ categorized_transactions = Categorize.run(
 #%% Display
 import TkinterPlus as gui
 
-root = gui.Root(10, 10)
+root = gui.Root(13, 30)
 
 table = gui.ScrollableFrame(root)
 table.pack(side = "top", fill="both", expand=True)
