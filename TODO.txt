@@ -1,28 +1,29 @@
+CategorizerView
+	Be able to sort columns
+	Also columns should have a header
+		make header separate from the scrollable canvas, that way it stays at the top
+		PROBLEM: then header won't have horizontal scrolling
 
-Be able to sort columns
-Also columns should have a header
-	make header separate from the scrollable canvas, that way it stays at the top
-	PROBLEM: then header won't have horizontal scrolling
+	Make Category font match other cells (should also help with sizing)
+		unless OBE
 
-Make Category font match other cells (should also help with sizing)
-	unless OBE
+	Remove the separation between rows (how long has that been there?)
 
-Remove the separation between rows (how long has that been there?)
+	Allow typing with autocomplete for category
 
-Some system for creating generic templates
-	will probably need to figure out how to put it in the right nested group
+	Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
 
-There should probably be a section for "overrides" at the top of the templates to manually override generic templates
+Categorizing
+	Some system for creating generic templates
+		will probably need to figure out how to put it in the right nested group
 
-Some way to remove duplicate templates
+	There should probably be a section for "overrides" at the top of the templates to manually override generic templates
 
-Some way to validate all templates
+	Some way to remove duplicate templates
 
-Allow typing with autocomplete for category
+	Some way to validate all templates
 
-Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
-
-Make a module to convert from the old system (with categorizations and descriptions) to the new one
-	This is better than doing it manually, or making something temporary
-	Actually... this should probably be lower priority
-	Just start fresh from some date, and ignore the old stuff for now
+	Make a module to convert from the old system (with categorizations and descriptions) to the new one
+		This is better than doing it manually, or making something temporary
+		Actually... this should probably be lower priority
+		Just start fresh from some date, and ignore the old stuff for now
