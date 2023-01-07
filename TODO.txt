@@ -1,4 +1,6 @@
 
+Create a view that copies M's sheet
+
 Probably a way to load the JSON schema enum to create Constants.categories
 
 CategorizerView:
