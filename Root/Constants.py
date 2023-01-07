@@ -55,3 +55,6 @@ categories = (
     'CC Payments',
     'Internal Transfers',
     )
+
+todo_category = '*** TODO ***'
+categories_inclTodo = tuple(list(categories) + [todo_category])

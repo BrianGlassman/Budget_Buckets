@@ -14,7 +14,7 @@ import Categorize
 from Root import Constants
 
 limit = -1 # Use -1 for all
-use_uncat = False # Whether to show uncategorized items
+use_uncat = True # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
 categorized_transactions = []
@@ -22,7 +22,7 @@ for baseRecord in transactions:
     match = Categorize.match_templates(baseRecord)
     if match is None:
         if use_uncat:
-            category = '*** TODO ***'
+            category = Constants.todo_category
         else:
             continue
     else:
@@ -51,7 +51,7 @@ class Tracker():
         # Note: dated_transactions must be sorted
 
         # Initialize the categorized tracker
-        self.cat_tracker = {cat:{} for cat in Constants.categories}
+        self.cat_tracker = {cat:{} for cat in Constants.categories_inclTodo}
 
         # Initialize the date map
         self.dates = set()
@@ -98,7 +98,7 @@ class Tracker():
 
     def get_category(self, key: str) -> dict[datetime.date, float | None]:
         """Gets the values across all days for a given category"""
-        assert key in Constants.categories
+        assert key in Constants.categories_inclTodo
         return self.cat_tracker[key]
 
     def get_date(self, key: datetime.date) -> dict[str, float | None]:
@@ -110,7 +110,7 @@ class Tracker():
         return ret
 
     def get(self, key: str | datetime.date) -> dict[datetime.date, float | None] | dict[str, float | None]:
-        if key in Constants.categories:
+        if isinstance(key, str):
             return self.get_category(key)
         elif type(key) is datetime.date:
             return self.get_date(key)
@@ -120,11 +120,26 @@ tracker = Tracker(sorted_transactions)
 
 #%% Display
 from matplotlib import pyplot as plt
+from matplotlib.transforms import Bbox
 
-values = tracker.get_category("Food - nice")
+# Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
 fig, ax = plt.subplots()
-ax.plot(values.keys(), values.values(), '.')
+fig.subplots_adjust(right=0.75)
+for cat in Constants.categories_inclTodo:
+    values = tracker.get_category(cat)
+    ax.plot(values.keys(), values.values(), '.', label=cat)
 ax.grid(True)
+legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
+
+_scroll_pixels = {'down': 30, 'up': -30}
+def scroll(event):
+    if not legend.contains(event): return
+    bbox = legend.get_bbox_to_anchor()
+    bbox = Bbox.from_bounds(bbox.x0, bbox.y0+_scroll_pixels[event.button], bbox.width, bbox.height)
+    tr = legend.axes.transAxes.inverted()
+    legend.set_bbox_to_anchor(bbox.transformed(tr))
+    fig.canvas.draw_idle()
+fig.canvas.mpl_connect("scroll_event", scroll)
 
 plt.show()

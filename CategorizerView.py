@@ -23,7 +23,7 @@ for baseRecord in transactions:
     match = Categorize.match_templates(baseRecord)
     if match is None:
         if use_uncat:
-            category = '*** TODO ***'
+            category = Constants.todo_category
         else:
             continue
     else:
