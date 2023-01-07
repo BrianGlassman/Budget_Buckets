@@ -45,7 +45,7 @@ sorted_transactions = sorted(categorized_transactions, key = lambda item: item.d
 import datetime
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 class Tracker():
-    cat_tracker: dict[str, dict[datetime.date, float]]
+    cat_tracker: dict[str, dict[datetime.date, float | None]]
     dates: set[datetime.date]
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
@@ -67,7 +67,12 @@ class Tracker():
         while i < len(dated_transactions):
             # Add the transactions until one has a different (later) date
             while date == t.date:
-                self.cat_tracker[t.category][date] += t.value
+                old_value = self.cat_tracker[t.category][date]
+                if old_value is None:
+                    new_value = t.value
+                else:
+                    new_value = old_value + t.value
+                self.cat_tracker[t.category][date] = new_value
 
                 i += 1
                 if i == len(dated_transactions): break
@@ -89,14 +94,14 @@ class Tracker():
         
         self.dates.add(date)
         for tracker in self.cat_tracker.values():
-            tracker[date] = 0
+            tracker[date] = None
 
-    def get_category(self, key: str) -> dict[datetime.date, float]:
+    def get_category(self, key: str) -> dict[datetime.date, float | None]:
         """Gets the values across all days for a given category"""
         assert key in Constants.categories
         return self.cat_tracker[key]
 
-    def get_date(self, key: datetime.date) -> dict[str, float]:
+    def get_date(self, key: datetime.date) -> dict[str, float | None]:
         """Gets the values across all categories for a given day"""
         assert type(key) is datetime.date
         ret = {}
@@ -104,7 +109,7 @@ class Tracker():
             ret[cat] = values[key]
         return ret
 
-    def get(self, key: str | datetime.date) -> dict[datetime.date, float] | dict[str, float]:
+    def get(self, key: str | datetime.date) -> dict[datetime.date, float | None] | dict[str, float | None]:
         if key in Constants.categories:
             return self.get_category(key)
         elif type(key) is datetime.date:
@@ -116,7 +121,7 @@ tracker = Tracker(sorted_transactions)
 #%% Display
 from matplotlib import pyplot as plt
 
-values = tracker.get_category("Rent")
+values = tracker.get_category("Food - nice")
 
 fig, ax = plt.subplots()
 ax.plot(values.keys(), values.values(), '.')
