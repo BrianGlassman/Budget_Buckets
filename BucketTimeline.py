@@ -14,10 +14,10 @@ import Categorize
 from Root import Constants
 
 limit = -1 # Use -1 for all
-use_uncat = True # Whether to show uncategorized items
+use_uncat = False # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
-categorized_transactions = []
+categorized_transactions: list[Record.CategorizedRecord] = []
 for baseRecord in transactions:
     match = Categorize.match_templates(baseRecord)
     if match is None:
@@ -44,17 +44,39 @@ sorted_transactions = sorted(categorized_transactions, key = lambda item: item.d
 # Track values
 import datetime
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
-class Tracker():
+
+class BaseTracker():
     cat_tracker: dict[str, dict[datetime.date, float | None]]
-    dates: set[datetime.date]
+
+    def __init__(self, dated_transactions: list[Record.CategorizedRecord]): pass
+
+    def get_category(self, key: str) -> dict[datetime.date, float | None]:
+        """Gets the values across all days for a given category"""
+        assert key in Constants.categories_inclTodo
+        return self.cat_tracker[key]
+
+    def get_date(self, key: datetime.date) -> dict[str, float | None]:
+        """Gets the values across all categories for a given day"""
+        assert type(key) is datetime.date
+        ret = {}
+        for cat, values in self.cat_tracker.items():
+            ret[cat] = values[key]
+        return ret
+
+    def get(self, key: str | datetime.date) -> dict[datetime.date, float | None] | dict[str, float | None]:
+        if isinstance(key, str):
+            return self.get_category(key)
+        elif type(key) is datetime.date:
+            return self.get_date(key)
+        else:
+            raise ValueError(f"Unknown key: '{key}' of type '{type(key)}'")
+
+class DeltaTracker(BaseTracker):
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
 
         # Initialize the categorized tracker
         self.cat_tracker = {cat:{} for cat in Constants.categories_inclTodo}
-
-        # Initialize the date map
-        self.dates = set()
 
         # Setup the first day
         one_day = datetime.timedelta(days=1)
@@ -90,33 +112,35 @@ class Tracker():
 
     def create_day(self, date: datetime.date) -> None:
         """Create a new date, with 0 for all category values"""
-        if date in self.dates: raise RuntimeError(f"Date {date} already exists")
-        
-        self.dates.add(date)
         for tracker in self.cat_tracker.values():
+            if date in tracker: raise RuntimeError(f"Date {date} already exists")
             tracker[date] = None
+delta_tracker = DeltaTracker(sorted_transactions)
 
-    def get_category(self, key: str) -> dict[datetime.date, float | None]:
-        """Gets the values across all days for a given category"""
-        assert key in Constants.categories_inclTodo
-        return self.cat_tracker[key]
+class BucketTracker(BaseTracker):
+    def __init__(self, delta_tracker: DeltaTracker, initial_date: datetime.date):
+        # Initialize the categorized tracker
+        self.cat_tracker = {cat:{initial_date:0} for cat in Constants.categories_inclTodo}
 
-    def get_date(self, key: datetime.date) -> dict[str, float | None]:
-        """Gets the values across all categories for a given day"""
-        assert type(key) is datetime.date
-        ret = {}
-        for cat, values in self.cat_tracker.items():
-            ret[cat] = values[key]
-        return ret
+        for cat in Constants.categories_inclTodo:
+            last_date = initial_date
 
-    def get(self, key: str | datetime.date) -> dict[datetime.date, float | None] | dict[str, float | None]:
-        if isinstance(key, str):
-            return self.get_category(key)
-        elif type(key) is datetime.date:
-            return self.get_date(key)
-        else:
-            raise ValueError(f"Unknown key: '{key}' of type '{type(key)}'")
-tracker = Tracker(sorted_transactions)
+            # Skip categories that never change
+            if all(v is None for v in delta_tracker.get_category(cat).values()):
+                self.cat_tracker[cat][initial_date] = None
+
+            for date, delta in delta_tracker.get_category(cat).items():
+                # Skip days with no delta
+                if delta is None: continue
+
+                # Get the last value for this bucket
+                last_value = self.cat_tracker[cat][last_date]
+                assert last_value is not None, f"Something went wrong, {cat}:{last_date} is None"
+
+                # Apply the delta
+                self.cat_tracker[cat][date] = last_value + delta
+                last_date = date
+bucket_tracker = BucketTracker(delta_tracker, initial_date=sorted_transactions[0].date)
 
 #%% Display
 from matplotlib import pyplot as plt
@@ -127,8 +151,9 @@ from matplotlib.transforms import Bbox
 fig, ax = plt.subplots()
 fig.subplots_adjust(right=0.75)
 for cat in Constants.categories_inclTodo:
-    values = tracker.get_category(cat)
-    ax.plot(values.keys(), values.values(), '.', label=cat)
+    values = bucket_tracker.get_category(cat)
+    if all(v is None for v in values.values()): continue # Don't plot unused categories
+    ax.plot(values.keys(), values.values(), '.:', label=cat)
 ax.grid(True)
 legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
 

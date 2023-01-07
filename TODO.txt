@@ -19,8 +19,6 @@ TransactionTimeline:
 	Use matplotlip picker event handler thing to allow interrogating points (ex. what was this transaction?)
 
 BucketTimeline:
-	Start with 0 in all buckets, then show the value over timedelta
-
 	Hard-code initial value for each bucket
 
 	Make a "slush fund" bucket. Income categories add to it, expense categories take from it
