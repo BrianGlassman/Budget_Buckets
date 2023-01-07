@@ -25,9 +25,10 @@ categorized_transactions = Categorize.run(
 months = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 
 values: dict[str, dict[int, float]] # {cat: {month number: value}}
-values = {cat:{m+1:0 for m in range(len(months))} for cat in Constants.categories_inclTodo}
+values = {cat:{m+1:0 for m in range(len(months))} for cat in Constants.income_categories}
 
 for t in categorized_transactions:
+    if t.category not in Constants.income_categories: continue
     values[t.category][t.date.month] += t.value
 
 #%% Display
@@ -39,7 +40,6 @@ root = gui.Root(10, 10)
 table = gui.ScrollableFrame(root)
 table.pack(side="top", fill="both", expand=True)
 
-#%% Income sheet
 def add_text(text: str, width: int, coords: list, inc_row = False, inc_col = True, **kwargs):
     """Creates a new Label object at the given coordinates
     text - the text to fill in
@@ -58,25 +58,26 @@ coords = [0, 0]
 widths = {'label': 20, 'data': 10, 'total': 10, 'average': 10}
 
 # Header row
-add_text("INCOME", widths['label'], coords, bd=2)
+add_text("INCOME", widths['label'], coords, bd=2, anchor='center')
 for i, month in enumerate(months):
-    add_text(month, widths['data'], coords)
-add_text("Total", widths['total'], coords)
-add_text("Average", widths['average'], coords)
+    add_text(month, widths['data'], coords, anchor='center')
+add_text("Total", widths['total'], coords, anchor='center')
+add_text("Average", widths['average'], coords, anchor='center')
 
 # Category rows
 coords = [coords[0]+1, 0]
-for cat in Constants.categories_inclTodo:
+for cat in Constants.income_categories:
+
     # Label
-    add_text(cat, widths['label'], coords)
+    add_text(cat, widths['label'], coords, anchor='e')
     # Values
     total = 0
     for m in range(12):
         val = values[cat][m+1]
-        add_text(f"${val:0.2f}", widths['data'], coords)
+        add_text(f"${val:0,.2f}", widths['data'], coords, anchor='e')
         total += val
-    add_text(f"${total:0.2f}", widths['total'], coords)
-    add_text(f"${total/12:0.2f}", widths['average'], coords)
+    add_text(f"${total:0,.2f}", widths['total'], coords, anchor='e')
+    add_text(f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
     
     # Go to start of next row
     coords = [coords[0]+1, 0]
