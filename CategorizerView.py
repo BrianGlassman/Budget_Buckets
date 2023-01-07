@@ -14,9 +14,9 @@ for parser in [
 import Categorize
 from Root import Constants
 
-limit = -1 # Use -1 for all
+limit = 10 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
-use_cat = False # Whether to show categorized items
+use_cat = True # Whether to show categorized items
 
 categorized_transactions = Categorize.run(
     transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat)
@@ -55,14 +55,26 @@ def sort_transactions(transactions):
     return ret
 categorized_transactions = sort_transactions(categorized_transactions)
 
+# [[pattern, new]]
+added_templates: list[list[dict]] = []
+def update_templates(pattern: dict, new: dict) -> None:
+    for i, (p, _) in enumerate(added_templates):
+        # Overwrite existing, if there is one
+        if p == pattern:
+            template = added_templates[i][1]
+            # Fill in the given information
+            template.update(new)
+            # Fill in required information
+            template.setdefault('category', Constants.todo_category)
+            template.setdefault('split', 1)
+            return
+    added_templates.append([pattern, new])
+
 class CategoryBox(gui.Combobox):
     transaction: Record.CategorizedRecord
 class CBevent(gui.tkinter.Event):
     widget: CategoryBox
-
-# [(pattern, new)]
-added_templates: list[tuple[dict, dict]] = []
-def onModification(event: CBevent):
+def CB_onModification(event: CBevent):
     text = event.widget.get()
 
     t = event.widget.transaction
@@ -70,34 +82,43 @@ def onModification(event: CBevent):
     pattern.pop('category')
     new = {'category': text}
 
-    create = True
-    for i, (p, _) in enumerate(added_templates):
-        # Overwrite existing, if there is one
-        if p == pattern:
-            added_templates[i] = (pattern, new)
-            create = False
-            break
-    if create:
-        added_templates.append((pattern, new))
+    update_templates(pattern, new)
+
+class Comment(gui.WatchedText):
+    transaction: Record.CategorizedRecord
+class CmtEvent(gui.tkinter.Event):
+    widget: Comment
+def Cmt_onModification(event: CmtEvent):
+    text = event.widget.get('1.0', 'end').strip()
+
+    t = event.widget.transaction
+    pattern = t.items()
+    pattern.pop('comment')
+    new = {'comment': text}
+
+    update_templates(pattern, new)
 
 # Populate the table
 widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
 widths = list(widths.values())
 for r, row in enumerate(categorized_transactions):
     for c, cell in enumerate(row.values()):
-        if c == 6 and cell is None:
-            # No comment
-            cell = ''
-
         if c == 4: continue # Skip the source-specific data
         elif c == 5:
             # Category
             cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
             cat.set_state_readonly()
             cat.grid(row=r, column=c)
-            cat.bind(func = onModification)
+            cat.bind(func = CB_onModification)
             cat.transaction = row
             disable_scroll(cat)
+        elif c == 6:
+            # Comment
+            if cell is None: cell = ''
+            cmt = Comment(table.frame, text = str(cell), relief='solid', bd = 1, width=widths[c], height=1)
+            cmt.grid(row=r, column=c)
+            cmt.watch(func = Cmt_onModification)
+            cmt.transaction = row
         else:
             if c < len(widths) and (widths[c] is not None):
                 gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
@@ -106,11 +127,8 @@ for r, row in enumerate(categorized_transactions):
 
 root.mainloop()
 
-if added_templates:
-    raise RuntimeError("Auto-generating templates temporarily disabled")
-
 for pattern, new in added_templates:
-    Categorize.add_template("Auto-generated", "", pattern, new)
+    Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
 if added_templates:
     print("Saving added templates:")
     print(added_templates)

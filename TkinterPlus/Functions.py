@@ -50,6 +50,9 @@ def add_functions(obj) -> None:
         return
     obj._TkinterPlus = True
 
+    # FIXME because of forward definition in FuncDeclar, will always have the attributes
+    # Maybe some way to only check the first parent for these attributes?
+
     if hasattr(obj, "rowconfigure") and hasattr(obj, "columnconfigure"):
         obj.gridconfigure = gridconfigure
     if hasattr(obj, "grid"):

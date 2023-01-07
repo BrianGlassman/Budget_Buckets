@@ -91,6 +91,11 @@ class Combobox(ttk.Combobox, _import_Functions.FuncDeclare):
     #%%
 _import_Functions.add_functions(Combobox)
 
+class Entry(tkinter.Entry, _import_Functions.FuncDeclare):
+    def __init__(self, master = None, *args, **kwargs):
+        super().__init__(master, *args, **kwargs)
+_import_Functions.add_functions(Entry)
+
 class Frame(tkinter.Frame, _import_Functions.FuncDeclare):
     def __init__(self, master = None, cnf = {}, **kwargs):
         kwargs.setdefault('relief', 'ridge')

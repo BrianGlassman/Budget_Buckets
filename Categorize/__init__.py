@@ -125,9 +125,9 @@ def _flatten(dct: dict) -> None:
         raise
 _flatten(_nested_templates)
 
-def add_template(group: str, name: str, pattern: dict, new: dict) -> None:
-    assert isinstance(group, str)
-    assert group in _nested_templates, f"Group '{group}' not found"
+def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
+    assert isinstance(group, list)
+    assert all(isinstance(g, str) for g in group)
     assert isinstance(name, str)
     assert isinstance(pattern, dict)
     assert isinstance(new, dict)
@@ -135,20 +135,30 @@ def add_template(group: str, name: str, pattern: dict, new: dict) -> None:
         assert new['category'] in _imported_categories
 
     template = {'name': name, 'pattern': pattern, 'new': new}
-    _nested_templates[group].append(template)
+    # Drill down to the right group
+    foo = _nested_templates
+    try:
+        for g in group:
+            foo = foo[g]
+    except Exception:
+        raise ValueError(f"Group '{group}' not found")
+    foo.append(template)
     _templates.append(template)
 
 def save_templates() -> None:
-    class _RegexEncoder(_imported_json.JSONEncoder):
+    class Encoder(_imported_json.JSONEncoder):
         def default(self, obj):
+            import datetime
             if isinstance(obj, _imported_re.Pattern):
                 return _re_prefix + obj.pattern
+            elif isinstance(obj, datetime.date):
+                return str(obj)
             else:
                 # Let the base class default method raise the TypeError
                 return super().default(obj)
 
     with open(templates_file, 'w') as f:
-        _imported_json.dump(_nested_templates, f, indent=2, cls=_RegexEncoder)
+        _imported_json.dump(_nested_templates, f, indent=2, cls=Encoder)
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -> list:
     import Record
