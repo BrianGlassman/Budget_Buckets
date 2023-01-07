@@ -128,6 +128,7 @@ fig, ax = plt.subplots()
 fig.subplots_adjust(right=0.75)
 for cat in Constants.categories_inclTodo:
     values = tracker.get_category(cat)
+    if all(v is None for v in values.values()): continue # Don't plot unused categories
     ax.plot(values.keys(), values.values(), '.', label=cat)
 ax.grid(True)
 legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
