@@ -1,6 +1,5 @@
 {
   "id": "TemplatesSchema",
-  "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Templates Schema",
   "description": "Schema for the entire Templates file",
   "version": "0.0",

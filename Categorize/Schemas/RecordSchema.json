@@ -1,6 +1,5 @@
 {
   "id": "Record",
-  "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Record Schema",
   "description": "Schema for a single record or partial record",
   "version": "0.0",
@@ -52,6 +51,6 @@
         "Internal Transfers"
       ]
     },
-    "split": { "type": "integer" }
+    "split": { "type": "integer" , "default": 1}
   }
 }

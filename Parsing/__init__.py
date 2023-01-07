@@ -1,12 +1,27 @@
 from abc import ABC as _import_ABC
 from abc import abstractmethod as _import_abstractmethod
 import csv as _import_csv
+import datetime as _import_datetime
+from dateutil import parser as _import_date_parser
 
 from Record import RawRecord
 
+def _make_date(raw):
+    # Ensure date is a consistent type to avoid many, many headaches
+    # Can't use isinstance, because datetime.datetime is a subclass of datetime.date
+    if type(raw) is _import_datetime.date:
+        return raw
+    elif isinstance(raw, _import_datetime.date):
+        raise NotImplementedError("Don't know how to handle non-date datetimes yet")
+    elif isinstance(raw, str):
+        return _import_date_parser.parse(raw).date()
+    else:
+        raise TypeError("Unknown type: " + str(type(raw)))
+
 class BaseParser(_import_ABC):
+    transactions: list[RawRecord]
     def __init__(self, account, infile):
-        assert account is not None, f"{cls.__class__.__name__} parse method called without specifying account"
+        assert account is not None, f"{self.__class__.__name__} parse method called without specifying account"
         self.account = account
 
         self.infile = infile
@@ -16,7 +31,7 @@ class BaseParser(_import_ABC):
         self.transactions = self._parse()
 
     @_import_abstractmethod
-    def _parse(self): pass
+    def _parse(self) -> list[RawRecord]: pass
 
 class BaseUSAAParser(BaseParser):
     pass
@@ -34,7 +49,7 @@ class USAAParser(BaseUSAAParser):
 
     def _make_transaction(self, line) -> RawRecord:
         line = dict(line) # Copy so that it can be modified
-        date = line.pop('Date')
+        date = _make_date(line.pop('Date'))
         desc = line.pop('Description')
         value = float(line.pop('Amount'))
         # Anything left in the line is source-specific values

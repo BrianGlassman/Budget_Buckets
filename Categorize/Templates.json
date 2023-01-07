@@ -1,5 +1,5 @@
 {
-  "$schema": "Schemas/TemplatesSchema.json#",
+  "$schema": "Schemas/TemplatesSchema.json",
 
   "Car": {
     "Car - Note": [
@@ -55,7 +55,8 @@
           ]
         },
         "new": {
-          "category": "Car - Parking Pass"
+          "category": "Car - Parking Pass",
+          "split": 1
         }
       }
     ]
@@ -100,7 +101,8 @@
           ]
         },
         "new": {
-          "category": "Games"
+          "category": "Games",
+          "split": 1
         }
       }
     ],

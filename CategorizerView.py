@@ -1,7 +1,9 @@
+import Record
+
 #%% Parsing
 import Parsing
 
-transactions = []
+transactions: list[Record.RawRecord] = []
 for parser in [
     Parsing.USAAParser("Checking", "2022_chk.csv"),
     Parsing.USAAParser("Credit Card", "2022_cc.csv")
@@ -9,7 +11,6 @@ for parser in [
     transactions.extend(parser.transactions)
 
 #%% Categorizing
-import Record
 import Categorize
 from Root import Constants
 
@@ -17,7 +18,7 @@ limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = False # Whether to show categorized items
 
-categorized_transactions = []
+categorized_transactions: list[Record.CategorizedRecord] = []
 for baseRecord in transactions:
     match = Categorize.match_templates(baseRecord)
     if match is None:
@@ -39,33 +40,10 @@ for baseRecord in transactions:
 #%% Display
 import TkinterPlus as gui
 
-gui.Values.scale *= 2
-
 root = gui.Root(10, 10)
 
 table = gui.ScrollableFrame(root)
 table.pack(side = "top", fill="both", expand=True)
-
-# [(pattern, new)]
-added_templates = []
-def onModification(event: gui.tkinter.Event):
-    text = event.widget.get()
-
-    t = event.widget.transaction
-    pattern = t.items()
-    pattern.pop('category')
-    new = {'category': text}
-
-    create = True
-    for i, pn in enumerate(added_templates):
-        p, n = pn
-        # Overwrite existing, if there is one
-        if p == pattern:
-            added_templates[i] = (pattern, new)
-            create = False
-            break
-    if create:
-        added_templates.append((pattern, new))
 
 # Mouse wheel changes the combobox selection, which I don't want
 def empty_scroll(event): return "break"
@@ -93,6 +71,31 @@ def sort_transactions(transactions):
     return ret
 categorized_transactions = sort_transactions(categorized_transactions)
 
+class CategoryBox(gui.Combobox):
+    transaction: Record.CategorizedRecord
+class CBevent(gui.tkinter.Event):
+    widget: CategoryBox
+
+# [(pattern, new)]
+added_templates: list[tuple[dict, dict]] = []
+def onModification(event: CBevent):
+    text = event.widget.get()
+
+    t = event.widget.transaction
+    pattern = t.items()
+    pattern.pop('category')
+    new = {'category': text}
+
+    create = True
+    for i, (p, _) in enumerate(added_templates):
+        # Overwrite existing, if there is one
+        if p == pattern:
+            added_templates[i] = (pattern, new)
+            create = False
+            break
+    if create:
+        added_templates.append((pattern, new))
+
 # Populate the table
 widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20}
 widths = list(widths.values())
@@ -101,7 +104,7 @@ for r, row in enumerate(categorized_transactions):
         if c == 4: continue # Skip the source-specific data
         if c == 5:
             # Category
-            cat = gui.Combobox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
+            cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
             cat.set_state_readonly()
             cat.grid(row=r, column=c)
             cat.bind(func = onModification)

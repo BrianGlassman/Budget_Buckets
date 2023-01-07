@@ -9,7 +9,7 @@ import TkinterPlus.Values as _import_Values
 class Tk(tkinter.Tk): pass
 _import_Functions.add_functions(Tk)
 
-class Root(Tk):
+class Root(Tk, _import_Functions.FuncDeclare):
     """A root window with useful settings"""
     def __init__(self, x_stretch=1, y_stretch=1):
         super().__init__()
@@ -34,21 +34,21 @@ class Root(Tk):
         self.gridconfigure()
 _import_Functions.add_functions(Root)
 
-class Button(tkinter.Button):
+class Button(tkinter.Button, _import_Functions.FuncDeclare):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('relief', 'ridge')
         if 'borderwidth' not in kwargs and 'bd' not in kwargs:
-            kwargs['borderwidth'] = 1*Values.scale
+            kwargs['borderwidth'] = 1*_import_Values.scale
         # FIXME - using the big font makes all the buttons weird sizes
         #kwargs.setdefault('font', font)
 
         super().__init__(*args, **kwargs)
 _import_Functions.add_functions(Button)
 
-class Canvas(tkinter.Canvas): pass
+class Canvas(tkinter.Canvas, _import_Functions.FuncDeclare): pass
 _import_Functions.add_functions(Canvas)
 
-class Combobox(ttk.Combobox):
+class Combobox(ttk.Combobox, _import_Functions.FuncDeclare):
     def __init__(self, master, values=[], initial=None, **kwargs):
         super().__init__(master, **kwargs)
         self.values = values
@@ -91,18 +91,18 @@ class Combobox(ttk.Combobox):
     #%%
 _import_Functions.add_functions(Combobox)
 
-class Frame(tkinter.Frame):
+class Frame(tkinter.Frame, _import_Functions.FuncDeclare):
     def __init__(self, master = None, cnf = {}, **kwargs):
         kwargs.setdefault('relief', 'ridge')
         if 'borderwidth' not in kwargs and 'bd' not in kwargs:
-            kwargs['borderwidth'] = 1*Values.scale
+            kwargs['borderwidth'] = 1*_import_Values.scale
         # FIXME - using the big font makes all the buttons weird sizes
         #kwargs.setdefault('font', font)
 
         super().__init__(master, cnf, **kwargs)
 _import_Functions.add_functions(Frame)
 
-class ScrollableFrame(Frame):
+class ScrollableFrame(Frame, _import_Functions.FuncDeclare):
     """A frame with vertical and horizontal scrolling
     Adapted from: https://stackoverflow.com/a/3092341/14501840
     """
@@ -130,14 +130,14 @@ class ScrollableFrame(Frame):
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 _import_Functions.add_functions(ScrollableFrame)
 
-class Text(tkinter.Text):
+class Text(tkinter.Text, _import_Functions.FuncDeclare):
     def __init__(self, master = None, cnf = {}, text = '', **kwargs):
         super().__init__(master, cnf, **kwargs)
         assert isinstance(text, str)
         self.insert('1.0', text)
 _import_Functions.add_functions(Text)
 
-class WatchedText(Text):
+class WatchedText(Text, _import_Functions.FuncDeclare):
     """A text widget that generates an event when the contents are modified"""
     # Based on https://stackoverflow.com/a/40618152/14501840
     def __init__(self, master = None, cnf = {}, text = '', **kwargs):

@@ -54,7 +54,7 @@ _checker = {'desc': __check_desc,
 for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
     _checker.setdefault(key, partial(__check_generic, key=key))
 
-def match_templates(record):
+def match_templates(record) -> dict | None:
     """Check against the common templates. Return whichever template
     matches, or None if no match"""
 
@@ -105,7 +105,7 @@ with open(templates_file, 'r') as f:
     _nested_templates = _imported_json.load(f, object_hook=_as_regex)
 
 # Templates file is nested to help with organization, flatten it to be directly useful
-_templates = []
+_templates: list[dict] = []
 def _flatten(dct: dict) -> None:
     try:
         if isinstance(dct, list):
@@ -125,7 +125,7 @@ def _flatten(dct: dict) -> None:
         raise
 _flatten(_nested_templates)
 
-def add_template(group, name, pattern, new):
+def add_template(group: str, name: str, pattern: dict, new: dict) -> None:
     assert isinstance(group, str)
     assert group in _nested_templates, f"Group '{group}' not found"
     assert isinstance(name, str)
@@ -138,7 +138,7 @@ def add_template(group, name, pattern, new):
     _nested_templates[group].append(template)
     _templates.append(template)
 
-def save_templates():
+def save_templates() -> None:
     class _RegexEncoder(_imported_json.JSONEncoder):
         def default(self, obj):
             if isinstance(obj, _imported_re.Pattern):

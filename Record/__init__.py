@@ -1,8 +1,10 @@
+import datetime
+
 class BaseRecord:
-    def __init__(self, account: str, date: str, desc: str, value: float, source_specific = {}):
+    def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
         assert isinstance(account, str)
         self.account = account
-        assert isinstance(date, str)
+        assert type(date) is datetime.date
         self.date = date
         assert isinstance(desc, str)
         self.desc = desc
@@ -11,18 +13,18 @@ class BaseRecord:
         assert isinstance(source_specific, dict)
         self.source_specific = source_specific
         
-    def values(self):
+    def values(self) -> list[str | datetime.date | float | dict]:
         return [self.account, self.date, self.desc, self.value, self.source_specific]
 
     def keys(self):
         return ['account', 'date', 'desc', 'value', 'source_specific']
 
-    def items(self):
+    def items(self) -> dict:
         return {k:v for k,v in zip(self.keys(), self.values())}
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.values())
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self)
 
 class RawRecord(BaseRecord):
