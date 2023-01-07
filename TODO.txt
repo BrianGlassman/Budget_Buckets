@@ -1,7 +1,12 @@
 MView:
-	add graph to summary sheet
-
-	separate based on super-category
+	summary sheet:
+		add monthly super-category timeline
+		add category average bar chart
+		add income/expenses/internal tables
+	tracker sheets:
+		separate based on super-category
+	general:
+		make all sheets available, either through tabs or a main menu
 
 Probably a way to load the JSON schema enum to create Constants.categories
 

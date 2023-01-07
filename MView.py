@@ -41,6 +41,13 @@ for t in categorized_transactions:
     assert group is not None, f"Category '{cat}' not found in any group"
     values[group][cat][t.date.month] += t.value
 
+def _next_row(coords):
+    coords[0] += 1
+    coords[1] = 0
+
+def _next_col(coords):
+    coords[1] += 1
+
 def _add_text(parent, text: str, width: int, coords: list, inc_row = False, inc_col = True, **kwargs):
     """Creates a new Label object at the given coordinates
     text - the text to fill in
@@ -51,8 +58,8 @@ def _add_text(parent, text: str, width: int, coords: list, inc_row = False, inc_
         kwargs.setdefault(key, val)
     label = gui.tkinter.Label(master=parent, text=text, width=width, **kwargs)
     label.grid(row=coords[0], column=coords[1])
-    if inc_row: coords[0] += 1
-    if inc_col: coords[1] += 1
+    if inc_row: _next_row(coords)
+    if inc_col: _next_col(coords)
     return label
 
 def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) -> None:
@@ -71,9 +78,9 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) 
         _add_text(table.frame, month, widths['data'], coords, anchor='center')
     _add_text(table.frame, "Total", widths['total'], coords, anchor='center')
     _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
+    _next_row(coords)
 
     # Category rows
-    coords = [coords[0]+1, 0]
     for cat in categories:
         # Label
         _add_text(table.frame, cat, widths['label'], coords, anchor='e')
@@ -86,12 +93,104 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) 
         _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
         _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
         
-        # Go to start of next row
-        coords = [coords[0]+1, 0]
+        _next_row(coords)
 
-root = gui.Root(10, 10)
+def make_summary_sheet(parent, values, starting_balance: float) -> None:
+    #----------------
+    # Pre-processing
+    #----------------
+
+    #---------
+    # Display
+    #---------
+    table = gui.ScrollableFrame(parent)
+    table.pack(side="top", fill="both", expand=True)
+
+    coords = [0,0]
+    widths = {'label': 20, 'data': 10, 'total': 10, 'average': 10}
+
+    # --- Summary section ---
+    monthly_delta = {m+1:0.0 for m in range(12)}
+    monthly_balance = {m+1:0.0 for m in range(12)}
+    monthly_balance[0] = starting_balance
+    # Header row
+    _add_text(table.frame, "SUMMARY", widths['label'], coords, bd=2, anchor='center')
+    for month in months:
+        _add_text(table.frame, month, widths['data'], coords, anchor='center')
+    _add_text(table.frame, "Total", widths['total'], coords, anchor='center')
+    _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
+    _next_row(coords)
+
+    # Income
+    _add_text(table.frame, "Income", widths['label'], coords, anchor='center')
+    total = 0
+    for m in range(12):
+        val = 0
+        for month_vals in values['income'].values():
+            val += month_vals[m+1]
+        monthly_delta[m+1] += val
+        total += val
+        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
+    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _next_row(coords)
+
+    # Expenses
+    _add_text(table.frame, "Expenses", widths['label'], coords, anchor='center')
+    total = 0
+    for m in range(12):
+        val = 0
+        for month_vals in values['expenses'].values():
+            val += month_vals[m+1]
+        monthly_delta[m+1] += val
+        total += val
+        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
+    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _next_row(coords)
+
+    # Internal
+    _add_text(table.frame, "Internal", widths['label'], coords, anchor='center')
+    total = 0
+    for m in range(12):
+        val = 0
+        for month_vals in values['internal'].values():
+            val += month_vals[m+1]
+        monthly_delta[m+1] += val
+        total += val
+        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
+    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _next_row(coords)
+
+    # Net
+    _add_text(table.frame, "Net Change", widths['label'], coords, anchor='center')
+    total = 0
+    for m in range(12):
+        val = monthly_delta[m+1]
+        total += val
+        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
+    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _next_row(coords)
+
+    # Balance
+    _add_text(table.frame, "Balance", widths['label'], coords, anchor='center')
+    total = 0
+    for m in range(12):
+        val = monthly_balance[m] + monthly_delta[m+1]
+        monthly_balance[m+1] = val
+        total += val
+        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+    _add_text(table.frame, "", widths['total'], coords)
+    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _next_row(coords)
+
+root = gui.Root(25, 10)
 
 # make_tracker_sheet(root, values['income'], "Income", Constants.income_categories)
-make_tracker_sheet(root, values['expenses'], "Expenses", Constants.expense_categories)
+# make_tracker_sheet(root, values['expenses'], "Expenses", Constants.expense_categories)
+
+make_summary_sheet(root, values, 5000)
 
 root.mainloop()
