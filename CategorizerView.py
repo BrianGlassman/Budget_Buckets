@@ -18,24 +18,8 @@ limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = False # Whether to show categorized items
 
-categorized_transactions: list[Record.CategorizedRecord] = []
-for baseRecord in transactions:
-    match = Categorize.match_templates(baseRecord)
-    if match is None:
-        if use_uncat:
-            category = Constants.todo_category
-        else:
-            continue
-    else:
-        category = match['new']['category']
-        assert category in Constants.categories, f"Bad category: {category}"
-        if not use_cat:
-            continue
-    ct = Record.CategorizedRecord(baseRecord, category)
-    categorized_transactions.append(ct)
-
-    if len(categorized_transactions) == limit:
-        break
+categorized_transactions = Categorize.run(
+    transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat)
 
 #%% Display
 import TkinterPlus as gui

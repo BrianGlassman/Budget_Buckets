@@ -149,3 +149,27 @@ def save_templates() -> None:
 
     with open(templates_file, 'w') as f:
         _imported_json.dump(_nested_templates, f, indent=2, cls=_RegexEncoder)
+
+def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -> list:
+    import Record
+    from Root import Constants
+    categorized_transactions: list[Record.CategorizedRecord] = []
+    for baseRecord in transactions:
+        match = match_templates(baseRecord)
+        if match is None:
+            if use_uncat:
+                category = Constants.todo_category
+            else:
+                continue
+        else:
+            category = match['new']['category']
+            assert category in Constants.categories, f"Bad category: {category}"
+            if not use_cat:
+                continue
+        ct = Record.CategorizedRecord(baseRecord, category)
+        categorized_transactions.append(ct)
+
+        if len(categorized_transactions) == limit:
+            break
+    
+    return categorized_transactions
