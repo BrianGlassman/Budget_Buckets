@@ -14,7 +14,7 @@ import Categorize
 from Root import Constants
 
 limit = -1 # Use -1 for all
-use_uncat = True # Whether to show uncategorized items
+use_uncat = False # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
 categorized_transactions = []
@@ -38,46 +38,88 @@ for baseRecord in transactions:
 
 #%% Display pre-processing
 
-# Convert dates to datetime.date objects (just the date, no time)
-import datetime
-from dateutil import parser as date_parser
-
-def _make_date(raw):
-    # Ensure date is a consistent type to avoid many, many headaches
-    # Can't use isinstance, because datetime.datetime is a subclass of datetime.date
-    if type(raw) is datetime.date:
-        return raw
-    elif isinstance(raw, datetime.date):
-        return raw.date()
-    else:
-        return date_parser.parse(raw).date()
-for t in categorized_transactions:
-    t.date = _make_date(t.date)
-dated_transactions = categorized_transactions ; del categorized_transactions
-
 # Sort by date
-dated_transactions = sorted(dated_transactions, key = lambda item: item.date)
+sorted_transactions = sorted(categorized_transactions, key = lambda item: item.date)
 
-# Aggregate values per day
-start = dated_transactions[0].date
-stop = dated_transactions[-1].date
-dates = []
-values = []
-for int_delta in range(0, (stop - start).days):
-    timedelta = datetime.timedelta(days = int_delta)
-    date = start + timedelta
-    dates.append(date)
-    value = 0
-    for t in dated_transactions:
-        if t.date == date:
-            value += t.value
-    values.append(value)
+# Track values
+import datetime
+import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
+class Tracker():
+    cat_tracker: dict[str, dict[datetime.date, float]]
+    dates: set[datetime.date]
+    def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
+        # Note: dated_transactions must be sorted
+
+        # Initialize the categorized tracker
+        self.cat_tracker = {cat:{} for cat in Constants.categories}
+
+        # Initialize the date map
+        self.dates = set()
+
+        # Setup the first day
+        one_day = datetime.timedelta(days=1)
+        i = 0 # Index within dated_transactions
+        t = dated_transactions[i]
+        date = t.date
+        self.create_day(date)
+
+        # Fill in the trackers
+        while i < len(dated_transactions):
+            # Add the transactions until one has a different (later) date
+            while date == t.date:
+                self.cat_tracker[t.category][date] += t.value
+
+                i += 1
+                if i == len(dated_transactions): break
+                t = dated_transactions[i]
+            if i == len(dated_transactions): break
+
+            # Go to tomorrow
+            date += one_day
+
+            # Add days until the next transaction is reached
+            while date < t.date:
+                self.create_day(date)
+                date += one_day
+            self.create_day(date)
+
+    def create_day(self, date: datetime.date) -> None:
+        """Create a new date, with 0 for all category values"""
+        if date in self.dates: raise RuntimeError(f"Date {date} already exists")
+        
+        self.dates.add(date)
+        for tracker in self.cat_tracker.values():
+            tracker[date] = 0
+
+    def get_category(self, key: str) -> dict[datetime.date, float]:
+        """Gets the values across all days for a given category"""
+        assert key in Constants.categories
+        return self.cat_tracker[key]
+
+    def get_date(self, key: datetime.date) -> dict[str, float]:
+        """Gets the values across all categories for a given day"""
+        assert type(key) is datetime.date
+        ret = {}
+        for cat, values in self.cat_tracker.items():
+            ret[cat] = values[key]
+        return ret
+
+    def get(self, key: str | datetime.date) -> dict[datetime.date, float] | dict[str, float]:
+        if key in Constants.categories:
+            return self.get_category(key)
+        elif type(key) is datetime.date:
+            return self.get_date(key)
+        else:
+            raise ValueError(f"Unknown key: '{key}' of type '{type(key)}'")
+tracker = Tracker(sorted_transactions)
 
 #%% Display
 from matplotlib import pyplot as plt
 
+values = tracker.get_category("Rent")
+
 fig, ax = plt.subplots()
-ax.plot(dates, values, '.')
+ax.plot(values.keys(), values.values(), '.')
 ax.grid(True)
 
 plt.show()
