@@ -24,7 +24,7 @@ categorized_transactions = Categorize.run(
 #%% Display
 import TkinterPlus as gui
 
-root = gui.Root(13, 30)
+root = gui.Root(17, 30)
 
 table = gui.ScrollableFrame(root)
 table.pack(side = "top", fill="both", expand=True)
@@ -81,12 +81,16 @@ def onModification(event: CBevent):
         added_templates.append((pattern, new))
 
 # Populate the table
-widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20}
+widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
 widths = list(widths.values())
 for r, row in enumerate(categorized_transactions):
     for c, cell in enumerate(row.values()):
+        if c == 6 and cell is None:
+            # No comment
+            cell = ''
+
         if c == 4: continue # Skip the source-specific data
-        if c == 5:
+        elif c == 5:
             # Category
             cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
             cat.set_state_readonly()

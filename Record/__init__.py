@@ -33,7 +33,7 @@ class RawRecord(BaseRecord):
 
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
-    def __init__(self, baseRecord: BaseRecord, category: str):
+    def __init__(self, baseRecord: BaseRecord, category: str, comment: str | None = None):
         self.account = baseRecord.account
         self.date = baseRecord.date
         self.desc = baseRecord.desc
@@ -43,8 +43,11 @@ class CategorizedRecord(BaseRecord):
         assert isinstance(category, str)
         self.category = category
 
+        assert (comment is None) or (isinstance(comment, str))
+        self.comment = comment
+
     def values(self):
-        return super().values() + [self.category]
+        return super().values() + [self.category, self.comment]
 
     def keys(self):
-        return super().keys() + ['category']
+        return super().keys() + ['category', 'comment']

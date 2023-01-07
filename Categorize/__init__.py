@@ -159,6 +159,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -
         if match is None:
             if use_uncat:
                 category = Constants.todo_category
+                comment = None
             else:
                 continue
         else:
@@ -166,7 +167,8 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -
             assert category in Constants.categories, f"Bad category: {category}"
             if not use_cat:
                 continue
-        ct = Record.CategorizedRecord(baseRecord, category)
+            comment = match['new']['comment'] if 'comment' in match['new'] else None
+        ct = Record.CategorizedRecord(baseRecord, category, comment=comment)
         categorized_transactions.append(ct)
 
         if len(categorized_transactions) == limit:

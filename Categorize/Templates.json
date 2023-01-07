@@ -36,11 +36,12 @@
         "name": "Gas (Circle K)",
         "pattern": {
           "desc": "Circle K",
-          "value": [ -18, -30 ]
+          "value": [ -18, -60 ]
         },
         "new": {
           "category": "Car - Other",
-          "split": 1
+          "split": 1,
+          "comment": "Gas"
         }
       }
     ],

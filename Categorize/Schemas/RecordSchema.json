@@ -10,6 +10,7 @@
     "date": { "type": "string" },
     "desc": { "type": "string" },
     "value": { "type": [ "number", "array" ] },
+    "comment": { "type": "string" },
 
     "source_specific": { "type": "object" },
 
