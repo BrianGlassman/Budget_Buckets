@@ -1,4 +1,4 @@
-CategorizerView
+CategorizerView:
 	Be able to sort columns
 	Also columns should have a header
 		make header separate from the scrollable canvas, that way it stays at the top
@@ -13,7 +13,19 @@ CategorizerView
 
 	Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
 
-Categorizing
+TransactionTimeline:
+	Color-code based on broad category, then either use color variation or markers to identify precise category
+
+	Use matplotlip picker event handler thing to allow interrogating points (ex. what was this transaction?)
+
+BucketTimeline:
+	Start with 0 in all buckets, then show the value over timedelta
+
+	Hard-code initial value for each bucket
+
+	Make a "slush fund" bucket. Income categories add to it, expense categories take from it
+
+Categorizing:
 	Some system for creating generic templates
 		will probably need to figure out how to put it in the right nested group
 
