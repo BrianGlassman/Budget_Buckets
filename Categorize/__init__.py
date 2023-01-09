@@ -2,7 +2,7 @@ import re as _imported_re
 import json as _imported_json
 from functools import partial
 
-from Root.Constants import categories as _imported_categories
+from Root.Constants import categories_inclTodo as _imported_categories
 
 #TODO validate field names against the appropriate data structures somehow
 
@@ -38,6 +38,13 @@ def __check_value(record, pattern) -> bool:
         assert len(mask) == 2
         assert mask[0] != mask[1]
         return min(mask) <= record.value <= max(mask)
+def __check_date(record, pattern) -> bool:
+    """Assumes that pattern contans a date field
+    Handles datetime.date vs string by just converting everything to string"""
+    mask = pattern['date']
+    assert isinstance(mask, str)
+    date = str(record.date)
+    return date == mask
 
 def __check_generic(record, pattern, key) -> bool:
     """record - BaseRecord
@@ -50,6 +57,7 @@ def __check_generic(record, pattern, key) -> bool:
 # Mapping from field name to helper function
 _checker = {'desc': __check_desc,
             'value': __check_value,
+            'date': __check_date,
             }
 for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
     _checker.setdefault(key, partial(__check_generic, key=key))
@@ -132,7 +140,7 @@ def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
     assert isinstance(pattern, dict)
     assert isinstance(new, dict)
     if 'category' in new:
-        assert new['category'] in _imported_categories
+        assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
 
     template = {'name': name, 'pattern': pattern, 'new': new}
     # Drill down to the right group

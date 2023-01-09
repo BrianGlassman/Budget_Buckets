@@ -28,17 +28,20 @@ class BaseRecord:
         return str(self)
 
 class RawRecord(BaseRecord):
-    """A record (mostly) as read-in from the source data, with minimal processing and no categorization"""
+    """A record (mostly) unchanged from the source data, with minimal processing and no categorization"""
     pass
 
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
-    def __init__(self, baseRecord: BaseRecord, category: str, comment: str | None = None):
-        self.account = baseRecord.account
-        self.date = baseRecord.date
-        self.desc = baseRecord.desc
-        self.value = baseRecord.value
-        self.source_specific = baseRecord.source_specific
+    def __init__(self, rawRecord: RawRecord, category: str, comment: str | None = None):
+        assert isinstance(rawRecord, RawRecord)
+        self.rawRecord = rawRecord
+
+        self.account = rawRecord.account
+        self.date = rawRecord.date
+        self.desc = rawRecord.desc
+        self.value = rawRecord.value
+        self.source_specific = rawRecord.source_specific
 
         assert isinstance(category, str)
         self.category = category

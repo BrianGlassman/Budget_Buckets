@@ -53,22 +53,29 @@ def sort_transactions(transactions):
     for k,v in _reversed:
         ret.extend(v)
     return ret
-categorized_transactions = sort_transactions(categorized_transactions)
+# categorized_transactions = sort_transactions(categorized_transactions)
 
-# [[pattern, new]]
-added_templates: list[list[dict]] = []
-def update_templates(pattern: dict, new: dict) -> None:
-    for i, (p, _) in enumerate(added_templates):
+# FIXME? Should it check existing auto-generated templates?
+# [{"raw": raw transaction, "new": new_to_add}, ...]
+added_templates: list[dict[str, Record.RawRecord | dict]] = []
+def update_templates(transaction: Record.RawRecord, new: dict) -> None:
+    # Get/create the matching entry
+    for template in added_templates:
         # Overwrite existing, if there is one
-        if p == pattern:
-            template = added_templates[i][1]
-            # Fill in the given information
-            template.update(new)
-            # Fill in required information
-            template.setdefault('category', Constants.todo_category)
-            template.setdefault('split', 1)
-            return
-    added_templates.append([pattern, new])
+        if template["raw"] == transaction:
+            break
+    else:
+        # No existing, create new
+        added_templates.append({"raw": transaction, "new": dict()})
+        template = added_templates[-1]
+
+    n = template["new"]
+    assert isinstance(n, dict) # For Pylance and oops-catching
+    # Fill in required information
+    n.setdefault('category', Constants.todo_category)
+    n.setdefault('split', 1)
+    # Fill in the given information
+    n.update(new)
 
 class CategoryBox(gui.Combobox):
     transaction: Record.CategorizedRecord
@@ -78,11 +85,9 @@ def CB_onModification(event: CBevent):
     text = event.widget.get()
 
     t = event.widget.transaction
-    pattern = t.items()
-    pattern.pop('category')
     new = {'category': text}
 
-    update_templates(pattern, new)
+    update_templates(t.rawRecord, new)
 
 class Comment(gui.WatchedText):
     transaction: Record.CategorizedRecord
@@ -92,11 +97,9 @@ def Cmt_onModification(event: CmtEvent):
     text = event.widget.get('1.0', 'end').strip()
 
     t = event.widget.transaction
-    pattern = t.items()
-    pattern.pop('comment')
     new = {'comment': text}
 
-    update_templates(pattern, new)
+    update_templates(t.rawRecord, new)
 
 # Populate the table
 widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
@@ -127,7 +130,9 @@ for r, row in enumerate(categorized_transactions):
 
 root.mainloop()
 
-for pattern, new in added_templates:
+for template in added_templates:
+    pattern = template['raw'].items()
+    new = template['new']
     Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
 if added_templates:
     print("Saving added templates:")
