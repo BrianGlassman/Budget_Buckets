@@ -1,3 +1,5 @@
+import datetime
+
 import Record
 
 #%% Parsing
@@ -5,6 +7,7 @@ import Parsing
 
 transactions: list[Record.RawRecord] = []
 for parser in [
+    Parsing.USAAParser("Checking", "2021q4_chk.csv"),
     Parsing.USAAParser("Checking", "2022_chk.csv"),
     Parsing.USAAParser("Credit Card", "2022_cc.csv")
     ]:
@@ -23,13 +26,59 @@ categorized_transactions = Categorize.run(
 
 #%% Display pre-processing
 import TkinterPlus as gui
-months = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+
+def make_date_key(date: datetime.date) -> datetime.date:
+    """Gets just the year and month for use as a key"""
+    return datetime.date(date.year, date.month, 1)
+
+def make_date_label(date: datetime.date) -> str:
+    return date.strftime("%b %y") # https://www.programiz.com/python-programming/datetime/strftime
+
+def add_month(date: datetime.date, inc: int) -> datetime.date:
+    """Increments the month, incrementing year if needed
+    Returns the new date"""
+    assert isinstance(date, datetime.date)
+    if date.day > 28: raise NotImplementedError("Not sure what happens if day isn't in month")
+    assert isinstance(inc, int)
+    assert inc in [1, -1]
+    month = date.month + inc
+    if month > 12:
+        month = 1
+        year = date.year + 1
+    elif month < 1:
+        month = 12
+        year = date.year - 1
+    else:
+        year = date.year
+    return date.replace(year=year, month=month)
+def inc_month(date: datetime.date): return add_month(date, +1)
+def dec_month(date: datetime.date): return add_month(date, -1)
+
+# Get the earliest and latest date
+strt: datetime.date
+stop: datetime.date
+strt = stop = categorized_transactions[0].date
+for t in categorized_transactions:
+    date = t.date
+    if date < strt: strt = date
+    if date > stop: stop = date
+
+# Create a consecutive list of months from strt to stop
+months: list[datetime.date] = []
+strt = datetime.date(year=strt.year, month=strt.month, day=1)
+before_strt = dec_month(strt)
+stop = datetime.date(year=stop.year, month=stop.month, day=1)
+date = strt
+while date <= stop:
+    months.append(date)
+    date = inc_month(date)
+month_count = len(months)
 
 cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
-values: dict[str, dict[str, dict[int, float]]] # {grouping: cat: {month number: value}}}
+values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
 values = {}
 for group, categories in cat_groups.items():
-    values[group] = {cat:{m+1:0 for m in range(len(months))} for cat in categories}
+    values[group] = {cat:{month:0 for month in months} for cat in categories}
 
 for t in categorized_transactions:
     cat = t.category
@@ -39,7 +88,7 @@ for t in categorized_transactions:
             assert group is None, f"Category '{cat}' appears in multiple groups"
             group = g
     assert group is not None, f"Category '{cat}' not found in any group"
-    values[group][cat][t.date.month] += t.value
+    values[group][cat][make_date_key(t.date)] += t.value
 
 def _next_row(coords):
     coords[0] += 1
@@ -75,7 +124,7 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) 
     # Header row
     _add_text(table.frame, title.upper(), widths['label'], coords, bd=2, anchor='center')
     for month in months:
-        _add_text(table.frame, month, widths['data'], coords, anchor='center')
+        _add_text(table.frame, make_date_label(month), widths['data'], coords, anchor='center')
     _add_text(table.frame, "Total", widths['total'], coords, anchor='center')
     _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
     _next_row(coords)
@@ -86,8 +135,8 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) 
         _add_text(table.frame, cat, widths['label'], coords, anchor='e')
         # Values
         total = 0
-        for m in range(12):
-            val = values[cat][m+1]
+        for month in months:
+            val = values[cat][month]
             _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
             total += val
         _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
@@ -110,13 +159,13 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     widths = {'label': 20, 'data': 10, 'total': 10, 'average': 10}
 
     # --- Summary section ---
-    monthly_delta = {m+1:0.0 for m in range(12)}
-    monthly_balance = {m+1:0.0 for m in range(12)}
-    monthly_balance[0] = starting_balance
+    monthly_delta   = {month:0.0 for month in months}
+    monthly_balance = {month:0.0 for month in months}
+    monthly_balance[before_strt] = starting_balance
     # Header row
     _add_text(table.frame, "SUMMARY", widths['label'], coords, bd=2, anchor='center')
     for month in months:
-        _add_text(table.frame, month, widths['data'], coords, anchor='center')
+        _add_text(table.frame, make_date_label(month), widths['data'], coords, anchor='center')
     _add_text(table.frame, "Total", widths['total'], coords, anchor='center')
     _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
     _next_row(coords)
@@ -124,11 +173,11 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     # Income
     _add_text(table.frame, "Income", widths['label'], coords, anchor='center')
     total = 0
-    for m in range(12):
+    for month in months:
         val = 0
         for month_vals in values['income'].values():
-            val += month_vals[m+1]
-        monthly_delta[m+1] += val
+            val += month_vals[month]
+        monthly_delta[month] += val
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
@@ -138,11 +187,11 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     # Expenses
     _add_text(table.frame, "Expenses", widths['label'], coords, anchor='center')
     total = 0
-    for m in range(12):
+    for month in months:
         val = 0
         for month_vals in values['expenses'].values():
-            val += month_vals[m+1]
-        monthly_delta[m+1] += val
+            val += month_vals[month]
+        monthly_delta[month] += val
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
@@ -152,11 +201,11 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     # Internal
     _add_text(table.frame, "Internal", widths['label'], coords, anchor='center')
     total = 0
-    for m in range(12):
+    for month in months:
         val = 0
         for month_vals in values['internal'].values():
-            val += month_vals[m+1]
-        monthly_delta[m+1] += val
+            val += month_vals[month]
+        monthly_delta[month] += val
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
@@ -166,8 +215,8 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     # Net
     _add_text(table.frame, "Net Change", widths['label'], coords, anchor='center')
     total = 0
-    for m in range(12):
-        val = monthly_delta[m+1]
+    for month in months:
+        val = monthly_delta[month]
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
@@ -177,9 +226,9 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     # Balance
     _add_text(table.frame, "Balance", widths['label'], coords, anchor='center')
     total = 0
-    for m in range(12):
-        val = monthly_balance[m] + monthly_delta[m+1]
-        monthly_balance[m+1] = val
+    for month in months:
+        val = monthly_balance[dec_month(month)] + monthly_delta[month]
+        monthly_balance[month] = val
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, "", widths['total'], coords)

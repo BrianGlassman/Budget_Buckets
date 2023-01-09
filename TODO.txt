@@ -10,6 +10,11 @@ MView:
 	general:
 		make all sheets available, either through tabs or a main menu
 
+Make something that looks like MView but groups things by account rather than category
+	Add data for Fidelity accounts, Venmo, M1, cash, etc.
+	Idea is to see how money moves between accounts
+	ex. it looks like certain months I spent less than I did, because I withdrew from Fidelity that month
+
 Probably a way to load the JSON schema enum to create Constants.categories
 
 CategorizerView:
