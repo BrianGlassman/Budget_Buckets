@@ -1,6 +1,5 @@
 {
   "$schema": "Schemas/TemplatesSchema.json",
-
   "Car": {
     "Car - Note": [
       {
@@ -36,7 +35,10 @@
         "name": "Gas (Circle K)",
         "pattern": {
           "desc": "Circle K",
-          "value": [ -18, -60 ]
+          "value": [
+            -18,
+            -60
+          ]
         },
         "new": {
           "category": "Car - Other",
@@ -51,7 +53,7 @@
         "pattern": {
           "desc": "ParkMobile",
           "value": [
-            -0,
+            0,
             -15
           ]
         },
@@ -108,7 +110,7 @@
         "pattern": {
           "desc": "Steam",
           "value": [
-            -0,
+            0,
             -80
           ]
         },
@@ -121,7 +123,9 @@
     "Going Out": [
       {
         "name": "Dark Horse",
-        "pattern": { "desc": "The Dark Horse" },
+        "pattern": {
+          "desc": "The Dark Horse"
+        },
         "new": {
           "category": "Going Out",
           "split": 1
@@ -129,7 +133,9 @@
       },
       {
         "name": "Rayback",
-        "pattern": { "desc": "Rayback Collective" },
+        "pattern": {
+          "desc": "Rayback Collective"
+        },
         "new": {
           "category": "Going Out",
           "split": 1
@@ -140,7 +146,9 @@
     "Big Fun": [
       {
         "name": "Spirit Halloween",
-        "pattern": { "desc": "Spirit Halloween" },
+        "pattern": {
+          "desc": "Spirit Halloween"
+        },
         "new": {
           "category": "Big Fun",
           "split": 1
@@ -189,7 +197,9 @@
       },
       {
         "name": "Torchys",
-        "pattern": { "desc": "Torchys Boulder" },
+        "pattern": {
+          "desc": "Torchys Boulder"
+        },
         "new": {
           "category": "Food - nice",
           "split": 1
@@ -197,7 +207,9 @@
       },
       {
         "name": "Panda Express",
-        "pattern": { "desc": "Panda Express" },
+        "pattern": {
+          "desc": "Panda Express"
+        },
         "new": {
           "category": "Food - nice",
           "split": 1
@@ -205,7 +217,9 @@
       },
       {
         "name": "Dominos",
-        "pattern": { "desc": "Domino's" },
+        "pattern": {
+          "desc": "Domino's"
+        },
         "new": {
           "category": "Food - nice",
           "split": 1
@@ -213,7 +227,9 @@
       },
       {
         "name": "Cosmos",
-        "pattern": { "desc": "Cosmos Pizza North Boul" },
+        "pattern": {
+          "desc": "Cosmos Pizza North Boul"
+        },
         "new": {
           "category": "Food - nice",
           "split": 1
@@ -265,7 +281,10 @@
         "name": "Phone (Sprint)",
         "pattern": {
           "desc": "Sprint",
-          "value": [ -30.0, -31.0 ]
+          "value": [
+            -30.0,
+            -31.0
+          ]
         },
         "new": {
           "category": "Utilities",
