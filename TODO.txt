@@ -1,4 +1,6 @@
 MView:
+	all sheets:
+		allow multiple years (switch from month name to ex. "10/../2022")
 	summary sheet:
 		add monthly super-category timeline
 		add category average bar chart
@@ -36,10 +38,16 @@ BucketTimeline:
 	Make a "slush fund" bucket. Income categories add to it, expense categories take from it
 
 Categorizing:
+	Allow splitting and deleting records via template:
+		split - "new" has multiple children
+		delete - "new" has no children
+
 	Some system for creating generic templates
 		will probably need to figure out how to put it in the right nested group
 
+	Auto-generated templates should have a separate file
 	There should probably be a section for "overrides" at the top of the templates to manually override generic templates
+	For now just give auto-gens a separate file that overrides generics
 
 	Some way to remove duplicate templates
 
