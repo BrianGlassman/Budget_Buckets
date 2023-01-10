@@ -1,15 +1,12 @@
+import Record
+
 #%% Parsing
 import Parsing
 
-transactions = []
-for parser in [
-    Parsing.USAAParser("Checking", "2022_chk.csv"),
-    Parsing.USAAParser("Credit Card", "2022_cc.csv")
-    ]:
-    transactions.extend(parser.transactions)
+transactions: list[Record.RawRecord]
+transactions = Parsing.run()
 
 #%% Categorizing
-import Record
 import Categorize
 from Root import Constants
 

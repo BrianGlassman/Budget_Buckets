@@ -96,3 +96,21 @@ class OldUSAAParser(BaseUSAAParser):
         value = float(line.pop('value').replace('--', ''))
         # Anything left in the line is source-specific values
         return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
+
+def run() -> list:
+    """
+    Parse all the data sources
+    Returns a list of RawRecords
+    """
+    transactions: list = []
+    for parser in [
+        USAAParser("Checking", "2021q4_chk.csv"),
+        USAAParser("Checking", "2022_chk.csv"),
+        USAAParser("Credit Card", "2022_cc.csv"),
+        USAAParser("FStocks", "Fidelity_Investment_manual.csv"),
+        USAAParser("Roth IRA", "Fidelity_RothIRA_manual.csv"),
+        USAAParser("Trad IRA", "Fidelity_TradIRA_manual.csv"),
+        USAAParser("401(k)", "PrudentialEmpower_401k_manual.csv"),
+        ]:
+        transactions.extend(parser.transactions)
+    return transactions
