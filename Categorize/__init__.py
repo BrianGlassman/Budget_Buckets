@@ -112,8 +112,12 @@ def _as_regex(dct):
 def load_templates(file: str) -> dict[str, dict]:
     if not file.startswith("Categorize"):
         file = _imported_os.path.join("Categorize", file)
-    with open(file, 'r') as f:
-        templates = _imported_json.load(f, object_hook=_as_regex)
+    try:
+        with open(file, 'r') as f:
+            templates = _imported_json.load(f, object_hook=_as_regex)
+    except _imported_json.decoder.JSONDecodeError:
+        print(f"Failed to decode template file {file}")
+        raise
     return templates
 
 # Load templates

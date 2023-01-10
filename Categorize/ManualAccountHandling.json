@@ -1,9 +1,92 @@
 {
     "$schema": "Schemas/TemplatesSchema.json",
     "Manual Account Handling": {
-        "Fidelity Investments": [],
-        "Fidelity Roth IRA": [],
-        "Fidelity Traditional IRA": [],
-        "PrudentialEmpower 401(k)": []
+        "USAA Checking": [
+            {
+                "name": "Fidelity Transfers",
+                "pattern": {
+                    "account": "Checking",
+                    "desc": "Fidelity"
+                },
+                "new": {
+                    "category": "Internal Transfers",
+                    "split": 1
+                }
+            },
+            {
+                "name": "M1 Transfers",
+                "pattern": {
+                    "account": "Checking",
+                    "desc": "M1 Finance"
+                },
+                "new": {
+                    "category": "Internal Transfers",
+                    "split": 1
+                }
+            }
+        ],
+        "Fidelity Investments": [
+            {
+              "name": "MANUAL_LOG USAA Transfer",
+              "pattern": {
+                "account": "FStocks",
+                "desc": "USAA Transfer"
+              },
+              "new": {
+                "category": "Internal Transfers",
+                "split": 1
+              }
+            }
+        ],
+        "Fidelity Roth IRA": [
+            {
+              "name": "MANUAL_LOG Rollover",
+              "pattern": {
+                "account": "Roth IRA",
+                "desc": "Rollover from 401(k)"
+                },
+              "new": {
+                "category": "Internal Transfers",
+                "split": 1
+              }
+            }
+        ],
+        "Fidelity Traditional IRA": [
+            {
+              "name": "MANUAL_LOG USAA Transfer",
+              "pattern": {
+                "account": "Trad IRA",
+                "desc": "USAA Transfer"
+              },
+              "new": {
+                "category": "Internal Transfers",
+                "split": 1
+              }
+            }
+        ],
+        "PrudentialEmpower 401(k)": [
+            {
+              "name": "MANUAL_LOG Rollover",
+              "pattern": {
+                "account": "401(k)",
+                "desc": "Rollover"
+              },
+              "new": {
+                "category": "Internal Transfers",
+                "split": 1
+              }
+            },
+            {
+              "name": "MANUAL_LOG Forfeiture",
+              "pattern": {
+                "account": "401(k)",
+                "desc": "Forfeiture"
+              },
+              "new": {
+                "category": "401k",
+                "split": 1
+              }
+            }
+        ]
     }
 }

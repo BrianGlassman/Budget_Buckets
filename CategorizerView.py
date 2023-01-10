@@ -5,8 +5,13 @@ import Parsing
 
 transactions: list[Record.RawRecord] = []
 for parser in [
+    Parsing.USAAParser("Checking", "2021q4_chk.csv"),
     Parsing.USAAParser("Checking", "2022_chk.csv"),
-    Parsing.USAAParser("Credit Card", "2022_cc.csv")
+    Parsing.USAAParser("Credit Card", "2022_cc.csv"),
+    Parsing.USAAParser("FStocks", "Fidelity_Investment_manual.csv"),
+    Parsing.USAAParser("Roth IRA", "Fidelity_RothIRA_manual.csv"),
+    Parsing.USAAParser("Trad IRA", "Fidelity_TradIRA_manual.csv"),
+    Parsing.USAAParser("401(k)", "PrudentialEmpower_401k_manual.csv"),
     ]:
     transactions.extend(parser.transactions)
 
