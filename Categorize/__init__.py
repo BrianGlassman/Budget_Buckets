@@ -1,3 +1,4 @@
+import os as _imported_os
 import re as _imported_re
 import json as _imported_json
 from functools import partial
@@ -95,7 +96,6 @@ def match_templates(record) -> dict | None:
         raise
     return matched
 
-templates_file = "Categorize/Templates.json"
 _re_prefix = 'REGEX:'
 
 # Specialized encoding/decoding https://docs.python.org/3/library/json.html
@@ -109,8 +109,22 @@ def _as_regex(dct):
         # Normal processing
         return dct
 
-with open(templates_file, 'r') as f:
-    _nested_templates = _imported_json.load(f, object_hook=_as_regex)
+def load_templates(file: str) -> dict[str, dict]:
+    if not file.startswith("Categorize"):
+        file = _imported_os.path.join("Categorize", file)
+    with open(file, 'r') as f:
+        templates = _imported_json.load(f, object_hook=_as_regex)
+    return templates
+
+# Load templates
+auto_templates_file = "AutoTemplates.json" # Store for writing to later
+_nested_templates = {}
+for templates_file in [
+    "Templates.json", # Generic templates
+    "ManualAccountHandling.json",
+    auto_templates_file, # Auto-generated templates from GUI, override anything else
+    ]:
+    _nested_templates.update(load_templates(templates_file))
 
 # Templates file is nested to help with organization, flatten it to be directly useful
 _templates: list[dict] = []
@@ -133,6 +147,8 @@ def _flatten(dct: dict) -> None:
         raise
 _flatten(_nested_templates)
 
+_added_templates = {"Auto-generated": {"Individual": []}}
+_addTemp_shortcut = _added_templates['Auto-generated']['Individual']
 def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
     assert isinstance(group, list)
     assert all(isinstance(g, str) for g in group)
@@ -150,8 +166,9 @@ def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
             foo = foo[g]
     except Exception:
         raise ValueError(f"Group '{group}' not found")
-    foo.append(template)
+    foo.append(template) # type: ignore
     _templates.append(template)
+    _addTemp_shortcut.append(template)
 
 def save_templates() -> None:
     class Encoder(_imported_json.JSONEncoder):
@@ -165,8 +182,12 @@ def save_templates() -> None:
                 # Let the base class default method raise the TypeError
                 return super().default(obj)
 
-    with open(templates_file, 'w') as f:
-        _imported_json.dump(_nested_templates, f, indent=2, cls=Encoder)
+    if auto_templates_file.startswith("Categorize"):
+        file = auto_templates_file
+    else:
+        file = _imported_os.path.join("Categorize", auto_templates_file)
+    with open(file, 'w') as f:
+        _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -> list:
     import Record

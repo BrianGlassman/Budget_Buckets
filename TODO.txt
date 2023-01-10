@@ -1,5 +1,7 @@
 Manually create data for M1 and Fidelity accounts, then categorize transfers as internal
 
+Put data in a separate folder and adjust .gitignore accordingly
+
 MView:
 	summary sheet:
 		add monthly super-category timeline
@@ -50,9 +52,9 @@ Categorizing:
 	Some system for creating generic templates
 		will probably need to figure out how to put it in the right nested group
 
-	Auto-generated templates should have a separate file
 	There should probably be a section for "overrides" at the top of the templates to manually override generic templates
 	For now just give auto-gens a separate file that overrides generics
+	FIXME need to check what the order of precedence actually is
 
 	Some way to remove duplicate templates
 

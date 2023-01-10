@@ -1,0 +1,9 @@
+{
+    "$schema": "Schemas/TemplatesSchema.json",
+    "Manual Account Handling": {
+        "Fidelity Investments": [],
+        "Fidelity Roth IRA": [],
+        "Fidelity Traditional IRA": [],
+        "PrudentialEmpower 401(k)": []
+    }
+}
