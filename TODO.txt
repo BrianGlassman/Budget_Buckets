@@ -39,7 +39,10 @@ TransactionTimeline:
 BucketTimeline:
 	Hard-code initial value for each bucket
 
+	Hard-code that each month a certain amount gets added to each bucket
+
 	Make a "slush fund" bucket. Income categories add to it, expense categories take from it
+		replaces the hard-coded monthly additions
 
 Categorizing:
 	Allow splitting and deleting records via template:
