@@ -53,19 +53,24 @@ def sort_transactions(transactions):
 
 # FIXME? Should it check existing auto-generated templates?
 # [{"raw": raw transaction, "new": new_to_add}, ...]
-added_templates: list[dict[str, Record.RawRecord | dict]] = []
+class AddedTemplate:
+    """Class to make type-checking easier"""
+    def __init__(self, raw: Record.RawRecord, new: dict) -> None:
+        self.raw = raw
+        self.new = new
+added_templates: list[AddedTemplate] = []
 def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # Get/create the matching entry
     for template in added_templates:
         # Overwrite existing, if there is one
-        if template["raw"] == transaction:
+        if template.raw == transaction:
             break
     else:
         # No existing, create new
-        added_templates.append({"raw": transaction, "new": dict()})
+        added_templates.append(AddedTemplate(raw=transaction, new=dict()))
         template = added_templates[-1]
 
-    n = template["new"]
+    n = template.new
     assert isinstance(n, dict) # For Pylance and oops-catching
     # Fill in required information
     n.setdefault('category', Constants.todo_category)
@@ -127,8 +132,8 @@ for r, row in enumerate(categorized_transactions):
 root.mainloop()
 
 for template in added_templates:
-    pattern = template['raw'].items()
-    new = template['new']
+    pattern = template.raw.items()
+    new = template.new
     Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
 if added_templates:
     print("Saving added templates:")
