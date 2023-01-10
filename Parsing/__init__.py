@@ -102,15 +102,20 @@ def run() -> list:
     Parse all the data sources
     Returns a list of RawRecords
     """
+    import os
+    assert os.path.exists("Raw_Data"), "Raw_Data folder does not exist (Git ignores it)"
+
     transactions: list = []
-    for parser in [
-        USAAParser("Checking", "2021q4_chk.csv"),
-        USAAParser("Checking", "2022_chk.csv"),
-        USAAParser("Credit Card", "2022_cc.csv"),
-        USAAParser("FStocks", "Fidelity_Investment_manual.csv"),
-        USAAParser("Roth IRA", "Fidelity_RothIRA_manual.csv"),
-        USAAParser("Trad IRA", "Fidelity_TradIRA_manual.csv"),
-        USAAParser("401(k)", "PrudentialEmpower_401k_manual.csv"),
+    for parseCls, account, file in [
+        (USAAParser, "Checking", "2021q4_chk.csv"),
+        (USAAParser, "Checking", "2022_chk.csv"),
+        (USAAParser, "Credit Card", "2022_cc.csv"),
+        (USAAParser, "FStocks", "Fidelity_Investment_manual.csv"),
+        (USAAParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
+        (USAAParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
+        (USAAParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
         ]:
+        file = os.path.join("Raw_Data", file)
+        parser = parseCls(account, file)
         transactions.extend(parser.transactions)
     return transactions

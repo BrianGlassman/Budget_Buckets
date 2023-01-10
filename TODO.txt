@@ -1,6 +1,3 @@
-Manually create data for M1 and Fidelity accounts, then categorize transfers as internal
-
-Put data in a separate folder and adjust .gitignore accordingly
 
 MView:
 	summary sheet:
