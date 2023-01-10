@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt
+from matplotlib.transforms import Bbox
+
 import Record
 
 #%% Parsing
@@ -11,11 +14,15 @@ import Categorize
 from Root import Constants
 
 limit = -1 # Use -1 for all
-use_uncat = True # Whether to show uncategorized items
-use_cat = False # Whether to show categorized items
+use_uncat = False # Whether to show uncategorized items
+use_cat = True # Whether to show categorized items
 
 categorized_transactions = Categorize.run(
     transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat)
+
+categorized_transactions = [x for x in categorized_transactions if
+    x.category in ['Groceries', 'Food - nice']
+    ]
 
 #%% Display pre-processing
 
@@ -121,20 +128,26 @@ class BucketTracker(BaseTracker):
                 # Apply the delta
                 self.cat_tracker[cat][date] = last_value + delta
                 last_date = date
+
+    def plot(self, ax: plt.Axes, category: str) -> None:
+        """Plot the values for the given category on the given Axes"""
+        value_timeline = self.get_category(category)
+        if all(v is None for v in value_timeline.values()): return # Don't plot unused categories
+        ax.plot(value_timeline.keys(), value_timeline.values(), '.:', label=category)
+
+    def plot_all(self, ax: plt.Axes):
+        """Sugar syntax to call plot on all categories"""
+        for cat in self.cat_tracker.keys():
+            self.plot(ax, cat)
 bucket_tracker = BucketTracker(delta_tracker, initial_date=sorted_transactions[0].date)
 
 #%% Display
-from matplotlib import pyplot as plt
-from matplotlib.transforms import Bbox
 
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
 fig, ax = plt.subplots()
 fig.subplots_adjust(right=0.75)
-for cat in Constants.categories_inclTodo:
-    values = bucket_tracker.get_category(cat)
-    if all(v is None for v in values.values()): continue # Don't plot unused categories
-    ax.plot(values.keys(), values.values(), '.:', label=cat)
+bucket_tracker.plot_all(ax)
 ax.grid(True)
 legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
 
