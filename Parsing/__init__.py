@@ -110,6 +110,7 @@ def run() -> list:
         (USAAParser, "Checking", "2021q4_chk.csv"),
         (USAAParser, "Checking", "2022_chk.csv"),
         (USAAParser, "Credit Card", "2022_cc.csv"),
+        (USAAParser, "M1", "M1_manual.csv"),
         (USAAParser, "FStocks", "Fidelity_Investment_manual.csv"),
         (USAAParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
         (USAAParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),

@@ -25,6 +25,19 @@
                 }
             }
         ],
+        "M1": [
+          {
+            "name": "MANUAL_LOG USAA Transfer",
+            "pattern": {
+              "account": "M1",
+              "desc": "USAA Transfer"
+            },
+            "new": {
+              "category": "Internal Transfers",
+              "split": 1
+            }
+          }
+        ],
         "Fidelity Investments": [
             {
               "name": "MANUAL_LOG USAA Transfer",
