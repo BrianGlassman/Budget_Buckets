@@ -1,6 +1,6 @@
+Manually create data for M1 and Fidelity accounts, then categorize transfers as internal
+
 MView:
-	all sheets:
-		allow multiple years (switch from month name to ex. "10/../2022")
 	summary sheet:
 		add monthly super-category timeline
 		add category average bar chart
