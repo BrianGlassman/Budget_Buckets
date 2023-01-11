@@ -15,7 +15,7 @@ use_uncat = True # Whether to show uncategorized items
 use_cat = False # Whether to show categorized items
 
 categorized_transactions = Categorize.run(
-    transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat)
+    transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=True)
 
 #%% Display pre-processing
 
