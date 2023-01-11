@@ -1,3 +1,25 @@
+Categorizing:
+	Allow splitting and deleting records via template:
+		split - "new" has multiple children
+		delete - "new" has no children
+	Need this so that I can split/combine CU payments
+
+	Some system for creating generic templates
+		will probably need to figure out how to put it in the right nested group
+
+	There should probably be a section for "overrides" at the top of the templates to manually override generic templates
+	For now just give auto-gens a separate file that overrides generics
+	FIXME need to check what the order of precedence actually is
+
+	Some way to remove duplicate templates
+
+	Some way to validate all templates
+
+	Make a module to convert from the old system (with categorizations and descriptions) to the new one
+		This is better than doing it manually, or making something temporary
+		Actually... this should probably be lower priority
+		Just start fresh from some date, and ignore the old stuff for now
+
 
 MView:
 	summary sheet:
@@ -9,10 +31,7 @@ MView:
 	general:
 		make all sheets available, either through tabs or a main menu
 
-Make something that looks like MView but groups things by account rather than category
-	Add data for Fidelity accounts, Venmo, M1, cash, etc.
-	Idea is to see how money moves between accounts
-	ex. it looks like certain months I spent less than I did, because I withdrew from Fidelity that month
+Add data for 529 plan
 
 Probably a way to load the JSON schema enum to create Constants.categories
 
@@ -39,28 +58,9 @@ TransactionTimeline:
 BucketTimeline:
 	Hard-code initial value for each bucket
 
-	Hard-code that each month a certain amount gets added to each bucket
-
 	Make a "slush fund" bucket. Income categories add to it, expense categories take from it
 		replaces the hard-coded monthly additions
 
-Categorizing:
-	Allow splitting and deleting records via template:
-		split - "new" has multiple children
-		delete - "new" has no children
-
-	Some system for creating generic templates
-		will probably need to figure out how to put it in the right nested group
-
-	There should probably be a section for "overrides" at the top of the templates to manually override generic templates
-	For now just give auto-gens a separate file that overrides generics
-	FIXME need to check what the order of precedence actually is
-
-	Some way to remove duplicate templates
-
-	Some way to validate all templates
-
-	Make a module to convert from the old system (with categorizations and descriptions) to the new one
-		This is better than doing it manually, or making something temporary
-		Actually... this should probably be lower priority
-		Just start fresh from some date, and ignore the old stuff for now
+Make something that looks like MView but groups things by account rather than category
+	Idea is to see how money moves between accounts
+	ex. it looks like certain months I spent less than I did, because I withdrew from Fidelity that month
