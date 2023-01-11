@@ -111,8 +111,15 @@ class DeltaTracker(BaseTracker):
             tracker[date] = None
 delta_tracker = DeltaTracker(sorted_transactions)
 
+class Bucket:
+    def __init__(self, name, max_value, monthly_refill):
+        self.name = name
+        self.max_value = max_value
+        self.refill = monthly_refill / 30
+
 class BucketTracker(BaseTracker):
-    def __init__(self, delta_tracker: DeltaTracker, initial_date: datetime.date, final_date: datetime.date, refill_amts: dict[str, float] = {}):
+    _empty_bucket = Bucket("empty", 0, 0)
+    def __init__(self, delta_tracker: DeltaTracker, initial_date: datetime.date, final_date: datetime.date, bucket_info: dict[str, Bucket] = {}):
         """refill_amts - {category: amount to add per DAY}"""
         self._cat_tracker = {}
         self.transaction_dates: dict[str, list[datetime.date]]
@@ -121,7 +128,8 @@ class BucketTracker(BaseTracker):
             tracker = self._cat_tracker[cat] = {} ; tracker: dict[datetime.date, float | None]
             tdates = self.transaction_dates[cat] = [] ; tdates: list[datetime.date]
             dtracker = delta_tracker.get_category(cat)
-            refill = refill_amts.get(cat, 0.0)
+            bucket = bucket_info.get(cat, self._empty_bucket)
+            refill = bucket.refill
 
             # Skip categories that never change
             if refill == 0 and all(v is None for v in dtracker.values()):
@@ -142,13 +150,20 @@ class BucketTracker(BaseTracker):
                         tdates.append(date)
                 else:
                     tvalue = 0
+
+                # Handle refilling and max value
+                fill = refill + tvalue
+                new_value = last_value + fill
+                if new_value > bucket.max_value:
+                    fill = bucket.max_value - last_value
+                    new_value = bucket.max_value
                 
-                # Calculate and save the value
-                value = tracker[date] = last_value + refill + tvalue
+                # Save the value
+                tracker[date] = new_value
 
                 # Increment for next loop
                 date += Constants.one_day
-                last_value = value
+                last_value = new_value
 
     def plot(self, ax: plt.Axes, category: str) -> None:
         """Plot the values for the given category on the given Axes"""
@@ -164,54 +179,57 @@ class BucketTracker(BaseTracker):
         """Sugar syntax to call plot on all categories"""
         for cat in self.categories:
             self.plot(ax, cat)
-monthly_refill = {
+
+bucket_info = {
     # Car
-    'Car - Note': 320,
-    'Car/Rental Insurance': 125,
-    'Car - Other': 20,
-    'Car - Parking Pass': 20, # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
+    'Car - Note': (320, 320),
+    'Car/Rental Insurance': (150, 150),
+    'Car - Other': (100, 20),
+    'Car - Parking Pass': (50, 20), # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
 
     # Education
-    'Self-improvement': 0,
+    'Self-improvement': (0, 0),
 
     # Entertainment
-    'Dates': 20,
-    'Entertainment - Other': 20,
-    'Games': 20,
-    'Going Out': 20,
-    'Books': 20,
-    'Big Fun': 20,
+    'Dates': (75, 20),
+    'Entertainment - Other': (75, 20),
+    'Games': (75, 20),
+    'Going Out': (75, 20),
+    'Books': (75, 20),
+    'Big Fun': (0, 20), # TODO shouldn't be zero, but then the graph gets messy
 
     # Food
-    'Groceries': 200,
-    'Food - nice': 35,
+    'Groceries': (300, 200),
+    'Food - nice': (100, 35),
 
     # Housing
-    'Rent': 1850,
-    'Utilities': 150,
-    'Internet': 40.41,
-    'Housing - Other': 20,
-    'Decoration': 20,
+    'Rent': (1850, 1850),
+    'Utilities': (200, 150),
+    'Internet': (40.41, 40.41),
+    'Housing - Other': (50, 20),
+    'Decoration': (50, 20),
 
     # Investments/Savings
-    '401k': 0,
-    'Retirement': 0,
-    'Long-term': 0,
-    'Unexpected Fund': 0,
+    '401k': (0, 0),
+    'Retirement': (0, 0),
+    'Long-term': (0, 0),
+    'Unexpected Fund': (0, 0),
 
     # Medical/Dental
-    'Medical - Other': 20,
-    'Medical Insurance': 0,
+    'Medical - Other': (200, 20),
+    'Medical Insurance': (0, 0),
 
     # Other
-    'ATM': 100,
-    'Other - Other': 100,
+    'ATM': (200, 20),
+    'Other - Other': (200, 20),
 
     # Personal Care / Clothing
-    'Clothes/Personal care': 40,
+    'Clothes/Personal care': (100, 30),
 }
-refill = {k:v/30 for k,v in monthly_refill.items()}
-bucket_tracker = BucketTracker(delta_tracker, initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date, refill_amts=refill)
+bucket_info = {category:Bucket(category, max_value, monthly_refill) for category, (max_value, monthly_refill) in bucket_info.items()}
+bucket_tracker = BucketTracker(delta_tracker,
+    initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
+    bucket_info=bucket_info)
 
 #%% Display
 
