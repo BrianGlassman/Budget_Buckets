@@ -20,10 +20,6 @@ use_cat = True # Whether to show categorized items
 categorized_transactions = Categorize.run(
     transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat)
 
-categorized_transactions = [x for x in categorized_transactions if
-    x.category in ['Groceries', 'Food - nice']
-    ]
-
 #%% Display pre-processing
 
 # Sort by date

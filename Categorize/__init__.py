@@ -217,4 +217,14 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True) -
         if len(categorized_transactions) == limit:
             break
     
+    internal_sum = sum(x.value for x in categorized_transactions if x.category in Constants.internal_categories)
+    if abs(internal_sum) >= 0.01:
+        import warnings
+        warnings.warn(f"Internals ({', '.join(Constants.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
+
+    # Easy way to filter stuff
+    categorized_transactions = [x for x in categorized_transactions if
+        True
+        ]
+
     return categorized_transactions

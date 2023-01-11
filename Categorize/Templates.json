@@ -440,6 +440,16 @@
           "category": "CC Payments",
           "split": 1
         }
+      },
+      {
+        "name": "CC Payments",
+        "pattern": {
+          "desc": "USAA Credit Card Payment"
+        },
+        "new": {
+          "category": "CC Payments",
+          "split": 1
+        }
       }
     ],
     "Internal Transfers": []
