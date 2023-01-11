@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import Record
 
 #%% Parsing
@@ -53,11 +55,11 @@ def sort_transactions(transactions):
 
 # FIXME? Should it check existing auto-generated templates?
 # [{"raw": raw transaction, "new": new_to_add}, ...]
+@dataclass
 class AddedTemplate:
     """Class to make type-checking easier"""
-    def __init__(self, raw: Record.RawRecord, new: dict) -> None:
-        self.raw = raw
-        self.new = new
+    raw: Record.RawRecord
+    new: dict
 added_templates: list[AddedTemplate] = []
 def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # Get/create the matching entry
