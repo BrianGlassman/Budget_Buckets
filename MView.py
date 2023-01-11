@@ -135,15 +135,11 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...]) 
             _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
             total += val
         _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-        _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+        _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
         
         _next_row(coords)
 
 def make_summary_sheet(parent, values, starting_balance: float) -> None:
-    #----------------
-    # Pre-processing
-    #----------------
-
     #---------
     # Display
     #---------
@@ -176,7 +172,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
     _next_row(coords)
 
     # Expenses
@@ -190,7 +186,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
     _next_row(coords)
 
     # Internal
@@ -204,7 +200,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
     _next_row(coords)
 
     # Net
@@ -215,7 +211,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
     _next_row(coords)
 
     # Balance
@@ -227,7 +223,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
     _add_text(table.frame, "", widths['total'], coords)
-    _add_text(table.frame, f"${total/12:0,.2f}", widths['average'], coords, anchor='e')
+    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
     _next_row(coords)
 
 root = gui.Root(25, 10)
