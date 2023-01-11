@@ -20,6 +20,12 @@ use_cat = True # Whether to show categorized items
 categorized_transactions = Categorize.run(
     transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
 
+categorized_transactions = [x for x in categorized_transactions if
+    x.category not in ('401k',) # Not relevant
+    and
+    x.category not in Constants.income_categories # Not really a bucket
+    ]
+
 #%% Display pre-processing
 
 # Sort by date
@@ -159,8 +165,50 @@ class BucketTracker(BaseTracker):
         for cat in self.categories:
             self.plot(ax, cat)
 monthly_refill = {
+    # Car
+    'Car - Note': 320,
+    'Car/Rental Insurance': 125,
+    'Car - Other': 20,
+    'Car - Parking Pass': 20, # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
+
+    # Education
+    'Self-improvement': 0,
+
+    # Entertainment
+    'Dates': 20,
+    'Entertainment - Other': 20,
+    'Games': 20,
+    'Going Out': 20,
+    'Books': 20,
+    'Big Fun': 20,
+
+    # Food
     'Groceries': 200,
     'Food - nice': 35,
+
+    # Housing
+    'Rent': 1850,
+    'Utilities': 150,
+    'Internet': 40.41,
+    'Housing - Other': 20,
+    'Decoration': 20,
+
+    # Investments/Savings
+    '401k': 0,
+    'Retirement': 0,
+    'Long-term': 0,
+    'Unexpected Fund': 0,
+
+    # Medical/Dental
+    'Medical - Other': 20,
+    'Medical Insurance': 0,
+
+    # Other
+    'ATM': 100,
+    'Other - Other': 100,
+
+    # Personal Care / Clothing
+    'Clothes/Personal care': 40,
 }
 refill = {k:v/30 for k,v in monthly_refill.items()}
 bucket_tracker = BucketTracker(delta_tracker, initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date, refill_amts=refill)
