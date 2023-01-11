@@ -4,6 +4,22 @@ Allow splitting and deleting records via template:
 	delete - "new" has no children
 Need this so that I can split/combine CU payments
 
+[Raw Data]
+Add data (and templates) for 529 plan
+
+[CategorizerView]
+Be able to sort columns
+Also columns should have a header
+	make header separate from the scrollable canvas, that way it stays at the top
+	PROBLEM: then header won't have horizontal scrolling
+
+[BucketTimeline]
+Make a "slush fund" bucket. Income categories add to it, expense categories take from it
+	replaces the hard-coded monthly additions
+
+[CategorizerView]
+Allow typing with autocomplete for category
+
 [Categorizing]
 Some system for creating generic templates
 	will probably need to figure out how to put it in the right nested group
@@ -19,11 +35,27 @@ Some way to remove duplicate templates
 [Categorizing]
 Some way to validate all templates
 
-[Categorizing]
-Make a module to convert from the old system (with categorizations and descriptions) to the new one
-	This is better than doing it manually, or making something temporary
-	Actually... this should probably be lower priority
-	Just start fresh from some date, and ignore the old stuff for now
+[General]
+Probably a way to load the JSON schema enum to create Constants.categories
+
+[CategorizerView]
+Make Category font match other cells (should also help with sizing)
+	unless OBE
+
+[CategorizerView]
+Remove the separation between rows (how long has that been there?)
+
+[CategorizerView]
+Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
+
+[TransactionTimeline]
+Color-code based on broad category, then either use color variation or markers to identify precise category
+
+[TransactionTimeline]
+Use matplotlip picker event handler thing to allow interrogating points (ex. what was this transaction?)
+
+[BucketTimeline]
+Hard-code initial value for each bucket
 
 [MView]
 summary sheet:
@@ -39,45 +71,13 @@ tracker sheets:
 general:
 	make all sheets available, either through tabs or a main menu
 
-[Raw Data]
-Add data for 529 plan
-
-[General]
-Probably a way to load the JSON schema enum to create Constants.categories
-
-[CategorizerView]
-Be able to sort columns
-Also columns should have a header
-	make header separate from the scrollable canvas, that way it stays at the top
-	PROBLEM: then header won't have horizontal scrolling
-
-[CategorizerView]
-Make Category font match other cells (should also help with sizing)
-	unless OBE
-
-[CategorizerView]
-Remove the separation between rows (how long has that been there?)
-
-[CategorizerView]
-Allow typing with autocomplete for category
-
-[CategorizerView]
-Right now mouse wheel only scrolls when pointing at the scroll bar. Enable it for the whole window
-
-[TransactionTimeline]
-Color-code based on broad category, then either use color variation or markers to identify precise category
-
-[TransactionTimeline]
-Use matplotlip picker event handler thing to allow interrogating points (ex. what was this transaction?)
-
-[BucketTimeline]
-Hard-code initial value for each bucket
-
-[BucketTimeline]
-Make a "slush fund" bucket. Income categories add to it, expense categories take from it
-	replaces the hard-coded monthly additions
-
 [General]
 Make something that looks like MView but groups things by account rather than category
 	Idea is to see how money moves between accounts
 	ex. it looks like certain months I spent less than I did, because I withdrew from Fidelity that month
+
+[Categorizing]
+Make a module to convert from the old system (with categorizations and descriptions) to the new one
+	This is better than doing it manually, or making something temporary
+	Actually... this should probably be lower priority
+	Just start fresh from some date, and ignore the old stuff for now
