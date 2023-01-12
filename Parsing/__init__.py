@@ -90,7 +90,7 @@ class OldUSAAParser(BaseUSAAParser):
 
     def _make_transaction(self, line) -> RawRecord:
         line = dict(line) # Copy so that it can be modified
-        date = line.pop('date')
+        date = _make_date(line.pop('Date'))
         desc = self._combine_desc(line.pop("custom_desc"), line.pop("auto_desc"))
         value = float(line.pop('value').replace('--', ''))
         # Anything left in the line is source-specific values
@@ -133,6 +133,9 @@ class CUParser(BaseParser):
             def __radd__(self, other) -> float:
                 return self + other
 
+            def __round__(self, *args, **kwargs):
+                return self.value.__round__(*args, **kwargs)
+
         checksum = Charge('checksum')
         loans = Charge('Loans')
         fees = Charge('Fees')
@@ -172,18 +175,25 @@ class CUParser(BaseParser):
                     meals.add(value)
                 elif desc == "Bookstore Supply Charges":
                     supplies.add(value)
+                elif desc == "Finance Charge":
+                    assert value < 1, "Unexpectedly large finance charge"
+                    supplies.add(value)
+                elif desc == "Parking Permit":
+                    parking.add(value)
                 elif 'Direct Unsubsidized Loan' in desc:
                     loans.add(-value)
                 elif desc in (
                     "Internet Check Payment",
-                    "Refund"):
+                    "Internet Check Payment - PP",
+                    "Refund",
+                    "Refund-Federal Aid"):
                     # Changes the checksum, but is not a transaction
                     checksum.add(-value)
                 else:
                     raise NotImplementedError(f"No rule for '{desc}'")
         
         # Checksumming
-        assert sum(costs) == checksum + loans, f"{sum(costs)} != {checksum + loans}"
+        assert round(sum(costs), 2) == round(checksum + loans, 2), f"{sum(costs)} != {checksum + loans}"
 
         transactions: list[RawRecord] = []
         for item in costs + [loans]:
@@ -223,7 +233,11 @@ def run() -> list:
         ('CU_2022-02-08_bill.txt', 'CU Spring 2022', '01/10/2022'),
         ('CU_2022-06-08_bill.txt', 'CU Summer 2022', '05/23/2022'),
         ('CU_2022-08-09_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        # ("CU_Spring2023.txt") "CU Spring 2023", "01/17/2023"),
+        ('CU_2022-09-13_bill.txt',   'CU Fall 2022', '08/22/2022'),
+        ('CU_2022-10-11_bill.txt',   'CU Fall 2022', '08/22/2022'),
+        ('CU_2022-11-08_bill.txt',   'CU Fall 2022', '08/22/2022'),
+        ('CU_2022-12-13_bill.txt',   'CU Fall 2022', '08/22/2022'),
+        ('CU_2023-01-10_bill.txt', 'CU Spring 2023', '01/17/2023')
         ]:
         # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
         file = os.path.join("Raw_Data", file)
