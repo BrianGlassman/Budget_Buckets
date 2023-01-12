@@ -1,5 +1,291 @@
 {
   "Auto-generated": {
-    "Individual": []
+    "Individual": [
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-08",
+          "desc": "Best Buy",
+          "value": 54.41,
+          "source_specific": {
+            "Original Description": "BEST BUY      00010314   BOULDER      CO",
+            "Category": "Electronics & Software",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Xbox controller return"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-16",
+          "desc": "Servi Emv",
+          "value": -32.33,
+          "source_specific": {
+            "Original Description": "CO DRIVER SERVI EMV      DENVER       CO",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Driver license"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-05",
+          "desc": "Cdkeys",
+          "value": -0.79,
+          "source_specific": {
+            "Original Description": "PAYPAL *CDKEYS.COM       402-935-7733 CA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Rogue Squadron"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-08",
+          "desc": "Amazon Digital",
+          "value": -10.81,
+          "source_specific": {
+            "Original Description": "AMZN Digital*277UZ41A1   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Thrawn book"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-22",
+          "desc": "Amazon Digital",
+          "value": -12.98,
+          "source_specific": {
+            "Original Description": "AMZN Digital*CP9ZX4PO3   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Thrawn book"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-22",
+          "desc": "Hudson News",
+          "value": -13.55,
+          "source_specific": {
+            "Original Description": "HUDSONNEWS  ST1369       DENVER       CO",
+            "Category": "Newspapers Magazines",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Medical - Other",
+          "split": 1,
+          "comment": "Dramamine"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-27",
+          "desc": "Amazon Digital",
+          "value": -16.23,
+          "source_specific": {
+            "Original Description": "AMZN Digital*3F75U90U3   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Thrawn book"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-20",
+          "desc": "Amazon",
+          "value": -53.26,
+          "source_specific": {
+            "Original Description": "AMZN Mktp US*2Y23U0XZ0   Amzn.com/billWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Bags, HDMI, mask"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-15",
+          "desc": "Veh Serv Emv",
+          "value": -173.59,
+          "source_specific": {
+            "Original Description": "CO MOTOR VEH SERV EMV    DENVER       CO",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Car registration"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-18",
+          "desc": "Amazon Digital",
+          "value": -8.65,
+          "source_specific": {
+            "Original Description": "AMZN Digital*G30J18U53   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Discworld interesting times"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-25",
+          "desc": "Amazon Digital",
+          "value": -16.23,
+          "source_specific": {
+            "Original Description": "AMZN Digital*2F8BB1491   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Thrawn book"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-30",
+          "desc": "Web Courses",
+          "value": -10.0,
+          "source_specific": {
+            "Original Description": "PAYPAL *WEB COURSES      402-935-7733 NY",
+            "Category": "Business Services",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "split": 1,
+          "comment": "Unity course"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-12-02",
+          "desc": "Discover Your Spiritual",
+          "value": -21.22,
+          "source_specific": {
+            "Original Description": "DISCOVER YOUR SPIRITUAL GLITTLETON    CO",
+            "Category": "Doctor",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1,
+          "comment": "Jill Christmas gift"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-12-05",
+          "desc": "Amazon",
+          "value": -17.62,
+          "source_specific": {
+            "Original Description": "AMZN Mktp US*9545N5FF3   Amzn.com/billWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Xbox controller"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-12-22",
+          "desc": "Pappasito's Cantina",
+          "value": -87.26,
+          "source_specific": {
+            "Original Description": "PAPPASITO'S CANTINA 32   HOUSTON      TX",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Lunch with Connor"
+        }
+      }
+    ]
   }
 }
