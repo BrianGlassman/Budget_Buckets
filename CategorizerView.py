@@ -12,7 +12,7 @@ transactions = Parsing.run()
 import Categorize
 from Root import Constants
 
-limit = 10 # Use -1 for all
+limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
@@ -90,6 +90,7 @@ def CB_onModification(event: CBevent):
     t = event.widget.transaction
     new = {'category': text}
 
+    assert t.rawRecord is not None
     update_templates(t.rawRecord, new)
 
 class Comment(gui.WatchedText):
@@ -102,6 +103,7 @@ def Cmt_onModification(event: CmtEvent):
     t = event.widget.transaction
     new = {'comment': text}
 
+    assert t.rawRecord is not None
     update_templates(t.rawRecord, new)
 
 # Populate the table
