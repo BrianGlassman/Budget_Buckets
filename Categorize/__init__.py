@@ -193,6 +193,7 @@ def save_templates() -> None:
         _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
+    from dateutil import parser as dateParser
     import Record
     from Root import Constants
     categorized_transactions: list[Record.CategorizedRecord] = []
@@ -211,15 +212,24 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             category = new['category']
             if category == Constants.del_category:
                 # "Delete" this transaction by not adding it to the output list
+                # FIXME probably cases where this causes the wrong control flow
                 continue
             assert category in Constants.categories, f"Bad category: {category}"
             if not use_cat:
+                # FIXME probably cases where this causes the wrong control flow
                 continue
             comment = new.get('comment', None)
 
             for c in create:
                 # TODO should have some info tracking the original source (in source_specific?)
-                ct = Record.CategorizedRecord(**c)
+                account = c['account']
+                date = dateParser.parse(c['date']).date()
+                desc = c['desc']
+                value = c['value']
+                category = c['category']
+                comment = c.get('comment', None)
+                ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment)
+                categorized_transactions.append(ct)
         ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment)
         categorized_transactions.append(ct)
 

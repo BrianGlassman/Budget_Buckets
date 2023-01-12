@@ -4,15 +4,15 @@ from Root import Constants
 
 class BaseRecord:
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
-        assert isinstance(account, str)
+        assert isinstance(account, str), f"Type is '{type(account)}'"
         self.account = account
-        assert type(date) is datetime.date
+        assert type(date) is datetime.date, f"Type is '{type(date)}'"
         self.date = date
-        assert isinstance(desc, str)
+        assert isinstance(desc, str), f"Type is '{type(desc)}'"
         self.desc = desc
-        assert isinstance(value, float)
+        assert isinstance(value, float), f"Type is '{type(value)}'"
         self.value = value
-        assert isinstance(source_specific, dict)
+        assert isinstance(source_specific, dict), f"Type is '{type(source_specific)}'"
         self.source_specific = source_specific
         
     def values(self) -> list[str | datetime.date | float | dict]:
