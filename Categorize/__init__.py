@@ -122,6 +122,9 @@ def load_templates(file: str) -> dict[str, dict]:
 
 # Load templates
 auto_templates_file = "AutoTemplates.json" # Store for writing to later
+if not auto_templates_file.startswith("Categorize"):
+    auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
+    
 _nested_templates = {}
 for templates_file in [
     "Templates.json", # Generic templates
@@ -151,7 +154,7 @@ def _flatten(dct: dict) -> None:
         raise
 _flatten(_nested_templates)
 
-_added_templates = {"Auto-generated": {"Individual": []}}
+_added_templates = load_templates(auto_templates_file)
 _addTemp_shortcut = _added_templates['Auto-generated']['Individual']
 def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
     assert isinstance(group, list)
@@ -186,11 +189,7 @@ def save_templates() -> None:
                 # Let the base class default method raise the TypeError
                 return super().default(obj)
 
-    if auto_templates_file.startswith("Categorize"):
-        file = auto_templates_file
-    else:
-        file = _imported_os.path.join("Categorize", auto_templates_file)
-    with open(file, 'w') as f:
+    with open(auto_templates_file, 'w') as f:
         _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
