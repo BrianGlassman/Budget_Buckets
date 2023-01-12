@@ -19,6 +19,12 @@
       "description": "What new values to apply",
       "$ref": "RecordSchema.json",
       "required": [ "category", "split" ]
+    },
+    "create": {
+      "type": "array",
+      "items": {
+        "$ref": "RecordSchema.json"
+      }
     }
   },
 

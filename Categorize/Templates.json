@@ -76,7 +76,30 @@
     ]
   },
   "Education": {
-    "Self-improvement": []
+    "Self-improvement": [
+      {
+        "name": "CU Tuition",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Tuition"
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "CU Fees",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Fees"
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      }
+    ]
   },
   "Entertainment": {
     "Dates": [],
@@ -249,6 +272,17 @@
           "category": "Rent",
           "split": 30
         }
+      },
+      {
+        "name": "CU Grad Housing",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Rent"
+        },
+        "new": {
+          "category": "Rent",
+          "split": 1
+        }
       }
     ],
     "Utilities": [
@@ -327,7 +361,19 @@
   },
   "Medical/Dental": {
     "Medical - Other": [],
-    "Medical Insurance": []
+    "Medical Insurance": [
+      {
+        "name": "CU Health Insurance",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Insurance"
+        },
+        "new": {
+          "category": "Medical Insurance",
+          "split": 1
+        }
+      }
+    ]
   },
   "Other": {
     "ATM": [
@@ -453,5 +499,37 @@
       }
     ],
     "Internal Transfers": []
+  },
+  "Advanced": {
+    "CU Payments": [
+      {
+        "name": "Fall 2021",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-09-07",
+          "desc": "University Of Co Cu Boulder",
+          "value": -28611.29,
+          "source_specific": {
+            "Original Description": "UNIV OF CO BLDR  CU BOULDER ***********6767",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "2021-09-07",
+            "desc": "Paid from Checking",
+            "split": 1,
+            "value": 28611.29
+          }
+        ]
+      }
+    ]
   }
 }

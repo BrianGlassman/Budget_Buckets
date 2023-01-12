@@ -3,6 +3,7 @@ from abc import abstractmethod as _import_abstractmethod
 import csv as _import_csv
 import datetime as _import_datetime
 from dateutil import parser as _import_date_parser
+import os as _import_os
 
 from Record import RawRecord
 
@@ -20,10 +21,8 @@ def _make_date(raw):
 
 class BaseParser(_import_ABC):
     transactions: list[RawRecord]
-    def __init__(self, account, infile):
-        assert account is not None, f"{self.__class__.__name__} parse method called without specifying account"
+    def __init__(self, account: str, infile: str):
         self.account = account
-
         self.infile = infile
 
         super().__init__()
@@ -97,6 +96,73 @@ class OldUSAAParser(BaseUSAAParser):
         # Anything left in the line is source-specific values
         return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
 
+class CUParser(BaseParser):
+    summary_desc = "Billing Hours Activity Through Amount Due"
+
+    def __init__(self, account: str, infile: str, prefix: str, date: _import_datetime.date, ):
+        if prefix[-1] != ' ':
+            prefix = prefix + ' '
+        self.prefix = prefix
+
+        self.date = date
+
+        super().__init__(account, infile)
+
+    def _parse(self):
+        """Parse the file into transactions."""        
+        with open(self.infile, 'r') as f:
+            lines = f.readlines()
+        lines = [x.strip() for x in lines]
+
+        checksum = 0
+        fees = 0
+        tuition = 0
+        rent = 0
+        insurance = 0
+        for line in lines:
+            words = line.split(' ')
+            if self.summary_desc in line:
+                # Summary row
+                desc = ' '.join(words[0:-1])
+                assert checksum == 0, "Multiple summary rows found?"
+                checksum = float(words[-1].replace(',',''))
+                assert desc == self.summary_desc, f"Summary desc is actually '{desc}'"
+            else:
+                # Data row
+                desc = ' '.join(words[1:-1])
+                value = float(words[-1].replace(',',''))
+                if desc == "Family Housing Rent":
+                    rent += value
+                elif desc == "Student Health Insurance Plan":
+                    insurance += value
+                elif desc.endswith(" Fee") or " Fee " in desc:
+                    fees += value
+                elif "Tuition " in desc: 
+                    tuition += value
+                elif " PostPandemicTuit Cred" in desc:
+                    tuition += value
+                else:
+                    raise NotImplementedError(f"No rule for '{desc}'")
+
+        # Checksumming
+        assert fees + tuition + rent + insurance == checksum
+
+        transactions: list[RawRecord] = []
+        if fees != 0:
+            rec = RawRecord(self.account, self.date, self.prefix+"Fees", fees)
+            transactions.append(rec)
+        if tuition != 0:
+            rec = RawRecord(self.account, self.date, self.prefix+"Tuition", tuition)
+            transactions.append(rec)
+        if rent != 0:
+            rec = RawRecord(self.account, self.date, self.prefix+"Rent", rent)
+            transactions.append(rec)
+        if insurance != 0:
+            rec = RawRecord(self.account, self.date, self.prefix+"Insurance", insurance)
+            transactions.append(rec)
+        
+        return transactions
+
 def run() -> list:
     """
     Parse all the data sources
@@ -119,5 +185,16 @@ def run() -> list:
         ]:
         file = os.path.join("Raw_Data", file)
         parser = parseCls(account, file)
+        transactions.extend(parser.transactions)
+    for file, prefix, date in [
+        ("CU_Fall2021.txt", "CU Fall 2021", "08/23/2021"),
+        # ("CU_Spring2022.txt") "CU Spring 2022", "01/10/2022"),
+        # ("CU_Summer2022.txt") "CU Summer 2022", "05/23/2022"),
+        # ("CU_Fall2022.txt") "CU Fall 2022", "08/22/2022"),
+        # ("CU_Spring2023.txt") "CU Spring 2023", "01/17/2023"),
+        ]:
+        file = os.path.join("Raw_Data", file)
+        date = _import_date_parser.parse(date).date()
+        parser = CUParser("CU Bills", file, prefix, date)
         transactions.extend(parser.transactions)
     return transactions
