@@ -109,57 +109,87 @@ class CUParser(BaseParser):
         super().__init__(account, infile)
 
     def _parse(self):
-        """Parse the file into transactions."""        
+        """Parse the file into transactions."""
         with open(self.infile, 'r') as f:
             lines = f.readlines()
         lines = [x.strip() for x in lines]
 
-        checksum = 0
-        fees = 0
-        tuition = 0
-        rent = 0
-        insurance = 0
+        class Charge:
+            def __init__(self, name: str, value: float = 0.0):
+                self.name = name
+                self.value = value
+
+            def add(self, other) -> None:
+                self.value += other
+
+            def __add__(self, other) -> float:
+                if isinstance(other, (int, float)):
+                    return self.value + other
+                elif isinstance(other, Charge):
+                    return self.value + other.value
+                else:
+                    raise NotImplementedError(type(other))
+
+            def __radd__(self, other) -> float:
+                return self + other
+
+        checksum = Charge('checksum')
+        loans = Charge('Loans')
+        fees = Charge('Fees')
+        tuition = Charge('Tuition')
+        rent = Charge('Rent')
+        insurance = Charge('Insurance')
+        meals = Charge('Meal Plan')
+        supplies = Charge('Supplies')
+        parking = Charge('Parking')
+        costs = [fees, tuition, rent, insurance, meals, supplies, parking]
         for line in lines:
             words = line.split(' ')
             if self.summary_desc in line:
                 # Summary row
                 desc = ' '.join(words[0:-1])
-                assert checksum == 0, "Multiple summary rows found?"
-                checksum = float(words[-1].replace(',',''))
+                checksum.add(float(words[-1].replace(',','')))
                 assert desc == self.summary_desc, f"Summary desc is actually '{desc}'"
+            elif len(words) == 3 and  "PREVIOUS BALANCE" in line:
+                # Changes the checksum, but is not a transaction
+                value = float(words[-1].replace(',',''))
+                checksum.add(-value)
             else:
                 # Data row
                 desc = ' '.join(words[1:-1])
                 value = float(words[-1].replace(',',''))
-                if desc == "Family Housing Rent":
-                    rent += value
+                if desc in  ("Family Housing Rent", "GFH Security Deposit"):
+                    rent.add(value)
                 elif desc == "Student Health Insurance Plan":
-                    insurance += value
+                    insurance.add(value)
                 elif desc.endswith(" Fee") or " Fee " in desc:
-                    fees += value
+                    fees.add(value)
                 elif "Tuition " in desc: 
-                    tuition += value
+                    tuition.add(value)
                 elif " PostPandemicTuit Cred" in desc:
-                    tuition += value
+                    tuition.add(value)
+                elif desc == "Housing Block Meal Plan":
+                    meals.add(value)
+                elif desc == "Bookstore Supply Charges":
+                    supplies.add(value)
+                elif 'Direct Unsubsidized Loan' in desc:
+                    loans.add(-value)
+                elif desc in (
+                    "Internet Check Payment",
+                    "Refund"):
+                    # Changes the checksum, but is not a transaction
+                    checksum.add(-value)
                 else:
                     raise NotImplementedError(f"No rule for '{desc}'")
-
+        
         # Checksumming
-        assert fees + tuition + rent + insurance == checksum
+        assert sum(costs) == checksum + loans, f"{sum(costs)} != {checksum + loans}"
 
         transactions: list[RawRecord] = []
-        if fees != 0:
-            rec = RawRecord(self.account, self.date, self.prefix+"Fees", fees)
-            transactions.append(rec)
-        if tuition != 0:
-            rec = RawRecord(self.account, self.date, self.prefix+"Tuition", tuition)
-            transactions.append(rec)
-        if rent != 0:
-            rec = RawRecord(self.account, self.date, self.prefix+"Rent", rent)
-            transactions.append(rec)
-        if insurance != 0:
-            rec = RawRecord(self.account, self.date, self.prefix+"Insurance", insurance)
-            transactions.append(rec)
+        for item in costs + [loans]:
+            if item.value != 0:
+                rec = RawRecord(self.account, self.date, self.prefix+item.name, item.value)
+                transactions.append(rec)
         
         return transactions
 
@@ -187,14 +217,21 @@ def run() -> list:
         parser = parseCls(account, file)
         transactions.extend(parser.transactions)
     for file, prefix, date in [
-        ("CU_Fall2021.txt", "CU Fall 2021", "08/23/2021"),
-        # ("CU_Spring2022.txt") "CU Spring 2022", "01/10/2022"),
-        # ("CU_Summer2022.txt") "CU Summer 2022", "05/23/2022"),
-        # ("CU_Fall2022.txt") "CU Fall 2022", "08/22/2022"),
+        ('CU_2021-08-10_bill.txt',   'CU Fall 2021', '08/23/2021'),
+        ('CU_2021-10-12_bill.txt',   'CU Fall 2021', '08/23/2021'),
+        ('CU_2022-01-11_bill.txt', 'CU Spring 2022', '01/10/2022'),
+        ('CU_2022-02-08_bill.txt', 'CU Spring 2022', '01/10/2022'),
+        ('CU_2022-06-08_bill.txt', 'CU Summer 2022', '05/23/2022'),
+        ('CU_2022-08-09_bill.txt',   'CU Fall 2022', '08/22/2022'),
         # ("CU_Spring2023.txt") "CU Spring 2023", "01/17/2023"),
         ]:
+        # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
         file = os.path.join("Raw_Data", file)
         date = _import_date_parser.parse(date).date()
-        parser = CUParser("CU Bills", file, prefix, date)
+        try:
+            parser = CUParser("CU Bills", file, prefix, date)
+        except Exception:
+            print(file)
+            raise
         transactions.extend(parser.transactions)
     return transactions
