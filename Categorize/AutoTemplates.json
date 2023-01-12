@@ -361,6 +361,63 @@
           "split": 1,
           "comment": "Security depost"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-10",
+          "desc": "Cu Boulder Office",
+          "value": -140.0,
+          "source_specific": {
+            "Original Description": "CU BOULDER PTS OFFICE    303-735-7275 CO",
+            "Category": "Education",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Parking Pass",
+          "split": 1,
+          "comment": "Parking pass - 5 months"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-02-02",
+          "desc": "REI",
+          "value": -32.66,
+          "source_specific": {
+            "Original Description": "REI #44 BOULDER          BOULDER      CO",
+            "Category": "Sporting Goods",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Sled"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-02-04",
+          "desc": "University Of Co Cu Boulder",
+          "value": -512.0,
+          "source_specific": {
+            "Original Description": "UNIV OF CO BLDR  CU BOULDER ***********8809",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1,
+          "comment": "Spring 2022 CU Bill"
+        }
       }
     ]
   }
