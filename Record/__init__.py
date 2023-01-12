@@ -1,5 +1,7 @@
 import datetime
 
+from Root import Constants
+
 class BaseRecord:
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
         assert isinstance(account, str)
@@ -33,21 +35,21 @@ class RawRecord(BaseRecord):
 
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
-    def __init__(self, rawRecord: RawRecord, category: str, comment: str | None = None):
-        assert isinstance(rawRecord, RawRecord)
-        self.rawRecord = rawRecord
-
-        self.account = rawRecord.account
-        self.date = rawRecord.date
-        self.desc = rawRecord.desc
-        self.value = rawRecord.value
-        self.source_specific = rawRecord.source_specific
+    def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific={},
+                 category: str = Constants.todo_category, comment: str | None = None):
+        super().__init__(account, date, desc, value, source_specific)
 
         assert isinstance(category, str)
         self.category = category
 
         assert (comment is None) or (isinstance(comment, str))
         self.comment = comment
+
+    @classmethod
+    def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str | None = None):
+        assert isinstance(rawRecord, RawRecord)
+        return cls(rawRecord.account, rawRecord.date, rawRecord.desc, rawRecord.value, rawRecord.source_specific,
+                   category, comment)
 
     def values(self):
         return super().values() + [self.category, self.comment]

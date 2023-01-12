@@ -197,8 +197,8 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     import Record
     from Root import Constants
     categorized_transactions: list[Record.CategorizedRecord] = []
-    for baseRecord in transactions:
-        match = match_templates(baseRecord)
+    for rawRecord in transactions:
+        match = match_templates(rawRecord)
         if match is None:
             if use_uncat:
                 category = Constants.todo_category
@@ -206,12 +206,22 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             else:
                 continue
         else:
-            category = match['new']['category']
+            new = match['new']
+            create = match.get('create', [])
+
+            category = new['category']
+            if category == Constants.del_category:
+                # "Delete" this transaction by not adding it to the output list
+                continue
             assert category in Constants.categories, f"Bad category: {category}"
             if not use_cat:
                 continue
-            comment = match['new']['comment'] if 'comment' in match['new'] else None
-        ct = Record.CategorizedRecord(baseRecord, category, comment=comment)
+            comment = new.get('comment', None)
+
+            for c in create:
+                # TODO should have some info tracking the original source (in source_specific?)
+                ct = Record.CategorizedRecord(**c)
+        ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment)
         categorized_transactions.append(ct)
 
         if len(categorized_transactions) == limit:

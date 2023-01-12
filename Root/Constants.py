@@ -60,6 +60,7 @@ categories = (
     )
 
 todo_category = '*** TODO ***'
+del_category = 'DELETE' # Flag to delete this transaction (keep in raw data for checksumming against sources)
 categories_inclTodo = tuple(list(categories) + [todo_category])
 
 expense_categories = (
