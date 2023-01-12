@@ -285,6 +285,82 @@
           "split": 1,
           "comment": "Lunch with Connor"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-09-20",
+          "desc": "Mobile Deposit",
+          "value": 8135.29,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1,
+          "comment": "Tuition refund"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-10-12",
+          "desc": "Mobile Deposit",
+          "value": 53.21,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 1,
+          "comment": "PECO refund"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-10-12",
+          "desc": "Mobile Deposit",
+          "value": 21.51,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Income - Other",
+          "split": 1,
+          "comment": "GE stock"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-10-12",
+          "desc": "Mobile Deposit",
+          "value": 1000.0,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Security depost"
+        }
       }
     ]
   }
