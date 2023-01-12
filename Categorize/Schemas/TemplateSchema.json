@@ -1,5 +1,6 @@
 {
-  "id": "TemplateSchema",
+  "id": "file:TemplateSchema",
+  "$schema": "http://json-schema.org/draft-04/schema",
   "title": "Template Schema",
   "description": "Schema for an individual template",
   "version": "0.0",
@@ -12,11 +13,11 @@
     },
     "pattern": {
       "description": "What to match records agains",
-      "$ref": "RecordSchema.json#"
+      "$ref": "RecordSchema.json"
     },
     "new": {
       "description": "What new values to apply",
-      "$ref": "RecordSchema.json#",
+      "$ref": "RecordSchema.json",
       "required": [ "category", "split" ]
     }
   },
