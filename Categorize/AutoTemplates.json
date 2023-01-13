@@ -422,25 +422,6 @@
       {
         "name": "",
         "pattern": {
-          "account": "Checking",
-          "date": "2022-02-04",
-          "desc": "University Of Co Cu Boulder",
-          "value": -512.0,
-          "source_specific": {
-            "Original Description": "UNIV OF CO BLDR  CU BOULDER ***********8809",
-            "Category": "Uncategorized",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Long-term",
-          "split": 1,
-          "comment": "Spring 2022 CU Bill"
-        }
-      },
-      {
-        "name": "",
-        "pattern": {
           "account": "Credit Card",
           "date": "2022-04-15",
           "desc": "Southwest Airlines",
@@ -1285,7 +1266,7 @@
         "new": {
           "category": "Going Out",
           "split": 1,
-          "comment": "Boulder Besties"
+          "comment": "CO Besties"
         }
       },
       {
@@ -1809,6 +1790,327 @@
           "category": "Car - Other",
           "split": 1,
           "comment": "Lyft to dealership"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-11-03",
+          "desc": "Boychik Avanti Bou",
+          "value": -18.44,
+          "source_specific": {
+            "Original Description": "TST* Boychik - Avanti BouBoulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Voting party"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-29",
+          "desc": "Zeppelin Station",
+          "value": -48.95,
+          "source_specific": {
+            "Original Description": "ZEPPELIN STATION         DENVER       CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Tim Burton Halloween"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-30",
+          "desc": "Left Hand",
+          "value": -10.85,
+          "source_specific": {
+            "Original Description": "LEFT HAND BREWING CO     LONGMONT     CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "CO Besties"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-30",
+          "desc": "Left Hand",
+          "value": -16.93,
+          "source_specific": {
+            "Original Description": "LEFT HAND BREWING CO     LONGMONT     CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1,
+          "comment": "CO Besties"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-14",
+          "desc": "Stick Around Skewers",
+          "value": -19.3,
+          "source_specific": {
+            "Original Description": "SQ *STICK AROUND SKEWERS Boulder      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Goose Creek at Rayback"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-09-07",
+          "desc": "Nnpayplncubldr Servicefee",
+          "value": -25.0,
+          "source_specific": {
+            "Original Description": "NNpayplnCUBLDR   ServiceFee ***********9933",
+            "Category": "Service Fee",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1,
+          "comment": "Payment plan fee"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-24",
+          "desc": "Centro Mexican",
+          "value": -21.44,
+          "source_specific": {
+            "Original Description": "TST* Centro Mexican      Boulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-10",
+          "desc": "Taco",
+          "value": -139.99,
+          "source_specific": {
+            "Original Description": "TACO                     BOULDER      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Group tab"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-04",
+          "desc": "Into the Wind Retail",
+          "value": -21.21,
+          "source_specific": {
+            "Original Description": "INTO THE WIND RETAIL     BOULDER      CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-03",
+          "desc": "ExpressToll",
+          "value": -9.3,
+          "source_specific": {
+            "Original Description": "E 470 EXPRESS TOLLS      303-5373470  CO",
+            "Category": "Auto & Transport",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Abby airport toll"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-03",
+          "desc": "Northwest Parkway",
+          "value": -9.4,
+          "source_specific": {
+            "Original Description": "NORTHWEST PARKWAY LLC    303-5331212  CO",
+            "Category": "Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Abby airport toll"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-07-06",
+          "desc": "Check #1084",
+          "value": -308.0,
+          "source_specific": {
+            "Original Description": "CHECK # 0000001084",
+            "Category": "Check",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Rent",
+          "split": 1,
+          "comment": "June pro-rate"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-10-29",
+          "desc": "Check #1082",
+          "value": -2.0,
+          "source_specific": {
+            "Original Description": "CHECK # 0000001082",
+            "Category": "Check",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "TX registration receipt"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-07-25",
+          "desc": "Target",
+          "value": -81.12,
+          "source_specific": {
+            "Original Description": "TARGET T- 2800 Pearl S   BOULDER      CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "CC was declining"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-04-26",
+          "desc": "State of Colorado",
+          "value": -3.0,
+          "source_specific": {
+            "Original Description": "CO DEPT REVENUE  TAXPAYMENT ***********",
+            "Category": "State Tax",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1,
+          "comment": "CO income tax"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-12-10",
+          "desc": "USAA Transfer",
+          "value": 210.0,
+          "source_specific": {
+            "Original Description": "USAA FUNDS TRANSFER CR",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Trip reimbursement"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-12-07",
+          "desc": "P2P Payment",
+          "value": 210.0,
+          "source_specific": {
+            "Original Description": "Houston Federal  P2P PAYMNT ALAN GLASSMAN",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Trip reimbursement"
         }
       }
     ]

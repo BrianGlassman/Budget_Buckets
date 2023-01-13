@@ -225,6 +225,21 @@
         }
       },
       {
+        "name": "Vending Machines",
+        "pattern": {
+          "account": "Checking",
+          "desc": "PepsiCo",
+          "value": [
+            0,
+            -4
+          ]
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
         "name": "Restaurants",
         "pattern": {
           "account": "Credit Card",
@@ -243,6 +258,8 @@
             "Snarf's",
             "Qdoba",
             "Schlotzsky's",
+            "Thai Avenue",
+            "Tiffins India Cafe",
             "Torchys Boulder",
             "Zodiac Subs"
           ],
@@ -486,7 +503,8 @@
           "account": "Checking",
           "desc": [
             "ATM Withdrawal",
-            "Elevations CU Eu"
+            "Elevations CU Eu",
+            "Elevations Cu Eu"
           ],
           "value": [
             -20,
@@ -640,13 +658,34 @@
             "value": "$NEG"
           }
         ]
+      },
+      {
+        "name": "Venmo",
+        "pattern": {
+          "account": "Checking",
+          "desc": "Transfer from Venmo"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "Venmo",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Transfer to Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       }
     ]
   },
   "Advanced": {
     "CU Payments": [
       {
-        "name": "Fall 2021",
+        "name": "CU Fall 2021",
         "pattern": {
           "account": "Checking",
           "date": "2021-09-07",
@@ -666,10 +705,117 @@
           {
             "account": "CU Bills",
             "category": "Internal Transfers",
-            "date": "2021-09-07",
+            "date": "$SAME",
             "desc": "Paid from Checking",
             "split": 1,
-            "value": 28611.29
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Fall 2021 Refund",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-09-20",
+          "desc": "Mobile Deposit",
+          "value": 8135.29,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "Tuition refund"
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid to Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Spring 2022",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-02-04",
+          "desc": "University Of Co Cu Boulder",
+          "value": -512.0,
+          "source_specific": {
+            "Original Description": "UNIV OF CO BLDR  CU BOULDER ***********8809",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Summer 2022",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-06-07",
+          "desc": "University of Co Cu Boulder",
+          "value": -3829.62,
+          "source_specific": {
+            "Original Description": "UNIV OF CO BLDR  CU BOULDER ***********6951",
+            "Category": "Uncategorized",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Fall 2022 Payment Plan",
+        "pattern": {
+          "account": "Checking",
+          "desc": "University of Co Cu Boulder",
+          "value": -2406.67
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid from Checking",
+            "split": 1,
+            "value": "$NEG"
           }
         ]
       }
