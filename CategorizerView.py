@@ -12,7 +12,7 @@ transactions = Parsing.run()
 import Categorize
 from Root import Constants
 
-limit = -1 # Use -1 for all
+limit = 0 # Use 0 for all
 use_uncat = True # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
@@ -36,7 +36,7 @@ def disable_scroll(obj):
 
 # Group together by Category, then description
 # Sort to have the largest groups first
-def sort_transactions(transactions):
+def cat_then_desc(transactions):
     annotated = ((t.category + "<>" + t.desc, t) for t in transactions)
     grouped = {}
     for key, t in annotated:
@@ -51,7 +51,12 @@ def sort_transactions(transactions):
     for k,v in _reversed:
         ret.extend(v)
     return ret
-# categorized_transactions = sort_transactions(categorized_transactions)
+# categorized_transactions = cat_then_desc(categorized_transactions)
+
+# Sort by date
+def sort_date(transactions):
+    return sorted(transactions, key=lambda item: item.date, reverse=True)
+categorized_transactions = sort_date(categorized_transactions)
 
 # FIXME? Should it check existing auto-generated templates?
 # [{"raw": raw transaction, "new": new_to_add}, ...]

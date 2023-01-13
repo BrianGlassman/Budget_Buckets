@@ -207,6 +207,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     import Record
     from Root import Constants
     categorized_transactions: list[Record.CategorizedRecord] = []
+    limited = False
     for rawRecord in transactions:
         match = match_templates(rawRecord)
         if match is None:
@@ -244,12 +245,15 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
         categorized_transactions.append(ct)
 
         if len(categorized_transactions) == limit:
+            limited = True
             break
     
-    internal_sum = sum(x.value for x in categorized_transactions if x.category in Constants.internal_categories)
-    if abs(internal_sum) >= 0.01:
-        import warnings
-        warnings.warn(f"Internals ({', '.join(Constants.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
+    if not limited:
+        # Can't checksum with partial data
+        internal_sum = sum(x.value for x in categorized_transactions if x.category in Constants.internal_categories)
+        if abs(internal_sum) >= 0.01:
+            import warnings
+            warnings.warn(f"Internals ({', '.join(Constants.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
     
     if not use_internal:
         categorized_transactions = [x for x in categorized_transactions if x.category not in Constants.internal_categories]

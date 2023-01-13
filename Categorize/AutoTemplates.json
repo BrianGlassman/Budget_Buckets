@@ -5,6 +5,25 @@
         "name": "",
         "pattern": {
           "account": "Credit Card",
+          "date": "2021-09-05",
+          "desc": "Best Buy",
+          "value": -54.41,
+          "source_specific": {
+            "Original Description": "BEST BUY      00010314   BOULDER      CO",
+            "Category": "Electronics & Software",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Xbox controller"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
           "date": "2021-09-08",
           "desc": "Best Buy",
           "value": 54.41,
@@ -417,6 +436,450 @@
           "category": "Long-term",
           "split": 1,
           "comment": "Spring 2022 CU Bill"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-15",
+          "desc": "Southwest Airlines",
+          "value": -20.0,
+          "source_specific": {
+            "Original Description": "SOUTHWESTAIR             4029357733   TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-15",
+          "desc": "Southwest Airlines",
+          "value": -18.04,
+          "source_specific": {
+            "Original Description": "SOUTHWESTAIR             4029357733   TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-15",
+          "desc": "Southwest Airlines",
+          "value": -24.67,
+          "source_specific": {
+            "Original Description": "SOUTHWESTAIR             4029357733   TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-15",
+          "desc": "Southwest Airlines",
+          "value": -20.0,
+          "source_specific": {
+            "Original Description": "SOUTHWESTAIR             4029357733   TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-26",
+          "desc": "Southwest Airlines",
+          "value": -227.98,
+          "source_specific": {
+            "Original Description": "SOUTHWES    5261446209267800-435-9792 TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-10-26",
+          "desc": "Southwest Airlines",
+          "value": -109.98,
+          "source_specific": {
+            "Original Description": "SOUTHWES    5261446206862800-435-9792 TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-24",
+          "desc": "Southwest Airlines",
+          "value": -20.0,
+          "source_specific": {
+            "Original Description": "SOUTHWESTAIR             4029357733   TX",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-22",
+          "desc": "Lyft",
+          "value": -88.46,
+          "source_specific": {
+            "Original Description": "LYFT   *RIDE MON 11AM    lyft.com     CA",
+            "Category": "Rental Car Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-11-05",
+          "desc": "Transfer",
+          "value": -500.0,
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-11-02",
+          "desc": "Transfer",
+          "value": -0.06,
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-11-02",
+          "desc": "Transfer",
+          "value": -0.01,
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-11-02",
+          "desc": "Transfer",
+          "value": 0.06,
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2021-11-02",
+          "desc": "Transfer",
+          "value": 0.01,
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-17",
+          "desc": "Office Depot",
+          "value": 144.75,
+          "source_specific": {
+            "Original Description": "OFFICE DEPOT #170        BOULDER      CO",
+            "Category": "Office Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "chair"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-01",
+          "desc": "Office Depot",
+          "value": -144.75,
+          "source_specific": {
+            "Original Description": "OFFICE DEPOT #170        800-463-3768 CO",
+            "Category": "Office Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "chair return"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-07",
+          "desc": "T-Mobile",
+          "value": -51.77,
+          "source_specific": {
+            "Original Description": "T-MOBILE STORE #TI25     BOULDER      CO",
+            "Category": "Mobile Phone",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 1,
+          "comment": "New phone"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-01",
+          "desc": "Buc-ee's",
+          "value": -9.7,
+          "source_specific": {
+            "Original Description": "BUC-EE'S #17             LULING       TX",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-07",
+          "desc": "Lyft",
+          "value": -67.86,
+          "source_specific": {
+            "Original Description": "LYFT   *RIDE THU 9AM     lyft.com     CA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "From airport"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-16",
+          "desc": "Saharagroup",
+          "value": -29.99,
+          "source_specific": {
+            "Original Description": "PAYPAL *SAHARAGROUP      402-935-7733 CA",
+            "Category": "Bills & Utilities",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 1,
+          "comment": "Phone case"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-03-05",
+          "desc": "O'Reilly Auto Parts",
+          "value": -241.38,
+          "source_specific": {
+            "Original Description": "O'REILLY AUTO PARTS 2636 BOULDER      CO",
+            "Category": "Service & Parts",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Battery"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-11",
+          "desc": "Amazon Prime Membership",
+          "value": 14.06,
+          "source_specific": {
+            "Original Description": "Amazon Prime             Amzn.com/billWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-04",
+          "desc": "Amazon Prime Membership",
+          "value": -14.06,
+          "source_specific": {
+            "Original Description": "Amazon Prime*ZX37S76M3   Amzn.com/billWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-21",
+          "desc": "Fisher Honda",
+          "value": -236.81,
+          "source_specific": {
+            "Original Description": "FISHER HONDA             BOULDER      CO",
+            "Category": "Auto & Transport",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Maintenance"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-22",
+          "desc": "Square Axe Whooping Boulder",
+          "value": -48.0,
+          "source_specific": {
+            "Original Description": "SQ *AXE WHOOPING BOULDER Boulder      CO",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1
         }
       }
     ]

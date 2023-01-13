@@ -76,30 +76,7 @@
     ]
   },
   "Education": {
-    "Self-improvement": [
-      {
-        "name": "CU Tuition",
-        "pattern": {
-          "account": "CU Bills",
-          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Tuition"
-        },
-        "new": {
-          "category": "Long-term",
-          "split": 1
-        }
-      },
-      {
-        "name": "CU Fees",
-        "pattern": {
-          "account": "CU Bills",
-          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Fees"
-        },
-        "new": {
-          "category": "Long-term",
-          "split": 1
-        }
-      }
-    ]
+    "Self-improvement": []
   },
   "Entertainment": {
     "Dates": [],
@@ -125,6 +102,20 @@
           "category": "Entertainment - Other",
           "split": 30
         }
+      },
+      {
+        "name": "Hazel's",
+        "pattern": {
+          "desc": "Hazel's Beverage World",
+          "value": [
+            -20,
+            -100
+          ]
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "split": 1
+        }
       }
     ],
     "Games": [
@@ -145,19 +136,14 @@
     ],
     "Going Out": [
       {
-        "name": "Dark Horse",
+        "name": "Bars",
         "pattern": {
-          "desc": "The Dark Horse"
-        },
-        "new": {
-          "category": "Going Out",
-          "split": 1
-        }
-      },
-      {
-        "name": "Rayback",
-        "pattern": {
-          "desc": "Rayback Collective"
+          "desc": [
+            "Outback Saloon",
+            "Pearl St Pub And Cellar",
+            "Rayback Collective",
+            "The Dark Horse"
+          ]
         },
         "new": {
           "category": "Going Out",
@@ -201,16 +187,53 @@
           "category": "Groceries",
           "split": 1
         }
+      },
+      {
+        "name": "Hazel's",
+        "pattern": {
+          "desc": "Hazel's Beverage World",
+          "value": [0, 19.99]
+        },
+        "new": {
+          "category": "Groceries",
+          "split": 1
+        }
       }
     ],
     "Food - nice": [
       {
-        "name": "Qdoba",
+        "name": "CU Meal Plan",
         "pattern": {
-          "desc": "Qdoba",
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Spring|Summer|Fall) 202[123] Meal Plan"
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Restaurants",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": [
+            "Chipotle",
+            "Cosmos Pizza North Boul",
+            "Domino's",
+            "Falafel King",
+            "Gurkhas On The Hill",
+            "Illegal Pete S Hil",
+            "Ipie",
+            "Panda Express",
+            "Panera Bread",
+            "Qdoba",
+            "Schlotzsky's",
+            "Torchys Boulder",
+            "Zodiac Subs"
+          ],
           "value": [
             -5,
-            -20
+            -25
           ]
         },
         "new": {
@@ -219,39 +242,9 @@
         }
       },
       {
-        "name": "Torchys",
+        "name": "Gravity Cafe",
         "pattern": {
-          "desc": "Torchys Boulder"
-        },
-        "new": {
-          "category": "Food - nice",
-          "split": 1
-        }
-      },
-      {
-        "name": "Panda Express",
-        "pattern": {
-          "desc": "Panda Express"
-        },
-        "new": {
-          "category": "Food - nice",
-          "split": 1
-        }
-      },
-      {
-        "name": "Dominos",
-        "pattern": {
-          "desc": "Domino's"
-        },
-        "new": {
-          "category": "Food - nice",
-          "split": 1
-        }
-      },
-      {
-        "name": "Cosmos",
-        "pattern": {
-          "desc": "Cosmos Pizza North Boul"
+          "desc": "Square Gravity Espresso"
         },
         "new": {
           "category": "Food - nice",
@@ -293,6 +286,20 @@
           "value": [
             -30,
             -70
+          ]
+        },
+        "new": {
+          "category": "Utilities",
+          "split": 30
+        }
+      },
+      {
+        "name": "PGW",
+        "pattern": {
+          "desc": "Webpay Utility",
+          "value": [
+            -10,
+            -30
           ]
         },
         "new": {
@@ -349,6 +356,17 @@
           "category": "Housing - Other",
           "split": 1
         }
+      },
+      {
+        "name": "Target",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": "Target"
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1
+        }
       }
     ],
     "Decoration": []
@@ -356,11 +374,60 @@
   "Investments/Savings": {
     "401k": [],
     "Retirement": [],
-    "Long-term": [],
+    "Long-term": [
+      {
+        "name": "CU Tuition",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Tuition"
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "CU Fees",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Fees"
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "CU Supplies",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Supplies"
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      }
+    ],
     "Unexpected Fund": []
   },
   "Medical/Dental": {
-    "Medical - Other": [],
+    "Medical - Other": [
+      {
+        "name": "Walgreens/CVS",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": [
+            "CVS",
+            "Walgreens"
+          ]
+        },
+        "new": {
+          "category": "Medical - Other",
+          "split": 1
+        }
+      }
+    ],
     "Medical Insurance": [
       {
         "name": "CU Health Insurance",
@@ -472,6 +539,20 @@
           "category": "Income - Other",
           "split": 1
         }
+      },
+      {
+        "name": "Interest",
+        "pattern": {
+          "desc": "Interest",
+          "value": [
+            0,
+            5
+          ]
+        },
+        "new": {
+          "category": "Income - Other",
+          "split": 1
+        }
       }
     ]
   },
@@ -498,7 +579,19 @@
         }
       }
     ],
-    "Internal Transfers": []
+    "Internal Transfers": [
+      {
+        "name": "Venmo",
+        "pattern": {
+          "account": "Checking",
+          "desc": "Transfer to Venmo"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        }
+      }
+    ]
   },
   "Advanced": {
     "CU Payments": [
