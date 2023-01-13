@@ -152,11 +152,10 @@ class BucketTracker(BaseTracker):
                     tvalue = 0
 
                 # Handle refilling and max value
-                fill = refill + tvalue
-                new_value = last_value + fill
-                if new_value > bucket.max_value:
-                    fill = bucket.max_value - last_value
-                    new_value = bucket.max_value
+                # Do transaction first, then refill if below max
+                new_value = last_value + tvalue
+                if new_value < bucket.max_value:
+                    new_value += min(refill, bucket.max_value - new_value)
                 
                 # Save the value
                 tracker[date] = new_value
@@ -169,7 +168,7 @@ class BucketTracker(BaseTracker):
         """Plot the values for the given category on the given Axes"""
         value_timeline = self.get_category(category)
         tval_timeline = {date:v for date,v in value_timeline.items() if date in self.transaction_dates[category]}
-        if all(v is None for v in value_timeline.values()): return # Don't plot unused categories
+        if all(v is None for v in tval_timeline.values()): return # Only plot categories with transactions
         # Plot transaction points
         line = ax.plot(tval_timeline.keys(), tval_timeline.values(), '.', label=category)[0]
         # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
