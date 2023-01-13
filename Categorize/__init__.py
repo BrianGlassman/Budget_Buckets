@@ -3,7 +3,7 @@ import re as _imported_re
 import json as _imported_json
 from functools import partial
 
-from Root.Constants import categories_inclTodo as _imported_categories
+from Root.Constants import categories as _imported_categories
 
 #TODO validate field names against the appropriate data structures somehow
 
