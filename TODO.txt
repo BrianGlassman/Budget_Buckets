@@ -1,11 +1,7 @@
 [Categorizing]
-Allow splitting and deleting records via template:
-	split - "new" has multiple children
-	delete - "new" has no children
-Need this so that I can split/combine CU payments
-
-[Raw Data]
-Add data (and templates) for 529 plan
+Allow deleting records via template:
+	delete - special "DELETE" category (better than just empty "new" because less error-prone)
+	I made logic for this, but haven't tested it
 
 [CategorizerView]
 Be able to sort columns
@@ -74,7 +70,7 @@ general:
 [General]
 Make something that looks like MView but groups things by account rather than category
 	Idea is to see how money moves between accounts
-	ex. it looks like certain months I spent less than I did, because I withdrew from Fidelity that month
+	Can also be used for checksumming against current balance
 
 [Categorizing]
 Make a module to convert from the old system (with categorizations and descriptions) to the new one
