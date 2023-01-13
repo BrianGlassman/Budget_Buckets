@@ -160,3 +160,4 @@ if successful_add:
 if failed_add:
     print("FAILED TO ADD TEMPLATES:")
     print(failed_add)
+    print('\n\n F A I L E D   T E M P L A T E S\n\n')

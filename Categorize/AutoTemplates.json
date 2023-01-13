@@ -706,6 +706,36 @@
         "name": "",
         "pattern": {
           "account": "Checking",
+          "date": "2022-12-19",
+          "desc": "Check #1091",
+          "value": -6000.0,
+          "source_specific": {
+            "Original Description": "CHECK # 0000001091",
+            "Category": "Check",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1,
+          "comment": "FirstBank 529"
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
           "date": "2021-11-02",
           "desc": "Transfer",
           "value": 0.01,
@@ -935,6 +965,850 @@
         "new": {
           "category": "Going Out",
           "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-20",
+          "desc": "Rhino Air",
+          "value": -2.6,
+          "source_specific": {
+            "Original Description": "RHINO AIR                BOULDER      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Tire air"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-18",
+          "desc": "New Boulder Gas",
+          "value": -20.07,
+          "source_specific": {
+            "Original Description": "NEW BOULDER GAS          BOULDER      CO",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Gas"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-18",
+          "desc": "Certus Airvac Service",
+          "value": -2.0,
+          "source_specific": {
+            "Original Description": "CERTUS AIRVAC SERVICE    LITTLETON    CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Tire air"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-29",
+          "desc": "SEPTA",
+          "value": -6.75,
+          "source_specific": {
+            "Original Description": "SEPTA FARE MACHINE       2155618231   PA",
+            "Category": "Public Transportation",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-28",
+          "desc": "Avis",
+          "value": -54.86,
+          "source_specific": {
+            "Original Description": "AVIS RENT-A-CAR          PHILADELPHIA PA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-28",
+          "desc": "College of Phys Mutter",
+          "value": -55.0,
+          "source_specific": {
+            "Original Description": "COLLEGE OF PHYS MUTTER   215-5608564  PA",
+            "Category": "Gifts & Donations",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-28",
+          "desc": "Lyft",
+          "value": -16.68,
+          "source_specific": {
+            "Original Description": "LYFT   RIDE SAT 6PM      855-865-9553 CA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-28",
+          "desc": "Wawa",
+          "value": -16.15,
+          "source_specific": {
+            "Original Description": "WAWA 161      00001610   PHILADELPHIA PA",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-27",
+          "desc": "Sunoco",
+          "value": -17.09,
+          "source_specific": {
+            "Original Description": "SUNOCO 0363052206        PHILADELPHIA PA",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-25",
+          "desc": "Frontier Airlines",
+          "value": -5.0,
+          "source_specific": {
+            "Original Description": "FRONTIER AI PDNGPT       720-3744390  CO",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-24",
+          "desc": "Kindle",
+          "value": -10.81,
+          "source_specific": {
+            "Original Description": "Kindle Svcs*AQ2KP6QD3    888-802-3080 WA",
+            "Category": "Books",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-08",
+          "desc": "Frontier Airlines",
+          "value": -181.98,
+          "source_specific": {
+            "Original Description": "FRONTIER AI PDNGPT       720-3744390  CO",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-08",
+          "desc": "Delta Airlines",
+          "value": -146.1,
+          "source_specific": {
+            "Original Description": "DELTA AIR   0062331432092DELTA.COM    CA",
+            "Category": "Air Travel",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-08-29",
+          "desc": "Den Public Parking",
+          "value": -32.0,
+          "source_specific": {
+            "Original Description": "DEN PUBLIC PARKING       DENVER       CO",
+            "Category": "Parking",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Judy's wedding"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-10",
+          "desc": "Rhino Air",
+          "value": -2.6,
+          "source_specific": {
+            "Original Description": "RHINO AIR                BOULDER      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Tire air"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-10",
+          "desc": "Costco",
+          "value": -2.7,
+          "source_specific": {
+            "Original Description": "COSTCO WHSE #0480        SUPERIOR     CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-10",
+          "desc": "Pizzeria Locale Bo",
+          "value": -21.44,
+          "source_specific": {
+            "Original Description": "TST* Pizzeria Locale - BoBoulder      CO",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Boulder Besties"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-30",
+          "desc": "The Home Depot",
+          "value": 150.0,
+          "source_specific": {
+            "Original Description": "THE HOME DEPOT #1546     BOULDER      CO",
+            "Category": "Home Improvement",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Moving van"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-28",
+          "desc": "The Home Depot",
+          "value": -150.0,
+          "source_specific": {
+            "Original Description": "THE HOME DEPOT #1546     BOULDER      CO",
+            "Category": "Home Improvement",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Moving van"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-24",
+          "desc": "Gog",
+          "value": -9.99,
+          "source_specific": {
+            "Original Description": "PAYPAL *GOG              35314369001  PL",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-22",
+          "desc": "The Tabletop Tap",
+          "value": -10.0,
+          "source_specific": {
+            "Original Description": "SQ *THE TABLETOP TAP     Englewood    CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Lani"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-12",
+          "desc": "House of Pies",
+          "value": -45.28,
+          "source_specific": {
+            "Original Description": "HOUSE OF PIES            CYPRESS      TX",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Carolyn"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-11",
+          "desc": "Axelrad Beer Garden",
+          "value": -6.41,
+          "source_specific": {
+            "Original Description": "TST* Axelrad Beer Garden Houston      TX",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Connor"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-05",
+          "desc": "The Jungle",
+          "value": -13.08,
+          "source_specific": {
+            "Original Description": "TST* The Jungle          Boulder      CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-04",
+          "desc": "Fuji Cafe & Bar",
+          "value": -18.77,
+          "source_specific": {
+            "Original Description": "FUJI CAFE & BAR          BOULDER      CO",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-07",
+          "desc": "Subway",
+          "value": -10.66,
+          "source_specific": {
+            "Original Description": "Subway 17392             Boulder      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2022-04-01",
+          "desc": "Federal Tax Refund",
+          "value": 5491.0,
+          "source_specific": {
+            "Original Description": "IRS  TREAS 310     TAX REF  ***********0918",
+            "Category": "Federal Tax",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Income - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-03-28",
+          "desc": "Epic Games",
+          "value": -45.4,
+          "source_specific": {
+            "Original Description": "PAYPAL *EPIC GAMES       402-935-7733 NC",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Cities Skylines?"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-03-24",
+          "desc": "Humble Bundle",
+          "value": -60.0,
+          "source_specific": {
+            "Original Description": "PP*HUMBLEBUNDL HUMBLEBU  402-935-7733 CA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Ukraine bundle"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-28",
+          "desc": "U-Haul",
+          "value": -27.85,
+          "source_specific": {
+            "Original Description": "U-HAULNEW BOULDER GAS    BOULDER      CO",
+            "Category": "Home Services",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Moving van"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-07",
+          "desc": "Alpine Surgical",
+          "value": -40.0,
+          "source_specific": {
+            "Original Description": "ALPINE SURGICAL LLC      BOULDER      CO",
+            "Category": "Doctor",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Medical - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-12-26",
+          "desc": "Hobbit Cafe",
+          "value": -58.68,
+          "source_specific": {
+            "Original Description": "TST* Hobbit Cafe         Houston      TX",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Carolyn"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-12-19",
+          "desc": "Shell",
+          "value": -2.76,
+          "source_specific": {
+            "Original Description": "SHELL OIL 12404110004    SEALY        TX",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-12-19",
+          "desc": "Buc-ee's",
+          "value": -10.14,
+          "source_specific": {
+            "Original Description": "BUC-EE'S #17             LULING       TX",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-12-19",
+          "desc": "Twig Book Shop",
+          "value": -6.48,
+          "source_specific": {
+            "Original Description": "TWIG BOOK SHOP           SAN ANTONIO  TX",
+            "Category": "Books",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1,
+          "comment": "Hanna Christmas gift"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-12-19",
+          "desc": "Denver Airport Enterprise",
+          "value": -14.86,
+          "source_specific": {
+            "Original Description": "DENVER AIRPORT ENTERPRISEDENVER       CO",
+            "Category": "Groceries",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Medical - Other",
+          "split": 1,
+          "comment": "Dramamine"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-11-24",
+          "desc": "Circle K",
+          "value": -6.2,
+          "source_specific": {
+            "Original Description": "CIRCLE K # 41110         BOULDER      CO",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Water bottles for Thanksgiving"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-30",
+          "desc": "Lyft",
+          "value": -17.99,
+          "source_specific": {
+            "Original Description": "LYFT   1 RIDE 10-29      855-865-9553 CA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "split": 1,
+          "comment": "Halloween"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-11",
+          "desc": "Goodwill",
+          "value": -5.42,
+          "source_specific": {
+            "Original Description": "GOODWILL BOULDER STORE   BOULDER      CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Dresser"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-22",
+          "desc": "Fisher Honda",
+          "value": -100.0,
+          "source_specific": {
+            "Original Description": "FISHER HONDA             BOULDER      CO",
+            "Category": "Auto & Transport",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "AC repair deductible"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-23",
+          "desc": "Rosetta Hall Bould",
+          "value": -18.31,
+          "source_specific": {
+            "Original Description": "TST* Rosetta Hall - BouldBoulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "split": 1,
+          "comment": "Sybil"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-23",
+          "desc": "Press Play Bar",
+          "value": -13.75,
+          "source_specific": {
+            "Original Description": "TST* Press Play Bar      Boulder      CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "split": 1,
+          "comment": "Sybil"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-23",
+          "desc": "Rosetta Hall Bould",
+          "value": -11.77,
+          "source_specific": {
+            "Original Description": "TST* Rosetta Hall - BouldBoulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "split": 1,
+          "comment": "Sybil"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-23",
+          "desc": "Rincon Del Sol",
+          "value": -19.83,
+          "source_specific": {
+            "Original Description": "RINCON DEL SOL           BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-22",
+          "desc": "Lyft",
+          "value": -14.79,
+          "source_specific": {
+            "Original Description": "LYFT   RIDE THU 10AM     855-865-9553 CA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Lyft to dealership"
         }
       }
     ]

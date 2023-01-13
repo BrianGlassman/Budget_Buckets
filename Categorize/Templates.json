@@ -65,8 +65,14 @@
       {
         "name": "CU Parking",
         "pattern": {
-          "desc": "CU Parking Remote",
-          "value": 5
+          "desc": [
+            "CU Parking Remote",
+            "Cu Parking Remote"
+          ],
+          "value": [
+            -2.5,
+            -30
+          ]
         },
         "new": {
           "category": "Car - Parking Pass",
@@ -140,6 +146,7 @@
         "pattern": {
           "desc": [
             "Outback Saloon",
+            "Pearl St Pub and Cellar",
             "Pearl St Pub And Cellar",
             "Rayback Collective",
             "The Dark Horse"
@@ -168,9 +175,12 @@
   "Food": {
     "Groceries": [
       {
-        "name": "Safeway",
+        "name": "Grocery Stores",
         "pattern": {
-          "desc": "Safeway"
+          "desc": [
+            "King Soopers",
+            "Safeway"
+          ]
         },
         "new": {
           "category": "Groceries",
@@ -192,7 +202,9 @@
         "name": "Hazel's",
         "pattern": {
           "desc": "Hazel's Beverage World",
-          "value": [0, 19.99]
+          "value": [
+            0,
+            -19.99]
         },
         "new": {
           "category": "Groceries",
@@ -217,23 +229,47 @@
         "pattern": {
           "account": "Credit Card",
           "desc": [
+            "BJ's Restaurant",
+            "Bovas Market and Grill",
             "Chipotle",
-            "Cosmos Pizza North Boul",
-            "Domino's",
+            "Dunkin'",
             "Falafel King",
             "Gurkhas On The Hill",
             "Illegal Pete S Hil",
             "Ipie",
             "Panda Express",
-            "Panera Bread",
+            "Shamane's Bake Shoppe",
+            "Smashburger",
+            "Snarf's",
             "Qdoba",
             "Schlotzsky's",
             "Torchys Boulder",
             "Zodiac Subs"
           ],
           "value": [
-            -5,
+            0,
             -25
+          ]
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "Expensive Restaurants",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": [
+            "Cosmos Pizza",
+            "Cosmos Pizza North Boul",
+            "Cosmos Pizza North Boulder",
+            "Domino's",
+            "Panera Bread"
+          ],
+          "value": [
+            -15,
+            -60
           ]
         },
         "new": {
@@ -447,7 +483,11 @@
       {
         "name": "ATM Withdrawal",
         "pattern": {
-          "desc": "ATM Withdrawal",
+          "account": "Checking",
+          "desc": [
+            "ATM Withdrawal",
+            "Elevations CU Eu"
+          ],
           "value": [
             -20,
             -150
@@ -518,7 +558,7 @@
           "desc": "CASH REWARDS CREDIT",
           "value": [
             0,
-            20
+            30
           ]
         },
         "new": {

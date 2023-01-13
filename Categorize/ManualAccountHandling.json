@@ -99,6 +99,18 @@
                 "category": "401k",
                 "split": 1
               }
+            },
+            {
+              "name": "MANUAL_LOG Rollover Fee",
+              "pattern": {
+                "account": "401(k)",
+                "desc": "Rollover Fee",
+                "value": -35
+              },
+              "new": {
+                "category": "401k",
+                "split": 1
+              }
             }
         ]
     }
