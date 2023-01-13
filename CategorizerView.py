@@ -140,11 +140,23 @@ for r, row in enumerate(categorized_transactions):
 
 root.mainloop()
 
+successful_add = []
+failed_add = []
 for template in added_templates:
     pattern = template.raw.items()
     new = template.new
-    Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
-if added_templates:
+    try:
+        Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
+    except Exception as e:
+        failed_add.append(template)
+        print(template)
+        print(e)
+    else:
+        successful_add.append(template)
+if successful_add:
     print("Saving added templates:")
-    print(added_templates)
+    print(successful_add)
     Categorize.save_templates()
+if failed_add:
+    print("FAILED TO ADD TEMPLATES:")
+    print(failed_add)
