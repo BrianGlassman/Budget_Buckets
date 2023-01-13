@@ -198,7 +198,9 @@ class CUParser(BaseParser):
         transactions: list[RawRecord] = []
         for item in costs + [loans]:
             if item.value != 0:
-                rec = RawRecord(self.account, self.date, self.prefix+item.name, item.value)
+                # Use NEGATIVE of value:
+                # CU calls it positive when I owe them money, I want that to be an expense (negative)
+                rec = RawRecord(self.account, self.date, self.prefix+item.name, -item.value)
                 transactions.append(rec)
         
         return transactions
