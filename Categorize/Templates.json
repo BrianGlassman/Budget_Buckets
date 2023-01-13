@@ -78,6 +78,17 @@
           "category": "Car - Parking Pass",
           "split": 1
         }
+      },
+      {
+        "name": "CU Parking",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Parking"
+        },
+        "new": {
+          "category": "Car - Parking Pass",
+          "split": 1
+        }
       }
     ]
   },
@@ -145,6 +156,7 @@
         "name": "Bars",
         "pattern": {
           "desc": [
+            "Boulderado License",
             "Outback Saloon",
             "Pearl St Pub and Cellar",
             "Pearl St Pub And Cellar",
@@ -227,7 +239,7 @@
       {
         "name": "Vending Machines",
         "pattern": {
-          "account": "Checking",
+          "account": "Credit Card",
           "desc": "PepsiCo",
           "value": [
             0,
@@ -429,10 +441,10 @@
     "Retirement": [],
     "Long-term": [
       {
-        "name": "CU Tuition",
+        "name": "CU Fees",
         "pattern": {
           "account": "CU Bills",
-          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Tuition"
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Fees"
         },
         "new": {
           "category": "Long-term",
@@ -440,10 +452,10 @@
         }
       },
       {
-        "name": "CU Fees",
+        "name": "CU Tuition",
         "pattern": {
           "account": "CU Bills",
-          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Fees"
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Tuition"
         },
         "new": {
           "category": "Long-term",
@@ -814,6 +826,48 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Loans",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Loans"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "Student Loans",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "CU Loan",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Campus Cash",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": "Cu Campus Cash"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "split": 1
+        },
+        "create": [
+          {
+            "account": "Campus Cash",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Transfer from Credit Card",
             "split": 1,
             "value": "$NEG"
           }

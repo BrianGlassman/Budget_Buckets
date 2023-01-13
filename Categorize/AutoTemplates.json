@@ -2112,6 +2112,465 @@
           "split": 1,
           "comment": "Trip reimbursement"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-14",
+          "desc": "Amazon",
+          "value": -20.06,
+          "source_specific": {
+            "Original Description": "AMZN Mktp US*HT8DD7XK0   Amzn.com/billWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Clothes hangers"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-07",
+          "desc": "Amazon",
+          "value": -11.14,
+          "source_specific": {
+            "Original Description": "AMAZON.COM*1K9LK6ZH1 AMZNAMZN.COM/BILLWA",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1,
+          "comment": "Whisk"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-06",
+          "desc": "Amazon",
+          "value": -4.87,
+          "source_specific": {
+            "Original Description": "AMZN Digital*2T46K6LF3   888-802-3080 WA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1,
+          "comment": "Design of Everyday Things after gift card"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-26",
+          "desc": "Daikon",
+          "value": -11.58,
+          "source_specific": {
+            "Original Description": "TST* DAIKON              BOULDLER     CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1,
+          "comment": "Compilers"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-05",
+          "desc": "Famous Footwear",
+          "value": -79.44,
+          "source_specific": {
+            "Original Description": "FAMOUS FOOTWEAR #2653    BOULDER      CO",
+            "Category": "Clothing",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Clothes/Personal care",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-05",
+          "desc": "Macy's",
+          "value": -60.12,
+          "source_specific": {
+            "Original Description": "MACYS  BOULDER           BOULDER      CO",
+            "Category": "Clothing",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Clothes/Personal care",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-09-05",
+          "desc": "Nordstrom Rack",
+          "value": -32.62,
+          "source_specific": {
+            "Original Description": "NORDSTROM RACK #0135     BOULDER      CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Clothes/Personal care",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-12-04",
+          "desc": "Itl Print Lab Quota",
+          "value": -5.0,
+          "source_specific": {
+            "Original Description": "ITL PRINT LAB QUOTA      303-492-7757 CO",
+            "Category": "Education",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "split": 1,
+          "comment": "ITLL course"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-07",
+          "desc": "CU Book Store",
+          "value": -35.86,
+          "source_specific": {
+            "Original Description": "CU BOOK STORE            BOULDER      CO",
+            "Category": "Books & Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-21",
+          "desc": "Boulder Salad",
+          "value": -12.5,
+          "source_specific": {
+            "Original Description": "BOULDER SALAD            BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "split": 1,
+          "comment": "Saige"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-25",
+          "desc": "Comcast",
+          "value": -1.0,
+          "source_specific": {
+            "Original Description": "COMCAST DENVER           800-266-2278 CO",
+            "Category": "Utilities",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internet",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-25",
+          "desc": "Comcast",
+          "value": -1.0,
+          "source_specific": {
+            "Original Description": "COMCAST DENVER           800-266-2278 CO",
+            "Category": "Utilities",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internet",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-18",
+          "desc": "Comcast",
+          "value": -38.41,
+          "source_specific": {
+            "Original Description": "COMCAST CABLE COMM       800-COMCAST  CO",
+            "Category": "Utilities",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internet",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-18",
+          "desc": "Tattered Cover",
+          "value": -15.42,
+          "source_specific": {
+            "Original Description": "SQ *TATTERED COVER       DENVER       CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Books",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2021-11-05",
+          "desc": "Food",
+          "value": -18.24,
+          "source_specific": {
+            "Original Description": "PAYPAL *GRUBHUBFOOD GOL  402-935-7733 IL",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1,
+          "comment": "Grubhub"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-04-08",
+          "desc": "Square Mcdevitt Taco Supply",
+          "value": -14.99,
+          "source_specific": {
+            "Original Description": "SQ *MCDEVITT TACO SUPPLY Boulder      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-05-20",
+          "desc": "Attic Bar & Bistro",
+          "value": -16.11,
+          "source_specific": {
+            "Original Description": "TST* ATTIC BAR & BISTRO  BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-06-30",
+          "desc": "Office Depot",
+          "value": -11.42,
+          "source_specific": {
+            "Original Description": "OFFICE DEPOT #170        BOULDER      CO",
+            "Category": "Office Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-01",
+          "desc": "US Postal Service",
+          "value": -1.1,
+          "source_specific": {
+            "Original Description": "USPS CHANGE OF ADDRESS   800-238-3150 TN",
+            "Category": "Shipping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-07-08",
+          "desc": "Rooted Craft Kitchen",
+          "value": -17.98,
+          "source_specific": {
+            "Original Description": "TST* Rooted Craft Kitchenboulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-17",
+          "desc": "Boulder Bowls",
+          "value": -9.16,
+          "source_specific": {
+            "Original Description": "SQ *BOULDER BOWLS        Boulder      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-10-19",
+          "desc": "Cu Boulder Book Store",
+          "value": -1.85,
+          "source_specific": {
+            "Original Description": "CU BOULDER BOOK STORE    BOULDER      CO",
+            "Category": "Books",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-01-16",
+          "desc": "Best Buy",
+          "value": -54.41,
+          "source_specific": {
+            "Original Description": "PAYPAL *BESTBUY COM      402-935-7733 MN",
+            "Category": "Electronics & Software",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "split": 1,
+          "comment": "Headphones"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-09-13",
+          "desc": "Cu Services",
+          "value": -3.0,
+          "source_specific": {
+            "Original Description": "CU BLDR PKNG SVCS MTR 3  BOULDER      CO",
+            "Category": "Parking",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Long-term",
+          "split": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2022-11-10",
+          "desc": "Colorado Division of Motor Vehicles",
+          "value": -150.27,
+          "source_specific": {
+            "Original Description": "CO MOTOR VEHICLE SERVI   EGOV.COM     CO",
+            "Category": "Auto & Transport",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "split": 1,
+          "comment": "Car registration"
+        }
       }
     ]
   }
