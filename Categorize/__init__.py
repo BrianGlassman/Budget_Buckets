@@ -13,18 +13,25 @@ from Root.Constants import categories_inclTodo as _imported_categories
 # TODO add entries for other pay rates at Leonardo, with dates
 
 # Helper functions to check different fields
-def __check_desc(record, pattern) -> bool:
-    """Assumes that pattern contains a desc field"""
-    mask = pattern['desc']
-    desc = record.desc
+def __desc_helper(mask: _imported_re.Pattern | str, desc: str) -> bool:
     if isinstance(mask, _imported_re.Pattern):
-        # Regex matching (None if no match found)
+        # Regex matching (search returns None if no match found)
         return mask.search(desc) is not None
     elif isinstance(mask, str):
         # Exact string matching
         return desc == mask
     else:
         raise NotImplementedError("Unknown mask type")
+def __check_desc(record, pattern) -> bool:
+    """Assumes that pattern contains a desc field"""
+    mask = pattern['desc']
+    desc = record.desc
+    if isinstance(mask, list):
+        # List of patterns
+        return any(__desc_helper(m, desc) for m in mask)
+    else:
+        return __desc_helper(mask, desc)
+            
 def __check_value(record, pattern) -> bool:
     """Assumes that pattern contains a value field
     Pattern must be a number or range (list of two numbers)
@@ -100,9 +107,11 @@ _re_prefix = 'REGEX:'
 
 # Specialized encoding/decoding https://docs.python.org/3/library/json.html
 def _as_regex(dct):
-    if 'desc' in dct and dct['desc'].startswith(_re_prefix):
+    """Used when loading the JSON from file"""
+    if 'desc' in dct and isinstance(dct['desc'], str) and dct['desc'].startswith(_re_prefix):
         # Convert it back into a compiled regex
         pattern = dct['desc'].replace(_re_prefix, '')
+        assert not pattern.startswith(' '), f"Template {dct} probably shouldn't have a space after 'REGEX:'"
         dct['desc'] = _imported_re.compile(pattern)
         return dct
     else:
@@ -179,6 +188,7 @@ def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
 
 def save_templates() -> None:
     class Encoder(_imported_json.JSONEncoder):
+        """Used when saving to JSON file"""
         def default(self, obj):
             import datetime
             if isinstance(obj, _imported_re.Pattern):

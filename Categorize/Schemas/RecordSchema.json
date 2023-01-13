@@ -8,7 +8,7 @@
   "properties": {
     "account": { "type": "string" },
     "date": { "type": "string" },
-    "desc": { "type": "string" },
+    "desc": { "type": ["string", "array"] },
     "value": { "type": [ "number", "array" ] },
     "comment": { "type": "string" },
 
