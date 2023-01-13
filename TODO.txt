@@ -1,3 +1,6 @@
+[BucketTimeline]
+implement split-style amortizing
+
 [Categorizing]
 Allow deleting records via template:
 	delete - special "DELETE" category (better than just empty "new" because less error-prone)

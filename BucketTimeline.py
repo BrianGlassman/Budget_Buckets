@@ -13,8 +13,8 @@ transactions = Parsing.run()
 import Categorize
 from Root import Constants
 
-limit = -1 # Use -1 for all
-use_uncat = False # Whether to show uncategorized items
+limit = 0 # Use 0 for all
+use_uncat = True # Whether to show uncategorized items
 use_cat = True # Whether to show categorized items
 
 categorized_transactions = Categorize.run(
