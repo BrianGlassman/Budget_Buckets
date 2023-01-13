@@ -9,7 +9,7 @@
     "account": { "type": "string" },
     "date": { "type": "string" },
     "desc": { "type": ["string", "array"] },
-    "value": { "type": [ "number", "array" ] },
+    "value": { "type": [ "number", "array", "string" ] },
     "comment": { "type": "string" },
 
     "source_specific": { "type": "object" },

@@ -599,7 +599,18 @@
           "category": "Internal Transfers",
           "split": 1,
           "comment": "FirstBank 529"
-        }
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       },
       {
         "name": "",
@@ -618,7 +629,18 @@
           "category": "Internal Transfers",
           "split": 1,
           "comment": "FirstBank 529"
-        }
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       },
       {
         "name": "",
@@ -637,7 +659,18 @@
           "category": "Internal Transfers",
           "split": 1,
           "comment": "FirstBank 529"
-        }
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       },
       {
         "name": "",
@@ -656,7 +689,18 @@
           "category": "Internal Transfers",
           "split": 1,
           "comment": "FirstBank 529"
-        }
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       },
       {
         "name": "",
@@ -675,7 +719,18 @@
           "category": "Internal Transfers",
           "split": 1,
           "comment": "FirstBank 529"
-        }
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       },
       {
         "name": "",

@@ -202,8 +202,37 @@ def save_templates() -> None:
     with open(auto_templates_file, 'w') as f:
         _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
-def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
+def _create_from_template(create: dict, rawRecord):
     from dateutil import parser as dateParser
+    import Record
+    # TODO should have some info tracking the original source (in source_specific?)
+
+    account = create['account']
+
+    date = create['date']
+    if date == "$SAME":
+        date = rawRecord.date
+    else:
+        date = dateParser.parse(create['date']).date()
+    
+    desc = create['desc']
+
+    value = create['value']
+    if value == "$SAME":
+        value = rawRecord.value
+    elif value == "$NEG":
+        value = -rawRecord.value
+    else:
+        pass # Decoder does conversion already
+
+    category = create['category']
+
+    comment = create.get('comment', None)
+
+    ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment)
+    return ct
+
+def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
     import Record
     from Root import Constants
     categorized_transactions: list[Record.CategorizedRecord] = []
@@ -232,15 +261,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             comment = new.get('comment', None)
 
             for c in create:
-                # TODO should have some info tracking the original source (in source_specific?)
-                account = c['account']
-                date = dateParser.parse(c['date']).date()
-                desc = c['desc']
-                value = c['value']
-                category = c['category']
-                comment = c.get('comment', None)
-                ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment)
-                categorized_transactions.append(ct)
+                categorized_transactions.append(_create_from_template(c, rawRecord))
         ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment)
         categorized_transactions.append(ct)
 

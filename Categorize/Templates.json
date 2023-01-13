@@ -589,7 +589,17 @@
         "new": {
           "category": "Internal Transfers",
           "split": 1
-        }
+        },
+        "create": [
+          {
+            "account": "Venmo",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Transfer from Checking",
+            "split": 1,
+            "value": "$NEG"
+          }
+        ]
       }
     ]
   },
