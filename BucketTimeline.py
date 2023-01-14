@@ -1,37 +1,42 @@
+#%% Imports
 from matplotlib import pyplot as plt
 from matplotlib.transforms import Bbox
 
+from Root import Constants
 import Record
 
 #%% Parsing
-import Parsing
+def parse():
+    import Parsing
 
-transactions: list[Record.RawRecord]
-transactions = Parsing.run()
+    transactions: list[Record.RawRecord]
+    transactions = Parsing.run()
+    return transactions
+transactions = parse()
 
 #%% Categorizing
-import Categorize
-from Root import Constants
+def categorize(transactions, skip_cats = []):
+    import Categorize
 
-limit = 0 # Use 0 for all
-use_uncat = True # Whether to show uncategorized items
-use_cat = True # Whether to show categorized items
+    limit = 0 # Use 0 for all
+    use_uncat = True # Whether to show uncategorized items
+    use_cat = True # Whether to show categorized items
 
-categorized_transactions = Categorize.run(
-    transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
+    categorized_transactions = Categorize.run(
+        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
 
-categorized_transactions = [x for x in categorized_transactions if
-    x.category not in ('401k',) # Not relevant
-    and
-    x.category not in Constants.income_categories # Not really a bucket
-    ]
+    categorized_transactions = [x for x in categorized_transactions if
+        x.category not in skip_cats]
+    
+    return categorized_transactions
+skip_cats = [
+    '401k', # Not relevant
+    *(Constants.income_categories), # Not really a bucket
+    'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
+]
+categorized_transactions = categorize(transactions, skip_cats)
 
-#%% Display pre-processing
-
-# Sort by date
-sorted_transactions = sorted(categorized_transactions, key = lambda item: item.date)
-
-# Track values
+#%% Class definition
 import datetime
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 
@@ -109,7 +114,6 @@ class DeltaTracker(BaseTracker):
         for tracker in self._cat_tracker.values():
             if date in tracker: raise RuntimeError(f"Date {date} already exists")
             tracker[date] = None
-delta_tracker = DeltaTracker(sorted_transactions)
 
 class Bucket:
     def __init__(self, name, max_value, monthly_refill):
@@ -179,6 +183,7 @@ class BucketTracker(BaseTracker):
         for cat in self.categories:
             self.plot(ax, cat)
 
+#%% Define buckets
 bucket_info = {
     # Car
     'Car - Note': (320, 320),
@@ -226,28 +231,43 @@ bucket_info = {
     'Clothes/Personal care': (100, 30),
 }
 bucket_info = {category:Bucket(category, max_value, monthly_refill) for category, (max_value, monthly_refill) in bucket_info.items()}
-bucket_tracker = BucketTracker(delta_tracker,
-    initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
-    bucket_info=bucket_info)
+
+#%% Display pre-processing
+def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> BucketTracker:
+    # Sort by date
+    sorted_transactions = sorted(categorized_transactions, key = lambda item: item.date)
+
+    # Track daily changes
+    delta_tracker = DeltaTracker(sorted_transactions)
+
+    # Track bucket values
+    bucket_tracker = BucketTracker(delta_tracker,
+        initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
+        bucket_info=bucket_info)
+    
+    return bucket_tracker
+bucket_tracker = pre_process(categorized_transactions)
 
 #%% Display
-
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
-fig, ax = plt.subplots()
-fig.subplots_adjust(right=0.75)
-bucket_tracker.plot_all(ax)
-ax.grid(True)
-legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
+def display(bucket_tracker: BucketTracker):
+    fig, ax = plt.subplots()
+    fig.subplots_adjust(right=0.75)
+    bucket_tracker.plot_all(ax)
+    ax.grid(True)
+    legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
 
-_scroll_pixels = {'down': 30, 'up': -30}
-def scroll(event):
-    if not legend.contains(event): return
-    bbox = legend.get_bbox_to_anchor()
-    bbox = Bbox.from_bounds(bbox.x0, bbox.y0+_scroll_pixels[event.button], bbox.width, bbox.height)
-    tr = legend.axes.transAxes.inverted()
-    legend.set_bbox_to_anchor(bbox.transformed(tr))
-    fig.canvas.draw_idle()
-fig.canvas.mpl_connect("scroll_event", scroll)
+    _scroll_pixels = {'down': 30, 'up': -30}
+    def scroll(event):
+        if not legend.contains(event): return
+        bbox = legend.get_bbox_to_anchor()
+        bbox = Bbox.from_bounds(bbox.x0, bbox.y0+_scroll_pixels[event.button], bbox.width, bbox.height)
+        tr = legend.axes.transAxes.inverted()
+        legend.set_bbox_to_anchor(bbox.transformed(tr))
+        fig.canvas.draw_idle()
+    fig.canvas.mpl_connect("scroll_event", scroll)
 
+    return fig, ax
+fig, ax = display(bucket_tracker)
 plt.show()

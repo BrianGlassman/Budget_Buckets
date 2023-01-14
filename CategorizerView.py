@@ -1,71 +1,45 @@
+#%% Imports
 from dataclasses import dataclass
-
-import Record
-
-#%% Parsing
-import Parsing
-
-transactions: list[Record.RawRecord]
-transactions = Parsing.run()
-
-#%% Categorizing
-import Categorize
-from Root import Constants
-
-limit = 0 # Use 0 for all
-use_uncat = True # Whether to show uncategorized items
-use_cat = True # Whether to show categorized items
-
-categorized_transactions = Categorize.run(
-    transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=True)
-
-#%% Display
 import TkinterPlus as gui
 
-root = gui.Root(17, 30)
+from Root import Constants
+from Root import Sorting
+import Record
+import Categorize
 
-table = gui.ScrollableFrame(root)
-table.pack(side = "top", fill="both", expand=True)
+#%% Parsing
+def parse():
+    import Parsing
 
-# Mouse wheel changes the combobox selection, which I don't want
-def empty_scroll(event): return "break"
-def disable_scroll(obj):
-    obj.bind("<MouseWheel>", empty_scroll)
-    obj.bind("<ButtonPress-4>", empty_scroll)
-    obj.bind("<ButtonPress-5>", empty_scroll)
+    transactions: list[Record.RawRecord]
+    transactions = Parsing.run()
+    return transactions
 
-# Group together by Category, then description
-# Sort to have the largest groups first
-def cat_then_desc(transactions):
-    annotated = ((t.category + "<>" + t.desc, t) for t in transactions)
-    grouped = {}
-    for key, t in annotated:
-        if key not in grouped:
-            grouped[key] = []
-        grouped[key].append(t)
+#%% Categorizing
+def categorize(transactions, skip_cats = []):
+    # import Categorize
 
-    _sorted = sorted(grouped.items(), key=lambda item: len(item[1]))
-    _reversed = reversed(_sorted)
+    limit = 20 # Use 0 for all
+    use_uncat = True # Whether to show uncategorized items
+    use_cat = True # Whether to show categorized items
 
-    ret = []
-    for k,v in _reversed:
-        ret.extend(v)
-    return ret
-# categorized_transactions = cat_then_desc(categorized_transactions)
+    categorized_transactions = Categorize.run(
+        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
 
-# Sort by date
-def sort_date(transactions):
-    return sorted(transactions, key=lambda item: item.date, reverse=True)
-categorized_transactions = sort_date(categorized_transactions)
+    categorized_transactions = [x for x in categorized_transactions if
+        x.category not in skip_cats]
+    
+    return categorized_transactions
+
+#%% Pre-processing
 
 # FIXME? Should it check existing auto-generated templates?
-# [{"raw": raw transaction, "new": new_to_add}, ...]
 @dataclass
 class AddedTemplate:
     """Class to make type-checking easier"""
-    raw: Record.RawRecord
-    new: dict
-added_templates: list[AddedTemplate] = []
+    raw: Record.RawRecord # The existing RawRecord to match against
+    new: dict # Dict of new values to set
+
 def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # Get/create the matching entry
     for template in added_templates:
@@ -85,6 +59,9 @@ def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # Fill in the given information
     n.update(new)
 
+#%% Definitions for GUI
+
+# Callbacks (and subclasses for typing)
 class CategoryBox(gui.Combobox):
     transaction: Record.CategorizedRecord
 class CBevent(gui.tkinter.Event):
@@ -111,53 +88,80 @@ def Cmt_onModification(event: CmtEvent):
     assert t.rawRecord is not None
     update_templates(t.rawRecord, new)
 
-# Populate the table
-widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
-widths = list(widths.values())
-for r, row in enumerate(categorized_transactions):
-    for c, cell in enumerate(row.values()):
-        if c == 4: continue # Skip the source-specific data
-        elif c == 5:
-            # Category
-            cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
-            cat.set_state_readonly()
-            cat.grid(row=r, column=c)
-            cat.bind(func = CB_onModification)
-            cat.transaction = row
-            disable_scroll(cat)
-        elif c == 6:
-            # Comment
-            if cell is None: cell = ''
-            cmt = Comment(table.frame, text = str(cell), relief='solid', bd = 1, width=widths[c], height=1)
-            cmt.grid(row=r, column=c)
-            cmt.watch(func = Cmt_onModification)
-            cmt.transaction = row
-        else:
-            if c < len(widths) and (widths[c] is not None):
-                gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
+#%% Table processing
+def create_table(root):
+    table = gui.ScrollableFrame(root)
+    table.pack(side = "top", fill="both", expand=True)
+
+    # Populate the table
+    widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
+    widths = list(widths.values())
+    for r, row in enumerate(categorized_transactions):
+        for c, cell in enumerate(row.values()):
+            if c == 4: continue # Skip the source-specific data
+            elif c == 5:
+                # Category
+                cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
+                cat.set_state_readonly()
+                cat.grid(row=r, column=c)
+                cat.bind(func = CB_onModification)
+                cat.transaction = row
+                cat.disable_scroll()
+            elif c == 6:
+                # Comment
+                if cell is None: cell = ''
+                cmt = Comment(table.frame, text = str(cell), relief='solid', bd = 1, width=widths[c], height=1)
+                cmt.grid(row=r, column=c)
+                cmt.watch(func = Cmt_onModification)
+                cmt.transaction = row
             else:
-                gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1).grid(row=r, column=c)
+                if c < len(widths) and (widths[c] is not None):
+                    gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
+                else:
+                    gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1).grid(row=r, column=c)
+    return table
 
-root.mainloop()
+def post_process(added_templates):
+    successful_add = []
+    failed_add = []
+    for template in added_templates:
+        pattern = template.raw.items()
+        new = template.new
+        try:
+            Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
+        except Exception as e:
+            failed_add.append(template)
+            print(template)
+            print(e)
+        else:
+            successful_add.append(template)
+    if successful_add:
+        print("Saving added templates:")
+        print(successful_add)
+        Categorize.save_templates()
+    if failed_add:
+        print("FAILED TO ADD TEMPLATES:")
+        print(failed_add)
+        print('\n\n F A I L E D   T E M P L A T E S\n\n')
 
-successful_add = []
-failed_add = []
-for template in added_templates:
-    pattern = template.raw.items()
-    new = template.new
-    try:
-        Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
-    except Exception as e:
-        failed_add.append(template)
-        print(template)
-        print(e)
-    else:
-        successful_add.append(template)
-if successful_add:
-    print("Saving added templates:")
-    print(successful_add)
-    Categorize.save_templates()
-if failed_add:
-    print("FAILED TO ADD TEMPLATES:")
-    print(failed_add)
-    print('\n\n F A I L E D   T E M P L A T E S\n\n')
+#%% Main
+if __name__ == "__main__":
+    # Parse
+    transactions = parse()
+
+    # Categorize
+    skip_cats = []
+    categorized_transactions = categorize(transactions, skip_cats)
+
+    # Pre-processing
+    # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
+    categorized_transactions = Sorting.by_date(categorized_transactions)
+
+    added_templates: list[AddedTemplate] = []
+
+
+    root = gui.Root(17, 30)
+    table = create_table(root)
+    root.mainloop()
+
+    post_process(added_templates)
