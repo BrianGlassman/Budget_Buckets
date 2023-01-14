@@ -5,33 +5,10 @@ import TkinterPlus as gui
 from Root import Constants
 from Root import Sorting
 import Record
+import Parsing
 import Categorize
 
-#%% Parsing
-def parse():
-    import Parsing
-
-    transactions: list[Record.RawRecord]
-    transactions = Parsing.run()
-    return transactions
-
-#%% Categorizing
-def categorize(transactions, skip_cats = []):
-    # import Categorize
-
-    limit = 20 # Use 0 for all
-    use_uncat = True # Whether to show uncategorized items
-    use_cat = True # Whether to show categorized items
-
-    categorized_transactions = Categorize.run(
-        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
-
-    categorized_transactions = [x for x in categorized_transactions if
-        x.category not in skip_cats]
-    
-    return categorized_transactions
-
-#%% Pre-processing
+#%% Definitions for GUI
 
 # FIXME? Should it check existing auto-generated templates?
 @dataclass
@@ -58,8 +35,6 @@ def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     n.setdefault('split', 1)
     # Fill in the given information
     n.update(new)
-
-#%% Definitions for GUI
 
 # Callbacks (and subclasses for typing)
 class CategoryBox(gui.Combobox):
@@ -146,19 +121,20 @@ def post_process(added_templates):
 
 #%% Main
 if __name__ == "__main__":
+    import Functionified as fn
+
     # Parse
-    transactions = parse()
+    transactions = Parsing.run()
 
     # Categorize
-    skip_cats = []
-    categorized_transactions = categorize(transactions, skip_cats)
+    categorized_transactions = fn.categorize(transactions, cat_filter=[], keep_filter=True)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
+    # Needed because some functions use enclosing scope
     added_templates: list[AddedTemplate] = []
-
 
     root = gui.Root(17, 30)
     table = create_table(root)

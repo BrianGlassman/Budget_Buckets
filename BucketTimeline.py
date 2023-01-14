@@ -3,16 +3,11 @@ from matplotlib import pyplot as plt
 from matplotlib.transforms import Bbox
 
 from Root import Constants
+import Parsing
 import Record
 
 #%% Parsing
-def parse():
-    import Parsing
-
-    transactions: list[Record.RawRecord]
-    transactions = Parsing.run()
-    return transactions
-transactions = parse()
+transactions = Parsing.run()
 
 #%% Categorizing
 def categorize(transactions, skip_cats = []):
