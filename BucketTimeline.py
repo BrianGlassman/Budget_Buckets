@@ -229,8 +229,16 @@ bucket_info = {category:Bucket(category, max_value, monthly_refill) for category
 
 #%% Display pre-processing
 def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> BucketTracker:
+    from Root import Sorting
+
     # Sort by date
-    sorted_transactions = sorted(categorized_transactions, key = lambda item: item.date)
+    sorted_transactions = Sorting.by_date(categorized_transactions, reverse=False)
+
+    # --- Predict future transactions ---
+    if True:
+        import Predict
+        future_transactions = Predict.run(sorted_transactions)
+        sorted_transactions.extend(future_transactions)
 
     # Track daily changes
     delta_tracker = DeltaTracker(sorted_transactions)

@@ -1,42 +1,12 @@
-#%% Imports
 import datetime
 
-import TkinterPlus as gui
-from Root import Constants
 from Root import Sorting
 import Record
-import Parsing
+import Functionified as fn
 
-#%% Table creation
-def create_table(root, actual, future):
-    table = gui.ScrollableFrame(root)
-    table.pack(side="top", fill="both", expand=True)
-
-    widths = {'status': 10, 'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
-    widths = list(widths.values())
-    def create_row(r, row):
-        for c, cell in enumerate(row.values()):
-            c = c + 1 # Account for the Status column that's not part of the transaction
-            if c == 5: continue # Skip the source-specific data
-            elif c == 7 and cell is None: cell = '' # Comment=None --> Comment=''
-            gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
-
-    # Populate the table
-    r = 0
-    for r, row in enumerate(actual):
-        gui.tkinter.Label(table.frame, text='Actual', anchor='w', relief='solid', bd=1, width=widths[0]).grid(row=r, column=0)
-        create_row(r, row)
-    last = r
-    for _r, row in enumerate(future):
-        r = last + _r
-        gui.tkinter.Label(table.frame, text='Future', anchor='w', relief='solid', bd=1, width=widths[0]).grid(row=r, column=0)
-        create_row(r, row)
-    return table
-
-#%% Prediction logic
-
+#%% Category separating
 # Take the daily average and apply going forwards
-avg_cats = (
+_avg_cats = (
     # Car
     # 'Car - Note', # predict_regular
     'Car/Rental Insurance',
@@ -82,15 +52,17 @@ avg_cats = (
     # Personal Care / Clothing
     # 'Clothes/Personal care', # Only one day
 )
-regular_cats = (
+_regular_cats = (
     'Car - Note',
     'Rent',
     'Internet',
 )
-def do_stuff(transactions):
+
+#%% Helper functions
+def _get_avg_values(transactions):
     """Assumes transactions are sorted by date"""
     avg_vals = {}
-    for cat in avg_cats:
+    for cat in _avg_cats:
         try:
             temp = [x for x in transactions if x.category == cat]
             if len(temp) == 0: continue
@@ -103,10 +75,11 @@ def do_stuff(transactions):
             raise
     return avg_vals
 
-def predict_regular(transactions, category):
+def _predict_regular(transactions, category):
     """Predict fixed monthly expenses (ex. rent, car note, etc.)
     Assumes transactions are sorted by date"""
     transactions = [x for x in transactions if x.category == category]
+    if len(transactions) == 0: return []
     last_actual = transactions[-1]
     last_actual: Record.CategorizedRecord
     assert last_actual.rawRecord is not None
@@ -126,28 +99,22 @@ def predict_regular(transactions, category):
     return future_transactions
 
 #%% Main
-if __name__ == "__main__":
-    import datetime
-
-    import Functionified as fn
-
-    # Parse
-    transactions = Parsing.run()
-
-    # Categorize
-    categorized_transactions = fn.categorize(transactions, cat_filter=Constants.expense_categories, keep_filter=True)
-
+def run(actual_transactions) -> list[Record.CategorizedRecord]:
     # Pre-processing
-    categorized_transactions = Sorting.by_date(categorized_transactions, reverse=False)
-    avg_values = do_stuff(categorized_transactions)
+    categorized_transactions = Sorting.by_date(actual_transactions, reverse=False)
+    avg_values = _get_avg_values(actual_transactions)
 
     # Prediction
     stop = datetime.date(2023, 6, 30) # Predict until a little after graduation
     actual_transactions = categorized_transactions ; del categorized_transactions
     future_transactions = []
 
-    for cat in regular_cats:
-        future_transactions.extend(predict_regular(actual_transactions, cat))
+    for cat in _regular_cats:
+        try:
+            future_transactions.extend(_predict_regular(actual_transactions, cat))
+        except Exception:
+            print(cat)
+            raise
 
     last_actual = actual_transactions[-1]
     last_date: datetime.date = last_actual.date
@@ -162,11 +129,7 @@ if __name__ == "__main__":
         last_date = date
         date = fn.inc_month(date)
 
-    # Sort before displaying
+    # Sort before returning
     future_transactions = Sorting.by_date(future_transactions, reverse=False)
 
-    root = gui.Root(17, 30)
-    # Using all the actual transactions takes too long, just show the predicted future ones
-    # table = create_table(root, actual_transactions, future_transactions)
-    table = create_table(root, [], future_transactions)
-    root.mainloop()
+    return future_transactions
