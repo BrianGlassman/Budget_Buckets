@@ -2,7 +2,7 @@ import datetime
 
 from Root import Constants
 
-def categorize(transactions, cat_filter = [], keep_filter=True, limit = 0, use_uncat = True, use_cat = True):
+def categorize(transactions, cat_filter = [], keep_filter=False, limit = 0, use_uncat = True, use_cat = True):
     """
     cat_filter - list of categories to include/exclude
     keep_filter - if False, exclude the categories in cat_filter. If True, include only those categories
@@ -42,3 +42,12 @@ def add_month(date: datetime.date, inc: int) -> datetime.date:
     return date.replace(year=year, month=month)
 def inc_month(date: datetime.date): return add_month(date, +1)
 def dec_month(date: datetime.date): return add_month(date, -1)
+
+def get_str_stop(transactions):
+    """Get the earliest and latest date
+    Makes no assumptions about sorting"""
+    strt: datetime.date
+    stop: datetime.date
+    strt = min(x.date for x in transactions)
+    stop = max(x.date for x in transactions)
+    return strt, stop
