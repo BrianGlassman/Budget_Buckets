@@ -64,7 +64,7 @@ def Cmt_onModification(event: CmtEvent):
     update_templates(t.rawRecord, new)
 
 #%% Table processing
-def create_table(root):
+def create_table(root, categorized_transactions):
     table = gui.ScrollableFrame(root)
     table.pack(side = "top", fill="both", expand=True)
 
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     added_templates: list[AddedTemplate] = []
 
     root = gui.Root(17, 30)
-    table = create_table(root)
+    table = create_table(root, categorized_transactions)
     root.mainloop()
 
     post_process(added_templates)

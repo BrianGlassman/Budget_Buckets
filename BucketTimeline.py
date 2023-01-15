@@ -1,39 +1,13 @@
 #%% Imports
 from matplotlib import pyplot as plt
 from matplotlib.transforms import Bbox
+import datetime
 
 from Root import Constants
 import Parsing
-import Record
-
-#%% Parsing
-transactions = Parsing.run()
-
-#%% Categorizing
-def categorize(transactions, skip_cats = []):
-    import Categorize
-
-    limit = 0 # Use 0 for all
-    use_uncat = True # Whether to show uncategorized items
-    use_cat = True # Whether to show categorized items
-
-    categorized_transactions = Categorize.run(
-        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
-
-    categorized_transactions = [x for x in categorized_transactions if
-        x.category not in skip_cats]
-    
-    return categorized_transactions
-skip_cats = [
-    '401k', # Not relevant
-    *(Constants.income_categories), # Not really a bucket
-    'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
-]
-categorized_transactions = categorize(transactions, skip_cats)
-
-#%% Class definition
-import datetime
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
+
+#%% Class definitions
 
 class BaseTracker():
     _cat_tracker: dict[str, dict[datetime.date, float | None]]
@@ -227,7 +201,14 @@ bucket_info = {
 }
 bucket_info = {category:Bucket(category, max_value, monthly_refill) for category, (max_value, monthly_refill) in bucket_info.items()}
 
-#%% Display pre-processing
+#%% Pre-processing
+
+skip_cats = [
+    '401k', # Not relevant
+    *(Constants.income_categories), # Not really a bucket
+    'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
+]
+
 def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> BucketTracker:
     from Root import Sorting
 
@@ -249,8 +230,6 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
         bucket_info=bucket_info)
     
     return bucket_tracker
-bucket_tracker = pre_process(categorized_transactions)
-
 #%% Display
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
@@ -271,6 +250,21 @@ def display(bucket_tracker: BucketTracker):
         fig.canvas.draw_idle()
     fig.canvas.mpl_connect("scroll_event", scroll)
 
+    plt.show()
+
     return fig, ax
-fig, ax = display(bucket_tracker)
-plt.show()
+
+#%% Main
+if __name__ == "__main__":
+    import Functionified as fn
+
+    # Parse
+    transactions = Parsing.run()
+
+    # Categorize
+    categorized_transactions = fn.categorize(transactions, skip_cats, keep_filter=False)
+
+    # Pre-processing
+    bucket_tracker = pre_process(categorized_transactions)
+
+    fig, ax = display(bucket_tracker)
