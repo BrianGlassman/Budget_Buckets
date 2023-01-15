@@ -138,7 +138,7 @@ if __name__ == "__main__":
     categorized_transactions = fn.categorize(transactions, cat_filter=Constants.expense_categories, keep_filter=True)
 
     # Pre-processing
-    categorized_transactions = Sorting.by_date(categorized_transactions, reverse=False)
+    categorized_transactions = Sorting.by_date(categorized_transactions)
     avg_values = do_stuff(categorized_transactions)
 
     # Prediction
@@ -163,7 +163,7 @@ if __name__ == "__main__":
         date = fn.inc_month(date)
 
     # Sort before displaying
-    future_transactions = Sorting.by_date(future_transactions, reverse=False)
+    future_transactions = Sorting.by_date(future_transactions)
 
     root = gui.Root(17, 30)
     # Using all the actual transactions takes too long, just show the predicted future ones

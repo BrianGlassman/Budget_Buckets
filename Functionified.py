@@ -1,5 +1,7 @@
 import datetime
 
+from Root import Constants
+
 def categorize(transactions, cat_filter = [], keep_filter=True, limit = 0, use_uncat = True, use_cat = True):
     """
     cat_filter - list of categories to include/exclude
@@ -9,6 +11,8 @@ def categorize(transactions, cat_filter = [], keep_filter=True, limit = 0, use_u
     use_cat = True # Whether to show categorized items
     """
     import Categorize
+
+    assert all(cat in Constants.categories for cat in cat_filter)
 
     categorized_transactions = Categorize.run(
         transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)

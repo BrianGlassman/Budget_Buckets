@@ -101,7 +101,7 @@ def _predict_regular(transactions, category):
 #%% Main
 def run(actual_transactions) -> list[Record.CategorizedRecord]:
     # Pre-processing
-    categorized_transactions = Sorting.by_date(actual_transactions, reverse=False)
+    categorized_transactions = Sorting.by_date(actual_transactions)
     avg_values = _get_avg_values(actual_transactions)
 
     # Prediction
@@ -130,6 +130,6 @@ def run(actual_transactions) -> list[Record.CategorizedRecord]:
         date = fn.inc_month(date)
 
     # Sort before returning
-    future_transactions = Sorting.by_date(future_transactions, reverse=False)
+    future_transactions = Sorting.by_date(future_transactions)
 
     return future_transactions

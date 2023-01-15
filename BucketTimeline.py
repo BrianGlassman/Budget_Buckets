@@ -213,13 +213,7 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
     from Root import Sorting
 
     # Sort by date
-    sorted_transactions = Sorting.by_date(categorized_transactions, reverse=False)
-
-    # --- Predict future transactions ---
-    if True:
-        import Predict
-        future_transactions = Predict.run(sorted_transactions)
-        sorted_transactions.extend(future_transactions)
+    sorted_transactions = Sorting.by_date(categorized_transactions)
 
     # Track daily changes
     delta_tracker = DeltaTracker(sorted_transactions)

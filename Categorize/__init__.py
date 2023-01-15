@@ -284,4 +284,6 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
         True
         ]
 
+    assert len(categorized_transactions) > 0
+
     return categorized_transactions

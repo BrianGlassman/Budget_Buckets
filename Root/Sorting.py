@@ -16,7 +16,7 @@ def cat_then_desc(transactions):
         ret.extend(v)
     return ret
 
-def by_date(transactions, reverse=True):
+def by_date(transactions, reverse=False):
     """Sort by date
     reverse:
          True - new --> old
