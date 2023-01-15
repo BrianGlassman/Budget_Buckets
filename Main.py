@@ -8,28 +8,38 @@ import BucketTimeline
 # import TransactionTimeline
 # import MView
 
+import Predict
+
 #%% Mode handling
-class ModeSetter:
+class Modes:
     CategorizerView = 0
     BucketTimeline = 1
     TransactionTimeline = 2
     MView = 3
 
-    def __init__(self, mode) -> None:
+class ModeSetter:
+    def __init__(self, mode, predict=False) -> None:
         self.mode = mode
+        self._predict = predict
 
+    # Mode properties
     @property
-    def is_CView(self):
-        return self.mode == self.CategorizerView
+    def isCView(self):
+        return self.mode == Modes.CategorizerView
     @property
-    def is_BTime(self):
-        return self.mode == self.BucketTimeline
+    def isBTime(self):
+        return self.mode == Modes.BucketTimeline
     @property
-    def is_TTime(self):
-        return self.mode == self.TransactionTimeline
+    def isTTime(self):
+        return self.mode == Modes.TransactionTimeline
     @property
-    def is_MView(self):
-        return self.mode == self.MView
+    def isMView(self):
+        return self.mode == Modes.MView
+    
+    # Other properties
+    @property
+    def predict(self):
+        return self._predict
 
 #%% Runners
 def run_CView(categorized_transactions):
@@ -49,7 +59,8 @@ def run_BTime(categorized_transactions):
 
 #%% Main
 
-mode = ModeSetter(ModeSetter.BucketTimeline)
+mode = ModeSetter(Modes.BucketTimeline,
+    predict=True)
 
 # Parse
 transactions = Parsing.run()
@@ -57,7 +68,7 @@ transactions = Parsing.run()
 # Categorize
 cat_filter = []
 keep_filter = True
-if mode.is_BTime:
+if mode.isBTime:
     cat_filter = BucketTimeline.skip_cats
     keep_filter = False
 categorized_transactions = fn.categorize(transactions,
@@ -65,8 +76,11 @@ categorized_transactions = fn.categorize(transactions,
 
 # Pre-processing
 categorized_transactions = Sorting.by_date(categorized_transactions)
+if mode.predict:
+    future_transactions = Predict.make_predictions(categorized_transactions)
+    categorized_transactions.extend(future_transactions)
 
-if mode.is_CView:
+if mode.isCView:
     run_CView(categorized_transactions)
-elif mode.is_BTime:
+elif mode.isBTime:
     run_BTime(categorized_transactions)

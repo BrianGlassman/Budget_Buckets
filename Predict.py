@@ -99,7 +99,7 @@ def _predict_regular(transactions, category):
     return future_transactions
 
 #%% Main
-def run(actual_transactions) -> list[Record.CategorizedRecord]:
+def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
     # Pre-processing
     categorized_transactions = Sorting.by_date(actual_transactions)
     avg_values = _get_avg_values(actual_transactions)
