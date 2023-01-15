@@ -2,6 +2,11 @@
 make a workflow that allows changing the data source
 	next step will be creating future transactions after parsing/categorizing but before display
 
+[Predicting]
+have ways to compare predicted vs actual
+	ex. "this transaction was predicted to be X, but is actually Y"
+	ex. "predicted final balance was X, updated prediction is Y"
+
 [BucketTimeline]
 implement split-style amortizing
 

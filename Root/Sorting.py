@@ -16,6 +16,10 @@ def cat_then_desc(transactions):
         ret.extend(v)
     return ret
 
-def by_date(transactions):
-    """Sort by date"""
-    return sorted(transactions, key=lambda item: item.date, reverse=True)
+def by_date(transactions, reverse=True):
+    """Sort by date
+    reverse:
+         True - new --> old
+        False - old --> new
+    """
+    return sorted(transactions, key=lambda item: item.date, reverse=reverse)

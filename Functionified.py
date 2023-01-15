@@ -1,3 +1,5 @@
+import datetime
+
 def categorize(transactions, cat_filter = [], keep_filter=True, limit = 0, use_uncat = True, use_cat = True):
     """
     cat_filter - list of categories to include/exclude
@@ -16,3 +18,23 @@ def categorize(transactions, cat_filter = [], keep_filter=True, limit = 0, use_u
         ]
     
     return categorized_transactions
+
+def add_month(date: datetime.date, inc: int) -> datetime.date:
+    """Increments the month, incrementing year if needed
+    Returns the new date"""
+    assert isinstance(date, datetime.date)
+    if date.day > 28: raise NotImplementedError("Not sure what happens if day isn't in month")
+    assert isinstance(inc, int)
+    assert inc in [1, -1]
+    month = date.month + inc
+    if month > 12:
+        month = 1
+        year = date.year + 1
+    elif month < 1:
+        month = 12
+        year = date.year - 1
+    else:
+        year = date.year
+    return date.replace(year=year, month=month)
+def inc_month(date: datetime.date): return add_month(date, +1)
+def dec_month(date: datetime.date): return add_month(date, -1)

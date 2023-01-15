@@ -1,6 +1,7 @@
 import datetime
 
 import Record
+import Functionified as fn
 
 #%% Parsing
 import Parsing
@@ -29,26 +30,6 @@ def make_date_key(date: datetime.date) -> datetime.date:
 def make_date_label(date: datetime.date) -> str:
     return date.strftime("%b %y") # https://www.programiz.com/python-programming/datetime/strftime
 
-def add_month(date: datetime.date, inc: int) -> datetime.date:
-    """Increments the month, incrementing year if needed
-    Returns the new date"""
-    assert isinstance(date, datetime.date)
-    if date.day > 28: raise NotImplementedError("Not sure what happens if day isn't in month")
-    assert isinstance(inc, int)
-    assert inc in [1, -1]
-    month = date.month + inc
-    if month > 12:
-        month = 1
-        year = date.year + 1
-    elif month < 1:
-        month = 12
-        year = date.year - 1
-    else:
-        year = date.year
-    return date.replace(year=year, month=month)
-def inc_month(date: datetime.date): return add_month(date, +1)
-def dec_month(date: datetime.date): return add_month(date, -1)
-
 # Get the earliest and latest date
 strt: datetime.date
 stop: datetime.date
@@ -61,12 +42,12 @@ for t in categorized_transactions:
 # Create a consecutive list of months from strt to stop
 months: list[datetime.date] = []
 strt = datetime.date(year=strt.year, month=strt.month, day=1)
-before_strt = dec_month(strt)
+before_strt = fn.dec_month(strt)
 stop = datetime.date(year=stop.year, month=stop.month, day=1)
 date = strt
 while date <= stop:
     months.append(date)
-    date = inc_month(date)
+    date = fn.inc_month(date)
 month_count = len(months)
 
 cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
@@ -218,7 +199,7 @@ def make_summary_sheet(parent, values, starting_balance: float) -> None:
     _add_text(table.frame, "Balance", widths['label'], coords, anchor='center')
     total = 0
     for month in months:
-        val = monthly_balance[dec_month(month)] + monthly_delta[month]
+        val = monthly_balance[fn.dec_month(month)] + monthly_delta[month]
         monthly_balance[month] = val
         total += val
         _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
