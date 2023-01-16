@@ -57,9 +57,51 @@ def run_BTime(categorized_transactions):
 
     BucketTimeline.display(bucket_tracker)
 
+def run_MView(categorized_transactions):
+    import datetime
+
+    from Root import Constants
+    import MView
+
+    # Get first/last month (instead of first/last date)
+    strt, stop = fn.get_str_stop(categorized_transactions)
+    strt = datetime.date(year=strt.year, month=strt.month, day=1)
+    stop = datetime.date(year=stop.year, month=stop.month, day=1)
+
+    # Create a consecutive list of months from strt to stop
+    months: list[datetime.date] = []
+    date = strt
+    while date <= stop:
+        months.append(date)
+        date = fn.inc_month(date)
+
+    cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
+    values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
+    values = {}
+    for group, categories in cat_groups.items():
+        values[group] = {cat:{month:0 for month in months} for cat in categories}
+
+    for t in categorized_transactions:
+        cat = t.category
+        group = None
+        for g, categories in cat_groups.items():
+            if cat in categories:
+                assert group is None, f"Category '{cat}' appears in multiple groups"
+                group = g
+        assert group is not None, f"Category '{cat}' not found in any group"
+        values[group][cat][MView.make_date_key(t.date)] += t.value
+
+    root = gui.Root(25, 10)
+
+    # MView.make_tracker_sheet(root, values['income'], "Income", Constants.income_categories, months)
+    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Constants.expense_categories, months)
+    # MView.make_summary_sheet(root, values, 5000, months)
+
+    root.mainloop()
+
 #%% Main
 
-mode = ModeSetter(Modes.BucketTimeline,
+mode = ModeSetter(Modes.MView,
     predict=True)
 
 # Parse
@@ -67,7 +109,7 @@ transactions = Parsing.run()
 
 # Categorize
 cat_filter = []
-keep_filter = True
+keep_filter = False
 if mode.isBTime:
     cat_filter = BucketTimeline.skip_cats
     keep_filter = False
@@ -84,3 +126,5 @@ if mode.isCView:
     run_CView(categorized_transactions)
 elif mode.isBTime:
     run_BTime(categorized_transactions)
+elif mode.isMView:
+    run_MView(categorized_transactions)

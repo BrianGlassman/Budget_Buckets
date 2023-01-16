@@ -56,6 +56,7 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...], 
     _next_row(coords)
 
     # Category rows
+    grand_total = 0
     for cat in categories:
         # Label
         _add_text(table.frame, cat, widths['label'], coords, anchor='e')
@@ -68,7 +69,17 @@ def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...], 
         _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
         _add_text(table.frame, f"${total/len(months):0,.2f}", widths['average'], coords, anchor='e')
         
+        grand_total += total
         _next_row(coords)
+
+    # Total row
+    coords[1] = len(months) # Start in last data column
+    # Label
+    _add_text(table.frame, "Total", widths['data'], coords, anchor='center')
+    # Total of all categories
+    _add_text(table.frame, f"${grand_total:0,.2f}", widths['total'], coords, anchor='e')
+    # Average monthly total
+    _add_text(table.frame, f"${grand_total/len(months):0,.2f}", widths['average'], coords, anchor='e')
 
 def make_summary_sheet(parent, values, starting_balance: float, months: list[datetime.date]) -> None:
     month_count = len(months)

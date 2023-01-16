@@ -116,18 +116,25 @@ def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
             print(cat)
             raise
 
-    last_actual = actual_transactions[-1]
-    last_date: datetime.date = last_actual.date
-    date = fn.inc_month(last_date)
-    while date < stop:
-        delta = (date - last_date).days
-        for cat, daily_val in avg_values.items():
-            new = Record.CategorizedRecord('', date, '--- Extrapolate daily average ---', round(daily_val*delta, 2),
-                category=cat)
+    for cat, daily_val in avg_values.items():
+        # Get the last real transaction
+        last_actual = [x for x in actual_transactions if x.category == cat][-1]
+        last_date: datetime.date = last_actual.date
+
+        # Start predictions on 15th of next month
+        date = last_date.replace(day=15)
+        date = fn.inc_month(date)
+
+        # Create one predicted transaction per month
+        while date < stop:
+            delta = (date - last_date).days
+
+            new = Record.CategorizedRecord('', date, '--- Extrapolate daily average ---',
+                round(daily_val*delta, 2), category=cat)
             future_transactions.append(new)
 
-        last_date = date
-        date = fn.inc_month(date)
+            last_date = date
+            date = fn.inc_month(date)
 
     # Sort before returning
     future_transactions = Sorting.by_date(future_transactions)
