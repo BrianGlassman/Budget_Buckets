@@ -2,6 +2,7 @@
 from matplotlib import pyplot as plt
 from matplotlib.transforms import Bbox
 import datetime
+from collections import UserDict
 
 from Root import Constants
 import Parsing
@@ -9,12 +10,29 @@ import Record # TODO? Only needed for type-hinting, so probably a way to get rid
 
 #%% Class definitions
 
+class BaseCalendar(UserDict[datetime.date, float | None]):
+    """A special case dictionary like {date: object} where dates are not necessarily consecutive"""
+    def dates(self):
+        return self.keys()
+
+class SparseCalendar(BaseCalendar):
+    """No difference from BaseCalendar"""
+    pass
+
+class ConsecCalendar(BaseCalendar):
+    """A calendar with consecutive dates"""
+    
+    def verify(self):
+        dates = list(self.keys())
+        deltas = [new - old for new, old in zip(dates[1:], dates[:-1])]
+        assert all(delta.days == 1 for delta in deltas)
+
 class BaseTracker():
-    _cat_tracker: dict[str, dict[datetime.date, float | None]]
+    _cat_tracker: dict[str, ConsecCalendar]
 
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]): pass
 
-    def get_category(self, key: str) -> dict[datetime.date, float | None]:
+    def get_category(self, key: str) -> ConsecCalendar:
         """Gets the values across all days for a given category"""
         assert key in Constants.categories_inclTodo
         return self._cat_tracker[key]
@@ -27,7 +45,7 @@ class BaseTracker():
             ret[cat] = values[key]
         return ret
 
-    def get(self, key: str | datetime.date) -> dict[datetime.date, float | None] | dict[str, float | None]:
+    def get(self, key: str | datetime.date) -> ConsecCalendar | dict[str, float | None]:
         if isinstance(key, str):
             return self.get_category(key)
         elif type(key) is datetime.date:
@@ -40,7 +58,7 @@ class BaseTracker():
         return self._cat_tracker.keys()
 
 class DeltaTracker(BaseTracker):
-    _cat_tracker: dict[str, dict[datetime.date, float | None]] # {category: {date: delta that day}}
+    _cat_tracker: dict[str, ConsecCalendar] # {category: {date: delta that day}}
     _cat_dates: dict[str, list[datetime.date]] # {category: [dates where single-day transactions occurred]}
     _cat_amort: dict[str, list[datetime.date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
@@ -48,12 +66,12 @@ class DeltaTracker(BaseTracker):
         categories = Constants.categories_inclTodo
 
         # Initialize the categorized tracker and date tracker
-        self._cat_tracker = {cat:{} for cat in categories}
+        self._cat_tracker = {cat:ConsecCalendar() for cat in categories}
         self._cat_dates = {cat:[] for cat in categories}
         self._cat_amort = {cat:[] for cat in categories}
 
         # Setup the first day
-        one_day = datetime.timedelta(days=1)
+        one_day = Constants.one_day
         i = 0 # Index within dated_transactions
         t = dated_transactions[i]
         date = t.date
@@ -72,7 +90,7 @@ class DeltaTracker(BaseTracker):
                     transaction_today[t.category] = True
                 else:
                     amortized_today[t.category] = True
-                
+
                 # Add transaction value to today's running total
                 old_value = self._cat_tracker[t.category][date]
                 if old_value is None:
@@ -102,6 +120,9 @@ class DeltaTracker(BaseTracker):
                 date += one_day
             self.create_day(date)
 
+        for temp in self._cat_tracker.values():
+            temp.verify()
+        
     def create_day(self, date: datetime.date) -> None:
         """Create a new date, with None for all category values"""
         for tracker in self._cat_tracker.values():
@@ -132,7 +153,7 @@ class BucketTracker(BaseTracker):
 
         self._cat_tracker = {}
         for cat in delta_tracker.categories:
-            tracker = self._cat_tracker[cat] = {} ; tracker: dict[datetime.date, float | None]
+            tracker = self._cat_tracker[cat] = ConsecCalendar() ; tracker: ConsecCalendar
             dtracker = delta_tracker.get_category(cat)
             bucket = bucket_info.get(cat, self._empty_bucket)
             refill = bucket.refill
@@ -166,6 +187,8 @@ class BucketTracker(BaseTracker):
                 # Increment for next loop
                 date += Constants.one_day
                 last_value = new_value
+
+            tracker.verify()
 
     def _plot_transaction_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str):
         """Plot the points where single-day transactions occurred"""
