@@ -10,7 +10,7 @@ import Record # TODO? Only needed for type-hinting, so probably a way to get rid
 
 #%% Class definitions
 
-class BaseCalendar(UserDict[datetime.date, float | None]):
+class BaseCalendar(UserDict[datetime.date, float]):
     """A special case dictionary like {date: object} where dates are not necessarily consecutive"""
     def dates(self):
         return self.keys()
@@ -37,7 +37,7 @@ class BaseTracker():
         assert key in Constants.categories_inclTodo
         return self._cat_tracker[key]
 
-    def get_date(self, key: datetime.date) -> dict[str, float | None]:
+    def get_date(self, key: datetime.date) -> dict[str, float]:
         """Gets the values across all categories for a given day"""
         assert type(key) is datetime.date
         ret = {}
@@ -45,7 +45,7 @@ class BaseTracker():
             ret[cat] = values[key]
         return ret
 
-    def get(self, key: str | datetime.date) -> ConsecCalendar | dict[str, float | None]:
+    def get(self, key: str | datetime.date) -> ConsecCalendar | dict[str, float]:
         if isinstance(key, str):
             return self.get_category(key)
         elif type(key) is datetime.date:
@@ -92,12 +92,7 @@ class DeltaTracker(BaseTracker):
                     amortized_today[t.category] = True
 
                 # Add transaction value to today's running total
-                old_value = self._cat_tracker[t.category][date]
-                if old_value is None:
-                    new_value = t.value
-                else:
-                    new_value = old_value + t.value
-                self._cat_tracker[t.category][date] = new_value
+                self._cat_tracker[t.category][date] += t.value
 
                 i += 1
                 if i == len(dated_transactions): break
@@ -124,10 +119,10 @@ class DeltaTracker(BaseTracker):
             temp.verify()
         
     def create_day(self, date: datetime.date) -> None:
-        """Create a new date, with None for all category values"""
+        """Create a new date, with 0 for all category values"""
         for tracker in self._cat_tracker.values():
             if date in tracker: raise RuntimeError(f"Date {date} already exists")
-            tracker[date] = None
+            tracker[date] = 0
     
     def get_tdates(self, key: str) -> list[datetime.date]:
         """Gets the single-day transaction dates for a given category"""
@@ -159,8 +154,8 @@ class BucketTracker(BaseTracker):
             refill = bucket.refill
 
             # Skip categories that never change
-            if refill == 0 and all(v is None for v in dtracker.values()):
-                tracker[initial_date] = None
+            if refill == 0 and all(v == 0 for v in dtracker.values()):
+                tracker[initial_date] = 0
                 continue
 
             # Calculate the value for each day (previous day + transactions + refilling)
@@ -170,8 +165,6 @@ class BucketTracker(BaseTracker):
                 # Handle transactions
                 if date in dtracker:
                     tvalue = dtracker[date]
-                    if tvalue is None:
-                        tvalue = 0
                 else:
                     tvalue = 0
 
