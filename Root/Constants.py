@@ -2,6 +2,8 @@ import datetime
 
 one_day = datetime.timedelta(days=1)
 
+CatType = str
+
 categories = (
     # Car
     'Car - Note',

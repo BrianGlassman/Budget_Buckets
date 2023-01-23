@@ -3,23 +3,30 @@ from matplotlib import pyplot as plt
 from matplotlib.transforms import Bbox
 import datetime
 from collections import UserDict
+from typing import TypeVar
 
 from Root import Constants
 import Parsing
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 
+# Type aliasing
+Cat = Constants.CatType
+Date = datetime.date
+
 #%% Class definitions
 
-class BaseCalendar(UserDict[datetime.date, float]):
+T = TypeVar('T')
+
+class BaseCalendar(UserDict[Date, T]):
     """A special case dictionary like {date: object} where dates are not necessarily consecutive"""
     def dates(self):
         return self.keys()
 
-class SparseCalendar(BaseCalendar):
+class SparseCalendar(BaseCalendar[T]):
     """No difference from BaseCalendar"""
     pass
 
-class ConsecCalendar(BaseCalendar):
+class ConsecCalendar(BaseCalendar[T]):
     """A calendar with consecutive dates"""
     
     def verify(self):
@@ -28,27 +35,27 @@ class ConsecCalendar(BaseCalendar):
         assert all(delta.days == 1 for delta in deltas)
 
 class BaseTracker():
-    _cat_tracker: dict[str, ConsecCalendar]
+    _cat_tracker: dict[Cat, ConsecCalendar]
 
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]): pass
 
-    def get_category(self, key: str) -> ConsecCalendar:
+    def get_category(self, key: Cat) -> ConsecCalendar:
         """Gets the values across all days for a given category"""
         assert key in Constants.categories_inclTodo
         return self._cat_tracker[key]
 
-    def get_date(self, key: datetime.date) -> dict[str, float]:
+    def get_date(self, key: Date) -> dict[Cat, float]:
         """Gets the values across all categories for a given day"""
-        assert type(key) is datetime.date
+        assert type(key) is Date
         ret = {}
         for cat, values in self._cat_tracker.items():
             ret[cat] = values[key]
         return ret
 
-    def get(self, key: str | datetime.date) -> ConsecCalendar | dict[str, float]:
-        if isinstance(key, str):
+    def get(self, key: Cat | Date) -> ConsecCalendar | dict[Cat, float]:
+        if isinstance(key, Cat):
             return self.get_category(key)
-        elif type(key) is datetime.date:
+        elif type(key) is Date:
             return self.get_date(key)
         else:
             raise ValueError(f"Unknown key: '{key}' of type '{type(key)}'")
@@ -58,9 +65,9 @@ class BaseTracker():
         return self._cat_tracker.keys()
 
 class DeltaTracker(BaseTracker):
-    _cat_tracker: dict[str, ConsecCalendar] # {category: {date: delta that day}}
-    _cat_dates: dict[str, list[datetime.date]] # {category: [dates where single-day transactions occurred]}
-    _cat_amort: dict[str, list[datetime.date]] # {category: [dates where amortized transactions began]}
+    _cat_tracker: dict[Cat, ConsecCalendar] # {category: {date: delta that day}}
+    _cat_dates: dict[Cat, list[Date]] # {category: [dates where single-day transactions occurred]}
+    _cat_amort: dict[Cat, list[Date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
         categories = Constants.categories_inclTodo
@@ -118,18 +125,18 @@ class DeltaTracker(BaseTracker):
         for temp in self._cat_tracker.values():
             temp.verify()
         
-    def create_day(self, date: datetime.date) -> None:
+    def create_day(self, date: Date) -> None:
         """Create a new date, with 0 for all category values"""
         for tracker in self._cat_tracker.values():
             if date in tracker: raise RuntimeError(f"Date {date} already exists")
             tracker[date] = 0
     
-    def get_tdates(self, key: str) -> list[datetime.date]:
+    def get_tdates(self, key: Cat) -> list[Date]:
         """Gets the single-day transaction dates for a given category"""
         assert key in Constants.categories_inclTodo
         return self._cat_dates[key]
     
-    def get_adates(self, key: str) -> list[datetime.date]:
+    def get_adates(self, key: Cat) -> list[Date]:
         """Gets the amortized transaction start dates for a given category"""
         assert key in Constants.categories_inclTodo
         return self._cat_amort[key]
@@ -142,7 +149,7 @@ class Bucket:
 
 class BucketTracker(BaseTracker):
     _empty_bucket = Bucket("empty", 0, 0)
-    def __init__(self, delta_tracker: DeltaTracker, initial_date: datetime.date, final_date: datetime.date, bucket_info: dict[str, Bucket] = {}):
+    def __init__(self, delta_tracker: DeltaTracker, initial_date: Date, final_date: Date, bucket_info: dict[Cat, Bucket] = {}):
         """refill_amts - {category: amount to add per DAY}"""
         self._delta_tracker = delta_tracker
 
@@ -183,27 +190,27 @@ class BucketTracker(BaseTracker):
 
             tracker.verify()
 
-    def _plot_transaction_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str):
+    def _plot_transaction_points(self, values: dict[Date, float], ax: plt.Axes, category: Cat):
         """Plot the points where single-day transactions occurred"""
         values = {date:v for date,v in values.items() if date in self._delta_tracker.get_tdates(category)}
         # Plot transaction points
         line = ax.plot(values.keys(), values.values(), '.', label=category)
         return line[0]
     
-    def _plot_amort_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str, color: str):
+    def _plot_amort_points(self, values: dict[Date, float], ax: plt.Axes, category: Cat, color: str):
         """Plot the points where amortized transactions began"""
         values = {date:v for date,v in values.items() if date in self._delta_tracker.get_adates(category)}
         # Plot amortized transaction points (no label, so doesn't show up on auto-legend)
         line = ax.plot(values.keys(), values.values(), 'x', color=color)
         return line[0]
 
-    def _plot_bucket_vals(self, values: dict[datetime.date, float], ax: plt.Axes, color: str):
+    def _plot_bucket_vals(self, values: dict[Date, float], ax: plt.Axes, color: str):
         """Plot the bucket values"""
         # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
         line = ax.plot(values.keys(), values.values(), '-', color=color, linewidth=0.5)
         return line[0]
 
-    def plot(self, ax: plt.Axes, category: str) -> None:
+    def plot(self, ax: plt.Axes, category: Cat) -> None:
         """Plot the values for the given category on the given Axes"""
         value_timeline = self.get_category(category)
         if len(self._delta_tracker.get_tdates(category)) == 0 and len(self._delta_tracker.get_adates(category)) == 0:
