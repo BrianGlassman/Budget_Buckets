@@ -34,6 +34,63 @@ class ConsecCalendar(BaseCalendar[T]):
         deltas = [new - old for new, old in zip(dates[1:], dates[:-1])]
         assert all(delta.days == 1 for delta in deltas)
 
+class AmortizedItem:
+    # Note: daily value is always rounded to 2 decimal places
+
+    def __init__(self, duration: int, value: float) -> None:
+        assert isinstance(duration, int)
+        assert duration > 0
+        self.duration = duration
+
+        assert isinstance(value, float)
+        self.total_value = value
+        self.daily_value = round(value / duration, 2)
+
+    def apply(self):
+        # Save original value to return
+        ret = self.daily_value
+
+        # Decrement duration
+        self.duration -= 1
+
+        # Update values, avoiding repeated-rounding problems
+        self.total_value -= ret
+        if self.duration == 0:
+            self.daily_value = 0
+        else:
+            self.daily_value = round(self.total_value / self.duration, 2)
+
+        return ret
+    
+    @property
+    def complete(self):
+        return self.duration == 0
+
+class AmortizedItems():
+    items: list[AmortizedItem]
+    def __init__(self) -> None:
+        self.items = []
+
+    def add(self, t: Record.CategorizedRecord):
+        self.items.append(AmortizedItem(t.duration, t.value))
+    
+    def apply(self):
+        """Decrement all durations by 1 and return the total"""
+        total = 0.0
+        i = 0
+        while i < len(self.items):
+            # Apply the transaction
+            item = self.items[i]
+            total += item.apply()
+
+            # Remove completed transactions
+            # Only incrememnt index if no removal
+            if item.complete:
+                self.items.pop(i)
+            else:
+                i += 1
+        return total
+
 class BaseTracker():
     _cat_tracker: dict[Cat, ConsecCalendar]
 
@@ -114,6 +171,8 @@ class DeltaTracker(BaseTracker):
             adates = self._cat_adates[cat] = []
             adates: list[Date]
 
+            amort_items = AmortizedItems()
+
             # Apply each day
             date = strt
             while date <= stop:
@@ -126,20 +185,23 @@ class DeltaTracker(BaseTracker):
                 for t in today_transactions:
                     assert t.duration > 0
                     if t.duration == 1:
-                        # Single-day transaction
+                        # Single-day transaction - apply now
                         t_today = True
+                        delta += t.value
                     else:
-                        # Amortized transaction
+                        # Amortized transaction - save for later
                         a_today = True
-                    
-                    # Add transaction value to today's running total
-                    delta += t.value
+                        amort_items.add(t)
 
-                # Note what kind of transactions happened today
+                # Record what kind of transactions happened today
                 if t_today:
                     tdates.append(date)
                 if a_today:
                     adates.append(date)
+                
+                # Apply any amortized transactions
+                a_delta = amort_items.apply()
+                delta += a_delta
                 
                 tracker[date] = delta
                 
@@ -189,10 +251,7 @@ class BucketTracker(BaseTracker):
             date = initial_date
             while date <= final_date:
                 # Handle transactions
-                if date in dtracker:
-                    tvalue = dtracker[date]
-                else:
-                    tvalue = 0
+                tvalue = dtracker.get(date, 0)
 
                 # Handle refilling and max value
                 # Do transaction first, then refill if below max
@@ -247,7 +306,7 @@ class BucketTracker(BaseTracker):
             self.plot(ax, cat)
 
 #%% Define buckets
-bucket_info = {
+bucket_info = { # {category: (max, monthly)}
     # Car
     'Car - Note': (320, 320),
     'Car/Rental Insurance': (150, 150),
