@@ -40,6 +40,9 @@ class BaseTracker():
         return self._cat_tracker.keys()
 
 class DeltaTracker(BaseTracker):
+    _cat_tracker: dict[str, dict[datetime.date, float | None]] # {category: {date: delta that day}}
+    _cat_dates: dict[str, list[datetime.date]] # {category: [dates where single-day transactions occurred]}
+    _cat_amort: dict[str, list[datetime.date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
         categories = Constants.categories_inclTodo
@@ -47,6 +50,7 @@ class DeltaTracker(BaseTracker):
         # Initialize the categorized tracker and date tracker
         self._cat_tracker = {cat:{} for cat in categories}
         self._cat_dates = {cat:[] for cat in categories}
+        self._cat_amort = {cat:[] for cat in categories}
 
         # Setup the first day
         one_day = datetime.timedelta(days=1)
@@ -58,10 +62,18 @@ class DeltaTracker(BaseTracker):
         # Fill in the trackers
         while i < len(dated_transactions):
             transaction_today = {cat:False for cat in categories}
+            amortized_today = {cat:False for cat in categories}
 
             # Add the transactions until one has a different (later) date
             while date == t.date:
-                transaction_today[t.category] = True
+                # Check for single-day or amortized transaction
+                assert t.duration > 0
+                if t.duration == 1:
+                    transaction_today[t.category] = True
+                else:
+                    amortized_today[t.category] = True
+                
+                # Add transaction value to today's running total
                 old_value = self._cat_tracker[t.category][date]
                 if old_value is None:
                     new_value = t.value
@@ -78,6 +90,8 @@ class DeltaTracker(BaseTracker):
             for cat in categories:
                 if transaction_today[cat]:
                     self._cat_dates[cat].append(date)
+                if amortized_today[cat]:
+                    self._cat_amort[cat].append(date)
 
             # Go to tomorrow
             date += one_day
@@ -89,15 +103,20 @@ class DeltaTracker(BaseTracker):
             self.create_day(date)
 
     def create_day(self, date: datetime.date) -> None:
-        """Create a new date, with 0 for all category values"""
+        """Create a new date, with None for all category values"""
         for tracker in self._cat_tracker.values():
             if date in tracker: raise RuntimeError(f"Date {date} already exists")
             tracker[date] = None
     
     def get_tdates(self, key: str) -> list[datetime.date]:
-        """Gets the transaction dates for a given category"""
+        """Gets the single-day transaction dates for a given category"""
         assert key in Constants.categories_inclTodo
         return self._cat_dates[key]
+    
+    def get_adates(self, key: str) -> list[datetime.date]:
+        """Gets the amortized transaction start dates for a given category"""
+        assert key in Constants.categories_inclTodo
+        return self._cat_amort[key]
 
 class Bucket:
     def __init__(self, name, max_value, monthly_refill):
@@ -149,9 +168,17 @@ class BucketTracker(BaseTracker):
                 last_value = new_value
 
     def _plot_transaction_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str):
-        """Plot the points where transactions occurred"""
+        """Plot the points where single-day transactions occurred"""
+        values = {date:v for date,v in values.items() if date in self._delta_tracker.get_tdates(category)}
         # Plot transaction points
         line = ax.plot(values.keys(), values.values(), '.', label=category)
+        return line[0]
+    
+    def _plot_amort_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str, color: str):
+        """Plot the points where amortized transactions began"""
+        values = {date:v for date,v in values.items() if date in self._delta_tracker.get_adates(category)}
+        # Plot amortized transaction points (no label, so doesn't show up on auto-legend)
+        line = ax.plot(values.keys(), values.values(), 'x', color=color)
         return line[0]
 
     def _plot_bucket_vals(self, values: dict[datetime.date, float], ax: plt.Axes, color: str):
@@ -163,10 +190,13 @@ class BucketTracker(BaseTracker):
     def plot(self, ax: plt.Axes, category: str) -> None:
         """Plot the values for the given category on the given Axes"""
         value_timeline = self.get_category(category)
-        tval_timeline = {date:v for date,v in value_timeline.items() if date in self._delta_tracker.get_tdates(category)}
-        if all(v is None for v in tval_timeline.values()): return # Only plot categories with transactions
-        line = self._plot_transaction_points(tval_timeline, ax, category) # type: ignore
+        if len(self._delta_tracker.get_tdates(category)) == 0 and len(self._delta_tracker.get_adates(category)) == 0:
+            # Skip categories with no transactions
+            return
+
+        line = self._plot_transaction_points(value_timeline, ax, category) # type: ignore
         color = line.get_color()
+        self._plot_amort_points(value_timeline, ax, category, color) # type: ignore
         self._plot_bucket_vals(value_timeline, ax, color) # type: ignore
         
     def plot_all(self, ax: plt.Axes):

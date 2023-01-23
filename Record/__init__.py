@@ -36,7 +36,8 @@ class RawRecord(BaseRecord):
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific={},
-                 category: str = Constants.todo_category, comment: str | None = None, rawRecord: RawRecord | None = None):
+                 category: str = Constants.todo_category, comment: str | None = None, rawRecord: RawRecord | None = None,
+                 duration: int = 1):
         super().__init__(account, date, desc, value, source_specific)
         assert rawRecord is None or isinstance(rawRecord, RawRecord)
         self.rawRecord = rawRecord
@@ -47,14 +48,18 @@ class CategorizedRecord(BaseRecord):
         assert (comment is None) or (isinstance(comment, str))
         self.comment = comment
 
+        assert isinstance(duration, int)
+        assert duration > 0
+        self.duration = duration
+
     @classmethod
-    def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str | None = None):
+    def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str | None = None, duration: int = 1):
         assert isinstance(rawRecord, RawRecord)
         return cls(rawRecord.account, rawRecord.date, rawRecord.desc, rawRecord.value, rawRecord.source_specific,
-                   category, comment, rawRecord)
+                   category, comment, rawRecord, duration)
 
     def values(self):
-        return super().values() + [self.category, self.comment]
+        return super().values() + [self.category, self.comment, self.duration]
 
     def keys(self):
-        return super().keys() + ['category', 'comment']
+        return super().keys() + ['category', 'comment', 'duration']

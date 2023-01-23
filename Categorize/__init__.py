@@ -229,7 +229,9 @@ def _create_from_template(create: dict, rawRecord):
 
     comment = create.get('comment', None)
 
-    ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment)
+    duration = create.get('duration', 1)
+
+    ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment, duration=duration)
     return ct
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
@@ -240,12 +242,15 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     for rawRecord in transactions:
         match = match_templates(rawRecord)
         if match is None:
+            # No match, fill in with placeholder values
             if use_uncat:
                 category = Constants.todo_category
                 comment = None
+                duration = 1
             else:
                 continue
         else:
+            # Found a match, fill in the templated values
             new = match['new']
             create = match.get('create', [])
 
@@ -259,10 +264,11 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                 # FIXME probably cases where this causes the wrong control flow
                 continue
             comment = new.get('comment', None)
+            duration = new.get('duration', 1)
 
             for c in create:
                 categorized_transactions.append(_create_from_template(c, rawRecord))
-        ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment)
+        ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
         categorized_transactions.append(ct)
 
         if len(categorized_transactions) == limit:
@@ -277,6 +283,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             warnings.warn(f"Internals ({', '.join(Constants.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
     
     if not use_internal:
+        # Remove the internal transactions
         categorized_transactions = [x for x in categorized_transactions if x.category not in Constants.internal_categories]
 
     # Easy way to filter stuff
