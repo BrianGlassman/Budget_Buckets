@@ -241,13 +241,13 @@ class BucketTracker(BaseTracker):
             bucket = bucket_info.get(cat, self._empty_bucket)
             refill = bucket.refill
 
-            # Skip categories that never change
+            # Skip categories that never change (use max_value as initial/constant value)
             if refill == 0 and all(v == 0 for v in dtracker.values()):
-                tracker[initial_date] = 0
+                tracker[initial_date] = bucket.max_value
                 continue
 
             # Calculate the value for each day (previous day + transactions + refilling)
-            last_value = 0 # Initial value or value of previous day
+            last_value = bucket.max_value # Initial value or value of previous day (start at max_value)
             date = initial_date
             while date <= final_date:
                 # Handle transactions
@@ -309,31 +309,31 @@ class BucketTracker(BaseTracker):
 bucket_info = { # {category: (max, monthly)}
     # Car
     'Car - Note': (320, 320),
-    'Car/Rental Insurance': (150, 150),
-    'Car - Other': (100, 20),
-    'Car - Parking Pass': (50, 20), # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
+    'Car/Rental Insurance': (175, 160),
+    'Car - Other': (300, 75),
+    'Car - Parking Pass': (75, 50), # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
 
     # Education
-    'Self-improvement': (0, 0),
+    'Self-improvement': (100, 10),
 
     # Entertainment
-    'Dates': (75, 20),
+    'Dates': (150, 50),
     'Entertainment - Other': (75, 20),
     'Games': (75, 20),
-    'Going Out': (75, 20),
+    'Going Out': (150, 50),
     'Books': (75, 20),
-    'Big Fun': (0, 20), # TODO shouldn't be zero, but then the graph gets messy
+    'Big Fun': (500, 20),
 
     # Food
-    'Groceries': (300, 200),
-    'Food - nice': (100, 35),
+    'Groceries': (300, 250),
+    'Food - nice': (100, 80),
 
     # Housing
     'Rent': (1850, 1850),
     'Utilities': (200, 150),
     'Internet': (40.41, 40.41),
-    'Housing - Other': (50, 20),
-    'Decoration': (50, 20),
+    'Housing - Other': (150, 100),
+    'Decoration': (150, 20),
 
     # Investments/Savings
     '401k': (0, 0),
@@ -346,7 +346,7 @@ bucket_info = { # {category: (max, monthly)}
     'Medical Insurance': (0, 0),
 
     # Other
-    'ATM': (200, 20),
+    'ATM': (200, 25),
     'Other - Other': (200, 20),
 
     # Personal Care / Clothing
