@@ -148,16 +148,27 @@ class BucketTracker(BaseTracker):
                 date += Constants.one_day
                 last_value = new_value
 
+    def _plot_transaction_points(self, values: dict[datetime.date, float], ax: plt.Axes, category: str):
+        """Plot the points where transactions occurred"""
+        # Plot transaction points
+        line = ax.plot(values.keys(), values.values(), '.', label=category)
+        return line[0]
+
+    def _plot_bucket_vals(self, values: dict[datetime.date, float], ax: plt.Axes, color: str):
+        """Plot the bucket values"""
+        # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
+        line = ax.plot(values.keys(), values.values(), '-', color=color, linewidth=0.5)
+        return line[0]
+
     def plot(self, ax: plt.Axes, category: str) -> None:
         """Plot the values for the given category on the given Axes"""
         value_timeline = self.get_category(category)
         tval_timeline = {date:v for date,v in value_timeline.items() if date in self._delta_tracker.get_tdates(category)}
         if all(v is None for v in tval_timeline.values()): return # Only plot categories with transactions
-        # Plot transaction points
-        line = ax.plot(tval_timeline.keys(), tval_timeline.values(), '.', label=category)[0]
-        # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
-        ax.plot(value_timeline.keys(), value_timeline.values(), '-', color=line.get_color(), linewidth=0.5)
-
+        line = self._plot_transaction_points(tval_timeline, ax, category) # type: ignore
+        color = line.get_color()
+        self._plot_bucket_vals(value_timeline, ax, color) # type: ignore
+        
     def plot_all(self, ax: plt.Axes):
         """Sugar syntax to call plot on all categories"""
         for cat in self.categories:
