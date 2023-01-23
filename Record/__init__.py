@@ -14,6 +14,24 @@ class BaseRecord:
         self.value = value
         assert isinstance(source_specific, dict), f"Type is '{type(source_specific)}'"
         self.source_specific = source_specific
+
+    def __getitem__(self, key):
+        if key == 'account': return self.account
+        elif key == 'date':  return self.date
+        elif key == 'desc':  return self.desc
+        elif key == 'value': return self.value
+        elif key == 'source_specific': return self.source_specific
+        else:
+            raise KeyError()
+    
+    def __setitem__(self, key, item):
+        if key == 'account': self.account = item
+        elif key == 'date':  self.date = item
+        elif key == 'desc':  self.desc = item
+        elif key == 'value': self.value = item
+        elif key == 'source_specific': self.source_specific = item
+        else:
+            raise KeyError()
         
     def values(self) -> list[str | datetime.date | float | dict]:
         return [self.account, self.date, self.desc, self.value, self.source_specific]

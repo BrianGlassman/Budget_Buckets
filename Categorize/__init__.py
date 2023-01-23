@@ -247,6 +247,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                 category = Constants.todo_category
                 comment = None
                 duration = 1
+                ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
             else:
                 continue
         else:
@@ -265,10 +266,17 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                 continue
             comment = new.get('comment', None)
             duration = new.get('duration', 1)
+            ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
+
+            # Update using whatever was in the pattern
+            for key, val in new.items():
+                # Skip keys that have already been handled
+                if key in ('category', 'comment', 'duration'):
+                    continue
+                ct[key] = val
 
             for c in create:
                 categorized_transactions.append(_create_from_template(c, rawRecord))
-        ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
         categorized_transactions.append(ct)
 
         if len(categorized_transactions) == limit:

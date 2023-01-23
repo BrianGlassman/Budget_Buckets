@@ -282,10 +282,18 @@ class BucketTracker(BaseTracker):
         line = ax.plot(values.keys(), values.values(), 'x', color=color)
         return line[0]
 
-    def _plot_bucket_vals(self, values: dict[Date, float], ax: plt.Axes, color: str):
+    def _plot_bucket_vals(self, values: dict[Date, float], ax: plt.Axes, color: str, max_value: float):
         """Plot the bucket values"""
+        # Make sure the line starts from bucket max_value
+        keys = list(values.keys())
+        vals = list(values.values())
+
+        if vals[0] != max_value:
+            keys = [keys[0]] + keys
+            vals = [max_value] + vals
+
         # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
-        line = ax.plot(values.keys(), values.values(), '-', color=color, linewidth=0.5)
+        line = ax.plot(keys, vals, '-', color=color, linewidth=0.5)
         return line[0]
 
     def plot(self, ax: plt.Axes, category: Cat) -> None:
@@ -298,7 +306,7 @@ class BucketTracker(BaseTracker):
         line = self._plot_transaction_points(value_timeline, ax, category) # type: ignore
         color = line.get_color()
         self._plot_amort_points(value_timeline, ax, category, color) # type: ignore
-        self._plot_bucket_vals(value_timeline, ax, color) # type: ignore
+        self._plot_bucket_vals(value_timeline, ax, color, bucket_info[category].max_value) # type: ignore
         
     def plot_all(self, ax: plt.Axes):
         """Sugar syntax to call plot on all categories"""

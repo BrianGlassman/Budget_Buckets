@@ -226,17 +226,6 @@
     ],
     "Food - nice": [
       {
-        "name": "CU Meal Plan",
-        "pattern": {
-          "account": "CU Bills",
-          "desc": "REGEX:CU (Spring|Summer|Fall) 202[123] Meal Plan"
-        },
-        "new": {
-          "category": "Food - nice",
-          "duration": 1
-        }
-      },
-      {
         "name": "Vending Machines",
         "pattern": {
           "account": "Credit Card",
@@ -849,6 +838,30 @@
             "desc": "CU Loan",
             "duration": 1,
             "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Meal Plan",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Spring|Summer|Fall) 202[123] Meal Plan",
+          "value": -433.00
+        },
+        "new": {
+          "category": "Food - nice",
+          "desc": "CU Meal Plan - Food - nice",
+          "value": -233.00,
+          "duration": 105
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Groceries",
+            "desc": "CU Meal Plan - Groceries",
+            "date": "$SAME",
+            "duration": 105,
+            "value": -200.00
           }
         ]
       },
