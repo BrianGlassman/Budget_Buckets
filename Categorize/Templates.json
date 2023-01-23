@@ -10,7 +10,7 @@
         },
         "new": {
           "category": "Car - Note",
-          "split": 30
+          "duration": 30
         }
       }
     ],
@@ -26,7 +26,7 @@
         },
         "new": {
           "category": "Car/Rental Insurance",
-          "split": 30
+          "duration": 30
         }
       }
     ],
@@ -42,7 +42,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Gas"
         }
       }
@@ -59,7 +59,7 @@
         },
         "new": {
           "category": "Car - Parking Pass",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -76,7 +76,7 @@
         },
         "new": {
           "category": "Car - Parking Pass",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -87,7 +87,7 @@
         },
         "new": {
           "category": "Car - Parking Pass",
-          "split": 1
+          "duration": 1
         }
       }
     ]
@@ -106,7 +106,7 @@
         },
         "new": {
           "category": "Entertainment - Other",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -117,7 +117,7 @@
         },
         "new": {
           "category": "Entertainment - Other",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -131,7 +131,7 @@
         },
         "new": {
           "category": "Entertainment - Other",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -147,7 +147,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -166,7 +166,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -179,7 +179,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       }
     ]
@@ -196,7 +196,7 @@
         },
         "new": {
           "category": "Groceries",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -207,7 +207,7 @@
         },
         "new": {
           "category": "Groceries",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -220,7 +220,7 @@
         },
         "new": {
           "category": "Groceries",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -233,7 +233,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -248,7 +248,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -282,7 +282,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -303,7 +303,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -313,7 +313,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       }
     ]
@@ -328,7 +328,7 @@
         },
         "new": {
           "category": "Rent",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -339,7 +339,7 @@
         },
         "new": {
           "category": "Rent",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -355,7 +355,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -369,7 +369,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -380,7 +380,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 30
+          "duration": 30
         }
       },
       {
@@ -394,7 +394,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 30
+          "duration": 30
         }
       }
     ],
@@ -407,7 +407,7 @@
         },
         "new": {
           "category": "Internet",
-          "split": 30
+          "duration": 30
         }
       }
     ],
@@ -419,7 +419,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -430,7 +430,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -448,7 +448,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -459,7 +459,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -470,7 +470,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -489,7 +489,7 @@
         },
         "new": {
           "category": "Medical - Other",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -502,7 +502,7 @@
         },
         "new": {
           "category": "Medical Insurance",
-          "split": 1
+          "duration": 1
         }
       }
     ]
@@ -525,7 +525,7 @@
         },
         "new": {
           "category": "ATM",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -539,7 +539,7 @@
         },
         "new": {
           "category": "ATM",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -563,7 +563,7 @@
         },
         "new": {
           "category": "Salary",
-          "split": 7
+          "duration": 7
         }
       },
       {
@@ -577,7 +577,7 @@
         },
         "new": {
           "category": "Salary",
-          "split": 14
+          "duration": 14
         }
       }
     ],
@@ -593,7 +593,7 @@
         },
         "new": {
           "category": "Income - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -607,7 +607,7 @@
         },
         "new": {
           "category": "Income - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -621,7 +621,7 @@
         },
         "new": {
           "category": "Income - Other",
-          "split": 1
+          "duration": 1
         }
       }
     ]
@@ -635,7 +635,7 @@
         },
         "new": {
           "category": "CC Payments",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -645,7 +645,7 @@
         },
         "new": {
           "category": "CC Payments",
-          "split": 1
+          "duration": 1
         }
       }
     ],
@@ -658,7 +658,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -666,7 +666,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -679,7 +679,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -687,7 +687,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer to Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -711,7 +711,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -719,7 +719,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -739,7 +739,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "Tuition refund"
         },
         "create": [
@@ -748,7 +748,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid to Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -768,7 +768,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -776,7 +776,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -796,7 +796,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -804,7 +804,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -818,7 +818,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -826,7 +826,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Paid from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -839,7 +839,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -847,7 +847,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "CU Loan",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -860,7 +860,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1
+          "duration": 1
         },
         "create": [
           {
@@ -868,7 +868,7 @@
             "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer from Credit Card",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]

@@ -18,7 +18,7 @@
     "new": {
       "description": "What new values to apply",
       "$ref": "RecordSchema.json",
-      "required": [ "category", "split" ]
+      "required": [ "category", "duration" ]
     },
     "create": {
       "type": "array",

@@ -32,7 +32,7 @@ def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     assert isinstance(n, dict) # For Pylance and oops-catching
     # Fill in required information
     n.setdefault('category', Constants.todo_category)
-    n.setdefault('split', 1)
+    n.setdefault('duration', 1)
     # Fill in the given information
     n.update(new)
 

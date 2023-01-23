@@ -52,6 +52,6 @@
         "Internal Transfers"
       ]
     },
-    "split": { "type": "integer" , "default": 1}
+    "duration": { "type": "integer" , "default": 1}
   }
 }

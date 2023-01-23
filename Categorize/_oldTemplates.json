@@ -7,7 +7,7 @@
       },
       "new": {
         "category": "Utilities",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -17,7 +17,7 @@
       },
       "new": {
         "category": "Utilities",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -27,7 +27,7 @@
       },
       "new": {
         "category": "Utilities",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -37,7 +37,7 @@
       },
       "new": {
         "category": "Utilities",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -48,7 +48,7 @@
       },
       "new": {
         "category": "Utilities",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -59,7 +59,7 @@
       },
       "new": {
         "category": "Rent",
-        "split": 30
+        "duration": 30
       }
     }
   ],
@@ -71,7 +71,7 @@
       },
       "new": {
         "category": "CC Payments",
-        "split": 1
+        "duration": 1
       }
     },
     {
@@ -85,7 +85,7 @@
       },
       "new": {
         "category": "Income - Other",
-        "split": 1
+        "duration": 1
       }
     },
     {
@@ -99,7 +99,7 @@
       },
       "new": {
         "category": "Income - Other",
-        "split": 1
+        "duration": 1
       }
     }
   ],
@@ -111,7 +111,7 @@
       },
       "new": {
         "category": "Food - nice",
-        "split": 1
+        "duration": 1
       }
     },
     {
@@ -121,7 +121,7 @@
       },
       "new": {
         "category": "Food - nice",
-        "split": 1
+        "duration": 1
       }
     },
     {
@@ -131,7 +131,7 @@
       },
       "new": {
         "category": "Food - nice",
-        "split": 1
+        "duration": 1
       }
     }
   ],
@@ -143,7 +143,7 @@
       },
       "new": {
         "category": "Groceries",
-        "split": 1
+        "duration": 1
       }
     },
     {
@@ -157,7 +157,7 @@
       },
       "new": {
         "category": "Salary",
-        "split": 14
+        "duration": 14
       }
     },
     {
@@ -169,7 +169,7 @@
       "new": {
         "desc": "Spotify --- PAYPAL           INST XFER  ***********USAI",
         "category": "Entertainment - Other",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -180,7 +180,7 @@
       },
       "new": {
         "category": "Car - Note",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -190,7 +190,7 @@
       },
       "new": {
         "category": "Car/Rental Insurance",
-        "split": 30
+        "duration": 30
       }
     },
     {
@@ -200,7 +200,7 @@
       },
       "new": {
         "category": "Games",
-        "split": 30
+        "duration": 30
       }
     }
   ],

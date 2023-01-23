@@ -10,7 +10,7 @@
                 },
                 "new": {
                     "category": "Internal Transfers",
-                    "split": 1
+                    "duration": 1
                 }
             },
             {
@@ -21,7 +21,7 @@
                 },
                 "new": {
                     "category": "Internal Transfers",
-                    "split": 1
+                    "duration": 1
                 }
             }
         ],
@@ -34,7 +34,7 @@
             },
             "new": {
               "category": "Internal Transfers",
-              "split": 1
+              "duration": 1
             }
           }
         ],
@@ -47,7 +47,7 @@
               },
               "new": {
                 "category": "Internal Transfers",
-                "split": 1
+                "duration": 1
               }
             }
         ],
@@ -60,7 +60,7 @@
                 },
               "new": {
                 "category": "Internal Transfers",
-                "split": 1
+                "duration": 1
               }
             }
         ],
@@ -73,7 +73,7 @@
               },
               "new": {
                 "category": "Internal Transfers",
-                "split": 1
+                "duration": 1
               }
             }
         ],
@@ -86,7 +86,7 @@
               },
               "new": {
                 "category": "Internal Transfers",
-                "split": 1
+                "duration": 1
               }
             },
             {
@@ -97,7 +97,7 @@
               },
               "new": {
                 "category": "401k",
-                "split": 1
+                "duration": 1
               }
             },
             {
@@ -109,7 +109,7 @@
               },
               "new": {
                 "category": "401k",
-                "split": 1
+                "duration": 1
               }
             }
         ]

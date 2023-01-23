@@ -16,7 +16,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Xbox controller"
         }
       },
@@ -35,7 +35,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Xbox controller return"
         }
       },
@@ -54,7 +54,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Driver license"
         }
       },
@@ -73,7 +73,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Rogue Squadron"
         }
       },
@@ -92,7 +92,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Thrawn book"
         }
       },
@@ -111,7 +111,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Thrawn book"
         }
       },
@@ -130,7 +130,7 @@
         },
         "new": {
           "category": "Medical - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Dramamine"
         }
       },
@@ -149,7 +149,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Thrawn book"
         }
       },
@@ -168,7 +168,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Bags, HDMI, mask"
         }
       },
@@ -187,7 +187,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Car registration"
         }
       },
@@ -206,7 +206,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Discworld interesting times"
         }
       },
@@ -225,7 +225,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Thrawn book"
         }
       },
@@ -244,7 +244,7 @@
         },
         "new": {
           "category": "Self-improvement",
-          "split": 1,
+          "duration": 1,
           "comment": "Unity course"
         }
       },
@@ -263,7 +263,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Jill Christmas gift"
         }
       },
@@ -282,7 +282,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Xbox controller"
         }
       },
@@ -301,7 +301,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Lunch with Connor"
         }
       },
@@ -320,7 +320,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1,
+          "duration": 1,
           "comment": "Tuition refund"
         }
       },
@@ -339,7 +339,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 1,
+          "duration": 1,
           "comment": "PECO refund"
         }
       },
@@ -358,7 +358,7 @@
         },
         "new": {
           "category": "Income - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "GE stock"
         }
       },
@@ -377,7 +377,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Security depost"
         }
       },
@@ -396,7 +396,7 @@
         },
         "new": {
           "category": "Car - Parking Pass",
-          "split": 1,
+          "duration": 1,
           "comment": "Parking pass - 5 months"
         }
       },
@@ -415,7 +415,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Sled"
         }
       },
@@ -434,7 +434,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -452,7 +452,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -470,7 +470,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -488,7 +488,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -506,7 +506,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -524,7 +524,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -542,7 +542,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -560,7 +560,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -578,7 +578,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -588,7 +588,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -608,7 +608,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -618,7 +618,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -638,7 +638,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -648,7 +648,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -668,7 +668,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -678,7 +678,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -698,7 +698,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -708,7 +708,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -728,7 +728,7 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "split": 1,
+          "duration": 1,
           "comment": "FirstBank 529"
         },
         "create": [
@@ -738,7 +738,7 @@
             "comment": "",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "split": 1,
+            "duration": 1,
             "value": "$NEG"
           }
         ]
@@ -758,7 +758,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "chair"
         }
       },
@@ -777,7 +777,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "chair return"
         }
       },
@@ -796,7 +796,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 1,
+          "duration": 1,
           "comment": "New phone"
         }
       },
@@ -815,7 +815,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -833,7 +833,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "From airport"
         }
       },
@@ -852,7 +852,7 @@
         },
         "new": {
           "category": "Utilities",
-          "split": 1,
+          "duration": 1,
           "comment": "Phone case"
         }
       },
@@ -871,7 +871,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Battery"
         }
       },
@@ -890,7 +890,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -908,7 +908,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -926,7 +926,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Maintenance"
         }
       },
@@ -945,7 +945,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -963,7 +963,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Tire air"
         }
       },
@@ -982,7 +982,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Gas"
         }
       },
@@ -1001,7 +1001,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Tire air"
         }
       },
@@ -1020,7 +1020,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1039,7 +1039,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1058,7 +1058,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1077,7 +1077,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1096,7 +1096,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1115,7 +1115,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1134,7 +1134,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1153,7 +1153,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1171,7 +1171,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1190,7 +1190,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1209,7 +1209,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Judy's wedding"
         }
       },
@@ -1228,7 +1228,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Tire air"
         }
       },
@@ -1247,7 +1247,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1265,7 +1265,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "CO Besties"
         }
       },
@@ -1284,7 +1284,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Moving van"
         }
       },
@@ -1303,7 +1303,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Moving van"
         }
       },
@@ -1322,7 +1322,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1340,7 +1340,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Lani"
         }
       },
@@ -1359,7 +1359,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Carolyn"
         }
       },
@@ -1378,7 +1378,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Connor"
         }
       },
@@ -1397,7 +1397,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1415,7 +1415,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1433,7 +1433,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1451,7 +1451,7 @@
         },
         "new": {
           "category": "Income - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1469,7 +1469,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Cities Skylines?"
         }
       },
@@ -1488,7 +1488,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Ukraine bundle"
         }
       },
@@ -1507,7 +1507,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Moving van"
         }
       },
@@ -1526,7 +1526,7 @@
         },
         "new": {
           "category": "Medical - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1544,7 +1544,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Carolyn"
         }
       },
@@ -1563,7 +1563,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1581,7 +1581,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1599,7 +1599,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Hanna Christmas gift"
         }
       },
@@ -1618,7 +1618,7 @@
         },
         "new": {
           "category": "Medical - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Dramamine"
         }
       },
@@ -1637,7 +1637,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Water bottles for Thanksgiving"
         }
       },
@@ -1656,7 +1656,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Halloween"
         }
       },
@@ -1675,7 +1675,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Dresser"
         }
       },
@@ -1694,7 +1694,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "AC repair deductible"
         }
       },
@@ -1713,7 +1713,7 @@
         },
         "new": {
           "category": "Dates",
-          "split": 1,
+          "duration": 1,
           "comment": "Sybil"
         }
       },
@@ -1732,7 +1732,7 @@
         },
         "new": {
           "category": "Dates",
-          "split": 1,
+          "duration": 1,
           "comment": "Sybil"
         }
       },
@@ -1751,7 +1751,7 @@
         },
         "new": {
           "category": "Dates",
-          "split": 1,
+          "duration": 1,
           "comment": "Sybil"
         }
       },
@@ -1770,7 +1770,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1788,7 +1788,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Lyft to dealership"
         }
       },
@@ -1807,7 +1807,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Voting party"
         }
       },
@@ -1826,7 +1826,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Tim Burton Halloween"
         }
       },
@@ -1845,7 +1845,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "CO Besties"
         }
       },
@@ -1864,7 +1864,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1,
+          "duration": 1,
           "comment": "CO Besties"
         }
       },
@@ -1883,7 +1883,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Goose Creek at Rayback"
         }
       },
@@ -1902,7 +1902,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1,
+          "duration": 1,
           "comment": "Payment plan fee"
         }
       },
@@ -1921,7 +1921,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1939,7 +1939,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Group tab"
         }
       },
@@ -1958,7 +1958,7 @@
         },
         "new": {
           "category": "Entertainment - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -1976,7 +1976,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Abby airport toll"
         }
       },
@@ -1995,7 +1995,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Abby airport toll"
         }
       },
@@ -2014,7 +2014,7 @@
         },
         "new": {
           "category": "Rent",
-          "split": 1,
+          "duration": 1,
           "comment": "June pro-rate"
         }
       },
@@ -2033,7 +2033,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "TX registration receipt"
         }
       },
@@ -2052,7 +2052,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "CC was declining"
         }
       },
@@ -2071,7 +2071,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "CO income tax"
         }
       },
@@ -2090,7 +2090,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Trip reimbursement"
         }
       },
@@ -2109,7 +2109,7 @@
         },
         "new": {
           "category": "Big Fun",
-          "split": 1,
+          "duration": 1,
           "comment": "Trip reimbursement"
         }
       },
@@ -2128,7 +2128,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Clothes hangers"
         }
       },
@@ -2147,7 +2147,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Whisk"
         }
       },
@@ -2166,7 +2166,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1,
+          "duration": 1,
           "comment": "Design of Everyday Things after gift card"
         }
       },
@@ -2185,7 +2185,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1,
+          "duration": 1,
           "comment": "Compilers"
         }
       },
@@ -2204,7 +2204,7 @@
         },
         "new": {
           "category": "Clothes/Personal care",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2222,7 +2222,7 @@
         },
         "new": {
           "category": "Clothes/Personal care",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2240,7 +2240,7 @@
         },
         "new": {
           "category": "Clothes/Personal care",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2258,7 +2258,7 @@
         },
         "new": {
           "category": "Self-improvement",
-          "split": 1,
+          "duration": 1,
           "comment": "ITLL course"
         }
       },
@@ -2277,7 +2277,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2295,7 +2295,7 @@
         },
         "new": {
           "category": "Going Out",
-          "split": 1,
+          "duration": 1,
           "comment": "Saige"
         }
       },
@@ -2314,7 +2314,7 @@
         },
         "new": {
           "category": "Internet",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2332,7 +2332,7 @@
         },
         "new": {
           "category": "Internet",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2350,7 +2350,7 @@
         },
         "new": {
           "category": "Internet",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2368,7 +2368,7 @@
         },
         "new": {
           "category": "Books",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2386,7 +2386,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1,
+          "duration": 1,
           "comment": "Grubhub"
         }
       },
@@ -2405,7 +2405,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2423,7 +2423,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2441,7 +2441,7 @@
         },
         "new": {
           "category": "Housing - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2459,7 +2459,7 @@
         },
         "new": {
           "category": "Other - Other",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2477,7 +2477,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2495,7 +2495,7 @@
         },
         "new": {
           "category": "Food - nice",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2513,7 +2513,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2531,7 +2531,7 @@
         },
         "new": {
           "category": "Games",
-          "split": 1,
+          "duration": 1,
           "comment": "Headphones"
         }
       },
@@ -2550,7 +2550,7 @@
         },
         "new": {
           "category": "Long-term",
-          "split": 1
+          "duration": 1
         }
       },
       {
@@ -2568,7 +2568,7 @@
         },
         "new": {
           "category": "Car - Other",
-          "split": 1,
+          "duration": 1,
           "comment": "Car registration"
         }
       }

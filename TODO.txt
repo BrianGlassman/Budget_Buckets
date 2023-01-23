@@ -8,7 +8,7 @@ have ways to compare predicted vs actual
 	ex. "predicted final balance was X, updated prediction is Y"
 
 [BucketTimeline]
-implement split-style amortizing
+implement duration-style amortizing
 
 [Categorizing]
 Allow deleting records via template:
