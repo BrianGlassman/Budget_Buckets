@@ -65,81 +65,100 @@ class BaseTracker():
         return self._cat_tracker.keys()
 
 class DeltaTracker(BaseTracker):
-    _cat_tracker: dict[Cat, ConsecCalendar] # {category: {date: delta that day}}
-    _cat_dates: dict[Cat, list[Date]] # {category: [dates where single-day transactions occurred]}
-    _cat_amort: dict[Cat, list[Date]] # {category: [dates where amortized transactions began]}
+    _cat_tracker: dict[Cat, ConsecCalendar[float]] # {category: {date: delta that day}}
+    _cat_tdates: dict[Cat, list[Date]] # {category: [dates where single-day transactions occurred]}
+    _cat_adates: dict[Cat, list[Date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
         categories = Constants.categories_inclTodo
 
-        # Initialize the categorized tracker and date tracker
-        self._cat_tracker = {cat:ConsecCalendar() for cat in categories}
-        self._cat_dates = {cat:[] for cat in categories}
-        self._cat_amort = {cat:[] for cat in categories}
+        # Group transactions by category, then date
+        cat_transactions = {}
+        cat_transactions: dict[Cat, SparseCalendar[list[Record.CategorizedRecord]]]
+        strt = dated_transactions[0].date
+        stop = strt
+        for t in dated_transactions:
+            cat = t.category
+            if cat not in cat_transactions:
+                cat_transactions[cat] = SparseCalendar()
+            calendar = cat_transactions[cat]
+            date = t.date
+            if date not in calendar:
+                calendar[date] = []
+            calendar[date].append(t)
 
-        # Setup the first day
-        one_day = Constants.one_day
-        i = 0 # Index within dated_transactions
-        t = dated_transactions[i]
-        date = t.date
-        self.create_day(date)
-
-        # Fill in the trackers
-        while i < len(dated_transactions):
-            transaction_today = {cat:False for cat in categories}
-            amortized_today = {cat:False for cat in categories}
-
-            # Add the transactions until one has a different (later) date
-            while date == t.date:
-                # Check for single-day or amortized transaction
-                assert t.duration > 0
-                if t.duration == 1:
-                    transaction_today[t.category] = True
-                else:
-                    amortized_today[t.category] = True
-
-                # Add transaction value to today's running total
-                self._cat_tracker[t.category][date] += t.value
-
-                i += 1
-                if i == len(dated_transactions): break
-                t = dated_transactions[i]
-            if i == len(dated_transactions): break
-
-            # Note if there was a transaction today
-            for cat in categories:
-                if transaction_today[cat]:
-                    self._cat_dates[cat].append(date)
-                if amortized_today[cat]:
-                    self._cat_amort[cat].append(date)
-
-            # Go to tomorrow
-            date += one_day
-
-            # Add days until the next transaction is reached
-            while date < t.date:
-                self.create_day(date)
-                date += one_day
-            self.create_day(date)
-
-        for temp in self._cat_tracker.values():
-            temp.verify()
+            # Update bounds
+            if date < strt:
+                strt = date
+            if date > stop:
+                stop = date 
         
-    def create_day(self, date: Date) -> None:
-        """Create a new date, with 0 for all category values"""
-        for tracker in self._cat_tracker.values():
-            if date in tracker: raise RuntimeError(f"Date {date} already exists")
-            tracker[date] = 0
+        # Initialize the top-level trackers
+        self._cat_tracker = {}
+        self._cat_tdates = {}
+        self._cat_adates = {}
+
+        # Fill in the trackers category-by-category
+        for cat in categories:
+            # Get the transactions in this category
+            transactions = cat_transactions.get(cat, None)
+
+            # Skip categories with no transactions
+            if transactions is None: continue
+
+            # Initialize the trackers for this category
+            tracker = self._cat_tracker[cat] = ConsecCalendar()
+            tracker: ConsecCalendar[float]
+            tdates = self._cat_tdates[cat] = []
+            tdates: list[Date]
+            adates = self._cat_adates[cat] = []
+            adates: list[Date]
+
+            # Apply each day
+            date = strt
+            while date <= stop:
+                delta = 0
+
+                # Get transactions today
+                t_today = False
+                a_today = False
+                today_transactions = transactions.get(date, [])
+                for t in today_transactions:
+                    assert t.duration > 0
+                    if t.duration == 1:
+                        # Single-day transaction
+                        t_today = True
+                    else:
+                        # Amortized transaction
+                        a_today = True
+                    
+                    # Add transaction value to today's running total
+                    delta += t.value
+
+                # Note what kind of transactions happened today
+                if t_today:
+                    tdates.append(date)
+                if a_today:
+                    adates.append(date)
+                
+                tracker[date] = delta
+                
+                # Increment the date
+                date += Constants.one_day
+
+            tracker.verify()
+            assert list(tracker.dates())[ 0] == strt
+            assert list(tracker.dates())[-1] == stop
     
     def get_tdates(self, key: Cat) -> list[Date]:
         """Gets the single-day transaction dates for a given category"""
         assert key in Constants.categories_inclTodo
-        return self._cat_dates[key]
+        return self._cat_tdates[key]
     
     def get_adates(self, key: Cat) -> list[Date]:
         """Gets the amortized transaction start dates for a given category"""
         assert key in Constants.categories_inclTodo
-        return self._cat_amort[key]
+        return self._cat_adates[key]
 
 class Bucket:
     def __init__(self, name, max_value, monthly_refill):
