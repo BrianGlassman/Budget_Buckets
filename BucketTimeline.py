@@ -42,9 +42,11 @@ class BaseTracker():
 class DeltaTracker(BaseTracker):
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
+        categories = Constants.categories_inclTodo
 
-        # Initialize the categorized tracker
-        self._cat_tracker = {cat:{} for cat in Constants.categories_inclTodo}
+        # Initialize the categorized tracker and date tracker
+        self._cat_tracker = {cat:{} for cat in categories}
+        self._cat_dates = {cat:[] for cat in categories}
 
         # Setup the first day
         one_day = datetime.timedelta(days=1)
@@ -55,8 +57,11 @@ class DeltaTracker(BaseTracker):
 
         # Fill in the trackers
         while i < len(dated_transactions):
+            transaction_today = {cat:False for cat in categories}
+
             # Add the transactions until one has a different (later) date
             while date == t.date:
+                transaction_today[t.category] = True
                 old_value = self._cat_tracker[t.category][date]
                 if old_value is None:
                     new_value = t.value
@@ -68,6 +73,11 @@ class DeltaTracker(BaseTracker):
                 if i == len(dated_transactions): break
                 t = dated_transactions[i]
             if i == len(dated_transactions): break
+
+            # Note if there was a transaction today
+            for cat in categories:
+                if transaction_today[cat]:
+                    self._cat_dates[cat].append(date)
 
             # Go to tomorrow
             date += one_day
@@ -83,6 +93,11 @@ class DeltaTracker(BaseTracker):
         for tracker in self._cat_tracker.values():
             if date in tracker: raise RuntimeError(f"Date {date} already exists")
             tracker[date] = None
+    
+    def get_tdates(self, key: str) -> list[datetime.date]:
+        """Gets the transaction dates for a given category"""
+        assert key in Constants.categories_inclTodo
+        return self._cat_dates[key]
 
 class Bucket:
     def __init__(self, name, max_value, monthly_refill):
@@ -94,12 +109,11 @@ class BucketTracker(BaseTracker):
     _empty_bucket = Bucket("empty", 0, 0)
     def __init__(self, delta_tracker: DeltaTracker, initial_date: datetime.date, final_date: datetime.date, bucket_info: dict[str, Bucket] = {}):
         """refill_amts - {category: amount to add per DAY}"""
+        self._delta_tracker = delta_tracker
+
         self._cat_tracker = {}
-        self.transaction_dates: dict[str, list[datetime.date]]
-        self.transaction_dates = {}
         for cat in delta_tracker.categories:
             tracker = self._cat_tracker[cat] = {} ; tracker: dict[datetime.date, float | None]
-            tdates = self.transaction_dates[cat] = [] ; tdates: list[datetime.date]
             dtracker = delta_tracker.get_category(cat)
             bucket = bucket_info.get(cat, self._empty_bucket)
             refill = bucket.refill
@@ -118,9 +132,6 @@ class BucketTracker(BaseTracker):
                     tvalue = dtracker[date]
                     if tvalue is None:
                         tvalue = 0
-                    else:
-                        # Include the delta value, and mark this date as having a transaction
-                        tdates.append(date)
                 else:
                     tvalue = 0
 
@@ -140,7 +151,7 @@ class BucketTracker(BaseTracker):
     def plot(self, ax: plt.Axes, category: str) -> None:
         """Plot the values for the given category on the given Axes"""
         value_timeline = self.get_category(category)
-        tval_timeline = {date:v for date,v in value_timeline.items() if date in self.transaction_dates[category]}
+        tval_timeline = {date:v for date,v in value_timeline.items() if date in self._delta_tracker.get_tdates(category)}
         if all(v is None for v in tval_timeline.values()): return # Only plot categories with transactions
         # Plot transaction points
         line = ax.plot(tval_timeline.keys(), tval_timeline.values(), '.', label=category)[0]
