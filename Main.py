@@ -12,17 +12,24 @@ import Predict
 
 #%% Mode handling
 class Modes:
-    CategorizerView = 0
-    BucketTimeline = 1
-    TransactionTimeline = 2
-    MView = 3
+    class Mode:
+        def __init__(self, value: int) -> None:
+            self.value = value
+    MainMenu = Mode(-1)
+    CategorizerView = Mode(0)
+    BucketTimeline = Mode(1)
+    TransactionTimeline = Mode(2)
+    MView = Mode(3)
 
 class ModeSetter:
-    def __init__(self, mode, predict=False) -> None:
+    def __init__(self, mode=Modes.MainMenu, *, predict=False) -> None:
         self.mode = mode
         self._predict = predict
 
     # Mode properties
+    @property
+    def isMainMenu(self):
+        return self.mode == Modes.MainMenu
     @property
     def isCView(self):
         return self.mode == Modes.CategorizerView
@@ -42,6 +49,58 @@ class ModeSetter:
         return self._predict
 
 #%% Runners
+def run_MainMenu():
+    """Opens a GUI for selecting options"""
+    root = gui.Root(10, 10)
+
+    #------------------
+    # Make the Buttons
+    #------------------
+
+    # Labels
+    button_text = {
+        'Load': 'Load Data',
+        'Predict': 'Predict Future Transactions',
+        'MView': 'Summary Table',
+        'CView': 'Categorizing',
+        'TTime': 'Transaction Timeline',
+        'BTime': 'Bucket Timeline',
+    }
+
+    # Tkinter objects
+    button_objs = {}
+    width = max(len(v) for v in button_text.values())
+    def make_button(key):
+        button = gui.Button(master=root, text=button_text[key], width=width)
+        button.pack()
+        return button
+    for key in button_text.keys():
+        button_objs[key] = make_button(key=key)
+    
+    root.mainloop()
+
+def load_data():
+    # Parse
+    transactions = Parsing.run()
+
+    # Categorize
+    cat_filter = []
+    keep_filter = False
+    if mode.isBTime:
+        cat_filter = BucketTimeline.skip_cats
+        keep_filter = False
+    categorized_transactions = fn.categorize(transactions,
+        cat_filter=cat_filter, keep_filter=keep_filter)
+
+    # Pre-processing
+    categorized_transactions = Sorting.by_date(categorized_transactions)
+
+    return categorized_transactions
+
+def predict(actual_transactions):
+    future_transactions = Predict.make_predictions(actual_transactions)
+    return future_transactions
+
 def run_CView(categorized_transactions):
     # Needed because some functions use enclosing scope
     added_templates: list[CategorizerView.AddedTemplate] = []
@@ -101,30 +160,21 @@ def run_MView(categorized_transactions):
 
 #%% Main
 
-mode = ModeSetter(Modes.MView,
+mode = ModeSetter(
+    Modes.BucketTimeline,
     predict=True)
 
-# Parse
-transactions = Parsing.run()
+if mode.isMainMenu:
+    run_MainMenu()
+else:
+    categorized_transactions = load_data()
 
-# Categorize
-cat_filter = []
-keep_filter = False
-if mode.isBTime:
-    cat_filter = BucketTimeline.skip_cats
-    keep_filter = False
-categorized_transactions = fn.categorize(transactions,
-    cat_filter=cat_filter, keep_filter=keep_filter)
+    if mode.predict:
+        categorized_transactions.extend(predict(categorized_transactions))
 
-# Pre-processing
-categorized_transactions = Sorting.by_date(categorized_transactions)
-if mode.predict:
-    future_transactions = Predict.make_predictions(categorized_transactions)
-    categorized_transactions.extend(future_transactions)
-
-if mode.isCView:
-    run_CView(categorized_transactions)
-elif mode.isBTime:
-    run_BTime(categorized_transactions)
-elif mode.isMView:
-    run_MView(categorized_transactions)
+    if mode.isCView:
+        run_CView(categorized_transactions)
+    elif mode.isBTime:
+        run_BTime(categorized_transactions)
+    elif mode.isMView:
+        run_MView(categorized_transactions)
