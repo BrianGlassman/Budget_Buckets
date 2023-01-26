@@ -87,13 +87,16 @@ def _predict_regular(transactions, category):
 
     # Start one month after the last actual, then each month after that
     future_transactions = []
-    date = fn.inc_month(last_actual.date)
+    last_date = last_actual.date
+    date = fn.inc_month(last_date)
     while date < stop:
         new = Record.CategorizedRecord.from_RawRecord(last_actual.rawRecord, last_actual.category)
         new.desc = "--- Extrapolate from last instance ---"
         new.date = date
+        new.duration = (date - last_date).days
         future_transactions.append(new)
 
+        last_date = date
         date = fn.inc_month(date)
     
     return future_transactions
@@ -109,6 +112,7 @@ def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
     actual_transactions = categorized_transactions ; del categorized_transactions
     future_transactions = []
 
+    # Regularly occurring transactions
     for cat in _regular_cats:
         try:
             future_transactions.extend(_predict_regular(actual_transactions, cat))
@@ -116,6 +120,7 @@ def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
             print(cat)
             raise
 
+    # Extrapolations based on daily average
     for cat, daily_val in avg_values.items():
         # Get the last real transaction
         last_actual = [x for x in actual_transactions if x.category == cat][-1]
@@ -130,7 +135,7 @@ def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
             delta = (date - last_date).days
 
             new = Record.CategorizedRecord('', date, '--- Extrapolate daily average ---',
-                round(daily_val*delta, 2), category=cat)
+                round(daily_val*delta, 2), category=cat, duration=delta)
             future_transactions.append(new)
 
             last_date = date
