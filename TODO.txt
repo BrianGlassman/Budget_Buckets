@@ -7,9 +7,6 @@ have ways to compare predicted vs actual
 	ex. "this transaction was predicted to be X, but is actually Y"
 	ex. "predicted final balance was X, updated prediction is Y"
 
-[BucketTimeline]
-implement duration-style amortizing
-
 [Categorizing]
 Allow deleting records via template:
 	delete - special "DELETE" category (better than just empty "new" because less error-prone)
