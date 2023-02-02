@@ -126,13 +126,7 @@ def load_data():
     transactions = Parsing.run()
 
     # Categorize
-    cat_filter = []
-    keep_filter = False
-    if mode.isBTime:
-        cat_filter = BucketTimeline.skip_cats
-        keep_filter = False
-    categorized_transactions = fn.categorize(transactions,
-        cat_filter=cat_filter, keep_filter=keep_filter)
+    categorized_transactions = fn.categorize(transactions)
 
     # Pre-processing
     categorized_transactions = Sorting.by_date(categorized_transactions)
@@ -161,6 +155,9 @@ def run_CView():
 
 def run_BTime():
     categorized_transactions = Model.categorized_transactions
+
+    categorized_transactions = [x for x in categorized_transactions
+        if x.category not in BucketTimeline.skip_cats]
     
     bucket_tracker = BucketTimeline.pre_process(categorized_transactions)
 
