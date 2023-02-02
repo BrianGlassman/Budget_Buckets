@@ -11,11 +11,11 @@ _import_Functions.add_functions(Tk)
 
 class Root(Tk, _import_Functions.FuncDeclare):
     """A root window with useful settings"""
-    def __init__(self, x_stretch=1, y_stretch=1):
+    def __init__(self, x_stretch=1, y_stretch=1, title='Budget Buckets'):
         super().__init__()
         res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
         self.geometry(f"{res[0]}x{res[1]}")
-        self.title('Budget Buckets')
+        self.title(title)
                 
         # Always open in screen center
         # https://stackoverflow.com/questions/14910858/how-to-specify-where-a-tkinter-window-opens
