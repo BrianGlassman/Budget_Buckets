@@ -1,3 +1,9 @@
+[BUG]
+running Main -> load data -> bucket timeline
+	gives a keyerror on Salary
+[CAUSE]
+load_data uses the mode property to skip income categories
+
 [general]
 make a workflow that allows changing the data source
 	next step will be creating future transactions after parsing/categorizing but before display
@@ -6,6 +12,8 @@ make a workflow that allows changing the data source
 have ways to compare predicted vs actual
 	ex. "this transaction was predicted to be X, but is actually Y"
 	ex. "predicted final balance was X, updated prediction is Y"
+	primary use case: I made plans and decisions based on a prediction, want to know if those plans need to change
+	secondary use case: sanity-check if the prediction system works
 
 [Categorizing]
 Allow deleting records via template:

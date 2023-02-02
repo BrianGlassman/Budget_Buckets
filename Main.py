@@ -1,3 +1,5 @@
+from functools import partial
+
 import Parsing
 from Root import Sorting
 import Functionified as fn
@@ -48,6 +50,21 @@ class ModeSetter:
     def predict(self):
         return self._predict
 
+#%% Observers
+
+#%% Model
+class Model():
+    data_read = False
+    data_listeners = []
+
+    categorized_transactions: list
+
+    @classmethod
+    def update_data(cls):
+        cls.data_read = True
+        for listener in cls.data_listeners:
+            listener.update()
+
 #%% Runners
 def report(*args, **kwargs):
     """Either prints or displays to the gui, as appropriate"""
@@ -57,6 +74,44 @@ def report(*args, **kwargs):
 def run_MainMenu():
     """Opens a GUI for selecting options"""
     root = gui.Root(10, 10)
+
+    class Button:
+        key: str
+        label: str
+        # callback: 
+        dependencies: list[str]
+        obj: gui.Button
+        def __init__(self, key, label, *, callback, dependencies=set()) -> None:
+            self.key = key
+            self.label = label
+            self.callback = callback
+            self.dependencies = dependencies
+
+            if 'data' in dependencies:
+                Model.data_listeners.append(self)
+
+        def create(self, parent, width):
+            state = gui.tkinter.DISABLED if self.dependencies else gui.tkinter.ACTIVE
+            self.obj = gui.Button(master=parent, text=self.label, command=self.callback, width=width, state=state)
+
+        def update(self):
+            if Model.data_read:
+                self.obj['state'] = gui.tkinter.ACTIVE
+
+    buttons = {}
+    buttons: dict[str, Button]
+    def _make_buttons():
+        """Function for scoping reasons"""
+        for key, label, callback, dependencies in (
+                ('Load', 'Load Data', load_data, set()),
+                ('Predict', 'Predict Future Transactions', predict, {'data'}),
+                ('MView', 'Summary Table', run_MView, {'data'}),
+                ('CView', 'Categorizing', run_CView, {'data'}),
+                ('TTime', 'Transaction Timeline', None, {'data'}),
+                ('BTime', 'Bucket Timeline', run_BTime, {'data'}),
+            ):
+            buttons[key] = Button(key=key, label=label, callback=callback, dependencies=dependencies)
+    _make_buttons()
 
     # Make the buttons
     width = max(len(b.label) for b in buttons.values())
@@ -83,13 +138,18 @@ def load_data():
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
     report("Loading complete")
-    return categorized_transactions
+    Model.update_data()
+    
+    Model.categorized_transactions = categorized_transactions
 
-def predict(actual_transactions):
+def predict():
+    actual_transactions = Model.categorized_transactions
     future_transactions = Predict.make_predictions(actual_transactions)
     return future_transactions
 
-def run_CView(categorized_transactions):
+def run_CView():
+    categorized_transactions = Model.categorized_transactions
+
     # Needed because some functions use enclosing scope
     added_templates: list[CategorizerView.AddedTemplate] = []
     
@@ -99,12 +159,16 @@ def run_CView(categorized_transactions):
 
     CategorizerView.post_process(added_templates)
 
-def run_BTime(categorized_transactions):
+def run_BTime():
+    categorized_transactions = Model.categorized_transactions
+    
     bucket_tracker = BucketTimeline.pre_process(categorized_transactions)
 
     BucketTimeline.display(bucket_tracker)
 
-def run_MView(categorized_transactions):
+def run_MView():
+    categorized_transactions = Model.categorized_transactions
+    
     import datetime
 
     from Root import Constants
@@ -146,38 +210,6 @@ def run_MView(categorized_transactions):
 
     root.mainloop()
 
-#%% Buttons
-class Button:
-    key: str
-    label: str
-    # callback: 
-    dependencies: list[str]
-    obj: gui.Button
-    def __init__(self, key, label, *, callback, dependencies=set()) -> None:
-        self.key = key
-        self.label = label
-        self.callback = callback
-        self.dependencies = dependencies
-
-    def create(self, parent, width):
-        state = gui.tkinter.DISABLED if self.dependencies else gui.tkinter.ACTIVE
-        self.obj = gui.Button(master=parent, text=self.label, command=self.callback, width=width, state=state)
-
-buttons = {}
-buttons: dict[str, Button]
-def _make_buttons():
-    """Function for scoping reasons"""
-    for key, label, callback, dependencies in (
-            ('Load', 'Load Data', load_data, set()),
-            ('Predict', 'Predict Future Transactions', predict, {'data'}),
-            ('MView', 'Summary Table', run_MView, {'data'}),
-            ('CView', 'Categorizing', run_CView, {'data'}),
-            ('TTime', 'Transaction Timeline', None, {'data'}),
-            ('BTime', 'Bucket Timeline', run_BTime, {'data'}),
-        ):
-        buttons[key] = Button(key=key, label=label, callback=callback, dependencies=dependencies)
-_make_buttons()
-
 #%% Main
 
 mode = ModeSetter(
@@ -187,14 +219,14 @@ mode = ModeSetter(
 if mode.isMainMenu:
     run_MainMenu()
 else:
-    categorized_transactions = load_data()
+    load_data()
 
     if mode.predict:
-        categorized_transactions.extend(predict(categorized_transactions))
+        Model.categorized_transactions.extend(predict())
 
     if mode.isCView:
-        run_CView(categorized_transactions)
+        run_CView()
     elif mode.isBTime:
-        run_BTime(categorized_transactions)
+        run_BTime()
     elif mode.isMView:
-        run_MView(categorized_transactions)
+        run_MView()
