@@ -54,8 +54,10 @@ class ModeSetter:
 
 #%% Model
 class Model():
+    # Static class, so only use class variables
     data_read = False
     data_listeners = []
+    config = fn.CategorizeConfig()
 
     categorized_transactions: list
 
@@ -102,14 +104,17 @@ def run_MainMenu():
     buttons: dict[str, Button]
     def _make_buttons():
         """Function for scoping reasons"""
-        for key, label, callback, dependencies in (
-                ('Load', 'Load Data', load_data, set()),
-                ('Predict', 'Predict Future Transactions', predict, {'data'}),
-                ('MView', 'Summary Table', run_MView, {'data'}),
-                ('CView', 'Categorizing', run_CView, {'data'}),
-                ('TTime', 'Transaction Timeline', None, {'data'}),
-                ('BTime', 'Bucket Timeline', run_BTime, {'data'}),
+        for key, label, (callback, cb_args), dependencies in (
+                ('Config', 'Configure', (run_config, [root]), set()),
+                ('Load', 'Load Data', (load_data, []), set()),
+                ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
+                ('MView', 'Summary Table', (run_MView, []), {'data'}),
+                ('CView', 'Categorizing', (run_CView, []), {'data'}),
+                ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}),
+                ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
             ):
+            # Add the arguments to the callback
+            callback = partial(callback, *cb_args) # type: ignore
             buttons[key] = Button(key=key, label=label, callback=callback, dependencies=dependencies)
     _make_buttons()
 
@@ -121,17 +126,95 @@ def run_MainMenu():
     
     root.mainloop()
 
+def run_config(parent=None):
+    if parent is None:
+        window = gui.Root(3,6, title='Config')
+    else:
+        window = gui.Toplevel(parent, 3,6, title='Config')
+
+    def make_labelled_entry(parent, label: str, default: str):
+        '''Makes a label on the left, with an entry box filling the rest of the space'''
+        frame = gui.Frame(parent, relief=gui.tkinter.FLAT)
+        label_obj = gui.tkinter.Label(frame, text=label+' ')
+        label_obj.pack(side=gui.tkinter.LEFT)
+        var = gui.tkinter.StringVar(value=default)
+        entry = gui.Entry(frame, textvariable=var)
+        entry.pack(side=gui.tkinter.RIGHT)
+        frame.pack()
+        return var, entry
+
+    def make_labelled_checkbox(parent, label: str, default: bool, callback=None):
+        '''Makes a checkbox on the right, with a right-aligned label to the left of it'''
+        frame = gui.Frame(parent, relief=gui.tkinter.FLAT)
+        label_obj = gui.tkinter.Label(frame, text=label, anchor='e')
+        label_obj.pack(side=gui.tkinter.LEFT, fill='both', expand=1) # Needs BOTH fill and expand
+        var = gui.tkinter.BooleanVar(value=default)
+        if callback is not None: var.trace_add('write', callback)
+        checkbox = gui.tkinter.Checkbutton(frame, variable=var)
+        checkbox.pack(side=gui.tkinter.RIGHT, anchor='e')
+        frame.pack(fill='both')
+        return var, checkbox
+
+    cat_filter, _ = make_labelled_entry(window, 'Category filter', '[]')
+
+    # keep_filter
+    def callback(*_): Model.config.keep_filter = keep_filter.get() # type: ignore
+    keep_filter, _ = make_labelled_checkbox(window, 'Keep filter categories', Model.config.keep_filter, callback=callback)
+
+    # limit
+    def callback(*_): # type: ignore
+        """Uses enclosing scope so that I don't have to mess with order of definition vs packing"""
+        if do_limit.get():
+            limit_obj['state'] = gui.tkinter.NORMAL
+        else:
+            limit_obj['state'] = gui.tkinter.DISABLED
+            limit_callback(val=0)
+    do_limit, _ = make_labelled_checkbox(window, 'Limit transaction count', Model.config.limit > 0, callback)
+    def limit_callback(*_, val=None): # type: ignore
+        """Parse the limit field and set the Model config accordingly"""
+        if val is not None:
+            # Use the given value directly
+            assert isinstance(val, int)
+        else:
+            # Get the value from the GUI
+            # Entry gives a string, we want an int
+            val = limit.get().strip()
+            if val == '': val = 0
+            try:
+                val = int(val)
+            except ValueError:
+                raise RuntimeError(f"Tried to use a non-int limit {val}")
+        Model.config.limit = val
+    limit, limit_obj = make_labelled_entry(window, 'Limit', str(Model.config.limit))
+    limit.trace_add('write', limit_callback)
+    if do_limit.get():
+        limit_obj['state'] = gui.tkinter.NORMAL
+    else:
+        limit_obj['state'] = gui.tkinter.DISABLED
+
+    # use_cat
+    def callback(*_): Model.config.use_cat = use_cat.get() # type: ignore
+    use_cat, cb = make_labelled_checkbox(window, 'Include categorized', Model.config.use_cat, callback)
+
+    # use_uncat
+    def callback(*_): Model.config.use_uncat = use_uncat.get() # type: ignore
+    use_uncat, _ = make_labelled_checkbox(window, 'Include uncategorized', Model.config.use_uncat, callback)
+
+    # If this is the Root, start the mainloop
+    if parent is None:
+        window.mainloop()
+
 def load_data():
     # Parse
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions)
+    categorized_transactions = fn.categorize(transactions, **Model.config)
 
     # Pre-processing
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
-    report("Loading complete")
+    report(f"Loading complete ({len(categorized_transactions)} records)")
     Model.update_data()
     
     Model.categorized_transactions = categorized_transactions

@@ -9,29 +9,40 @@ import TkinterPlus.Values as _import_Values
 class Tk(tkinter.Tk): pass
 _import_Functions.add_functions(Tk)
 
+def _init_toplevel(self, x_stretch, y_stretch, title):
+    """Used to initialize Root and TopLevel windows"""
+    res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
+    self.geometry(f"{res[0]}x{res[1]}")
+    self.title(title)
+            
+    # Always open in screen center
+    # https://stackoverflow.com/questions/14910858/how-to-specify-where-a-tkinter-window-opens
+    # get screen width and height
+    ws = self.winfo_screenwidth() # width of the screen
+    hs = self.winfo_screenheight() # height of the screen
+    
+    # calculate x and y coordinates for the Tk root window
+    x = (ws/2) - (res[0]/2)
+    y = (hs/2) - (res[1]/2)
+    
+    # set the dimensions of the screen 
+    # and where it is placed
+    self.geometry('%dx%d+%d+%d' % (res[0], res[1], x, y))
+    
+    self.gridconfigure()
+
 class Root(Tk, _import_Functions.FuncDeclare):
     """A root window with useful settings"""
     def __init__(self, x_stretch=1, y_stretch=1, title='Budget Buckets'):
         super().__init__()
-        res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
-        self.geometry(f"{res[0]}x{res[1]}")
-        self.title(title)
-                
-        # Always open in screen center
-        # https://stackoverflow.com/questions/14910858/how-to-specify-where-a-tkinter-window-opens
-        # get screen width and height
-        ws = self.winfo_screenwidth() # width of the screen
-        hs = self.winfo_screenheight() # height of the screen
-        
-        # calculate x and y coordinates for the Tk root window
-        x = (ws/2) - (res[0]/2)
-        y = (hs/2) - (res[1]/2)
-        
-        # set the dimensions of the screen 
-        # and where it is placed
-        self.geometry('%dx%d+%d+%d' % (res[0], res[1], x, y))
-        
-        self.gridconfigure()
+        _init_toplevel(self, x_stretch=x_stretch, y_stretch=y_stretch, title=title)
+_import_Functions.add_functions(Root)
+
+class Toplevel(tkinter.Toplevel, _import_Functions.FuncDeclare):
+    """A TopLevel window with the same useful settings as Root"""
+    def __init__(self, parent, x_stretch=1, y_stretch=1, title='Sub-window'):
+        super().__init__(master=parent)
+        _init_toplevel(self, x_stretch=x_stretch, y_stretch=y_stretch, title=title)
 _import_Functions.add_functions(Root)
 
 class Button(tkinter.Button, _import_Functions.FuncDeclare):
@@ -92,8 +103,9 @@ class Combobox(ttk.Combobox, _import_Functions.FuncDeclare):
 _import_Functions.add_functions(Combobox)
 
 class Entry(tkinter.Entry, _import_Functions.FuncDeclare):
-    def __init__(self, master = None, *args, **kwargs):
-        super().__init__(master, *args, **kwargs)
+    # Like a Text widget, but single-line
+    def __init__(self, master = None, textvariable: tkinter.Variable = ..., *args, **kwargs):
+        super().__init__(master, textvariable=textvariable, *args, **kwargs)
 _import_Functions.add_functions(Entry)
 
 class Frame(tkinter.Frame, _import_Functions.FuncDeclare):
@@ -136,6 +148,7 @@ class ScrollableFrame(Frame, _import_Functions.FuncDeclare):
 _import_Functions.add_functions(ScrollableFrame)
 
 class Text(tkinter.Text, _import_Functions.FuncDeclare):
+    # Like an Entry widget, but multi-line
     def __init__(self, master = None, cnf = {}, text = '', **kwargs):
         super().__init__(master, cnf, **kwargs)
         assert isinstance(text, str)

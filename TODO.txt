@@ -1,3 +1,10 @@
+[BUG]
+income transactions count towards the Categorize limit even if they are then discarded
+	ex. limit=10, use_internal=False -> 8 expenses, 2 income -> returns only 8 items
+	might also happen for category filtering?
+
+[MainMenu]
+make the rest of the runners respect the existing Root window
 
 [general]
 make a workflow that allows changing the data source
