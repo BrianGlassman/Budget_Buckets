@@ -105,7 +105,7 @@ def run_MainMenu():
     def _make_buttons():
         """Function for scoping reasons"""
         for key, label, (callback, cb_args), dependencies in (
-                ('Config', 'Configure', (run_config, [root]), set()),
+                ('Config', 'Configure', (run_config, []), set()),
                 ('Load', 'Load Data', (load_data, []), set()),
                 ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
                 ('MView', 'Summary Table', (run_MView, []), {'data'}),
@@ -126,11 +126,8 @@ def run_MainMenu():
     
     root.mainloop()
 
-def run_config(parent=None):
-    if parent is None:
-        window = gui.Root(3,6, title='Config')
-    else:
-        window = gui.Toplevel(parent, 3,6, title='Config')
+def run_config():
+    window = gui.Root(3,6, title='Config')
 
     def make_labelled_entry(parent, label: str, default: str):
         '''Makes a label on the left, with an entry box filling the rest of the space'''
@@ -200,9 +197,7 @@ def run_config(parent=None):
     def callback(*_): Model.config.use_uncat = use_uncat.get() # type: ignore
     use_uncat, _ = make_labelled_checkbox(window, 'Include uncategorized', Model.config.use_uncat, callback)
 
-    # If this is the Root, start the mainloop
-    if parent is None:
-        window.mainloop()
+    window.mainloop()
 
 def load_data():
     # Parse

@@ -3,8 +3,8 @@ income transactions count towards the Categorize limit even if they are then dis
 	ex. limit=10, use_internal=False -> 8 expenses, 2 income -> returns only 8 items
 	might also happen for category filtering?
 
-[MainMenu]
-make the rest of the runners respect the existing Root window
+[BUG]
+CategorizerView shows the split poorly
 
 [general]
 make a workflow that allows changing the data source
@@ -38,6 +38,9 @@ Allow typing with autocomplete for category
 [Categorizing]
 Some system for creating generic templates
 	will probably need to figure out how to put it in the right nested group
+
+[MView]
+Option for hiding categories with no transactions
 
 [Categorizing]
 There should probably be a section for "overrides" at the top of the templates to manually override generic templates

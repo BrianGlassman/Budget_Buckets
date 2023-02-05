@@ -6,44 +6,49 @@ from tkinter import ttk
 import TkinterPlus.Functions as _import_Functions
 import TkinterPlus.Values as _import_Values
 
-class Tk(tkinter.Tk): pass
-_import_Functions.add_functions(Tk)
+class Root(tkinter.Tk, _import_Functions.FuncDeclare):
+    """A Root or Toplevel window, as appropriate, with useful settings"""
+    running: bool
+    def __init__(self, x_stretch, y_stretch, title = 'Budget Buckets'):
+        global root
+        if root is None:
+            # Create a Root window and save as root
+            tkinter.Tk.__init__(self)
+            root = self
+        else:
+            # Create a Toplevel window
+            tkinter.Toplevel.__init__(self, master=root) # type: ignore
+        
+        res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
+        self.geometry(f"{res[0]}x{res[1]}")
+        self.title(title)
+                
+        # Always open in screen center
+        # https://stackoverflow.com/questions/14910858/how-to-specify-where-a-tkinter-window-opens
+        # get screen width and height
+        ws = self.winfo_screenwidth() # width of the screen
+        hs = self.winfo_screenheight() # height of the screen
+        
+        # calculate x and y coordinates for the Tk root window
+        x = (ws/2) - (res[0]/2)
+        y = (hs/2) - (res[1]/2)
+        
+        # Set the dimensions of the screen and where it is placed
+        self.geometry('%dx%d+%d+%d' % (res[0], res[1], x, y))
+        
+        self.gridconfigure()
 
-def _init_toplevel(self, x_stretch, y_stretch, title):
-    """Used to initialize Root and TopLevel windows"""
-    res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
-    self.geometry(f"{res[0]}x{res[1]}")
-    self.title(title)
-            
-    # Always open in screen center
-    # https://stackoverflow.com/questions/14910858/how-to-specify-where-a-tkinter-window-opens
-    # get screen width and height
-    ws = self.winfo_screenwidth() # width of the screen
-    hs = self.winfo_screenheight() # height of the screen
+        self.running = False
     
-    # calculate x and y coordinates for the Tk root window
-    x = (ws/2) - (res[0]/2)
-    y = (hs/2) - (res[1]/2)
-    
-    # set the dimensions of the screen 
-    # and where it is placed
-    self.geometry('%dx%d+%d+%d' % (res[0], res[1], x, y))
-    
-    self.gridconfigure()
-
-class Root(Tk, _import_Functions.FuncDeclare):
-    """A root window with useful settings"""
-    def __init__(self, x_stretch=1, y_stretch=1, title='Budget Buckets'):
-        super().__init__()
-        _init_toplevel(self, x_stretch=x_stretch, y_stretch=y_stretch, title=title)
+    def mainloop(self) -> None:
+        """Gives a way to call mainloop safely"""
+        if self.running:
+            return
+        else:
+            self.running = True
+            super().mainloop()
 _import_Functions.add_functions(Root)
-
-class Toplevel(tkinter.Toplevel, _import_Functions.FuncDeclare):
-    """A TopLevel window with the same useful settings as Root"""
-    def __init__(self, parent, x_stretch=1, y_stretch=1, title='Sub-window'):
-        super().__init__(master=parent)
-        _init_toplevel(self, x_stretch=x_stretch, y_stretch=y_stretch, title=title)
-_import_Functions.add_functions(Root)
+root: Root = None # type: ignore
 
 class Button(tkinter.Button, _import_Functions.FuncDeclare):
     def __init__(self, *args, **kwargs):
