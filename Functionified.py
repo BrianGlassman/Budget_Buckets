@@ -28,8 +28,6 @@ class CategorizeConfig(_collections_abc.Mapping):
 _default_categorize_config = CategorizeConfig()
 
 df = _default_categorize_config
-def categorize_configed(transactions, config: CategorizeConfig):
-    return categorize(transactions, cat_filter=config.cat_filter)
 def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filter, limit=df.limit, use_uncat=df.use_uncat, use_cat=df.use_cat):
     """
     cat_filter - list of categories to include/exclude
