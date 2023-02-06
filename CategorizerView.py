@@ -68,10 +68,18 @@ def create_table(root, categorized_transactions):
     table = gui.ScrollableFrame(root)
     table.pack(side = "top", fill="both", expand=True)
 
-    # Populate the table
+    # Table settings
     widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
     widths = list(widths.values())
+
+    # Header
+    for c, name in enumerate(['Account', 'Date', 'Description', 'Value', 'UNUSED source-specific', 'Category']):
+        if name.startswith('UNUSED'): continue
+        gui.tkinter.Label(table.frame, text=name, anchor='center', relief='solid', bd=1, width=widths[c]).grid(row=0, column=c)
+
+    # Populate the table
     for r, row in enumerate(categorized_transactions):
+        r += 1 # Account for header
         for c, cell in enumerate(row.values()):
             if c == 4: continue # Skip the source-specific data
             elif c == 5:
@@ -118,6 +126,12 @@ def post_process(added_templates):
         print("FAILED TO ADD TEMPLATES:")
         print(failed_add)
         print('\n\n F A I L E D   T E M P L A T E S\n\n')
+    
+    # Summary line at the end
+    if len(successful_add) == 0 and len(failed_add) == 0:
+        print("\nNo changes made\n")
+    elif len(successful_add) > 0 and len(failed_add) == 0:
+        print("\nSuccess\n")
 
 #%% Main
 if __name__ == "__main__":
@@ -127,7 +141,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, cat_filter=[], keep_filter=True)
+    categorized_transactions = fn.categorize(transactions, use_cat=False, use_uncat=True)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)

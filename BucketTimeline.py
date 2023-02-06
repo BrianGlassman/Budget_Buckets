@@ -359,6 +359,9 @@ bucket_info = { # {category: (max, monthly)}
 
     # Personal Care / Clothing
     'Clothes/Personal care': (100, 30),
+
+    # Uncategorized
+    Constants.todo_category: (0, 0),
 }
 bucket_info = {category:Bucket(category, max_value, monthly_refill) for category, (max_value, monthly_refill) in bucket_info.items()}
 
