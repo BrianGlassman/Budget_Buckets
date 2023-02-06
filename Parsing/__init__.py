@@ -20,6 +20,7 @@ def _make_date(raw):
         raise TypeError("Unknown type: " + str(type(raw)))
 
 class BaseParser(_import_ABC):
+    fields: list[str]
     transactions: list[RawRecord]
     def __init__(self, account: str, infile: str):
         self.account = account
@@ -41,10 +42,17 @@ class USAAParser(BaseUSAAParser):
     File has a header with fields:
     Date, Description, Original Description, Category, Amount, Status
     """
+    fields = 'Date,Description,Original Description,Category,Amount,Status'.split(',')
     # Somewhere (maybe around late 2022?) USAA changed the export format. This is for parsing things after that change
     def _parse(self):
         with open(self.infile, 'r') as f:
-            return [self._make_transaction(line) for line in _import_csv.DictReader(f)]
+            fields = f.readline().strip().split(',')
+            if fields != self.fields:
+                print(fields)
+                print('does not match expected')
+                print(self.fields)
+                raise RuntimeError("Header mismatch")
+            return [self._make_transaction(line) for line in _import_csv.DictReader(f, fieldnames=fields)]
 
     def _make_transaction(self, line) -> RawRecord:
         line = dict(line) # Copy so that it can be modified
@@ -205,13 +213,17 @@ class CUParser(BaseParser):
         
         return transactions
 
+def parse_file(parseCls, account: str, filepath: str):
+    parser = parseCls(account, filepath)
+    parser: BaseParser
+    return parser.transactions
+
 def run() -> list:
     """
     Parse all the data sources
     Returns a list of RawRecords
     """
-    import os
-    assert os.path.exists("Raw_Data"), "Raw_Data folder does not exist (Git ignores it)"
+    assert _import_os.path.exists("Raw_Data"), "Raw_Data folder does not exist (Git ignores it)"
 
     transactions: list = []
     for parseCls, account, file in [
@@ -225,9 +237,8 @@ def run() -> list:
         (USAAParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
         (USAAParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
         ]:
-        file = os.path.join("Raw_Data", file)
-        parser = parseCls(account, file)
-        transactions.extend(parser.transactions)
+        file = _import_os.path.join("Raw_Data", file)
+        transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=file))
     for file, prefix, date in [
         ('CU_2021-08-10_bill.txt',   'CU Fall 2021', '08/23/2021'),
         ('CU_2021-10-12_bill.txt',   'CU Fall 2021', '08/23/2021'),
@@ -242,7 +253,7 @@ def run() -> list:
         ('CU_2023-01-10_bill.txt', 'CU Spring 2023', '01/17/2023')
         ]:
         # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
-        file = os.path.join("Raw_Data", file)
+        file = _import_os.path.join("Raw_Data", file)
         date = _import_date_parser.parse(date).date()
         try:
             parser = CUParser("CU Bills", file, prefix, date)
