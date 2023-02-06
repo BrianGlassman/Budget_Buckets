@@ -217,7 +217,10 @@ def load_data():
 def predict():
     actual_transactions = Model.categorized_transactions
     future_transactions = Predict.make_predictions(actual_transactions)
-    return future_transactions
+    oldest = future_transactions[0].date
+    newest = future_transactions[-1].date
+    report(f"Predicted {len(future_transactions)} future transactions from {oldest} to {newest}")
+    Model.categorized_transactions.extend(future_transactions)
 
 def run_CView():
     categorized_transactions = Model.categorized_transactions
@@ -297,7 +300,7 @@ else:
     load_data()
 
     if mode.predict:
-        Model.categorized_transactions.extend(predict())
+        predict()
 
     if mode.isCView:
         run_CView()
