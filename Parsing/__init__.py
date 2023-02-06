@@ -229,8 +229,10 @@ def run() -> list:
     for parseCls, account, file in [
         (USAAParser, "Checking", "2021q4_chk.csv"),
         (USAAParser, "Checking", "2022_chk.csv"),
+        (USAAParser, "Checking", "2023_chk.csv"),
         (USAAParser, "Credit Card", "2021q4_cc.csv"),
         (USAAParser, "Credit Card", "2022_cc.csv"),
+        (USAAParser, "Credit Card", "2023_cc.csv"),
         (USAAParser, "M1", "M1_manual.csv"),
         (USAAParser, "FStocks", "Fidelity_Investment_manual.csv"),
         (USAAParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),

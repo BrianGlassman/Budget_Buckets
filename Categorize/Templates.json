@@ -568,6 +568,20 @@
           "category": "Salary",
           "duration": 14
         }
+      },
+      {
+        "name": "Satori",
+        "pattern": {
+          "desc": "Satori Space in Payroll",
+          "value": [
+            20,
+            250
+          ]
+        },
+        "new": {
+          "category": "Salary",
+          "duration": 14
+        }
       }
     ],
     "Income - Other": [
@@ -578,6 +592,20 @@
           "value": [
             0,
             30
+          ]
+        },
+        "new": {
+          "category": "Income - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "Cash rewards credit",
+        "pattern": {
+          "desc": "Reward Points Redemption",
+          "value": [
+            0,
+            90
           ]
         },
         "new": {
@@ -722,6 +750,64 @@
           "value": 8135.29,
           "source_specific": {
             "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Tuition refund"
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid to Checking",
+            "duration": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Spring 2023 Refund",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-01-23",
+          "desc": "Ucb Bursar Refund",
+          "value": 3683.04,
+          "source_specific": {
+            "Original Description": "UCB Bursar       REFUND     ***********2703",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Tuition refund"
+        },
+        "create": [
+          {
+            "account": "CU Bills",
+            "category": "Internal Transfers",
+            "date": "$SAME",
+            "desc": "Paid to Checking",
+            "duration": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
+        "name": "CU Spring 2023 Refund",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-01-30",
+          "desc": "Ucb Bursar Refund",
+          "value": 111.44,
+          "source_specific": {
+            "Original Description": "UCB Bursar       REFUND     ***********2703",
             "Category": "Income",
             "Status": "Posted"
           }

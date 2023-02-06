@@ -2571,6 +2571,139 @@
           "duration": 1,
           "comment": "Car registration"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-28",
+          "desc": "Keystone River Run Sports",
+          "value": -156.18,
+          "source_specific": {
+            "Original Description": "KEYSTONE RIVER RUN SPORTSKEYSTONE     CO",
+            "Category": "Sporting Goods",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "ski trip - gear purchase"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-28",
+          "desc": "Norski",
+          "value": -29.24,
+          "source_specific": {
+            "Original Description": "NORSKI LLC               KEYSTONE     CO",
+            "Category": "Sporting Goods",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "ski trip - pants rental"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-29",
+          "desc": "Keystone Ski School",
+          "value": -281.0,
+          "source_specific": {
+            "Original Description": "KEYSTONE SKI SCHOOL      888-838-0495 CO",
+            "Category": "Sports",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "ski trip - lesson package"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-25",
+          "desc": "Itl Print Lab Quota",
+          "value": -5.0,
+          "source_specific": {
+            "Original Description": "ITL PRINT LAB QUOTA      303-492-7757 CO",
+            "Category": "Education",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "duration": 1,
+          "comment": "ITLL class"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-01",
+          "desc": "LAZ Parking",
+          "value": -5.0,
+          "source_specific": {
+            "Original Description": "LAZ PARKING 760139       DENVER       CO",
+            "Category": "Parking",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Parking Pass",
+          "duration": 1,
+          "comment": "NYE parking"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-01-01",
+          "desc": "Lyft",
+          "value": -17.92,
+          "source_specific": {
+            "Original Description": "LYFT   1 RIDE 12-31      855-865-9553 CA",
+            "Category": "Rental Car & Taxi",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "Christmas travel"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-01-03",
+          "desc": "Mobile Deposit",
+          "value": 187.5,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Income - Other",
+          "duration": 1,
+          "comment": "USAA holiday party"
+        }
       }
     ]
   }
