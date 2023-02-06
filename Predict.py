@@ -126,9 +126,16 @@ def make_predictions(actual_transactions) -> list[Record.CategorizedRecord]:
         last_actual = [x for x in actual_transactions if x.category == cat][-1]
         last_date: datetime.date = last_actual.date
 
-        # Start predictions on 15th of next month
-        date = last_date.replace(day=15)
+        # Make predictions on 1st of each month
+        date = last_date.replace(day=1)
         date = fn.inc_month(date)
+
+        # Predicted expenses between last transaction and next 1st
+        # Apply on last_date so that there isn't a gap in spending
+        delta = (date - last_date).days
+        new = Record.CategorizedRecord('', last_date, '--- Pro-rated Extrapolate daily average ---',
+                round(daily_val*delta, 2), category=cat, duration=delta)
+        future_transactions.append(new)
 
         # Create one predicted transaction per month
         while date < stop:
