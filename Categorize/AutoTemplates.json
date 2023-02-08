@@ -567,126 +567,6 @@
         "name": "",
         "pattern": {
           "account": "Checking",
-          "date": "2021-11-05",
-          "desc": "Transfer",
-          "value": -500.0,
-          "source_specific": {
-            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
-            "Category": "Transfer",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Internal Transfers",
-          "duration": 1,
-          "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
-      },
-      {
-        "name": "",
-        "pattern": {
-          "account": "Checking",
-          "date": "2021-11-02",
-          "desc": "Transfer",
-          "value": -0.06,
-          "source_specific": {
-            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
-            "Category": "Transfer",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Internal Transfers",
-          "duration": 1,
-          "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
-      },
-      {
-        "name": "",
-        "pattern": {
-          "account": "Checking",
-          "date": "2021-11-02",
-          "desc": "Transfer",
-          "value": -0.01,
-          "source_specific": {
-            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
-            "Category": "Transfer",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Internal Transfers",
-          "duration": 1,
-          "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
-      },
-      {
-        "name": "",
-        "pattern": {
-          "account": "Checking",
-          "date": "2021-11-02",
-          "desc": "Transfer",
-          "value": 0.06,
-          "source_specific": {
-            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
-            "Category": "Transfer",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Internal Transfers",
-          "duration": 1,
-          "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
-      },
-      {
-        "name": "",
-        "pattern": {
-          "account": "Checking",
           "date": "2022-12-19",
           "desc": "Check #1091",
           "value": -6000.0,
@@ -700,48 +580,7 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
-      },
-      {
-        "name": "",
-        "pattern": {
-          "account": "Checking",
-          "date": "2021-11-02",
-          "desc": "Transfer",
-          "value": 0.01,
-          "source_specific": {
-            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
-            "Category": "Transfer",
-            "Status": "Posted"
-          }
-        },
-        "new": {
-          "category": "Internal Transfers",
-          "duration": 1,
-          "comment": "FirstBank 529"
-        },
-        "create": [
-          {
-            "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
-            "date": "$SAME",
-            "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "",
@@ -2703,6 +2542,78 @@
           "category": "Income - Other",
           "duration": 1,
           "comment": "USAA holiday party"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "529",
+          "date": "2021-11-05",
+          "desc": "Transfer from USAA",
+          "value": 500.0,
+          "source_specific": {
+            "Original Description": "INET TFER FIRSTBANK",
+            "Category": "",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "529",
+          "date": "2022-06-07",
+          "desc": "Payment to CU",
+          "value": -500.0,
+          "source_specific": {
+            "Original Description": "CU BOULDER UNIV OF CO BLDR",
+            "Category": "",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "529",
+          "date": "2022-11-30",
+          "desc": "Deposit",
+          "value": 7735.34,
+          "source_specific": {
+            "Original Description": "DEPOSIT * NON-PREPRINTED FORM",
+            "Category": "",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "529",
+          "date": "2022-12-16",
+          "desc": "Mobile Deposit",
+          "value": 6000.0,
+          "source_specific": {
+            "Original Description": "MOBILE DEPOSIT",
+            "Category": "",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
         }
       }
     ]

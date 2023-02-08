@@ -110,6 +110,10 @@ class OldUSAAParser(BaseUSAAParser):
         # Anything left in the line is source-specific values
         return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
 
+class FirstBankParser(USAAParser):
+    # Only PDF downloads available, so I made a CSV that looks like the USAA CSV
+    pass
+
 class CUParser(BaseParser):
     summary_desc = "Billing Hours Activity Through Amount Due"
 
@@ -269,6 +273,7 @@ def run() -> list:
         (USAAParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
         (USAAParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
         (USAAParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
+        (FirstBankParser, "529", "529.csv"),
         ]:
         file = _import_os.path.join("Raw_Data", file)
         transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=file))

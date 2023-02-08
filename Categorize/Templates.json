@@ -708,6 +708,23 @@
             "value": "$NEG"
           }
         ]
+      },
+      {
+        "name": "FirstBank 529",
+        "pattern": {
+          "account": "Checking",
+          "desc": "Transfer",
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "FirstBank 529"
+        }
       }
     ],
     "CU Transfers": [
