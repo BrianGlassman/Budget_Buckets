@@ -3,6 +3,12 @@ import re as _imported_re
 import json as _imported_json
 from functools import partial
 
+if __name__ == "__main__":
+    import sys
+    path = _imported_os.path.dirname(__file__)
+    path = _imported_os.path.dirname(path)
+    sys.path.append(path)
+
 from Root.Constants import categories as _imported_categories
 
 #TODO validate field names against the appropriate data structures somehow
@@ -302,3 +308,14 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     assert len(categorized_transactions) > 0
 
     return categorized_transactions
+
+if __name__ == "__main__":
+    import Record
+    import Parsing
+
+    transactions: list[Record.RawRecord]
+    transactions = Parsing.run()
+
+    categorized_transactions = run(transactions=transactions, 
+        limit=0, use_uncat=True, use_cat=True, use_internal=True)
+
