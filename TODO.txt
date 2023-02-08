@@ -1,3 +1,7 @@
+[general]
+figure out how to do user settings/templates and data so that other people can use it
+	don't worry about GUIs for now, assume they're Python devs themselves
+
 [config]
 use a selectable dropdown or separate window for category filter
 
@@ -91,11 +95,6 @@ tracker sheets:
 [MView]
 general:
 	make all sheets available, either through tabs or a main menu
-
-[General]
-Make something that looks like MView but groups things by account rather than category
-	Idea is to see how money moves between accounts
-	Can also be used for checksumming against current balance
 
 [Categorizing]
 Make a module to convert from the old system (with categorizations and descriptions) to the new one

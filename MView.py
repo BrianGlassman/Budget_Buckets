@@ -106,47 +106,23 @@ def make_summary_sheet(parent, values, starting_balance: float, months: list[dat
     _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
     _next_row(coords)
 
-    # Income
-    _add_text(table.frame, "Income", widths['label'], coords, anchor='center')
-    total = 0
-    for month in months:
-        val = 0
-        for month_vals in values['income'].values():
-            val += month_vals[month]
-        monthly_delta[month] += val
-        total += val
-        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
-    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
-    _next_row(coords)
+    def make_section(title: str, source):
+        _add_text(table.frame, title, widths['label'], coords, anchor='center')
+        total = 0
+        for month in months:
+            val = 0
+            for month_vals in source:
+                val += month_vals[month]
+            monthly_delta[month] += val
+            total += val
+            _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+        _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
+        _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
+        _next_row(coords)
 
-    # Expenses
-    _add_text(table.frame, "Expenses", widths['label'], coords, anchor='center')
-    total = 0
-    for month in months:
-        val = 0
-        for month_vals in values['expenses'].values():
-            val += month_vals[month]
-        monthly_delta[month] += val
-        total += val
-        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
-    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
-    _next_row(coords)
-
-    # Internal
-    _add_text(table.frame, "Internal", widths['label'], coords, anchor='center')
-    total = 0
-    for month in months:
-        val = 0
-        for month_vals in values['internal'].values():
-            val += month_vals[month]
-        monthly_delta[month] += val
-        total += val
-        _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
-    _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-    _add_text(table.frame, f"${total/month_count:0,.2f}", widths['average'], coords, anchor='e')
-    _next_row(coords)
+    make_section("Income", values['income'].values())
+    make_section("Expenses", values['expenses'].values())
+    make_section("Internal", values['internal'].values())
 
     # Net
     _add_text(table.frame, "Net Change", widths['label'], coords, anchor='center')
@@ -173,8 +149,6 @@ def make_summary_sheet(parent, values, starting_balance: float, months: list[dat
 
 #%% Main
 def run():
-    import Functionified as fn
-
     # Parse
     transactions = Parsing.run()
 
@@ -194,7 +168,7 @@ def run():
         date = fn.inc_month(date)
 
     cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
-    values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
+    values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: {cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
         values[group] = {cat:{month:0 for month in months} for cat in categories}

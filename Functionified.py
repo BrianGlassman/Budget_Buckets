@@ -2,6 +2,7 @@ import datetime
 import _collections_abc
 
 from Root import Constants
+import Record
 
 class CategorizeConfig(_collections_abc.Mapping):
     cat_filter: list
@@ -28,7 +29,8 @@ class CategorizeConfig(_collections_abc.Mapping):
 _default_categorize_config = CategorizeConfig()
 
 df = _default_categorize_config
-def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filter, limit=df.limit, use_uncat=df.use_uncat, use_cat=df.use_cat):
+def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filter, limit=df.limit,
+    use_uncat=df.use_uncat, use_cat=df.use_cat, use_internal=False) -> list[Record.CategorizedRecord]:
     """
     cat_filter - list of categories to include/exclude
     keep_filter - if False, exclude the categories in cat_filter. If True, include only those categories
@@ -41,7 +43,7 @@ def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filte
     assert all(cat in Constants.categories for cat in cat_filter)
 
     categorized_transactions = Categorize.run(
-        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=False)
+        transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=use_internal)
 
     categorized_transactions = [x for x in categorized_transactions if
         (x.category in cat_filter) == keep_filter # weird boolean logic to make filtering work correctly
