@@ -709,10 +709,30 @@
           }
         ]
       }
-    ]
-  },
-  "Advanced": {
-    "CU Payments": [
+    ],
+    "CU Transfers": [
+      {
+        "name": "CU Payments - CU Side",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Payments"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "CU Refunds - CU Side",
+        "pattern": {
+          "account": "CU Bills",
+          "desc": "REGEX:CU (Fall|Spring|Summer) 202[123] Refunds"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
       {
         "name": "CU Fall 2021",
         "pattern": {
@@ -729,17 +749,7 @@
         "new": {
           "category": "Internal Transfers",
           "duration": 1
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Fall 2021 Refund",
@@ -758,17 +768,7 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "Tuition refund"
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid to Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Spring 2023 Refund",
@@ -787,17 +787,7 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "Tuition refund"
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid to Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Spring 2023 Refund",
@@ -816,17 +806,7 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "Tuition refund"
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid to Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Spring 2022",
@@ -844,17 +824,7 @@
         "new": {
           "category": "Internal Transfers",
           "duration": 1
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Summer 2022",
@@ -872,17 +842,7 @@
         "new": {
           "category": "Internal Transfers",
           "duration": 1
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Fall 2022 Payment Plan",
@@ -894,17 +854,7 @@
         "new": {
           "category": "Internal Transfers",
           "duration": 1
-        },
-        "create": [
-          {
-            "account": "CU Bills",
-            "category": "Internal Transfers",
-            "date": "$SAME",
-            "desc": "Paid from Checking",
-            "duration": 1,
-            "value": "$NEG"
-          }
-        ]
+        }
       },
       {
         "name": "CU Loans",
@@ -926,7 +876,11 @@
             "value": "$NEG"
           }
         ]
-      },
+      }
+    ]
+  },
+  "Advanced": {
+    "CU Payments": [
       {
         "name": "CU Meal Plan",
         "pattern": {
@@ -946,8 +900,8 @@
             "category": "Groceries",
             "desc": "CU Meal Plan - Groceries",
             "date": "$SAME",
-            "duration": 105,
-            "value": -200.00
+            "value": -200.00,
+            "duration": 105
           }
         ]
       },

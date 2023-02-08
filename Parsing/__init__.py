@@ -5,6 +5,12 @@ import datetime as _import_datetime
 from dateutil import parser as _import_date_parser
 import os as _import_os
 
+if __name__ == "__main__":
+    import sys
+    path = _import_os.path.dirname(__file__)
+    path = _import_os.path.dirname(path)
+    sys.path.append(path)
+
 from Record import RawRecord
 
 def _make_date(raw):
@@ -123,9 +129,10 @@ class CUParser(BaseParser):
         lines = [x.strip() for x in lines]
 
         class Charge:
-            def __init__(self, name: str, value: float = 0.0):
+            def __init__(self, name: str, value: float = 0.0, date: _import_datetime.date|None = None):
                 self.name = name
                 self.value = value
+                self.date = date
 
             def add(self, other) -> None:
                 self.value += other
@@ -144,8 +151,10 @@ class CUParser(BaseParser):
             def __round__(self, *args, **kwargs):
                 return self.value.__round__(*args, **kwargs)
 
-        checksum = Charge('checksum')
-        loans = Charge('Loans')
+        prev_balance = 0
+        final_balance = 0
+
+        # Aggregate charges for each term
         fees = Charge('Fees')
         tuition = Charge('Tuition')
         rent = Charge('Rent')
@@ -154,21 +163,35 @@ class CUParser(BaseParser):
         supplies = Charge('Supplies')
         parking = Charge('Parking')
         costs = [fees, tuition, rent, insurance, meals, supplies, parking]
+
+        # Keep transfers un-aggregated for comparing with other accounts
+        loans = []
+        payments = []
+        refunds = []
+        def transfers() -> list[Charge]:
+            return loans + payments + refunds
+
+        # Parse
         for line in lines:
             words = line.split(' ')
             if self.summary_desc in line:
                 # Summary row
                 desc = ' '.join(words[0:-1])
-                checksum.add(float(words[-1].replace(',','')))
+                final_balance = float(words[-1].replace(',',''))
+                final_balance = -final_balance # Negate to match costs
                 assert desc == self.summary_desc, f"Summary desc is actually '{desc}'"
             elif len(words) == 3 and  "PREVIOUS BALANCE" in line:
                 # Changes the checksum, but is not a transaction
-                value = float(words[-1].replace(',',''))
-                checksum.add(-value)
+                prev_balance = float(words[-1].replace(',',''))
+                prev_balance = -prev_balance # Negate to match costs
             else:
                 # Data row
+                date = _import_date_parser.parse(words[0]).date()
                 desc = ' '.join(words[1:-1])
                 value = float(words[-1].replace(',',''))
+                # Use NEGATIVE of value:
+                # CU calls it positive when I owe them money, I want that to be an expense (negative)
+                value = -value
                 if desc in  ("Family Housing Rent", "GFH Security Deposit"):
                     rent.add(value)
                 elif desc == "Student Health Insurance Plan":
@@ -189,27 +212,35 @@ class CUParser(BaseParser):
                 elif desc == "Parking Permit":
                     parking.add(value)
                 elif 'Direct Unsubsidized Loan' in desc:
-                    loans.add(-value)
+                    loans.append(Charge("Loans", value, date=date))
                 elif desc in (
                     "Internet Check Payment",
-                    "Internet Check Payment - PP",
+                    "Internet Check Payment - PP"):
+                    payments.append(Charge("Payments", value, date=date))
+                elif desc in (
                     "Refund",
                     "Refund-Federal Aid"):
-                    # Changes the checksum, but is not a transaction
-                    checksum.add(-value)
+                    refunds.append(Charge("Refunds", value, date=date))
                 else:
                     raise NotImplementedError(f"No rule for '{desc}'")
         
         # Checksumming
-        assert round(sum(costs), 2) == round(checksum + loans, 2), f"{sum(costs)} != {checksum + loans}"
+        bill_sum = round(prev_balance + sum(costs) + sum(transfers()), 2)
+        balance = round(final_balance, 2)
+        assert bill_sum == balance, f"${bill_sum:0,.2f} != ${balance:0,.2f}"
 
         transactions: list[RawRecord] = []
-        for item in costs + [loans]:
+        # Pretend all the costs took place on the first day of the term
+        for item in costs:
             if item.value != 0:
-                # Use NEGATIVE of value:
-                # CU calls it positive when I owe them money, I want that to be an expense (negative)
-                rec = RawRecord(self.account, self.date, self.prefix+item.name, -item.value)
+                rec = RawRecord(self.account, self.date, self.prefix+item.name, item.value)
                 transactions.append(rec)
+        # Use the real date for transfers to make comparison with other accounts easier
+        for item in transfers():
+            assert item.value != 0
+            assert item.date is not None
+            rec = RawRecord(self.account, item.date, self.prefix+item.name, item.value)
+            transactions.append(rec)
         
         return transactions
 
@@ -264,3 +295,6 @@ def run() -> list:
             raise
         transactions.extend(parser.transactions)
     return transactions
+
+if __name__ == "__main__":
+    run()
