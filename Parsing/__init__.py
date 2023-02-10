@@ -253,14 +253,14 @@ def parse_file(parseCls, account: str, filepath: str):
     parser: BaseParser
     return parser.transactions
 
-def run() -> list:
+def run() -> list[RawRecord]:
     """
     Parse all the data sources
     Returns a list of RawRecords
     """
     assert _import_os.path.exists("Raw_Data"), "Raw_Data folder does not exist (Git ignores it)"
 
-    transactions: list = []
+    transactions: list[RawRecord] = []
     for parseCls, account, file in [
         (USAAParser, "Checking", "2021q4_chk.csv"),
         (USAAParser, "Checking", "2022_chk.csv"),
