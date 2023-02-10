@@ -223,7 +223,9 @@ class CUParser(BaseParser):
                     payments.append(Charge("Payments", value, date=date))
                 elif desc in (
                     "Refund",
-                    "Refund-Federal Aid"):
+                    "Refund-Federal Aid",
+                    "Direct Dep Refund",
+                    "Direct Dep Refund-Federal Aid"):
                     refunds.append(Charge("Refunds", value, date=date))
                 else:
                     raise NotImplementedError(f"No rule for '{desc}'")
@@ -288,7 +290,8 @@ def run() -> list[RawRecord]:
         ('CU_2022-10-11_bill.txt',   'CU Fall 2022', '08/22/2022'),
         ('CU_2022-11-08_bill.txt',   'CU Fall 2022', '08/22/2022'),
         ('CU_2022-12-13_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2023-01-10_bill.txt', 'CU Spring 2023', '01/17/2023')
+        ('CU_2023-01-10_bill.txt', 'CU Spring 2023', '01/17/2023'),
+        ('CU_2023-02-07_bill.txt', 'CU Spring 2023', '01/17/2023'),
         ]:
         # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
         file = _import_os.path.join("Raw_Data", file)
