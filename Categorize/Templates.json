@@ -710,6 +710,38 @@
         ]
       },
       {
+        "name": "FirstBank 529 Test Transfer",
+        "pattern": {
+          "account": "Checking",
+          "desc": "Transfer",
+          "value": [
+            -0.10,
+            0.10
+          ],
+          "source_specific": {
+            "Original Description": "FIRSTBANK        INET TFER  ***********6997",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "FirstBank 529 test transfer"
+        },
+        "create": [
+          {
+            "account": "529",
+            "category": "Internal Transfers",
+            "comment": "",
+            "date": "$SAME",
+            "desc": "Test transfer",
+            "duration": 1,
+            "value": "$NEG"
+          }
+        ]
+      },
+      {
         "name": "FirstBank 529",
         "pattern": {
           "account": "Checking",
