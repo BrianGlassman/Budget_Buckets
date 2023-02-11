@@ -101,3 +101,6 @@ Make a module to convert from the old system (with categorizations and descripti
 	This is better than doing it manually, or making something temporary
 	Actually... this should probably be lower priority
 	Just start fresh from some date, and ignore the old stuff for now
+
+[general]
+Create false data to include for other users to use as example

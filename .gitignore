@@ -1,7 +1,3 @@
-# Data files
-# TODO create false data to use for testing
-Raw_Data
-
 # Visual Studio
 .vs
 *.sln
