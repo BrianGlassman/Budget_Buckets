@@ -3,6 +3,11 @@ import datetime
 from Root import Constants
 
 class BaseRecord:
+    account: str
+    date: datetime.date
+    desc: str
+    value: float
+    source_specific: dict
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
         assert isinstance(account, str), f"Type is '{type(account)}'"
         self.account = account

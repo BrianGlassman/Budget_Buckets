@@ -131,20 +131,28 @@ class ScrollableFrame(Frame, _import_Functions.FuncDeclare):
 
     # FIXME the table contents overlap the frame border and scrollbars
 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.canvas = Canvas(master = self) # Need a canvas to scroll
-        self.frame = Frame(master = self) # The frame inside the canvas
+    def __init__(self, parent, vscroll=True, hscroll=True, **kwargs):
+        kwargs.setdefault('bd', 0)
+        super().__init__(parent, **kwargs)
+        sub_kwargs = {}
+        for key in ['bg',]:
+            if key in kwargs: # Only add the key if it exists (so don't use kwargs.get)
+                sub_kwargs[key] = kwargs[key]
+        self.canvas = Canvas(master = self, bd=0, relief='flat', **sub_kwargs) # Need a canvas to scroll
+        self.frame = Frame(master = self, bd=0, relief='flat', **sub_kwargs) # The frame inside the canvas
 
-        self.vScroll = tkinter.Scrollbar(master = self, orient = "vertical", command = self.canvas.yview)
-        self.hScroll = tkinter.Scrollbar(master = self, orient = "horizontal", command = self.canvas.xview)
-        self.canvas.configure(yscrollcommand=self.vScroll.set)
-        self.canvas.configure(xscrollcommand=self.hScroll.set)
-        self.vScroll.pack(side = "right", fill = "y")
-        self.hScroll.pack(side = "bottom", fill = "x")
+        if vscroll:
+            self.vScroll = tkinter.Scrollbar(master = self, orient = "vertical", command = self.canvas.yview)
+            self.canvas.configure(yscrollcommand=self.vScroll.set)
+            self.vScroll.pack(side = "right", fill = "y")
+        
+        if hscroll:
+            self.hScroll = tkinter.Scrollbar(master = self, orient = "horizontal", command = self.canvas.xview)
+            self.canvas.configure(xscrollcommand=self.hScroll.set)
+            self.hScroll.pack(side = "bottom", fill = "x")
 
         self.canvas.pack(side = "left", fill = "both", expand = True)
-        self.canvas.create_window((4, 4), window=self.frame, anchor="nw", tags="self.frame")
+        self.canvas.create_window((0,0), window=self.frame, anchor="nw", tags="self.frame")
         self.frame.bind("<Configure>", self.onFrameConfigure)
 
     def onFrameConfigure(self, event):

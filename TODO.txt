@@ -1,3 +1,9 @@
+[templates]
+GUI to view templates
+	1. just a big table
+	2. heirarchy of dropdowns
+	3. table is interactive to add new templates
+
 [general]
 figure out how to do user settings/templates and data so that other people can use it
 	don't worry about GUIs for now, assume they're Python devs themselves
@@ -81,6 +87,7 @@ Use matplotlip picker event handler thing to allow interrogating points (ex. wha
 
 [BucketTimeline]
 Hard-code initial value for each bucket
+	right now starts as bucket max value
 
 [MView]
 summary sheet:

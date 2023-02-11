@@ -65,7 +65,7 @@ def Cmt_onModification(event: CmtEvent):
 
 #%% Table processing
 def create_table(root, categorized_transactions):
-    table = gui.ScrollableFrame(root)
+    table = gui.ScrollableFrame(root, hscroll=False)
     table.pack(side = "top", fill="both", expand=True)
 
     # Table settings
