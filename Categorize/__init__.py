@@ -11,6 +11,35 @@ if __name__ == "__main__":
 
 from Root.Constants import categories as _imported_categories
 
+class Template:
+    name: str
+    pattern: dict
+    new: dict
+    create: list[dict]
+    def __init__(self, name: str, pattern: dict, new: dict, create=[]):
+        self.name = name
+        self.pattern = pattern
+        self.new = new
+        self.create = create
+
+    def as_dict(self):
+        ret = {
+            'name': self.name,
+            'pattern': self.pattern,
+            'new': self.new}
+        # Only include a "create" entry if it's relevant
+        # This mimics the old dictionary behavior
+        if self.create:
+            ret['create'] = self.create
+        return ret
+    
+    def __str__(self) -> str:
+        return f"Template<{self.as_dict()}>"
+
+    def __repr__(self) -> str:
+        return str(self)
+    
+
 #TODO validate field names against the appropriate data structures somehow
 
 # Regex notes:
@@ -76,7 +105,7 @@ _checker = {'desc': __check_desc,
 for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
     _checker.setdefault(key, partial(__check_generic, key=key))
 
-def match_templates(record) -> dict | None:
+def match_templates(record) -> Template | None:
     """Check against the common templates. Return whichever template
     matches, or None if no match"""
 
@@ -84,7 +113,7 @@ def match_templates(record) -> dict | None:
         matched = None
         # Check the transaction against all templates in order
         for template in _templates:
-            pattern = template['pattern']
+            pattern = template.pattern
             match = True
             # Run the checker for each field that has a pattern, break if any fail
             for key in pattern:
@@ -133,6 +162,17 @@ def load_templates(file: str) -> dict[str, dict]:
     except _imported_json.decoder.JSONDecodeError:
         print(f"Failed to decode template file {file}")
         raise
+
+    # Remove the schema specification
+    if '$schema' in templates:
+        templates.pop('$schema')
+
+    # Convert lowest level of nested dicts to Template
+    for sg in templates.values():
+        for group in sg.values():
+            assert isinstance(group, list)
+            for i in range(len(group)):
+                group[i] = Template(**group[i])
     return templates
 
 # Load templates
@@ -149,20 +189,19 @@ for templates_file in [
     _nested_templates.update(load_templates(templates_file))
 
 # Templates file is nested to help with organization, flatten it to be directly useful
-_templates: list[dict] = []
+_templates: list[Template] = []
 def _flatten(dct: dict) -> None:
     try:
         if isinstance(dct, list):
             # Recurse into Array
             for v in dct:
                 _flatten(v)
-        elif all(k in dct for k in ('name', 'pattern', 'new')):
+        elif isinstance(dct, Template):
             # Found a template, add it
             _templates.append(dct)
         else:
             # Recurse into Object
             for k,v in dct.items():
-                if k == "$schema": continue
                 _flatten(v)
     except Exception:
         print("Failed:" + str(dct))
@@ -180,7 +219,7 @@ def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
     if 'category' in new:
         assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
 
-    template = {'name': name, 'pattern': pattern, 'new': new}
+    template = Template(name=name, pattern=pattern, new=new)
     # Drill down to the right group
     foo = _nested_templates
     try:
@@ -201,6 +240,8 @@ def save_templates() -> None:
                 return _re_prefix + obj.pattern
             elif isinstance(obj, datetime.date):
                 return str(obj)
+            elif isinstance(obj, Template):
+                return obj.as_dict()
             else:
                 # Let the base class default method raise the TypeError
                 return super().default(obj)
@@ -209,6 +250,7 @@ def save_templates() -> None:
         _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
 def _create_from_template(create: dict, rawRecord):
+    """Used to create a Record for elements in Template.create"""
     from dateutil import parser as dateParser
     import Record
     # TODO should have some info tracking the original source (in source_specific?)
@@ -258,8 +300,8 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                 continue
         else:
             # Found a match, fill in the templated values
-            new = match['new']
-            create = match.get('create', [])
+            new = match.new
+            create = match.create
 
             category = new['category']
             if category == Constants.del_category:

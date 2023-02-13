@@ -18,6 +18,7 @@ class AddedTemplate:
     new: dict # Dict of new values to set
 
 def update_templates(transaction: Record.RawRecord, new: dict) -> None:
+    # FIXME doesn't detect generic templates (i.e. only detects existing individual templates)
     # Get/create the matching entry
     for template in added_templates:
         # Overwrite existing, if there is one
