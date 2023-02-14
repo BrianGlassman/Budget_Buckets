@@ -122,6 +122,10 @@ class Frame(tkinter.Frame, _import_Functions.FuncDeclare):
         #kwargs.setdefault('font', font)
 
         super().__init__(master, cnf, **kwargs)
+    
+    def clear(self):
+        for widget in self.winfo_children():
+            widget.destroy()
 _import_Functions.add_functions(Frame)
 
 class ScrollableFrame(Frame, _import_Functions.FuncDeclare):
