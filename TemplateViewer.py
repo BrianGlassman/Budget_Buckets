@@ -1,9 +1,12 @@
 import Categorize
 import TkinterPlus as gui
 
-templates = Categorize._templates
+nest_templates = Categorize._nested_templates
+flat_templates = Categorize._templates
 # Get the longest name so the buttons can be sized appropriately
-width = max(len(t['name']) for t in templates)
+width = max(len(t.name) for t in flat_templates)
+# Adjust to account for indenting
+# width += 16
 
 root = gui.Root(10, 10, "Templates")
 
@@ -11,30 +14,33 @@ bd = 10
 
 # Create everything first
 outer_frame = gui.Frame(root, name='outer_frame',
-    bg='black', bd=bd, relief='ridge')
-canvas = gui.Canvas(outer_frame, name='canvas',
-    bg='cyan', bd=0, relief='ridge')
-scroll = gui.tkinter.Scrollbar(outer_frame, orient='vertical', command=canvas.yview)
-inner_frame = gui.Frame(canvas, name='inner_frame',
-    bg='green', bd=bd, relief='ridge')
-window = canvas.create_window(0, 0, window=inner_frame, anchor='nw')
-buttons = [gui.Button(inner_frame, text=t['name'], width=width) for t in templates if t['name']]
+    bg='black', bd=bd, relief='ridge',)
+tree = gui.ttk.Treeview(outer_frame, show='tree')
+vscroll = gui.tkinter.Scrollbar(outer_frame, orient='vertical', command=tree.yview)
+hscroll = gui.tkinter.Scrollbar(outer_frame, orient='horizontal', command=tree.xview)
 detail_frame = gui.Frame(root, name='detail_frame',
     bg='yellow', bd=bd, relief='ridge')
 
 # Connect the scrollbar to things
-canvas.configure(yscrollcommand=scroll.set)
-inner_frame.bind('<Configure>', lambda _: canvas.configure(scrollregion=canvas.bbox('all')), add=True)
+tree.configure(xscrollcommand=hscroll.set, yscrollcommand=vscroll.set)
 
-# Make canvas match inner_frame size
-inner_frame.bind('<Configure>', lambda e: canvas.configure(width=e.width, height=e.height), add=True)
+# Fill the tree
+for trunk_name, trunk in nest_templates.items():
+    trunk_id = tree.insert(parent='', index='end', text=trunk_name, tags='trunk')
+    for branch_name, branch in trunk.items():
+        branch_id = tree.insert(parent=trunk_id, index='end', text=branch_name, tags='branch')
+        for leaf in branch:
+            assert isinstance(leaf, Categorize.Template)
+            tree.insert(parent=branch_id, index='end', text=leaf.name, tags='leaf')
+tree.tag_configure('trunk', font=('', 0, 'bold'))
+tree.tag_configure('branch', font=('', 0, 'bold'))
 
 # Pack everything
 outer_frame.pack(side='left', fill='y', expand=False)
-scroll.pack(side='left', fill='y', expand=False)
-canvas.pack(side='left', fill='both', expand=True)
-# inner_frame.pack(side='left', fill='none', expand=False)
-for b in buttons: b.pack()
+vscroll.pack(side='left', fill='y', expand=False)
+hscroll.pack(side='bottom', fill='x', expand=False)
+tree.pack(side='left', fill='both', expand=True)
+tree.column('#0', stretch=False)
 detail_frame.pack(side='left', fill='both', expand=True)
 
 root.mainloop()
