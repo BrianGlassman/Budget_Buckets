@@ -8,7 +8,7 @@ width = max(len(t.name) for t in flat_templates)
 # Adjust to account for indenting
 # width += 16
 
-root = gui.Root(10, 10, "Templates")
+root = gui.Root(20, 15, "Templates")
 
 bd = 10
 
@@ -35,10 +35,10 @@ leaf_map = {}
 for trunk_name, trunk in nest_templates.items():
     trunk_id = tree.insert(parent='', index='end', text=trunk_name, tags='trunk')
     for branch_name, branch in trunk.items():
-        branch_id = tree.insert(parent='', index='end', text=branch_name, tags='branch')
+        branch_id = tree.insert(parent='', index='end', text=' '+branch_name, tags='branch')
         for leaf in branch:
             assert isinstance(leaf, Categorize.Template)
-            leaf_id = tree.insert(parent='', index='end', text=leaf.name, tags='leaf')
+            leaf_id = tree.insert(parent='', index='end', text='   '+leaf.name, tags='leaf')
             leaf_map[leaf_id] = leaf
 # Make non-leaves bold
 tree.tag_configure('trunk', font=bold)
@@ -67,14 +67,24 @@ def placeholder_detail():
 def make_detail(t: Categorize.Template):
     frame = detail_frame
     frame.clear()
-    name = gui.tkinter.Label(frame, text=t.name, font=bold)
-    name.pack(side='top', anchor='nw', fill='x', expand=False)
-    for k,v in t.as_dict().items():
-        if k == name: continue
-        label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
-        label.pack(side='top', anchor='w')
-        value = gui.tkinter.Label(frame, text=str(v), anchor='w')
-        value.pack(side='top', anchor='w', fill='x', expand=False)
+    name = gui.tkinter.Label(frame, text=t.name, font=bold, anchor='center')
+    name.pack(side='top', anchor='n', fill='x', expand=False)
+
+    def make_sub(title: str, dct: dict):
+        frame = gui.Frame(detail_frame)
+        label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
+        label.pack(side='top', anchor='n', fill='x', expand=False)
+        for k,v in dct.items():
+            label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
+            label.pack(side='top', anchor='w')
+            value = gui.tkinter.Label(frame, text=str(v), anchor='w')
+            value.pack(side='top', anchor='w', fill='x', expand=False)
+        frame.pack(side='left', fill='both', expand=True)
+
+    make_sub('Pattern', t.pattern)
+    make_sub('New', t.new)
+    for i,c in enumerate(t.create):
+        make_sub(f'Create {i}', c)
 
 # Pack everything
 outer_frame.pack(side='left', fill='y', expand=False)
