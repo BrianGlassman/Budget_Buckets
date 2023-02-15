@@ -1,5 +1,6 @@
 """Wrappers around base tkinter classes to add my expanded functionality"""
 
+import typing
 import tkinter
 from tkinter import ttk
 
@@ -197,3 +198,32 @@ class WatchedText(Text, _import_Functions.FuncDeclare):
     def watch(self, func):
         self.bind("<<TextModified>>", func)
 _import_Functions.add_functions(WatchedText)
+
+class Treeview(ttk.Treeview, _import_Functions.FuncDeclare):
+    pass
+_import_Functions.add_functions(Treeview)
+
+class TreeviewScrollable(Treeview):
+    def __init__(self, parent, *args,
+        vscroll: typing.Literal['', 'left', 'right'] = 'left',
+        hscroll: typing.Literal['', 'bottom', 'top'] = 'bottom',
+        **kwargs):
+        self.outer_frame = Frame(parent)
+        super().__init__(master=self.outer_frame, *args, **kwargs)
+        
+        if vscroll:
+            self.vscroll = tkinter.Scrollbar(self.outer_frame, orient='vertical', command=self.yview)
+            self.configure(yscrollcommand=self.vscroll.set)
+            self.vscroll.pack(side=vscroll, fill='y', expand=False)
+        
+        if hscroll:
+            self.hscroll = tkinter.Scrollbar(self.outer_frame, orient='horizontal', command=self.xview)
+            self.configure(xscrollcommand=self.hscroll.set)
+            self.hscroll.pack(side=hscroll, fill='x', expand=False)
+
+        super().pack(fill='both', expand=True)
+    
+    def pack(self, *args, **kwargs):
+        """Pass-through to the outer Frame"""
+        return self.outer_frame.pack(*args, **kwargs)
+

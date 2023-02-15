@@ -17,14 +17,9 @@ bold = ('', 0, 'bold')
 # Create everything first
 outer_frame = gui.Frame(root, name='outer_frame',
     bg='black', bd=bd, relief='ridge',)
-tree = gui.ttk.Treeview(outer_frame, show='tree')
-vscroll = gui.tkinter.Scrollbar(outer_frame, orient='vertical', command=tree.yview)
-hscroll = gui.tkinter.Scrollbar(outer_frame, orient='horizontal', command=tree.xview)
+tree = gui.TreeviewScrollable(outer_frame, show='tree', vscroll='left', hscroll='bottom')
 detail_frame = gui.Frame(root, name='detail_frame',
     bg='yellow', bd=bd, relief='ridge')
-
-# Connect the scrollbar to things
-tree.configure(xscrollcommand=hscroll.set, yscrollcommand=vscroll.set)
 
 leaf_map = {}
 # Fill the tree (nested version)
@@ -83,8 +78,6 @@ def make_detail(t: Categorize.Template):
 
 # Pack everything
 outer_frame.pack(side='left', fill='y', expand=False)
-vscroll.pack(side='left', fill='y', expand=False)
-hscroll.pack(side='bottom', fill='x', expand=False)
 tree.pack(side='left', fill='both', expand=True)
 tree.column('#0', stretch=False)
 detail_frame.pack(side='left', fill='both', expand=True)
