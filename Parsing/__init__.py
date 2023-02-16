@@ -5,6 +5,7 @@ import csv as _import_csv
 import datetime as _import_datetime
 from dateutil import parser as _import_date_parser
 import os as _import_os
+import json as _import_json
 
 if __name__ == "__main__":
     import sys
@@ -313,38 +314,16 @@ def run() -> list[RawRecord]:
     assert _import_os.path.exists("Raw_Data"), "Raw_Data folder does not exist (Git ignores it)"
 
     transactions: list[RawRecord] = []
-    for parseCls, account, file in [
-        (USAAParser, "Checking", "2021q4_chk.csv"),
-        (USAAParser, "Checking", "2022_chk.csv"),
-        (USAAParser, "Checking", "2023_chk.csv"),
 
-        (USAAParser, "Credit Card", "2021q4_cc.csv"),
-        (USAAParser, "Credit Card", "2022_cc.csv"),
-        (USAAParser, "Credit Card", "2023_cc.csv"),
 
-        (GenericParser, "M1", "M1_manual.csv"),
-        (GenericParser, "FStocks", "Fidelity_Investment_manual.csv"),
-        (GenericParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
-        (GenericParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
-        (GenericParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
-
-        (FirstBankParser, "529", "529.csv"),
-
-        (CUParser, 'CU Bills', 'CU_2021-08-10_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2021-10-12_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-01-11_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-02-08_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-06-08_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-08-09_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-09-13_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-10-11_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-11-08_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2022-12-13_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2023-01-10_bill.txt'),
-        (CUParser, 'CU Bills', 'CU_2023-02-07_bill.txt'),
-        ]:
-        file = _import_os.path.join("Raw_Data", file)
-        transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=file))
+    with open(_import_os.path.join('Parsing', 'ParseSettings.json'), 'r') as f:
+        mapper_list = _import_json.load(f)
+    for mapper in mapper_list:
+        parseCls = Parsers[mapper['parser']]
+        account = mapper['account']
+        filename = mapper['file']
+        filepath = _import_os.path.join("Raw_Data", filename)
+        transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=filepath))
     return transactions
 
 if __name__ == "__main__":
