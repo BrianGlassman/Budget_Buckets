@@ -197,6 +197,10 @@ def run_config():
     def callback(*_): Model.config.use_uncat = use_uncat.get() # type: ignore
     use_uncat, _ = make_labelled_checkbox(window, 'Include uncategorized', Model.config.use_uncat, callback)
 
+    # use_internal
+    def callback(*_): Model.config.use_internal = use_internal.get() # type: ignore
+    use_internal, _ = make_labelled_checkbox(window, 'Include internal transfers', Model.config.use_internal, callback)
+
     window.mainloop()
 
 def load_data():

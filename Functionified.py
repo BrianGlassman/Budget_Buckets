@@ -10,12 +10,14 @@ class CategorizeConfig(_collections_abc.Mapping):
     limit: int
     use_uncat: bool
     use_cat: bool
+    use_internal: bool
     def __init__(self) -> None:
         self.cat_filter = []
         self.keep_filter = False
         self.limit = 0
         self.use_cat = True
         self.use_uncat = True
+        self.use_internal = False
 
     # Implement Mapping to enable ** operator
     # Ref: https://stackoverflow.com/a/33402305
@@ -30,7 +32,7 @@ _default_categorize_config = CategorizeConfig()
 
 df = _default_categorize_config
 def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filter, limit=df.limit,
-    use_uncat=df.use_uncat, use_cat=df.use_cat, use_internal=False) -> list[Record.CategorizedRecord]:
+    use_uncat=df.use_uncat, use_cat=df.use_cat, use_internal=df.use_internal) -> list[Record.CategorizedRecord]:
     """
     cat_filter - list of categories to include/exclude
     keep_filter - if False, exclude the categories in cat_filter. If True, include only those categories
