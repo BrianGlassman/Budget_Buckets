@@ -106,11 +106,12 @@ def run_MainMenu():
         """Function for scoping reasons"""
         for key, label, (callback, cb_args), dependencies in (
                 ('Config', 'Configure', (run_config, []), set()),
+                ('Template', 'Template Viewer', (run_templates, []), set()),
                 ('Load', 'Load Data', (load_data, []), set()),
                 ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
                 ('MView', 'Summary Table', (run_MView, []), {'data'}),
                 ('CView', 'Categorizing', (run_CView, []), {'data'}),
-                ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}),
+                # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
                 ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
             ):
             # Add the arguments to the callback
@@ -202,6 +203,11 @@ def run_config():
     use_internal, _ = make_labelled_checkbox(window, 'Include internal transfers', Model.config.use_internal, callback)
 
     window.mainloop()
+
+def run_templates():
+    import TemplateViewer
+
+    TemplateViewer.run()
 
 def load_data():
     # Parse
