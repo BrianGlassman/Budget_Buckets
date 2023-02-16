@@ -139,11 +139,35 @@ class OldUSAAParser(BaseUSAAParser):
 class FirstBankParser(USAAParser):
     # Only PDF downloads available, so I made a CSV that looks like the USAA CSV
     pass
+Parsers['FirstBank'] = FirstBankParser
 
 class CUParser(BaseParser):
     summary_desc = "Billing Hours Activity Through Amount Due"
 
-    def __init__(self, account: str, infile: str, prefix: str, date: _import_datetime.date, ):
+    def __init__(self, account: str, infile: str):
+        # Get the date and description prefix based on the filename
+        file_map = {
+            'CU_2021-08-10_bill.txt':   {'prefix': 'CU Fall 2021', 'date': '08/23/2021'},
+            'CU_2021-10-12_bill.txt':   {'prefix': 'CU Fall 2021', 'date': '08/23/2021'},
+            'CU_2022-01-11_bill.txt': {'prefix': 'CU Spring 2022', 'date': '01/10/2022'},
+            'CU_2022-02-08_bill.txt': {'prefix': 'CU Spring 2022', 'date': '01/10/2022'},
+            'CU_2022-06-08_bill.txt': {'prefix': 'CU Summer 2022', 'date': '05/23/2022'},
+            'CU_2022-08-09_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
+            'CU_2022-09-13_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
+            'CU_2022-10-11_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
+            'CU_2022-11-08_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
+            'CU_2022-12-13_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
+            'CU_2023-01-10_bill.txt': {'prefix': 'CU Spring 2023', 'date': '01/17/2023'},
+            'CU_2023-02-07_bill.txt': {'prefix': 'CU Spring 2023', 'date': '01/17/2023'},
+        }
+        # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
+        filename = _import_os.path.basename(infile) # infile is a path, we just want the filename
+        prefix = file_map[filename]['prefix']
+        date_str = file_map[filename]['date']
+        date = _import_date_parser.parse(date_str).date()
+        del filename, date_str
+
+        # Make sure there's a space between the prefix and the main description
         if prefix[-1] != ' ':
             prefix = prefix + ' '
         self.prefix = prefix
@@ -293,6 +317,7 @@ def run() -> list[RawRecord]:
         (USAAParser, "Checking", "2021q4_chk.csv"),
         (USAAParser, "Checking", "2022_chk.csv"),
         (USAAParser, "Checking", "2023_chk.csv"),
+
         (USAAParser, "Credit Card", "2021q4_cc.csv"),
         (USAAParser, "Credit Card", "2022_cc.csv"),
         (USAAParser, "Credit Card", "2023_cc.csv"),
@@ -304,32 +329,22 @@ def run() -> list[RawRecord]:
         (GenericParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
 
         (FirstBankParser, "529", "529.csv"),
+
+        (CUParser, 'CU Bills', 'CU_2021-08-10_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2021-10-12_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-01-11_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-02-08_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-06-08_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-08-09_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-09-13_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-10-11_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-11-08_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2022-12-13_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2023-01-10_bill.txt'),
+        (CUParser, 'CU Bills', 'CU_2023-02-07_bill.txt'),
         ]:
         file = _import_os.path.join("Raw_Data", file)
         transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=file))
-    for file, prefix, date in [
-        ('CU_2021-08-10_bill.txt',   'CU Fall 2021', '08/23/2021'),
-        ('CU_2021-10-12_bill.txt',   'CU Fall 2021', '08/23/2021'),
-        ('CU_2022-01-11_bill.txt', 'CU Spring 2022', '01/10/2022'),
-        ('CU_2022-02-08_bill.txt', 'CU Spring 2022', '01/10/2022'),
-        ('CU_2022-06-08_bill.txt', 'CU Summer 2022', '05/23/2022'),
-        ('CU_2022-08-09_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2022-09-13_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2022-10-11_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2022-11-08_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2022-12-13_bill.txt',   'CU Fall 2022', '08/22/2022'),
-        ('CU_2023-01-10_bill.txt', 'CU Spring 2023', '01/17/2023'),
-        ('CU_2023-02-07_bill.txt', 'CU Spring 2023', '01/17/2023'),
-        ]:
-        # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
-        file = _import_os.path.join("Raw_Data", file)
-        date = _import_date_parser.parse(date).date()
-        try:
-            parser = CUParser("CU Bills", file, prefix, date)
-        except Exception:
-            print(file)
-            raise
-        transactions.extend(parser.transactions)
     return transactions
 
 if __name__ == "__main__":
