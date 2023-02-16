@@ -327,7 +327,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                 categorized_transactions.append(_create_from_template(c, rawRecord))
         categorized_transactions.append(ct)
 
-        if len(categorized_transactions) >= limit: # Use >= in case creations overshoot the limit
+        if limit>0 and len(categorized_transactions) >= limit: # Use >= in case creations overshoot the limit
             limited = True
             break
     
