@@ -1,122 +1,122 @@
 [
-    {
-      "parser": "USAA",
-      "account": "Checking",
-      "file": "2021q4_chk.csv"
-    },
-    {
-      "parser": "USAA",
-      "account": "Checking",
-      "file": "2022_chk.csv"
-    },
-    {
-      "parser": "USAA",
-      "account": "Checking",
-      "file": "2023_chk.csv"
-    },
-    {
-      "parser": "USAA",
-      "account": "Credit Card",
-      "file": "2021q4_cc.csv"
-    },
-    {
-      "parser": "USAA",
-      "account": "Credit Card",
-      "file": "2022_cc.csv"
-    },
-    {
-      "parser": "USAA",
-      "account": "Credit Card",
-      "file": "2023_cc.csv"
-    },
-    {
-      "parser": "Generic",
-      "account": "M1",
-      "file": "M1_manual.csv"
-    },
-    {
-      "parser": "Generic",
-      "account": "FStocks",
-      "file": "Fidelity_Investment_manual.csv"
-    },
-    {
-      "parser": "Generic",
-      "account": "Roth IRA",
-      "file": "Fidelity_RothIRA_manual.csv"
-    },
-    {
-      "parser": "Generic",
-      "account": "Trad IRA",
-      "file": "Fidelity_TradIRA_manual.csv"
-    },
-    {
-      "parser": "Generic",
-      "account": "401(k)",
-      "file": "PrudentialEmpower_401k_manual.csv"
-    },
-    {
-      "parser": "FirstBank",
-      "account": "529",
-      "file": "529.csv"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2021-08-10_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2021-10-12_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-01-11_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-02-08_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-06-08_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-08-09_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-09-13_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-10-11_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-11-08_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2022-12-13_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2023-01-10_bill.txt"
-    },
-    {
-      "parser": "CU",
-      "account": "CU Bills",
-      "file": "CU_2023-02-07_bill.txt"
-    }
-  ]
+  {
+    "parser": "USAA",
+    "account": "Checking",
+    "file": "2021q4_chk.csv"
+  },
+  {
+    "parser": "USAA",
+    "account": "Checking",
+    "file": "2022_chk.csv"
+  },
+  {
+    "parser": "USAA",
+    "account": "Checking",
+    "file": "2023_chk.csv"
+  },
+  {
+    "parser": "USAA",
+    "account": "Credit Card",
+    "file": "2021q4_cc.csv"
+  },
+  {
+    "parser": "USAA",
+    "account": "Credit Card",
+    "file": "2022_cc.csv"
+  },
+  {
+    "parser": "USAA",
+    "account": "Credit Card",
+    "file": "2023_cc.csv"
+  },
+  {
+    "parser": "Generic",
+    "account": "M1",
+    "file": "M1_manual.csv"
+  },
+  {
+    "parser": "Generic",
+    "account": "FStocks",
+    "file": "Fidelity_Investment_manual.csv"
+  },
+  {
+    "parser": "Generic",
+    "account": "Roth IRA",
+    "file": "Fidelity_RothIRA_manual.csv"
+  },
+  {
+    "parser": "Generic",
+    "account": "Trad IRA",
+    "file": "Fidelity_TradIRA_manual.csv"
+  },
+  {
+    "parser": "Generic",
+    "account": "401(k)",
+    "file": "PrudentialEmpower_401k_manual.csv"
+  },
+  {
+    "parser": "FirstBank",
+    "account": "529",
+    "file": "529.csv"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2021-08-10_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2021-10-12_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-01-11_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-02-08_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-06-08_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-08-09_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-09-13_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-10-11_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-11-08_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2022-12-13_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2023-01-10_bill.txt"
+  },
+  {
+    "parser": "CU",
+    "account": "CU Bills",
+    "file": "CU_2023-02-07_bill.txt"
+  }
+]
