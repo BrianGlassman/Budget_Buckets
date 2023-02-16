@@ -1,7 +1,7 @@
 [templates]
 GUI to view templates
-	1. just a big table
-	2. heirarchy of dropdowns
+	done - 1. just a big table
+	done - 2. heirarchy of dropdowns
 	3. table is interactive to add new templates
 
 [general]

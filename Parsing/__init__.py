@@ -1,3 +1,4 @@
+import typing as _import_typing
 from abc import ABC as _import_ABC
 from abc import abstractmethod as _import_abstractmethod
 import csv as _import_csv
@@ -12,6 +13,9 @@ if __name__ == "__main__":
     sys.path.append(path)
 
 from Record import RawRecord
+
+# Dictionary of Parsers that are available for use
+Parsers = {}
 
 def _make_date(raw):
     # Ensure date is a consistent type to avoid many, many headaches
@@ -38,13 +42,34 @@ class BaseParser(_import_ABC):
 
     @_import_abstractmethod
     def _parse(self) -> list[RawRecord]: pass
+Parsers: dict[str, _import_typing.Type[BaseParser]]
+
+class GenericParser(BaseParser):
+    """
+    Parser for handling generic CSV files
+    Parses the columns required for making a RawRecord:
+        Date, Description, Value
+    Any other columns are added to the source_specific field
+    """
+    def _parse(self) -> list[RawRecord]:
+        with open(self.infile, 'r') as f:
+            return [self._make_transaction(line) for line in _import_csv.DictReader(f)]
+    
+    def _make_transaction(self, line) -> RawRecord:
+        line = dict(line) # Copy so that it can be modified
+        date = _make_date(line.pop('Date'))
+        desc = line.pop('Description')
+        value = float(line.pop('Value'))
+        # Anything left in the line is source-specific values
+        return RawRecord(account=self.account, date=date, desc=desc, value=value, source_specific=line)
+Parsers['Generic'] = GenericParser
 
 class BaseUSAAParser(BaseParser):
     pass
 
 class USAAParser(BaseUSAAParser):
     """
-    Parser for handling csv output files from USAA.
+    Parser for handling CSV output files from USAA.
     File has a header with fields:
     Date, Description, Original Description, Category, Amount, Status
     """
@@ -67,7 +92,8 @@ class USAAParser(BaseUSAAParser):
         value = float(line.pop('Amount'))
         # Anything left in the line is source-specific values
         return RawRecord(account = self.account, date = date, desc = desc, value = value, source_specific = line)
-    
+Parsers['USAA'] = USAAParser
+
 class OldUSAAParser(BaseUSAAParser):
     """
     Parser for handling csv output files from USAA.
@@ -249,10 +275,10 @@ class CUParser(BaseParser):
             transactions.append(rec)
         
         return transactions
+Parsers['CU'] = CUParser
 
-def parse_file(parseCls, account: str, filepath: str):
+def parse_file(parseCls: _import_typing.Type[BaseParser], account: str, filepath: str):
     parser = parseCls(account, filepath)
-    parser: BaseParser
     return parser.transactions
 
 def run() -> list[RawRecord]:
@@ -270,11 +296,13 @@ def run() -> list[RawRecord]:
         (USAAParser, "Credit Card", "2021q4_cc.csv"),
         (USAAParser, "Credit Card", "2022_cc.csv"),
         (USAAParser, "Credit Card", "2023_cc.csv"),
-        (USAAParser, "M1", "M1_manual.csv"),
-        (USAAParser, "FStocks", "Fidelity_Investment_manual.csv"),
-        (USAAParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
-        (USAAParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
-        (USAAParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
+
+        (GenericParser, "M1", "M1_manual.csv"),
+        (GenericParser, "FStocks", "Fidelity_Investment_manual.csv"),
+        (GenericParser, "Roth IRA", "Fidelity_RothIRA_manual.csv"),
+        (GenericParser, "Trad IRA", "Fidelity_TradIRA_manual.csv"),
+        (GenericParser, "401(k)", "PrudentialEmpower_401k_manual.csv"),
+
         (FirstBankParser, "529", "529.csv"),
         ]:
         file = _import_os.path.join("Raw_Data", file)
