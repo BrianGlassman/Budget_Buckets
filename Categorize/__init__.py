@@ -156,6 +156,11 @@ def _as_regex(dct):
 def load_templates(file: str) -> dict[str, dict]:
     if not file.startswith("Categorize"):
         file = _imported_os.path.join("Categorize", file)
+    if not _imported_os.path.exists(file):
+        print("Can't find template file, skipping:")
+        print("\t" + file)
+        return {}
+    
     try:
         with open(file, 'r') as f:
             templates = _imported_json.load(f, object_hook=_as_regex)

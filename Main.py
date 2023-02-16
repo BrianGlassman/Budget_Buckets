@@ -274,7 +274,7 @@ def run_MView():
         months.append(date)
         date = fn.inc_month(date)
 
-    cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
+    cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories, 'UNCATEGORIZED': (Constants.todo_category,)}
     values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
