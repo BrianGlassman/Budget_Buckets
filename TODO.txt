@@ -4,7 +4,6 @@ examples for <Raw_Data, Templates, ParseSettings>
 	that way I don't even need to mess with checking which exists at runtime
 don't hard-code categories
 don't hard-code bucket max/monthly
-force a limit on CategorizerView so that it doesn't just freeze
 finish Templates GUI
 
 [templates]
@@ -24,9 +23,6 @@ use a selectable dropdown or separate window for category filter
 income transactions count towards the Categorize limit even if they are then discarded
 	ex. limit=10, use_internal=False -> 8 expenses, 2 income -> returns only 8 items
 	might also happen for category filtering?
-
-[BUG]
-CategorizerView shows the split poorly
 
 [general]
 make a workflow that allows changing the data source

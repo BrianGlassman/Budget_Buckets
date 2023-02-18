@@ -70,11 +70,11 @@ def create_table(root, categorized_transactions):
     table.pack(side = "top", fill="both", expand=True)
 
     # Table settings
-    widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30}
+    widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30, 'duration': 4}
     widths = list(widths.values())
 
     # Header
-    for c, name in enumerate(['Account', 'Date', 'Description', 'Value', 'UNUSED source-specific', 'Category']):
+    for c, name in enumerate(['Account', 'Date', 'Description', 'Value', 'UNUSED source-specific', 'Category', 'Comment', 'Dur.']):
         if name.startswith('UNUSED'): continue
         gui.tkinter.Label(table.frame, text=name, anchor='center', relief='solid', bd=1, width=widths[c]).grid(row=0, column=c)
 
@@ -103,6 +103,13 @@ def create_table(root, categorized_transactions):
                     gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
                 else:
                     gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1).grid(row=r, column=c)
+        
+        # Avoid freezing the computer with too much stuff
+        if r >= 50:
+            label = gui.tkinter.Label(table.frame, text = 'Max row count reached, use Configure menu to limit transactions',
+                anchor='center', font=('', 20, 'bold'))
+            label.grid(row=r+1, column=0, columnspan=table.frame.grid_size()[0])
+            break
     return table
 
 def post_process(added_templates):
@@ -142,7 +149,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, use_cat=False, use_uncat=True)
+    categorized_transactions = fn.categorize(transactions, use_cat=True, use_uncat=True)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
