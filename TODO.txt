@@ -1,3 +1,12 @@
+[other users]
+examples for <Raw_Data, Templates, ParseSettings>
+	Build.py can copy these examples instead of my real data
+	that way I don't even need to mess with checking which exists at runtime
+don't hard-code categories
+don't hard-code bucket max/monthly
+force a limit on CategorizerView so that it doesn't just freeze
+finish Templates GUI
+
 [templates]
 GUI to view templates
 	done - 1. just a big table

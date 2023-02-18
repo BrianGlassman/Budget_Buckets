@@ -5,7 +5,7 @@ import csv as _import_csv
 import datetime as _import_datetime
 from dateutil import parser as _import_date_parser
 import os as _import_os
-import json as _import_json
+import csv as _import_csv
 
 if __name__ == "__main__":
     import sys
@@ -13,6 +13,7 @@ if __name__ == "__main__":
     path = _import_os.path.dirname(path)
     sys.path.append(path)
 
+from Root import Constants as _import_Constants
 from Record import RawRecord
 
 # Dictionary of Parsers that are available for use
@@ -316,8 +317,9 @@ def run() -> list[RawRecord]:
     transactions: list[RawRecord] = []
 
 
-    with open(_import_os.path.join('Parsing', 'ParseSettings.json'), 'r') as f:
-        mapper_list = _import_json.load(f)
+    with open(_import_Constants.ParseSettings_file, 'r', newline='') as f:
+        reader = _import_csv.DictReader(f)
+        mapper_list = [x for x in reader]
     for mapper in mapper_list:
         parseCls = Parsers[mapper['parser']]
         account = mapper['account']

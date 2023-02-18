@@ -9,6 +9,7 @@ if __name__ == "__main__":
     path = _imported_os.path.dirname(path)
     sys.path.append(path)
 
+from Root import Constants as _imported_Constants
 from Root.Constants import categories as _imported_categories
 
 class Template:
@@ -154,8 +155,6 @@ def _as_regex(dct):
         return dct
 
 def load_templates(file: str) -> dict[str, dict]:
-    if not file.startswith("Categorize"):
-        file = _imported_os.path.join("Categorize", file)
     if not _imported_os.path.exists(file):
         print("Can't find template file, skipping:")
         print("\t" + file)
@@ -181,14 +180,14 @@ def load_templates(file: str) -> dict[str, dict]:
     return templates
 
 # Load templates
-auto_templates_file = "AutoTemplates.json" # Store for writing to later
+auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
 if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
     
 _nested_templates = {}
 for templates_file in [
-    "Templates.json", # Generic templates
-    "ManualAccountHandling.json",
+    _imported_Constants.Templates_file, # Generic templates
+    _imported_Constants.ManualAccountHandling_file,
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
     _nested_templates.update(load_templates(templates_file))

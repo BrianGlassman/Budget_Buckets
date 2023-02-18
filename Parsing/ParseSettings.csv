@@ -1,0 +1,25 @@
+parser,account,file
+USAA,Checking,2021q4_chk.csv
+USAA,Checking,2022_chk.csv
+USAA,Checking,2023_chk.csv
+USAA,Credit Card,2021q4_cc.csv
+USAA,Credit Card,2022_cc.csv
+USAA,Credit Card,2023_cc.csv
+Generic,M1,M1_manual.csv
+Generic,FStocks,Fidelity_Investment_manual.csv
+Generic,Roth IRA,Fidelity_RothIRA_manual.csv
+Generic,Trad IRA,Fidelity_TradIRA_manual.csv
+Generic,401(k),PrudentialEmpower_401k_manual.csv
+FirstBank,529,529.csv
+CU,CU Bills,CU_2021-08-10_bill.txt
+CU,CU Bills,CU_2021-10-12_bill.txt
+CU,CU Bills,CU_2022-01-11_bill.txt
+CU,CU Bills,CU_2022-02-08_bill.txt
+CU,CU Bills,CU_2022-06-08_bill.txt
+CU,CU Bills,CU_2022-08-09_bill.txt
+CU,CU Bills,CU_2022-09-13_bill.txt
+CU,CU Bills,CU_2022-10-11_bill.txt
+CU,CU Bills,CU_2022-11-08_bill.txt
+CU,CU Bills,CU_2022-12-13_bill.txt
+CU,CU Bills,CU_2023-01-10_bill.txt
+CU,CU Bills,CU_2023-02-07_bill.txt

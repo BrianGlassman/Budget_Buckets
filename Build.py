@@ -4,6 +4,8 @@ import PyInstaller.__main__
 import os
 import shutil
 
+from Root import Constants
+
 args = [
     'Main.py',
     '--noconfirm', # Don't ask for confirmation before deleting
@@ -28,14 +30,7 @@ folders = [
 for folder in folders:
     os.mkdir(os.path.join(dist_dir, folder))
 
-filepaths = [
-    ['Categorize', 'AutoTemplates.json'],
-    ['Categorize', 'Templates.json'],
-    ['Categorize', 'ManualAccountHandling.json'],
-    ['Parsing', 'ParseSettings.json'],
-    ['Root', 'Constants.py'], # Not used, but good for the user to have
-]
-for dir, file in filepaths:
+for dir, file in Constants.filepaths:
     filepath = os.path.join(dir, file)
     shutil.copy2(filepath, os.path.join(dist_dir, filepath))
 
