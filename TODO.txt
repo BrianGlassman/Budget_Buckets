@@ -71,7 +71,7 @@ Some way to remove duplicate templates
 Some way to validate all templates
 
 [General]
-Probably a way to load the JSON schema enum to create Constants.categories
+Probably a way to load the JSON schema enum to create Buckets.categories
 
 [CategorizerView]
 Make Category font match other cells (should also help with sizing)

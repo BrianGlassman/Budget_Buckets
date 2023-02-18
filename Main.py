@@ -259,7 +259,7 @@ def run_MView():
     
     import datetime
 
-    from Root import Constants
+    from Root import Buckets
     import MView
 
     # Get first/last month (instead of first/last date)
@@ -274,7 +274,7 @@ def run_MView():
         months.append(date)
         date = fn.inc_month(date)
 
-    cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories, 'UNCATEGORIZED': (Constants.todo_category,)}
+    cat_groups = {'income': Buckets.income_categories, 'expenses': Buckets.expense_categories, 'internal': Buckets.internal_categories, 'UNCATEGORIZED': (Buckets.todo_category,)}
     values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
@@ -292,8 +292,8 @@ def run_MView():
 
     root = gui.Root(25, 10)
 
-    # MView.make_tracker_sheet(root, values['income'], "Income", Constants.income_categories, months)
-    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Constants.expense_categories, months)
+    # MView.make_tracker_sheet(root, values['income'], "Income", Buckets.income_categories, months)
+    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Buckets.expense_categories, months)
     # MView.make_summary_sheet(root, values, 5000, months)
 
     root.mainloop()

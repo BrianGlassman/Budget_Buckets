@@ -8,7 +8,7 @@ transactions = Parsing.run()
 
 #%% Categorizing
 import Categorize
-from Root import Constants
+from Root import Buckets
 
 limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
@@ -32,7 +32,7 @@ class Tracker():
         # Note: dated_transactions must be sorted
 
         # Initialize the categorized tracker
-        self.cat_tracker = {cat:{} for cat in Constants.categories_inclTodo}
+        self.cat_tracker = {cat:{} for cat in Buckets.categories_inclTodo}
 
         # Initialize the date map
         self.dates = set()
@@ -79,7 +79,7 @@ class Tracker():
 
     def get_category(self, key: str) -> dict[datetime.date, float | None]:
         """Gets the values across all days for a given category"""
-        assert key in Constants.categories_inclTodo
+        assert key in Buckets.categories_inclTodo
         return self.cat_tracker[key]
 
     def get_date(self, key: datetime.date) -> dict[str, float | None]:
@@ -107,7 +107,7 @@ from matplotlib.transforms import Bbox
 
 fig, ax = plt.subplots()
 fig.subplots_adjust(right=0.75)
-for cat in Constants.categories_inclTodo:
+for cat in Buckets.categories_inclTodo:
     values = tracker.get_category(cat)
     if all(v is None for v in values.values()): continue # Don't plot unused categories
     ax.plot(values.keys(), values.values(), '.', label=cat)

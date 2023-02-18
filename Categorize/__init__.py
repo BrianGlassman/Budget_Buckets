@@ -10,7 +10,7 @@ if __name__ == "__main__":
     sys.path.append(path)
 
 from Root import Constants as _imported_Constants
-from Root.Constants import categories as _imported_categories
+from Root.Buckets import categories as _imported_categories
 
 class Template:
     name: str
@@ -288,7 +288,7 @@ def _create_from_template(create: dict, rawRecord):
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
     import Record
-    from Root import Constants
+    from Root import Buckets
     categorized_transactions: list[Record.CategorizedRecord] = []
     limited = False
     for rawRecord in transactions:
@@ -296,7 +296,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
         if match is None:
             # No match, fill in with placeholder values
             if use_uncat:
-                category = Constants.todo_category
+                category = Buckets.todo_category
                 comment = None
                 duration = 1
                 ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
@@ -308,11 +308,11 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             create = match.create
 
             category = new['category']
-            if category == Constants.del_category:
+            if category == Buckets.del_category:
                 # "Delete" this transaction by not adding it to the output list
                 # FIXME probably cases where this causes the wrong control flow
                 continue
-            assert category in Constants.categories, f"Bad category: {category}"
+            assert category in Buckets.categories, f"Bad category: {category}"
             if not use_cat:
                 # FIXME probably cases where this causes the wrong control flow
                 continue
@@ -337,14 +337,14 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     
     if not limited:
         # Can't checksum with partial data
-        internal_sum = sum(x.value for x in categorized_transactions if x.category in Constants.internal_categories)
+        internal_sum = sum(x.value for x in categorized_transactions if x.category in Buckets.internal_categories)
         if abs(internal_sum) >= 0.01:
             import warnings
-            warnings.warn(f"Internals ({', '.join(Constants.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
+            warnings.warn(f"Internals ({', '.join(Buckets.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
     
     if not use_internal:
         # Remove the internal transactions
-        categorized_transactions = [x for x in categorized_transactions if x.category not in Constants.internal_categories]
+        categorized_transactions = [x for x in categorized_transactions if x.category not in Buckets.internal_categories]
 
     # Easy way to filter stuff
     categorized_transactions = [x for x in categorized_transactions if

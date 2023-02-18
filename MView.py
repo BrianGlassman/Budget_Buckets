@@ -4,7 +4,7 @@ import Record
 import Parsing
 import Functionified as fn
 import Categorize
-from Root import Constants
+from Root import Buckets
 import TkinterPlus as gui
 
 #%% Display pre-processing
@@ -167,7 +167,7 @@ def run():
         months.append(date)
         date = fn.inc_month(date)
 
-    cat_groups = {'income': Constants.income_categories, 'expenses': Constants.expense_categories, 'internal': Constants.internal_categories}
+    cat_groups = {'income': Buckets.income_categories, 'expenses': Buckets.expense_categories, 'internal': Buckets.internal_categories}
     values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: {cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
@@ -185,8 +185,8 @@ def run():
 
     root = gui.Root(25, 10)
 
-    # make_tracker_sheet(root, values['income'], "Income", Constants.income_categories, months)
-    # make_tracker_sheet(root, values['expenses'], "Expenses", Constants.expense_categories, months)
+    # make_tracker_sheet(root, values['income'], "Income", Buckets.income_categories, months)
+    # make_tracker_sheet(root, values['expenses'], "Expenses", Buckets.expense_categories, months)
 
     make_summary_sheet(root, values, 5000, months)
 

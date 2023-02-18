@@ -2,7 +2,7 @@
 import datetime
 
 import TkinterPlus as gui
-from Root import Constants
+from Root import Buckets
 from Root import Sorting
 import Record
 import Parsing
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, cat_filter=Constants.expense_categories, keep_filter=True)
+    categorized_transactions = fn.categorize(transactions, cat_filter=Buckets.expense_categories, keep_filter=True)
 
     # Pre-processing
     categorized_transactions = Sorting.by_date(categorized_transactions)

@@ -1,6 +1,6 @@
 import datetime
 
-from Root import Constants
+from Root import Buckets
 
 class BaseRecord:
     account: str
@@ -59,7 +59,7 @@ class RawRecord(BaseRecord):
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific={},
-                 category: str = Constants.todo_category, comment: str | None = None, rawRecord: RawRecord | None = None,
+                 category: str = Buckets.todo_category, comment: str | None = None, rawRecord: RawRecord | None = None,
                  duration: int = 1):
         super().__init__(account, date, desc, value, source_specific)
         assert rawRecord is None or isinstance(rawRecord, RawRecord)

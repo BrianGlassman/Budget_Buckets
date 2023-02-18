@@ -5,7 +5,7 @@ import datetime
 from collections import UserDict
 from typing import TypeVar
 
-from Root import Constants
+from Root import Constants, Buckets
 import Parsing
 import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 
@@ -98,7 +98,7 @@ class BaseTracker():
 
     def get_category(self, key: Cat) -> ConsecCalendar:
         """Gets the values across all days for a given category"""
-        assert key in Constants.categories_inclTodo
+        assert key in Buckets.categories_inclTodo
         return self._cat_tracker[key]
 
     def get_date(self, key: Date) -> dict[Cat, float]:
@@ -127,7 +127,7 @@ class DeltaTracker(BaseTracker):
     _cat_adates: dict[Cat, list[Date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
-        categories = Constants.categories_inclTodo
+        categories = Buckets.categories_inclTodo
 
         # Group transactions by category, then date
         cat_transactions = {}
@@ -214,12 +214,12 @@ class DeltaTracker(BaseTracker):
     
     def get_tdates(self, key: Cat) -> list[Date]:
         """Gets the single-day transaction dates for a given category"""
-        assert key in Constants.categories_inclTodo
+        assert key in Buckets.categories_inclTodo
         return self._cat_tdates[key]
     
     def get_adates(self, key: Cat) -> list[Date]:
         """Gets the amortized transaction start dates for a given category"""
-        assert key in Constants.categories_inclTodo
+        assert key in Buckets.categories_inclTodo
         return self._cat_adates[key]
 
 from Root.Buckets import Bucket
@@ -316,7 +316,7 @@ from Root.Buckets import bucket_info
 
 skip_cats = [
     '401k', # Not relevant
-    *(Constants.income_categories), # Not really a bucket
+    *(Buckets.income_categories), # Not really a bucket
     'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
 ]
 

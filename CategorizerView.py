@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 import TkinterPlus as gui
 
-from Root import Constants
+from Root import Buckets
 from Root import Sorting
 import Record
 import Parsing
@@ -32,7 +32,7 @@ def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     n = template.new
     assert isinstance(n, dict) # For Pylance and oops-catching
     # Fill in required information
-    n.setdefault('category', Constants.todo_category)
+    n.setdefault('category', Buckets.todo_category)
     n.setdefault('duration', 1)
     # Fill in the given information
     n.update(new)
@@ -85,7 +85,7 @@ def create_table(root, categorized_transactions):
             if c == 4: continue # Skip the source-specific data
             elif c == 5:
                 # Category
-                cat = CategoryBox(master = table.frame, values = Constants.categories, initial = row.category, width = widths[c])
+                cat = CategoryBox(master = table.frame, values = Buckets.categories, initial = row.category, width = widths[c])
                 cat.set_state_readonly()
                 cat.grid(row=r, column=c)
                 cat.bind(func = CB_onModification)

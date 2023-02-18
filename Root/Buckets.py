@@ -13,14 +13,13 @@ class Bucket:
         self.max_value = max_value
         self.refill = monthly_refill / 30
 #%% Define buckets
-def _read_buckets() -> dict[_import_Constants.CatType, Bucket]:
+todo_category = '*** TODO ***'
+
+def _read_buckets() -> tuple[dict[_import_Constants.CatType, Bucket], tuple[_import_Constants.CatType]]:
     with open(_import_Constants.BucketInfo_file, 'r', newline='') as f:
         lines = [line.strip() for line in f.readlines()]
     lines = [line for line in lines if line] # Remove empty lines
     lines = [line for line in lines if not line.startswith('#')] # Remove comment lines
-
-    # Add the to-do category
-    lines.append(f'{_import_Constants.todo_category},0,0')
 
     bucket_info = {}
     for line in lines[1:]:
@@ -30,5 +29,35 @@ def _read_buckets() -> dict[_import_Constants.CatType, Bucket]:
         bucket = Bucket(name=category, max_value=max_f, monthly_refill=monthly_f)
         assert category not in bucket_info
         bucket_info[category] = bucket
-    return bucket_info
-bucket_info = _read_buckets()
+    
+    # Get the category names
+    expense_categories = tuple(bucket_info.keys())
+
+    # Add the to-do category
+    lines.append(f'{todo_category},0,0')
+
+    return bucket_info, expense_categories
+bucket_info, expense_categories = _read_buckets()
+
+income_categories = (
+    # Income
+    'Parental Funds',
+    'Loans',
+    'Salary',
+    'Income - Other',
+)
+
+internal_categories = (
+    # Internal
+    'CC Payments',
+    'Internal Transfers',
+)
+
+categories = tuple(
+    list(expense_categories) + 
+    list(income_categories) +
+    list(internal_categories)
+)
+
+del_category = 'DELETE' # Flag to delete this transaction (keep in raw data for checksumming against sources)
+categories_inclTodo = tuple(list(categories) + [todo_category])
