@@ -7,9 +7,14 @@ finish Templates GUI
 
 [templates]
 GUI to view templates
-	done - 1. just a big table
-	done - 2. heirarchy of dropdowns
-	3. table is interactive to add new templates
+	make table interactive to add new templates or modify existing
+		done - a. button to add new, empty templates
+		b. template view has a button to add Create items
+		c. template view has a button to remove Create items
+		d. template view has ability to edit Name, Pattern, New, and Create
+		e. branch view has a button to delete templates (could also be in template view)
+			this is maybe optional? Deleting via file edit isn't too hard
+	for now, assume that Trunks and Branches are fixed (edit in file if needed)
 
 [general]
 figure out how to do user settings/templates and data so that other people can use it

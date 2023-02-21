@@ -23,31 +23,33 @@ def run():
     detail_frame = gui.Frame(root, name='detail_frame',
         bg='yellow', bd=bd, relief='ridge')
 
-    leaf_map = {}
+    trunk_map = {} ; trunk_map: dict[str, dict[str, list[Categorize.Template]]]
+    branch_map = {} ; branch_map: dict[str, list[Categorize.Template]]
+    leaf_map = {} ; leaf_map: dict[str, Categorize.Template]
     # Fill the tree (nested version)
-    # for trunk_name, trunk in nest_templates.items():
-    #     trunk_id = tree.insert(parent='', index='end', text=trunk_name, tags='trunk')
-    #     for branch_name, branch in trunk.items():
-    #         branch_id = tree.insert(parent=trunk_id, index='end', text=branch_name, tags='branch')
-    #         for leaf in branch:
-    #             assert isinstance(leaf, Categorize.Template)
-    #             leaf_id = tree.insert(parent=branch_id, index='end', text=leaf.name, tags='leaf')
-    #             leaf_map[leaf_id] = leaf
-    # Fill the tree (flat version)
-    for trunk_name, trunk in nest_templates.items():
-        tree.insert(parent='', index='end', text=trunk_name, tags='trunk')
+    def make_trunk(trunk_name: str, trunk, parent_id: str):
+        trunk_id = tree.insert(parent=parent_id, index='end', text=trunk_name, tags='trunk', open=True)
+        trunk_map[trunk_id] = trunk
         for branch_name, branch in trunk.items():
-            tree.insert(parent='', index='end', text=' '+branch_name, tags='branch')
-            for leaf in branch:
-                assert isinstance(leaf, Categorize.Template)
-                if leaf.name:
-                    leaf_name = leaf.name
-                    tags = 'leaf'
-                else:
-                    leaf_name = leaf.pattern['desc']
-                    tags = ['leaf', 'auto_leaf']
-                leaf_id = tree.insert(parent='', index='end', text='   '+leaf_name, tags=tags)
-                leaf_map[leaf_id] = leaf
+            make_branch(branch_name, branch, trunk_id)
+    def make_branch(name: str, item: list[Categorize.Template], parent_id: str):
+        branch_id = tree.insert(parent=parent_id, index='end', text=name, tags='branch', open=True)
+        branch_map[branch_id] = item
+        for leaf in item:
+            make_leaf(leaf, branch_id)
+    def make_leaf(leaf: Categorize.Template, parent_id: str):
+        assert isinstance(leaf, Categorize.Template)
+        if leaf.name:
+            name = leaf.name
+            tags = 'leaf'
+        else:
+            name = leaf.pattern['desc']
+            tags = ['leaf', 'auto_leaf']
+        leaf_id = tree.insert(parent=parent_id, index='end', text=name, tags=tags, open=True)
+        leaf_map[leaf_id] = leaf
+    for trunk_name, trunk in nest_templates.items():
+        make_trunk(trunk_name, trunk, '')
+    
     # Make non-leaves bold
     tree.tag_configure('trunk', font=bold)
     tree.tag_configure('branch', font=bold)
@@ -59,14 +61,21 @@ def run():
     def on_select(_):
         selection = tree.selection()
 
-        # Only care about when single Templates (leaves) are selected
+        # Ignore multi-selection for now
         if len(selection) != 1: return placeholder_detail()
+
         id, = selection
         tree_item = tree.item(id)
-        if 'leaf' not in tree_item['tags']: return placeholder_detail()
+        tags = tree_item['tags']
+        if 'trunk' in tags:
+            return trunk_gui(id)
+        elif 'branch' in tags:
+            return branch_gui(id)
+        elif 'leaf' in tags:
+            return leaf_gui(id)
+        else:
+            raise RuntimeError()
 
-        t = leaf_map[id]
-        return make_detail(t)
     tree.bind('<<TreeviewSelect>>', on_select)
 
     # Detail pane
@@ -75,7 +84,20 @@ def run():
         frame.clear()
         label = gui.tkinter.Label(frame, text='Select a Template to view', font=bold)
         label.pack(side='top', anchor='center', fill='both', expand=True)
-    def make_detail(t: Categorize.Template):
+    def trunk_gui(id: str):
+        trunk = trunk_map[id]
+        return placeholder_detail()
+    def branch_gui(id: str):
+        branch = branch_map[id]
+        def add_template_cb():
+            make_leaf(Categorize.Template(name='Newly Created', pattern=dict(), new=dict()), parent_id=id)
+        frame = detail_frame
+        frame.clear()
+        button = gui.Button(frame, text='Add new template', command=add_template_cb)
+        button.place(relx=0.5, rely=0.5, anchor='center')
+    def leaf_gui(id: str):
+        t = leaf_map[id]
+        t: Categorize.Template
         frame = detail_frame
         frame.clear()
         name = gui.tkinter.Label(frame, text=t.name, font=bold, anchor='center')
