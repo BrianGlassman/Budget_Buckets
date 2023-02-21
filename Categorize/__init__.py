@@ -154,7 +154,7 @@ def _as_regex(dct):
         # Normal processing
         return dct
 
-def load_templates(file: str) -> dict[str, dict]:
+def load_templates(file: str):
     if not _imported_os.path.exists(file):
         print("Can't find template file, skipping:")
         print("\t" + file)
@@ -162,21 +162,26 @@ def load_templates(file: str) -> dict[str, dict]:
     
     try:
         with open(file, 'r') as f:
-            templates = _imported_json.load(f, object_hook=_as_regex)
+            raw_templates = _imported_json.load(f, object_hook=_as_regex)
     except _imported_json.decoder.JSONDecodeError:
         print(f"Failed to decode template file {file}")
         raise
 
     # Remove the schema specification
-    if '$schema' in templates:
-        templates.pop('$schema')
+    if '$schema' in raw_templates:
+        raw_templates.pop('$schema')
 
+    raw_templates: dict[str, dict[str, list[dict]]]
+    templates = {}
+    templates:     dict[str, dict[str, list[Template]]]
     # Convert lowest level of nested dicts to Template
-    for sg in templates.values():
-        for group in sg.values():
-            assert isinstance(group, list)
-            for i in range(len(group)):
-                group[i] = Template(**group[i])
+    for sg_name, sg in raw_templates.items():
+        super_group = templates[sg_name] = {}
+        for g_name, g in sg.items():
+            assert isinstance(g, list)
+            group = super_group[g_name] = []
+            for i in range(len(g)):
+                group.append(Template(**g[i]))
     return templates
 
 # Load templates
@@ -185,6 +190,7 @@ if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
     
 _nested_templates = {}
+_nested_templates: dict[str, dict[str, list[Template]]]
 for templates_file in [
     _imported_Constants.Templates_file, # Generic templates
     _imported_Constants.ManualAccountHandling_file,
