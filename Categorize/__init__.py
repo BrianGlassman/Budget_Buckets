@@ -2,6 +2,7 @@ import os as _imported_os
 import re as _imported_re
 import json as _imported_json
 from functools import partial
+from _collections_abc import Iterable as _imported_Iterable
 
 if __name__ == "__main__":
     import sys
@@ -13,6 +14,7 @@ from Root import Constants as _imported_Constants
 from Root.Buckets import categories as _imported_categories
 
 class Template:
+    """Functions like a dictionary"""
     name: str
     pattern: dict
     new: dict
@@ -39,7 +41,20 @@ class Template:
 
     def __repr__(self) -> str:
         return str(self)
+
+class TemplateGroup(_imported_Iterable):
+    """Functions like a list of Templates"""
+    name: str
+    templates: list[Template]
+    def __init__(self, name: str, templates: list[Template] = []) -> None:
+        self.name = name
+        self.templates = templates
     
+    def append(self, t: Template):
+        self.templates.append(t)
+    
+    def __iter__(self):
+        return self.templates.__iter__()
 
 #TODO validate field names against the appropriate data structures somehow
 
@@ -173,15 +188,15 @@ def load_templates(file: str):
 
     raw_templates: dict[str, dict[str, list[dict]]]
     templates = {}
-    templates:     dict[str, dict[str, list[Template]]]
+    templates:     dict[str, dict[str, TemplateGroup]]
     # Convert lowest level of nested dicts to Template
-    for sg_name, sg in raw_templates.items():
+    for sg_name, raw_sg in raw_templates.items():
         super_group = templates[sg_name] = {}
-        for g_name, g in sg.items():
-            assert isinstance(g, list)
-            group = super_group[g_name] = []
-            for i in range(len(g)):
-                group.append(Template(**g[i]))
+        for g_name, raw_g in raw_sg.items():
+            assert isinstance(raw_g, list)
+            g_templates = [Template(**raw_g[i]) for i in range(len(raw_g))]
+            group = TemplateGroup(name=g_name, templates=g_templates)
+            super_group[g_name] = group
     return templates
 
 # Load templates
@@ -190,7 +205,7 @@ if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
     
 _nested_templates = {}
-_nested_templates: dict[str, dict[str, list[Template]]]
+_nested_templates: dict[str, dict[str, TemplateGroup]]
 for templates_file in [
     _imported_Constants.Templates_file, # Generic templates
     _imported_Constants.ManualAccountHandling_file,
@@ -202,7 +217,7 @@ for templates_file in [
 _templates: list[Template] = []
 def _flatten(dct: dict) -> None:
     try:
-        if isinstance(dct, list):
+        if isinstance(dct, (list, TemplateGroup)):
             # Recurse into Array
             for v in dct:
                 _flatten(v)

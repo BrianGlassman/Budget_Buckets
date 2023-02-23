@@ -23,16 +23,16 @@ def run():
     detail_frame = gui.Frame(root, name='detail_frame',
         bg='yellow', bd=bd, relief='ridge')
 
-    trunk_map = {} ; trunk_map: dict[str, dict[str, list[Categorize.Template]]]
-    branch_map = {} ; branch_map: dict[str, list[Categorize.Template]]
+    trunk_map = {} ; trunk_map: dict[str, dict[str, Categorize.TemplateGroup]]
+    branch_map = {} ; branch_map: dict[str, Categorize.TemplateGroup]
     leaf_map = {} ; leaf_map: dict[str, Categorize.Template]
     # Fill the tree (nested version)
-    def make_trunk(trunk_name: str, trunk, parent_id: str):
+    def make_trunk(trunk_name: str, trunk: dict[str, Categorize.TemplateGroup], parent_id: str):
         trunk_id = tree.insert(parent=parent_id, index='end', text=trunk_name, tags='trunk', open=True)
         trunk_map[trunk_id] = trunk
         for branch_name, branch in trunk.items():
             make_branch(branch_name, branch, trunk_id)
-    def make_branch(name: str, item: list[Categorize.Template], parent_id: str):
+    def make_branch(name: str, item: Categorize.TemplateGroup, parent_id: str):
         branch_id = tree.insert(parent=parent_id, index='end', text=name, tags='branch', open=True)
         branch_map[branch_id] = item
         for leaf in item:
