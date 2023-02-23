@@ -3,6 +3,7 @@ import re as _imported_re
 import json as _imported_json
 from functools import partial
 from _collections_abc import Iterable as _imported_Iterable
+from _collections_abc import Mapping as _imported_Mapping
 
 if __name__ == "__main__":
     import sys
@@ -47,6 +48,7 @@ class TemplateGroup(_imported_Iterable):
     name: str
     templates: list[Template]
     def __init__(self, name: str, templates: list[Template] = []) -> None:
+        super().__init__()
         self.name = name
         self.templates = templates
     
@@ -55,6 +57,27 @@ class TemplateGroup(_imported_Iterable):
     
     def __iter__(self):
         return self.templates.__iter__()
+
+class TemplateSuperGroup(_imported_Mapping):
+    """Functions like a dict of TemplateGroups"""
+    name: str
+    groups: dict[str, TemplateGroup]
+    def __init__(self, name: str, groups: dict[str, TemplateGroup] = {}) -> None:
+        super().__init__()
+        self.name = name
+        self.groups = groups
+    
+    def __getitem__(self, __key: str) -> TemplateGroup:
+        return self.groups.__getitem__(__key)
+    
+    def __setitem__(self, __key: str, __value: TemplateGroup) -> None:
+        return self.groups.__setitem__(__key, __value)
+
+    def __iter__(self):
+        return self.groups.__iter__()
+    
+    def __len__(self) -> int:
+        return self.groups.__len__()
 
 #TODO validate field names against the appropriate data structures somehow
 
@@ -188,10 +211,10 @@ def load_templates(file: str):
 
     raw_templates: dict[str, dict[str, list[dict]]]
     templates = {}
-    templates:     dict[str, dict[str, TemplateGroup]]
+    templates:     dict[str, TemplateSuperGroup]
     # Convert lowest level of nested dicts to Template
     for sg_name, raw_sg in raw_templates.items():
-        super_group = templates[sg_name] = {}
+        super_group = templates[sg_name] = TemplateSuperGroup(name=sg_name)
         for g_name, raw_g in raw_sg.items():
             assert isinstance(raw_g, list)
             g_templates = [Template(**raw_g[i]) for i in range(len(raw_g))]
@@ -205,7 +228,7 @@ if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
     
 _nested_templates = {}
-_nested_templates: dict[str, dict[str, TemplateGroup]]
+_nested_templates: dict[str, TemplateSuperGroup]
 for templates_file in [
     _imported_Constants.Templates_file, # Generic templates
     _imported_Constants.ManualAccountHandling_file,
