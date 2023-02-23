@@ -8,7 +8,8 @@ class Modes:
     last = 'last transactions'
     add_new = 'add new transactions'
 
-# Get the last 3 transactions from each account
+# Get the last 3 days of transactions from each account
+# (the last 3 days that had transactions, even if this spans more than 3 days)
 def last_transactions(transactions: list[Record.RawRecord]):
     accounts = ['Credit Card', 'Checking', 'CU Bills']
     for account in accounts:
@@ -16,8 +17,18 @@ def last_transactions(transactions: list[Record.RawRecord]):
         ts = [x for x in transactions if x.account == account]
         ts = Sorting.by_date(ts)
         ts: list[Record.RawRecord]
-        for t in ts[-3:]:
-            print(f"{t.date}, {t.desc}, {t.value}")
+        count = 0
+        i = -1 ; t = ts[i]
+        date = t.date
+        while count < 3:
+            while t.date == date:
+                print(f"{t.date}, {t.desc}, {t.value}")
+                i -= 1
+                t = ts[i]
+            else:
+                # Day finished, get new date
+                date = t.date
+            count += 1
 
 if __name__ == "__main__":
     mode = Modes.add_new
