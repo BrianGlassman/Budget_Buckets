@@ -42,6 +42,48 @@ class Template:
 
     def __repr__(self) -> str:
         return str(self)
+    
+    def run_create(self, rawRecord):
+        """Create the Records specified by the create list, using the given Record as a base"""
+        from dateutil import parser as dateParser
+        import Record
+        # TODO should have some info tracking the original source (in source_specific?)
+        ret = []
+        for create in self.create:
+            # Account
+            account = create['account']
+
+            # Date
+            date = create['date']
+            if date == "$SAME":
+                date = rawRecord.date
+            else:
+                date = dateParser.parse(create['date']).date()
+            
+            # Description
+            desc = create['desc']
+
+            # Value
+            value = create['value']
+            if value == "$SAME":
+                value = rawRecord.value
+            elif value == "$NEG":
+                value = -rawRecord.value
+            else:
+                pass # Decoder does conversion already
+
+            # Category
+            category = create['category']
+
+            # Comment
+            comment = create.get('comment', None)
+
+            # Duration
+            duration = create.get('duration', 1)
+
+            ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment, duration=duration)
+            ret.append(ct)
+        return ret
 
 class TemplateGroup(_imported_Iterable):
     """Functions like a list of Templates"""
@@ -339,39 +381,6 @@ def save_templates() -> None:
     with open(auto_templates_file, 'w') as f:
         _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
 
-def _create_from_template(create: dict, rawRecord):
-    """Used to create a Record for elements in Template.create"""
-    from dateutil import parser as dateParser
-    import Record
-    # TODO should have some info tracking the original source (in source_specific?)
-
-    account = create['account']
-
-    date = create['date']
-    if date == "$SAME":
-        date = rawRecord.date
-    else:
-        date = dateParser.parse(create['date']).date()
-    
-    desc = create['desc']
-
-    value = create['value']
-    if value == "$SAME":
-        value = rawRecord.value
-    elif value == "$NEG":
-        value = -rawRecord.value
-    else:
-        pass # Decoder does conversion already
-
-    category = create['category']
-
-    comment = create.get('comment', None)
-
-    duration = create.get('duration', 1)
-
-    ct = Record.CategorizedRecord(account, date, desc, value, category=category, comment=comment, duration=duration)
-    return ct
-
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
     import Record
     from Root import Buckets
@@ -391,7 +400,6 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
         else:
             # Found a match, fill in the templated values
             new = match.new
-            create = match.create
 
             category = new['category']
             if category == Buckets.del_category:
@@ -413,8 +421,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
                     continue
                 ct[key] = val
 
-            for c in create:
-                categorized_transactions.append(_create_from_template(c, rawRecord))
+            categorized_transactions.extend(match.run_create(rawRecord=rawRecord))
         categorized_transactions.append(ct)
 
         if limit>0 and len(categorized_transactions) >= limit: # Use >= in case creations overshoot the limit
