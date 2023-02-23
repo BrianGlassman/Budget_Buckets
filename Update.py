@@ -73,6 +73,17 @@ if __name__ == "__main__":
             assert new[0] == header
             new = new[1:]
 
+            # Sanitize personal information (PI)
+            if account == 'Credit Card':
+                for i, line in enumerate(new):
+                    if 'AUTOMATIC PAYMENT - THANK YOU' in line:
+                        # Possible match, check for PI
+                        fields = line.split(',')
+                        desc = fields[1].replace('"', '').replace("'", "")
+                        if all(c.isnumeric() or c in ['"', "'"] for c in desc):
+                            new[i] = line.replace(desc, 'USAA Credit Card')
+                            print(f'Scrubbed PI:\n\t{line}\n\tto\n\t{new[i]}')
+
             # Check for duplicates
             # Sometimes (ex. parking) duplicate transactions appear the same day so can't just use set intersection
             # There's a problem if num_dupes(new+old) != num_dupes(old) + num_dupes(new)

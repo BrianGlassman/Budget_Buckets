@@ -5,9 +5,10 @@ import _collections_abc
 import Record
 import Parsing
 import Functionified as fn
+from Root import Buckets
 
 transactions = Parsing.run()
-categorized_transactions = fn.categorize(transactions, cat_filter=['Internal Transfers'], keep_filter=True,
+categorized_transactions = fn.categorize(transactions, cat_filter=Buckets.internal_categories, keep_filter=True,
     use_cat=True, use_uncat=True, use_internal=True)
 
 class Match:
