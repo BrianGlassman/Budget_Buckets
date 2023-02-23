@@ -50,7 +50,8 @@ class TemplateGroup(_imported_Iterable):
     def __init__(self, name: str, templates: list[Template] = []) -> None:
         super().__init__()
         self.name = name
-        self.templates = templates
+        # Avoid stupid Python reference shenanigans
+        self.templates = templates if templates else []
     
     def append(self, t: Template):
         self.templates.append(t)
@@ -61,45 +62,107 @@ class TemplateGroup(_imported_Iterable):
 class TemplateSuperGroup(_imported_Mapping):
     """Functions like a dict of TemplateGroups"""
     name: str
-    groups: dict[str, TemplateGroup]
+    g_dict: dict[str, TemplateGroup]
     def __init__(self, name: str, groups: dict[str, TemplateGroup] = {}) -> None:
         super().__init__()
         self.name = name
-        self.groups = groups
+        # Avoid stupid Python reference shenanigans
+        self.g_dict = groups if groups else {}
+    
+    @property
+    def groups(self) -> list[TemplateGroup]:
+        return list(self.g_dict.values())
     
     def __getitem__(self, __key: str) -> TemplateGroup:
-        return self.groups.__getitem__(__key)
+        return self.g_dict.__getitem__(__key)
     
     def __setitem__(self, __key: str, __value: TemplateGroup) -> None:
-        return self.groups.__setitem__(__key, __value)
+        return self.g_dict.__setitem__(__key, __value)
 
     def __iter__(self):
-        return self.groups.__iter__()
+        return self.g_dict.__iter__()
     
     def __len__(self) -> int:
-        return self.groups.__len__()
+        return self.g_dict.__len__()
 
 class AllTemplates(_imported_Mapping):
     """Functions like a dict of TemplateSuperGroups"""
-    superGroups: dict[str, TemplateSuperGroup]
+    sg_dict: dict[str, TemplateSuperGroup]
     def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
         super().__init__()
-        self.superGroups = superGroups
+        # Avoid stupid Python reference shenanigans
+        self.sg_dict = superGroups if superGroups else {}
+    
+    @property
+    def superGroups(self) -> list[TemplateSuperGroup]:
+        return list(self.sg_dict.values())
     
     def __getitem__(self, __key: str) -> TemplateSuperGroup:
-        return self.superGroups.__getitem__(__key)
+        return self.sg_dict.__getitem__(__key)
     
     def __setitem__(self, __key: str, __value: TemplateSuperGroup) -> None:
-        return self.superGroups.__setitem__(__key, __value)
+        return self.sg_dict.__setitem__(__key, __value)
 
     def __iter__(self):
-        return self.superGroups.__iter__()
+        return self.sg_dict.__iter__()
     
     def __len__(self) -> int:
-        return self.superGroups.__len__()
+        return self.sg_dict.__len__()
     
     def update(self, *args, **kwargs) -> None:
-        return self.superGroups.update(*args, **kwargs)
+        return self.sg_dict.update(*args, **kwargs)
+
+    def load_templates_file(self, file: str) -> None:
+        """Loads templates from a file and adds them to the tracker"""
+        if not _imported_os.path.exists(file):
+            print("Can't find template file, skipping:")
+            print("\t" + file)
+            return None
+        
+        try:
+            with open(file, 'r') as f:
+                raw_templates = _imported_json.load(f, object_hook=_as_regex)
+        except _imported_json.decoder.JSONDecodeError:
+            print(f"Failed to decode template file {file}")
+            raise
+
+        # Remove the schema specification
+        if '$schema' in raw_templates:
+            raw_templates.pop('$schema')
+
+        raw_templates: dict[str, dict[str, list[dict]]]
+        # Convert lowest level of nested dicts to Template
+        for sg_name, raw_sg in raw_templates.items():
+            assert sg_name not in self, f"Duplicate super group name: {sg_name}"
+            super_group = self[sg_name] = TemplateSuperGroup(name=sg_name)
+            for g_name, raw_g in raw_sg.items():
+                assert isinstance(raw_g, list)
+                assert g_name not in self, f"Duplicate group name: {g_name}"
+                g_templates = [Template(**raw_g[i]) for i in range(len(raw_g))]
+                group = TemplateGroup(name=g_name, templates=g_templates)
+                super_group[g_name] = group
+            
+    def flattened(self, item=None) -> list[Template]:
+        """Templates file is nested to help with organization
+        Return a flattened list of Templates, which is more directly useful"""
+        try:
+            if item is None:
+                ret = []
+                for superGroup in self.superGroups:
+                    ret.extend(self.flattened(superGroup))
+                return ret
+            elif isinstance(item, TemplateSuperGroup):
+                ret = []
+                for group in item.groups:
+                    ret.extend(self.flattened(group))
+                return ret
+            elif isinstance(item, TemplateGroup):
+                return item.templates
+            else:
+                raise NotImplementedError(f"Unknown type {type(item)}")
+        except Exception:
+            print("Failed: " + str(item))
+            raise
 
 #TODO validate field names against the appropriate data structures somehow
 
@@ -214,35 +277,6 @@ def _as_regex(dct):
         # Normal processing
         return dct
 
-def load_templates(file: str):
-    if not _imported_os.path.exists(file):
-        print("Can't find template file, skipping:")
-        print("\t" + file)
-        return AllTemplates()
-    
-    try:
-        with open(file, 'r') as f:
-            raw_templates = _imported_json.load(f, object_hook=_as_regex)
-    except _imported_json.decoder.JSONDecodeError:
-        print(f"Failed to decode template file {file}")
-        raise
-
-    # Remove the schema specification
-    if '$schema' in raw_templates:
-        raw_templates.pop('$schema')
-
-    raw_templates: dict[str, dict[str, list[dict]]]
-    templates = AllTemplates()
-    # Convert lowest level of nested dicts to Template
-    for sg_name, raw_sg in raw_templates.items():
-        super_group = templates[sg_name] = TemplateSuperGroup(name=sg_name)
-        for g_name, raw_g in raw_sg.items():
-            assert isinstance(raw_g, list)
-            g_templates = [Template(**raw_g[i]) for i in range(len(raw_g))]
-            group = TemplateGroup(name=g_name, templates=g_templates)
-            super_group[g_name] = group
-    return templates
-
 # Load templates
 auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
 if not auto_templates_file.startswith("Categorize"):
@@ -254,29 +288,11 @@ for templates_file in [
     _imported_Constants.ManualAccountHandling_file,
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
-    _nested_templates.update(load_templates(templates_file))
+    _nested_templates.load_templates_file(templates_file)
+_templates = _nested_templates.flattened()
 
-# Templates file is nested to help with organization, flatten it to be directly useful
-_templates: list[Template] = []
-def _flatten(dct) -> None:
-    try:
-        if isinstance(dct, (list, TemplateGroup)):
-            # Recurse into Array
-            for v in dct:
-                _flatten(v)
-        elif isinstance(dct, Template):
-            # Found a template, add it
-            _templates.append(dct)
-        else:
-            # Recurse into Object
-            for k,v in dct.items():
-                _flatten(v)
-    except Exception:
-        print("Failed:" + str(dct))
-        raise
-_flatten(_nested_templates)
-
-_added_templates = load_templates(auto_templates_file)
+_added_templates = AllTemplates()
+_added_templates.load_templates_file(auto_templates_file)
 _addTemp_shortcut = _added_templates['Auto-generated']['Individual']
 def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
     assert isinstance(group, list)
@@ -310,6 +326,12 @@ def save_templates() -> None:
                 return str(obj)
             elif isinstance(obj, Template):
                 return obj.as_dict()
+            elif isinstance(obj, TemplateGroup):
+                return obj.templates
+            elif isinstance(obj, TemplateSuperGroup):
+                return obj.g_dict
+            elif isinstance(obj, AllTemplates):
+                return obj.sg_dict
             else:
                 # Let the base class default method raise the TypeError
                 return super().default(obj)

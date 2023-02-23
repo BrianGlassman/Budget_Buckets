@@ -122,8 +122,12 @@ def post_process(added_templates):
             Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
         except Exception as e:
             failed_add.append(template)
+            print('-'*25)
+            print("Failed to add template:")
             print(template)
+            print("Error message:")
             print(e)
+            print('-'*25)
         else:
             successful_add.append(template)
     if successful_add:
@@ -149,7 +153,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, use_cat=True, use_uncat=True)
+    categorized_transactions = fn.categorize(transactions, use_cat=True, use_uncat=True, limit=20)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
