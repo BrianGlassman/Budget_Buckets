@@ -79,6 +79,28 @@ class TemplateSuperGroup(_imported_Mapping):
     def __len__(self) -> int:
         return self.groups.__len__()
 
+class AllTemplates(_imported_Mapping):
+    """Functions like a dict of TemplateSuperGroups"""
+    superGroups: dict[str, TemplateSuperGroup]
+    def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
+        super().__init__()
+        self.superGroups = superGroups
+    
+    def __getitem__(self, __key: str) -> TemplateSuperGroup:
+        return self.superGroups.__getitem__(__key)
+    
+    def __setitem__(self, __key: str, __value: TemplateSuperGroup) -> None:
+        return self.superGroups.__setitem__(__key, __value)
+
+    def __iter__(self):
+        return self.superGroups.__iter__()
+    
+    def __len__(self) -> int:
+        return self.superGroups.__len__()
+    
+    def update(self, *args, **kwargs) -> None:
+        return self.superGroups.update(*args, **kwargs)
+
 #TODO validate field names against the appropriate data structures somehow
 
 # Regex notes:
@@ -196,7 +218,7 @@ def load_templates(file: str):
     if not _imported_os.path.exists(file):
         print("Can't find template file, skipping:")
         print("\t" + file)
-        return {}
+        return AllTemplates()
     
     try:
         with open(file, 'r') as f:
@@ -210,8 +232,7 @@ def load_templates(file: str):
         raw_templates.pop('$schema')
 
     raw_templates: dict[str, dict[str, list[dict]]]
-    templates = {}
-    templates:     dict[str, TemplateSuperGroup]
+    templates = AllTemplates()
     # Convert lowest level of nested dicts to Template
     for sg_name, raw_sg in raw_templates.items():
         super_group = templates[sg_name] = TemplateSuperGroup(name=sg_name)
@@ -227,8 +248,7 @@ auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing
 if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
     
-_nested_templates = {}
-_nested_templates: dict[str, TemplateSuperGroup]
+_nested_templates = AllTemplates()
 for templates_file in [
     _imported_Constants.Templates_file, # Generic templates
     _imported_Constants.ManualAccountHandling_file,
@@ -238,7 +258,7 @@ for templates_file in [
 
 # Templates file is nested to help with organization, flatten it to be directly useful
 _templates: list[Template] = []
-def _flatten(dct: dict) -> None:
+def _flatten(dct) -> None:
     try:
         if isinstance(dct, (list, TemplateGroup)):
             # Recurse into Array
