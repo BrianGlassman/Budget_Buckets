@@ -2615,6 +2615,25 @@
           "category": "Internal Transfers",
           "duration": 1
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-02-15",
+          "desc": "Mobile Deposit",
+          "value": 320.28,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "CU Fall 2023 refund"
+        }
       }
     ]
   }
