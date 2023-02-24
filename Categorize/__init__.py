@@ -13,6 +13,9 @@ if __name__ == "__main__":
 
 from Root import Constants as _imported_Constants
 from Root.Buckets import categories as _imported_categories
+import Record # Only used for type-checking
+
+_re_prefix = 'REGEX:'
 
 auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
 if not auto_templates_file.startswith("Categorize"):
@@ -46,11 +49,58 @@ class Template:
 
     def __repr__(self) -> str:
         return str(self)
+
+    #--------------------------------------------------------------------------
+    # Functions to compare different fields against a given Record
+    def __desc_helper(self, pattern: str | _imported_re.Pattern, desc: str):
+        """Performs the actual check. Functionified for readability"""
+        if isinstance(pattern, _imported_re.Pattern):
+            # Regex matching (search returns None if no match found)
+            return pattern.search(desc) is not None
+        elif isinstance(pattern, str):
+            # Exact string matching
+            return desc == pattern
+        else:
+            raise NotImplementedError(f"Unknown pattern type {type(pattern)}")
+    def match_desc(self, record: Record.BaseRecord) -> bool:
+        """True if the record description matches the template"""
+        pattern = self.pattern['desc']
+        desc = record.desc
+        if isinstance(pattern, list):
+            # List of patterns, True if record matches any of them
+            return any(self.__desc_helper(pattern=p, desc=desc) for p in pattern)
+        else:
+            return self.__desc_helper(pattern=pattern, desc=desc)
     
+    def match_value(self, record: Record.BaseRecord) -> bool:
+        """True if the record value matches the template"""
+        pattern = self.pattern['value']
+        if isinstance(pattern, (int, float)):
+            # Exact value matching
+            return record.value == pattern
+        elif isinstance(pattern, (list, tuple)):
+            # Range matching (inclusive, sign-sensitive)
+            assert len(pattern) == 2
+            assert pattern[0] != pattern[1]
+            return min(pattern) <= record.value <= max(pattern)
+        else:
+            raise NotImplementedError(f"Unknown pattern type {type(pattern)}")
+    
+    def match_date(self, record: Record.BaseRecord) -> bool:
+        """True if record date matches the template"""
+        pattern = self.pattern['date']
+        assert isinstance(pattern, str)
+        return pattern == str(record.date)
+    
+    def match_generic(self, record: Record.BaseRecord, key: str) -> bool:
+        """True if record[key] matches template pattern[key]"""
+        pattern = self.pattern[key]
+        return pattern == getattr(record, key)
+    #--------------------------------------------------------------------------
+
     def run_create(self, rawRecord):
         """Create the Records specified by the create list, using the given Record as a base"""
         from dateutil import parser as dateParser
-        import Record
         # TODO should have some info tracking the original source (in source_specific?)
         ret = []
         for create in self.create:
@@ -216,7 +266,19 @@ class AllTemplates(_imported_Mapping):
         with open(auto_templates_file, 'w') as f:
             _imported_json.dump(output, f, indent=2, cls=Encoder)
         
-
+    # Specialized encoding/decoding https://docs.python.org/3/library/json.html
+    @classmethod
+    def _as_regex(cls, dct):
+        """Used when loading the JSON from file"""
+        if 'desc' in dct and isinstance(dct['desc'], str) and dct['desc'].startswith(_re_prefix):
+            # Convert it back into a compiled regex
+            pattern = dct['desc'].replace(_re_prefix, '')
+            assert not pattern.startswith(' '), f"Template {dct} probably shouldn't have a space after 'REGEX:'"
+            dct['desc'] = _imported_re.compile(pattern)
+            return dct
+        else:
+            # Normal processing
+            return dct
     def load_templates_file(self, file: str) -> None:
         """Loads templates from a file and adds them to the tracker"""
         if not _imported_os.path.exists(file):
@@ -226,7 +288,7 @@ class AllTemplates(_imported_Mapping):
         
         try:
             with open(file, 'r') as f:
-                raw_templates = _imported_json.load(f, object_hook=_as_regex)
+                raw_templates = _imported_json.load(f, object_hook=self._as_regex)
         except _imported_json.decoder.JSONDecodeError:
             print(f"Failed to decode template file {file}")
             raise
@@ -276,63 +338,13 @@ class AllTemplates(_imported_Mapping):
 
 # TODO add entries for other pay rates at Leonardo, with dates
 
-# Helper functions to check different fields
-def __desc_helper(mask: _imported_re.Pattern | str, desc: str) -> bool:
-    if isinstance(mask, _imported_re.Pattern):
-        # Regex matching (search returns None if no match found)
-        return mask.search(desc) is not None
-    elif isinstance(mask, str):
-        # Exact string matching
-        return desc == mask
-    else:
-        raise NotImplementedError("Unknown mask type")
-def __check_desc(record, pattern) -> bool:
-    """Assumes that pattern contains a desc field"""
-    mask = pattern['desc']
-    desc = record.desc
-    if isinstance(mask, list):
-        # List of patterns
-        return any(__desc_helper(m, desc) for m in mask)
-    else:
-        return __desc_helper(mask, desc)
-            
-def __check_value(record, pattern) -> bool:
-    """Assumes that pattern contains a value field
-    Pattern must be a number or range (list of two numbers)
-    True if record value matches the number or is within the given range (inclusive)
-    """
-    mask = pattern['value']
-    if isinstance(mask, (int, float)):
-        # Exact value matching
-        return record.value == mask
-    else:
-        # Range matching
-        assert len(mask) == 2
-        assert mask[0] != mask[1]
-        return min(mask) <= record.value <= max(mask)
-def __check_date(record, pattern) -> bool:
-    """Assumes that pattern contans a date field
-    Handles datetime.date vs string by just converting everything to string"""
-    mask = pattern['date']
-    assert isinstance(mask, str)
-    date = str(record.date)
-    return date == mask
-
-def __check_generic(record, pattern, key) -> bool:
-    """record - BaseRecord
-    pattern - dict
-    """
-    value = getattr(record, key)
-    mask = pattern[key]
-    return value == mask
-
 # Mapping from field name to helper function
-_checker = {'desc': __check_desc,
-            'value': __check_value,
-            'date': __check_date,
+_checker = {'desc': Template.match_desc,
+            'value': Template.match_value,
+            'date': Template.match_date,
             }
 for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
-    _checker.setdefault(key, partial(__check_generic, key=key))
+    _checker.setdefault(key, partial(Template.match_generic, key=key))
 
 def match_templates(record) -> Template | None:
     """Check against the common templates. Return whichever template
@@ -341,20 +353,15 @@ def match_templates(record) -> Template | None:
     try:
         matched = None
         # Check the transaction against all templates in order
-        for template in _templates:
+        for template in _nested_templates.flattened():
             pattern = template.pattern
             match = True
             # Run the checker for each field that has a pattern, break if any fail
             for key in pattern:
-                try:
-                    checker = _checker[key]
-                    if not checker(record, pattern):
-                        match = False
-                        break
-                except TypeError:
-                    val = _checker[key](record, pattern)
-                    print(val)
-                    raise
+                checker = _checker[key]
+                if not checker(self=template, record=record):
+                    match = False
+                    break
 
             if match:
                 # Template matched, stop searching
@@ -367,21 +374,6 @@ def match_templates(record) -> Template | None:
         raise
     return matched
 
-_re_prefix = 'REGEX:'
-
-# Specialized encoding/decoding https://docs.python.org/3/library/json.html
-def _as_regex(dct):
-    """Used when loading the JSON from file"""
-    if 'desc' in dct and isinstance(dct['desc'], str) and dct['desc'].startswith(_re_prefix):
-        # Convert it back into a compiled regex
-        pattern = dct['desc'].replace(_re_prefix, '')
-        assert not pattern.startswith(' '), f"Template {dct} probably shouldn't have a space after 'REGEX:'"
-        dct['desc'] = _imported_re.compile(pattern)
-        return dct
-    else:
-        # Normal processing
-        return dct
-
 # Load templates
 _nested_templates = AllTemplates()
 for templates_file in [
@@ -390,7 +382,6 @@ for templates_file in [
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
     _nested_templates.load_templates_file(templates_file)
-_templates = _nested_templates.flattened()
 
 def add_template(name: str, pattern: dict, new: dict) -> None:
     _nested_templates.add_auto_template(name=name, pattern=pattern, new=new)
