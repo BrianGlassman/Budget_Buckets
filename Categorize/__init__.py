@@ -14,6 +14,10 @@ if __name__ == "__main__":
 from Root import Constants as _imported_Constants
 from Root.Buckets import categories as _imported_categories
 
+auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
+if not auto_templates_file.startswith("Categorize"):
+    auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
+
 class Template:
     """Functions like a dictionary"""
     name: str
@@ -130,10 +134,14 @@ class TemplateSuperGroup(_imported_Mapping):
 class AllTemplates(_imported_Mapping):
     """Functions like a dict of TemplateSuperGroups"""
     sg_dict: dict[str, TemplateSuperGroup]
+    # The TemplateGroup of auto-generated templates (which gets saved to when templates are added)
+    auto_templates: TemplateGroup | None
     def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
         super().__init__()
         # Avoid stupid Python reference shenanigans
         self.sg_dict = superGroups if superGroups else {}
+
+        self.auto_templates = None
     
     @property
     def superGroups(self) -> list[TemplateSuperGroup]:
@@ -153,6 +161,61 @@ class AllTemplates(_imported_Mapping):
     
     def update(self, *args, **kwargs) -> None:
         return self.sg_dict.update(*args, **kwargs)
+    
+    def _set_auto_templates(self, superGroup: str, group: str):
+        """Set the pointer so that templates can be added or saved
+        Has to be called after the appropriate file is loaded so that the target exists"""
+        target = self[superGroup][group]
+        assert isinstance(target, TemplateGroup)
+        self.auto_templates = target
+        return target
+    def set_auto_templates(self):
+        """TEMPORARY convenience function to make sure the shortcut is set before use"""
+        self._set_auto_templates('Auto-generated', 'Individual')    
+
+    def add_auto_template(self, name: str, pattern: dict, new: dict):
+        """Add an auto-generated template"""
+        self.set_auto_templates()
+        assert self.auto_templates is not None
+
+        # Type checking
+        assert isinstance(name, str)
+        assert isinstance(pattern, dict)
+        assert isinstance(new, dict)
+
+        # Category verification (must be a real category)
+        if 'category' in new:
+            assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
+
+        template = Template(name=name, pattern=pattern, new=new)
+        self.auto_templates.append(template)
+
+    def save_auto_templates(self):
+        self.set_auto_templates()
+        class Encoder(_imported_json.JSONEncoder):
+            """Used when saving to JSON file"""
+            def default(self, obj):
+                import datetime
+                if isinstance(obj, _imported_re.Pattern):
+                    return _re_prefix + obj.pattern
+                elif isinstance(obj, datetime.date):
+                    return str(obj)
+                elif isinstance(obj, Template):
+                    return obj.as_dict()
+                elif isinstance(obj, TemplateGroup):
+                    return obj.templates
+                elif isinstance(obj, TemplateSuperGroup):
+                    return obj.g_dict
+                elif isinstance(obj, AllTemplates):
+                    return obj.sg_dict
+                else:
+                    # Let the base class default method raise the TypeError
+                    return super().default(obj)
+
+        output = {'Auto-generated': {'Individual': self.auto_templates}}
+        with open(auto_templates_file, 'w') as f:
+            _imported_json.dump(output, f, indent=2, cls=Encoder)
+        
 
     def load_templates_file(self, file: str) -> None:
         """Loads templates from a file and adds them to the tracker"""
@@ -320,10 +383,6 @@ def _as_regex(dct):
         return dct
 
 # Load templates
-auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
-if not auto_templates_file.startswith("Categorize"):
-    auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
-    
 _nested_templates = AllTemplates()
 for templates_file in [
     _imported_Constants.Templates_file, # Generic templates
@@ -333,53 +392,11 @@ for templates_file in [
     _nested_templates.load_templates_file(templates_file)
 _templates = _nested_templates.flattened()
 
-_added_templates = AllTemplates()
-_added_templates.load_templates_file(auto_templates_file)
-_addTemp_shortcut = _added_templates['Auto-generated']['Individual']
-def add_template(group: list[str], name: str, pattern: dict, new: dict) -> None:
-    assert isinstance(group, list)
-    assert all(isinstance(g, str) for g in group)
-    assert isinstance(name, str)
-    assert isinstance(pattern, dict)
-    assert isinstance(new, dict)
-    if 'category' in new:
-        assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
-
-    template = Template(name=name, pattern=pattern, new=new)
-    # Drill down to the right group
-    foo = _nested_templates
-    try:
-        for g in group:
-            foo = foo[g]
-    except Exception:
-        raise ValueError(f"Group '{group}' not found")
-    foo.append(template) # type: ignore
-    _templates.append(template)
-    _addTemp_shortcut.append(template)
+def add_template(name: str, pattern: dict, new: dict) -> None:
+    _nested_templates.add_auto_template(name=name, pattern=pattern, new=new)
 
 def save_templates() -> None:
-    class Encoder(_imported_json.JSONEncoder):
-        """Used when saving to JSON file"""
-        def default(self, obj):
-            import datetime
-            if isinstance(obj, _imported_re.Pattern):
-                return _re_prefix + obj.pattern
-            elif isinstance(obj, datetime.date):
-                return str(obj)
-            elif isinstance(obj, Template):
-                return obj.as_dict()
-            elif isinstance(obj, TemplateGroup):
-                return obj.templates
-            elif isinstance(obj, TemplateSuperGroup):
-                return obj.g_dict
-            elif isinstance(obj, AllTemplates):
-                return obj.sg_dict
-            else:
-                # Let the base class default method raise the TypeError
-                return super().default(obj)
-
-    with open(auto_templates_file, 'w') as f:
-        _imported_json.dump(_added_templates, f, indent=2, cls=Encoder)
+    _nested_templates.save_auto_templates()
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
     import Record

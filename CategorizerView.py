@@ -119,7 +119,7 @@ def post_process(added_templates):
         pattern = template.raw.items()
         new = template.new
         try:
-            Categorize.add_template(["Auto-generated", "Individual"], "", pattern, new)
+            Categorize.add_template("", pattern, new)
         except Exception as e:
             failed_add.append(template)
             print('-'*25)

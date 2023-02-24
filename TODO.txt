@@ -1,3 +1,9 @@
+[infrastructure]
+finish putting template handling into classes
+	this way, other files have a uniform API
+	CategorizerView and TemplateViewer both need to add/modify templates
+	TemplateViewer needs to add/modify templates that aren't auto-generated
+
 [other users]
 examples for <Raw_Data, Templates, ParseSettings>
 	Build.py can copy these examples instead of my real data
