@@ -7,8 +7,11 @@ from tkinter import ttk
 import TkinterPlus.Functions as _import_Functions
 import TkinterPlus.Values as _import_Values
 
-class Root(tkinter.Tk, _import_Functions.FuncDeclare):
-    """A Root or Toplevel window, as appropriate, with useful settings"""
+class Root(tkinter.Tk, tkinter.Toplevel, _import_Functions.FuncDeclare):
+    """A Root or Toplevel window, as appropriate, with useful settings
+    
+    Note: MUST inherit from both Tk and Toplevel, or it errors
+    Error is only on Windows, not Linux, because of a slight difference in Tkinter implementation"""
     running: bool
     def __init__(self, x_stretch, y_stretch, title = 'Budget Buckets'):
         global root
