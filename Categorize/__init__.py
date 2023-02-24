@@ -331,48 +331,48 @@ class AllTemplates(_imported_Mapping):
             print("Failed: " + str(item))
             raise
 
+    # Mapping from field name to helper function
+    _matcher = {'desc': Template.match_desc,
+                'value': Template.match_value,
+                'date': Template.match_date,
+                }
+    for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
+        _matcher.setdefault(key, partial(Template.match_generic, key=key))
+    
+    def match_template(self, record: Record.RawRecord) -> Template | None:
+        """Check against the common templates. Return whichever template
+        matches, or None if no match"""
+
+        try:
+            matched = None
+            # Check the transaction against all templates in order
+            for template in self.flattened():
+                pattern = template.pattern
+                match = True
+                # Run the checker for each field that has a pattern, break if any fail
+                for key in pattern:
+                    checker = self._matcher[key]
+                    if not checker(self=template, record=record):
+                        match = False
+                        break
+
+                if match:
+                    # Template matched, stop searching
+                    matched = template
+                    break
+        except Exception:
+            print(r" \/ \/ \/ FAILED RECORD \/ \/ \/ ")
+            print(record)
+            print(r" /\ /\ /\ FAILED RECORD /\ /\ /\ ")
+            raise
+        return matched
+
 #TODO validate field names against the appropriate data structures somehow
 
 # Regex notes:
 #   \*{11} matches exactly 11 asterisks
 
 # TODO add entries for other pay rates at Leonardo, with dates
-
-# Mapping from field name to helper function
-_checker = {'desc': Template.match_desc,
-            'value': Template.match_value,
-            'date': Template.match_date,
-            }
-for key in ('account', 'date', 'desc', 'value', 'source_specific', 'category'):
-    _checker.setdefault(key, partial(Template.match_generic, key=key))
-
-def match_templates(record) -> Template | None:
-    """Check against the common templates. Return whichever template
-    matches, or None if no match"""
-
-    try:
-        matched = None
-        # Check the transaction against all templates in order
-        for template in _nested_templates.flattened():
-            pattern = template.pattern
-            match = True
-            # Run the checker for each field that has a pattern, break if any fail
-            for key in pattern:
-                checker = _checker[key]
-                if not checker(self=template, record=record):
-                    match = False
-                    break
-
-            if match:
-                # Template matched, stop searching
-                matched = template
-                break
-    except Exception:
-        print(r" \/ \/ \/ FAILED RECORD \/ \/ \/ ")
-        print(record)
-        print(r" /\ /\ /\ FAILED RECORD /\ /\ /\ ")
-        raise
-    return matched
 
 # Load templates
 _nested_templates = AllTemplates()
@@ -382,6 +382,9 @@ for templates_file in [
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
     _nested_templates.load_templates_file(templates_file)
+
+def match_templates(record) -> Template | None:
+    return _nested_templates.match_template(record)
 
 def add_template(name: str, pattern: dict, new: dict) -> None:
     _nested_templates.add_auto_template(name=name, pattern=pattern, new=new)
