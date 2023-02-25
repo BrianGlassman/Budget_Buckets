@@ -31,7 +31,8 @@ class Template:
         self.name = name
         self.pattern = pattern
         self.new = new
-        self.create = create
+        # Avoid stupid Python reference shenanigans
+        self.create = create if create else []
 
     @classmethod
     def from_json(cls, dct: dict):
