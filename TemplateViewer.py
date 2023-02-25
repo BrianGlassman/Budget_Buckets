@@ -91,7 +91,9 @@ class TemplateViewer(gui.Root):
         def branch_gui(id: str):
             branch = branch_map[id]
             def add_template_cb():
-                make_leaf(Categorize.Template(name='Newly Created', pattern=dict(), new=dict()), parent_id=id)
+                template = Categorize.Template(name='Newly Created', pattern=dict(), new=dict())
+                branch.append(template)
+                make_leaf(template, parent_id=id)
             frame = detail_frame
             frame.clear()
             button = gui.Button(frame, text='Add new template', command=add_template_cb)
