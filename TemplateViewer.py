@@ -1,7 +1,7 @@
 import Categorize
 import TkinterPlus as gui
 
-nest_templates = Categorize._nested_templates
+nest_templates = Categorize.get_all_templates()
 # Get the longest name so the buttons can be sized appropriately
 width = max(len(t.name) for t in nest_templates.flattened())
 # Adjust to account for indenting

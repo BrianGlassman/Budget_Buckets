@@ -255,46 +255,43 @@ class TemplateFile(_imported_Mapping):
         return self.sg_dict.__len__()
 
 class AllTemplates(_imported_Mapping):
-    """Functions like a dict of TemplateSuperGroups"""
-    sg_dict: dict[str, TemplateSuperGroup]
+    """Functions like a dict of TemplateFiles"""
+    file_dict: dict[str, TemplateFile]
     # The TemplateGroup of auto-generated templates (which gets saved to when templates are added)
     auto_templates: TemplateGroup | None
-    def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
+    def __init__(self, files: dict[str, TemplateFile] = {}) -> None:
         super().__init__()
         # Avoid stupid Python reference shenanigans
-        self.sg_dict = superGroups if superGroups else {}
+        self.file_dict = files if files else {}
 
         self.auto_templates = None
     
     @property
-    def superGroups(self) -> list[TemplateSuperGroup]:
-        return list(self.sg_dict.values())
+    def files(self) -> list[TemplateFile]:
+        return list(self.file_dict.values())
     
-    def __getitem__(self, __key: str) -> TemplateSuperGroup:
-        return self.sg_dict.__getitem__(__key)
+    def __getitem__(self, __key: str) -> TemplateFile:
+        return self.file_dict.__getitem__(__key)
     
-    def __setitem__(self, __key: str, __value: TemplateSuperGroup) -> None:
-        return self.sg_dict.__setitem__(__key, __value)
+    def __setitem__(self, __key: str, __value: TemplateFile) -> None:
+        return self.file_dict.__setitem__(__key, __value)
 
     def __iter__(self):
-        return self.sg_dict.__iter__()
+        return self.file_dict.__iter__()
     
     def __len__(self) -> int:
-        return self.sg_dict.__len__()
+        return self.file_dict.__len__()
     
-    def update(self, *args, **kwargs) -> None:
-        return self.sg_dict.update(*args, **kwargs)
-    
-    def _set_auto_templates(self, superGroup: str, group: str):
+    def _set_auto_templates(self, filename:str, superGroup: str, group: str):
         """Set the pointer so that templates can be added or saved
         Has to be called after the appropriate file is loaded so that the target exists"""
-        target = self[superGroup][group]
+        target = self[filename][superGroup][group]
         assert isinstance(target, TemplateGroup)
         self.auto_templates = target
         return target
     def set_auto_templates(self):
         """TEMPORARY convenience function to make sure the shortcut is set before use"""
-        self._set_auto_templates('Auto-generated', 'Individual')    
+        self._set_auto_templates(auto_templates_file, 'Auto-generated', 'Individual')    
 
     def add_auto_template(self, name: str, pattern: dict, new: dict):
         """Add an auto-generated template"""
@@ -329,8 +326,10 @@ class AllTemplates(_imported_Mapping):
                     return obj.templates
                 elif isinstance(obj, TemplateSuperGroup):
                     return obj.g_dict
-                elif isinstance(obj, AllTemplates):
+                elif isinstance(obj, TemplateFile):
                     return obj.sg_dict
+                elif isinstance(obj, AllTemplates):
+                    return obj.file_dict
                 else:
                     # Let the base class default method raise the TypeError
                     return super().default(obj)
@@ -345,7 +344,12 @@ class AllTemplates(_imported_Mapping):
         try:
             if item is None:
                 ret = []
-                for superGroup in self.superGroups:
+                for file in self.files:
+                    ret.extend(self.flattened(file))
+                return ret
+            elif isinstance(item, TemplateFile):
+                ret = []
+                for superGroup in item.superGroups:
                     ret.extend(self.flattened(superGroup))
                 return ret
             elif isinstance(item, TemplateSuperGroup):
@@ -406,14 +410,18 @@ class AllTemplates(_imported_Mapping):
 
 # Load templates
 _nested_templates = AllTemplates()
-for templates_file in [
+for filepath in [
     _imported_Constants.Templates_file, # Generic templates
     _imported_Constants.ManualAccountHandling_file,
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
-    file_templates = TemplateFile.from_json(templates_file)
+    file_templates = TemplateFile.from_json(filepath)
     assert file_templates is not None
-    _nested_templates.update(file_templates.sg_dict)
+    _nested_templates[filepath] = file_templates
+
+def get_all_templates():
+    """Function for the sake of encapsulation (sort of)"""
+    return _nested_templates
 
 def match_templates(record) -> Template | None:
     return _nested_templates.match_template(record)
