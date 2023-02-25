@@ -198,8 +198,9 @@ class TemplateSuperGroup(_imported_Mapping):
 class TemplateFile(_imported_Mapping):
     """Functions like a dict of TemplateSuperGroups"""
     sg_dict: dict[str, TemplateSuperGroup]
-    def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
+    def __init__(self, filepath: str, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
         super().__init__()
+        self.filepath = filepath
         # Avoid stupid Python reference shenanigans
         self.sg_dict = superGroups if superGroups else {}
 
@@ -236,7 +237,7 @@ class TemplateFile(_imported_Mapping):
             raw_templates.pop('$schema')
 
         superGroups = {name: TemplateSuperGroup.from_json(name=name, raw_sg=raw_sg) for name, raw_sg in raw_templates.items()}
-        return cls(superGroups=superGroups)
+        return cls(filepath=filepath, superGroups=superGroups)
 
     @property
     def superGroups(self) -> list[TemplateSuperGroup]:
@@ -254,64 +255,8 @@ class TemplateFile(_imported_Mapping):
     def __len__(self) -> int:
         return self.sg_dict.__len__()
 
-class AllTemplates(_imported_Mapping):
-    """Functions like a dict of TemplateFiles"""
-    file_dict: dict[str, TemplateFile]
-    # The TemplateGroup of auto-generated templates (which gets saved to when templates are added)
-    auto_templates: TemplateGroup | None
-    def __init__(self, files: dict[str, TemplateFile] = {}) -> None:
-        super().__init__()
-        # Avoid stupid Python reference shenanigans
-        self.file_dict = files if files else {}
-
-        self.auto_templates = None
-    
-    @property
-    def files(self) -> list[TemplateFile]:
-        return list(self.file_dict.values())
-    
-    def __getitem__(self, __key: str) -> TemplateFile:
-        return self.file_dict.__getitem__(__key)
-    
-    def __setitem__(self, __key: str, __value: TemplateFile) -> None:
-        return self.file_dict.__setitem__(__key, __value)
-
-    def __iter__(self):
-        return self.file_dict.__iter__()
-    
-    def __len__(self) -> int:
-        return self.file_dict.__len__()
-    
-    def _set_auto_templates(self, filename:str, superGroup: str, group: str):
-        """Set the pointer so that templates can be added or saved
-        Has to be called after the appropriate file is loaded so that the target exists"""
-        target = self[filename][superGroup][group]
-        assert isinstance(target, TemplateGroup)
-        self.auto_templates = target
-        return target
-    def set_auto_templates(self):
-        """TEMPORARY convenience function to make sure the shortcut is set before use"""
-        self._set_auto_templates(auto_templates_file, 'Auto-generated', 'Individual')    
-
-    def add_auto_template(self, name: str, pattern: dict, new: dict):
-        """Add an auto-generated template"""
-        self.set_auto_templates()
-        assert self.auto_templates is not None
-
-        # Type checking
-        assert isinstance(name, str)
-        assert isinstance(pattern, dict)
-        assert isinstance(new, dict)
-
-        # Category verification (must be a real category)
-        if 'category' in new:
-            assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
-
-        template = Template(name=name, pattern=pattern, new=new)
-        self.auto_templates.append(template)
-
-    def save_auto_templates(self):
-        self.set_auto_templates()
+    def save(self):
+        """Save the templates back to the source file"""
         class Encoder(_imported_json.JSONEncoder):
             """Used when saving to JSON file"""
             def default(self, obj):
@@ -334,9 +279,75 @@ class AllTemplates(_imported_Mapping):
                     # Let the base class default method raise the TypeError
                     return super().default(obj)
 
-        output = {'Auto-generated': {'Individual': self.auto_templates}}
-        with open(auto_templates_file, 'w') as f:
-            _imported_json.dump(output, f, indent=2, cls=Encoder)
+        with open(self.filepath, 'w') as f:
+            _imported_json.dump(self.sg_dict, f, indent=2, cls=Encoder)
+
+class AllTemplates(_imported_Mapping):
+    """Functions like a dict of TemplateFiles"""
+    file_dict: dict[str, TemplateFile]
+    # The TemplateGroup of auto-generated templates (which gets saved to when templates are added)
+    auto_templates: TemplateGroup | None
+    auto_file: TemplateFile | None
+    def __init__(self, files: dict[str, TemplateFile] = {}) -> None:
+        super().__init__()
+        # Avoid stupid Python reference shenanigans
+        self.file_dict = files if files else {}
+
+        self.auto_file = None
+        self.auto_templates = None
+    
+    @property
+    def files(self) -> list[TemplateFile]:
+        return list(self.file_dict.values())
+    
+    def __getitem__(self, __key: str) -> TemplateFile:
+        return self.file_dict.__getitem__(__key)
+    
+    def __setitem__(self, __key: str, __value: TemplateFile) -> None:
+        return self.file_dict.__setitem__(__key, __value)
+
+    def __iter__(self):
+        return self.file_dict.__iter__()
+    
+    def __len__(self) -> int:
+        return self.file_dict.__len__()
+    
+    def _set_auto_templates(self, filename:str, superGroup: str, group: str):
+        """Set the pointer so that templates can be added or saved
+        Has to be called after the appropriate file is loaded so that the target exists"""
+        file = self[filename]
+        assert isinstance(file, TemplateFile)
+        self.auto_file = file
+        
+        target = file[superGroup][group]
+        assert isinstance(target, TemplateGroup)
+        self.auto_templates = target
+    def set_auto_templates(self):
+        """TEMPORARY convenience function to make sure the shortcut is set before use"""
+        if self.auto_templates is not None: return
+        self._set_auto_templates(auto_templates_file, 'Auto-generated', 'Individual')    
+
+    def add_auto_template(self, name: str, pattern: dict, new: dict):
+        """Add an auto-generated template"""
+        self.set_auto_templates()
+        assert self.auto_templates is not None
+
+        # Type checking
+        assert isinstance(name, str)
+        assert isinstance(pattern, dict)
+        assert isinstance(new, dict)
+
+        # Category verification (must be a real, non-todo category)
+        if 'category' in new:
+            assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
+
+        template = Template(name=name, pattern=pattern, new=new)
+        self.auto_templates.append(template)
+
+    def save_auto_templates(self):
+        self.set_auto_templates()
+        assert self.auto_file is not None
+        self.auto_file.save()
             
     def flattened(self, item=None) -> list[Template]:
         """Templates file is nested to help with organization
