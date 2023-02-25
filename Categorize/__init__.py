@@ -198,12 +198,15 @@ class TemplateSuperGroup(_imported_Mapping):
 class TemplateFile(_imported_Mapping):
     """Functions like a dict of TemplateSuperGroups"""
     sg_dict: dict[str, TemplateSuperGroup]
-    def __init__(self, filepath: str, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
+    schema: str | None
+    def __init__(self, filepath: str, schema: str | None, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
         super().__init__()
         self.filepath = filepath
+        self.schema = schema
         # Avoid stupid Python reference shenanigans
         self.sg_dict = superGroups if superGroups else {}
 
+    schema_tag = '$schema'
     # Specialized encoding/decoding https://docs.python.org/3/library/json.html
     @classmethod
     def _as_regex(cls, dct):
@@ -228,16 +231,18 @@ class TemplateFile(_imported_Mapping):
         try:
             with open(filepath, 'r') as f:
                 raw_templates = _imported_json.load(f, object_hook=cls._as_regex)
+                raw_templates: dict
         except _imported_json.decoder.JSONDecodeError:
             print(f"Failed to decode template file {filepath}")
             raise
 
         # Remove the schema specification
-        if '$schema' in raw_templates:
-            raw_templates.pop('$schema')
+        schema: str | None = None
+        if cls.schema_tag in raw_templates:
+            schema = raw_templates.pop('$schema')
 
         superGroups = {name: TemplateSuperGroup.from_json(name=name, raw_sg=raw_sg) for name, raw_sg in raw_templates.items()}
-        return cls(filepath=filepath, superGroups=superGroups)
+        return cls(filepath=filepath, schema=schema, superGroups=superGroups)
 
     @property
     def superGroups(self) -> list[TemplateSuperGroup]:
@@ -279,8 +284,12 @@ class TemplateFile(_imported_Mapping):
                     # Let the base class default method raise the TypeError
                     return super().default(obj)
 
+        output = {}
+        if self.schema is not None:
+            output[self.schema_tag] = self.schema
+        output.update(self.sg_dict)
         with open(self.filepath, 'w') as f:
-            _imported_json.dump(self.sg_dict, f, indent=2, cls=Encoder)
+            _imported_json.dump(output, f, indent=2, cls=Encoder)
 
 class AllTemplates(_imported_Mapping):
     """Functions like a dict of TemplateFiles"""
@@ -311,6 +320,11 @@ class AllTemplates(_imported_Mapping):
     
     def __len__(self) -> int:
         return self.file_dict.__len__()
+    
+    def save(self):
+        """Save all children, or just the given names"""
+        for file in self.files:
+            file.save()
     
     def _set_auto_templates(self, filename:str, superGroup: str, group: str):
         """Set the pointer so that templates can be added or saved
@@ -345,6 +359,7 @@ class AllTemplates(_imported_Mapping):
         self.auto_templates.append(template)
 
     def save_auto_templates(self):
+        """Saves just the auto-generated templates"""
         self.set_auto_templates()
         assert self.auto_file is not None
         self.auto_file.save()
