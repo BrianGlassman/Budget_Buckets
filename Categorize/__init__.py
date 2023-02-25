@@ -33,6 +33,10 @@ class Template:
         self.new = new
         self.create = create
 
+    @classmethod
+    def from_json(cls, dct: dict):
+        return cls(**dct)
+
     def as_dict(self):
         ret = {
             'name': self.name,
@@ -148,6 +152,11 @@ class TemplateGroup(_imported_Iterable):
         self.name = name
         # Avoid stupid Python reference shenanigans
         self.templates = templates if templates else []
+
+    @classmethod
+    def from_json(cls, name: str, raw_group: list[dict]):
+        templates = [Template.from_json(raw_dct) for raw_dct in raw_group]
+        return cls(name=name, templates=templates)
     
     def append(self, t: Template):
         self.templates.append(t)
@@ -164,6 +173,11 @@ class TemplateSuperGroup(_imported_Mapping):
         self.name = name
         # Avoid stupid Python reference shenanigans
         self.g_dict = groups if groups else {}
+
+    @classmethod
+    def from_json(cls, name: str, raw_sg: dict[str, list[dict]]):
+        groups = {name: TemplateGroup.from_json(name, raw_group) for name, raw_group in raw_sg.items()}
+        return cls(name=name, groups=groups)
     
     @property
     def groups(self) -> list[TemplateGroup]:
@@ -180,6 +194,65 @@ class TemplateSuperGroup(_imported_Mapping):
     
     def __len__(self) -> int:
         return self.g_dict.__len__()
+
+class TemplateFile(_imported_Mapping):
+    """Functions like a dict of TemplateSuperGroups"""
+    sg_dict: dict[str, TemplateSuperGroup]
+    def __init__(self, superGroups: dict[str, TemplateSuperGroup] = {}) -> None:
+        super().__init__()
+        # Avoid stupid Python reference shenanigans
+        self.sg_dict = superGroups if superGroups else {}
+
+    # Specialized encoding/decoding https://docs.python.org/3/library/json.html
+    @classmethod
+    def _as_regex(cls, dct):
+        """Used when loading the JSON from file"""
+        if 'desc' in dct and isinstance(dct['desc'], str) and dct['desc'].startswith(_re_prefix):
+            # Convert it back into a compiled regex
+            pattern = dct['desc'].replace(_re_prefix, '')
+            assert not pattern.startswith(' '), f"Template {dct} probably shouldn't have a space after 'REGEX:'"
+            dct['desc'] = _imported_re.compile(pattern)
+            return dct
+        else:
+            # Normal processing
+            return dct
+    @classmethod
+    def from_json(cls, filepath: str):
+        """Loads templates from the given file"""
+        if not _imported_os.path.exists(filepath):
+            print("Can't find template file, skipping:")
+            print("\t" + filepath)
+            return None
+
+        try:
+            with open(filepath, 'r') as f:
+                raw_templates = _imported_json.load(f, object_hook=cls._as_regex)
+        except _imported_json.decoder.JSONDecodeError:
+            print(f"Failed to decode template file {filepath}")
+            raise
+
+        # Remove the schema specification
+        if '$schema' in raw_templates:
+            raw_templates.pop('$schema')
+
+        superGroups = {name: TemplateSuperGroup.from_json(name=name, raw_sg=raw_sg) for name, raw_sg in raw_templates.items()}
+        return cls(superGroups=superGroups)
+
+    @property
+    def superGroups(self) -> list[TemplateSuperGroup]:
+        return list(self.sg_dict.values())
+    
+    def __getitem__(self, __key: str) -> TemplateSuperGroup:
+        return self.sg_dict.__getitem__(__key)
+    
+    def __setitem__(self, __key: str, __value: TemplateSuperGroup) -> None:
+        return self.sg_dict.__setitem__(__key, __value)
+
+    def __iter__(self):
+        return self.sg_dict.__iter__()
+    
+    def __len__(self) -> int:
+        return self.sg_dict.__len__()
 
 class AllTemplates(_imported_Mapping):
     """Functions like a dict of TemplateSuperGroups"""
@@ -265,49 +338,6 @@ class AllTemplates(_imported_Mapping):
         output = {'Auto-generated': {'Individual': self.auto_templates}}
         with open(auto_templates_file, 'w') as f:
             _imported_json.dump(output, f, indent=2, cls=Encoder)
-        
-    # Specialized encoding/decoding https://docs.python.org/3/library/json.html
-    @classmethod
-    def _as_regex(cls, dct):
-        """Used when loading the JSON from file"""
-        if 'desc' in dct and isinstance(dct['desc'], str) and dct['desc'].startswith(_re_prefix):
-            # Convert it back into a compiled regex
-            pattern = dct['desc'].replace(_re_prefix, '')
-            assert not pattern.startswith(' '), f"Template {dct} probably shouldn't have a space after 'REGEX:'"
-            dct['desc'] = _imported_re.compile(pattern)
-            return dct
-        else:
-            # Normal processing
-            return dct
-    def load_templates_file(self, file: str) -> None:
-        """Loads templates from a file and adds them to the tracker"""
-        if not _imported_os.path.exists(file):
-            print("Can't find template file, skipping:")
-            print("\t" + file)
-            return None
-        
-        try:
-            with open(file, 'r') as f:
-                raw_templates = _imported_json.load(f, object_hook=self._as_regex)
-        except _imported_json.decoder.JSONDecodeError:
-            print(f"Failed to decode template file {file}")
-            raise
-
-        # Remove the schema specification
-        if '$schema' in raw_templates:
-            raw_templates.pop('$schema')
-
-        raw_templates: dict[str, dict[str, list[dict]]]
-        # Convert lowest level of nested dicts to Template
-        for sg_name, raw_sg in raw_templates.items():
-            assert sg_name not in self, f"Duplicate super group name: {sg_name}"
-            super_group = self[sg_name] = TemplateSuperGroup(name=sg_name)
-            for g_name, raw_g in raw_sg.items():
-                assert isinstance(raw_g, list)
-                assert g_name not in self, f"Duplicate group name: {g_name}"
-                g_templates = [Template(**raw_g[i]) for i in range(len(raw_g))]
-                group = TemplateGroup(name=g_name, templates=g_templates)
-                super_group[g_name] = group
             
     def flattened(self, item=None) -> list[Template]:
         """Templates file is nested to help with organization
@@ -381,7 +411,9 @@ for templates_file in [
     _imported_Constants.ManualAccountHandling_file,
     auto_templates_file, # Auto-generated templates from GUI, override anything else
     ]:
-    _nested_templates.load_templates_file(templates_file)
+    file_templates = TemplateFile.from_json(templates_file)
+    assert file_templates is not None
+    _nested_templates.update(file_templates.sg_dict)
 
 def match_templates(record) -> Template | None:
     return _nested_templates.match_template(record)
