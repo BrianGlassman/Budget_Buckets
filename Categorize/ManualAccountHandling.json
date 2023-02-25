@@ -1,117 +1,117 @@
 {
-    "$schema": "Schemas/TemplatesSchema.json",
-    "Manual Account Handling": {
-        "USAA Checking": [
-            {
-                "name": "Fidelity Transfers",
-                "pattern": {
-                    "account": "Checking",
-                    "desc": "Fidelity"
-                },
-                "new": {
-                    "category": "Internal Transfers",
-                    "duration": 1
-                }
-            },
-            {
-                "name": "M1 Transfers",
-                "pattern": {
-                    "account": "Checking",
-                    "desc": "M1 Finance"
-                },
-                "new": {
-                    "category": "Internal Transfers",
-                    "duration": 1
-                }
-            }
-        ],
-        "M1": [
-          {
-            "name": "MANUAL_LOG USAA Transfer",
-            "pattern": {
-              "account": "M1",
-              "desc": "USAA Transfer"
-            },
-            "new": {
-              "category": "Internal Transfers",
-              "duration": 1
-            }
-          }
-        ],
-        "Fidelity Investments": [
-            {
-              "name": "MANUAL_LOG USAA Transfer",
-              "pattern": {
-                "account": "FStocks",
-                "desc": "USAA Transfer"
-              },
-              "new": {
-                "category": "Internal Transfers",
-                "duration": 1
-              }
-            }
-        ],
-        "Fidelity Roth IRA": [
-            {
-              "name": "MANUAL_LOG Rollover",
-              "pattern": {
-                "account": "Roth IRA",
-                "desc": "Rollover from 401(k)"
-                },
-              "new": {
-                "category": "Internal Transfers",
-                "duration": 1
-              }
-            }
-        ],
-        "Fidelity Traditional IRA": [
-            {
-              "name": "MANUAL_LOG USAA Transfer",
-              "pattern": {
-                "account": "Trad IRA",
-                "desc": "USAA Transfer"
-              },
-              "new": {
-                "category": "Internal Transfers",
-                "duration": 1
-              }
-            }
-        ],
-        "PrudentialEmpower 401(k)": [
-            {
-              "name": "MANUAL_LOG Rollover",
-              "pattern": {
-                "account": "401(k)",
-                "desc": "Rollover"
-              },
-              "new": {
-                "category": "Internal Transfers",
-                "duration": 1
-              }
-            },
-            {
-              "name": "MANUAL_LOG Forfeiture",
-              "pattern": {
-                "account": "401(k)",
-                "desc": "Forfeiture"
-              },
-              "new": {
-                "category": "401k",
-                "duration": 1
-              }
-            },
-            {
-              "name": "MANUAL_LOG Rollover Fee",
-              "pattern": {
-                "account": "401(k)",
-                "desc": "Rollover Fee",
-                "value": -35
-              },
-              "new": {
-                "category": "401k",
-                "duration": 1
-              }
-            }
-        ]
-    }
+  "$schema": "Schemas/TemplatesSchema.json",
+  "Manual Account Handling": {
+    "USAA Checking": [
+      {
+        "name": "Fidelity Transfers",
+        "pattern": {
+          "account": "Checking",
+          "desc": "Fidelity"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "M1 Transfers",
+        "pattern": {
+          "account": "Checking",
+          "desc": "M1 Finance"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      }
+    ],
+    "M1": [
+      {
+        "name": "MANUAL_LOG USAA Transfer",
+        "pattern": {
+          "account": "M1",
+          "desc": "USAA Transfer"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      }
+    ],
+    "Fidelity Investments": [
+      {
+        "name": "MANUAL_LOG USAA Transfer",
+        "pattern": {
+          "account": "FStocks",
+          "desc": "USAA Transfer"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      }
+    ],
+    "Fidelity Roth IRA": [
+      {
+        "name": "MANUAL_LOG Rollover",
+        "pattern": {
+          "account": "Roth IRA",
+          "desc": "Rollover from 401(k)"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      }
+    ],
+    "Fidelity Traditional IRA": [
+      {
+        "name": "MANUAL_LOG USAA Transfer",
+        "pattern": {
+          "account": "Trad IRA",
+          "desc": "USAA Transfer"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      }
+    ],
+    "PrudentialEmpower 401(k)": [
+      {
+        "name": "MANUAL_LOG Rollover",
+        "pattern": {
+          "account": "401(k)",
+          "desc": "Rollover"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
+        }
+      },
+      {
+        "name": "MANUAL_LOG Forfeiture",
+        "pattern": {
+          "account": "401(k)",
+          "desc": "Forfeiture"
+        },
+        "new": {
+          "category": "401k",
+          "duration": 1
+        }
+      },
+      {
+        "name": "MANUAL_LOG Rollover Fee",
+        "pattern": {
+          "account": "401(k)",
+          "desc": "Rollover Fee",
+          "value": -35
+        },
+        "new": {
+          "category": "401k",
+          "duration": 1
+        }
+      }
+    ]
+  }
 }

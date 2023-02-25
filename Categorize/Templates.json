@@ -216,7 +216,8 @@
           "desc": "Hazel's Beverage World",
           "value": [
             0,
-            -19.99]
+            -19.99
+          ]
         },
         "new": {
           "category": "Groceries",
@@ -715,8 +716,8 @@
           "account": "Checking",
           "desc": "Transfer",
           "value": [
-            -0.10,
-            0.10
+            -0.1,
+            0.1
           ],
           "source_specific": {
             "Original Description": "FIRSTBANK        INET TFER  ***********6997",
@@ -935,12 +936,12 @@
         "pattern": {
           "account": "CU Bills",
           "desc": "REGEX:CU (Spring|Summer|Fall) 202[123] Meal Plan",
-          "value": -433.00
+          "value": -433.0
         },
         "new": {
           "category": "Food - nice",
           "desc": "CU Meal Plan - Food - nice",
-          "value": -233.00,
+          "value": -233.0,
           "duration": 105
         },
         "create": [
@@ -949,7 +950,7 @@
             "category": "Groceries",
             "desc": "CU Meal Plan - Groceries",
             "date": "$SAME",
-            "value": -200.00,
+            "value": -200.0,
             "duration": 105
           }
         ]
