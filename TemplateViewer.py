@@ -155,7 +155,10 @@ class TemplateViewer(gui.Root):
             frame = gui.Frame(parent)
             label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
             label.pack(side='top', anchor='n', fill='x', expand=False)
-            for k,v in dct.items():
+            # Use Record keys to make sure it's always the same order
+            for k in Record.RawRecord.keys():
+                if k not in dct: continue
+                v = dct[k]
                 label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
                 label.pack(side='top', anchor='w')
                 value = gui.tkinter.Label(frame, text=str(v), anchor='w')
@@ -221,8 +224,29 @@ class TemplateViewer(gui.Root):
                 # elif issubclass(field_type, Record.DictField):
                     # TODO this is gonna be a pain
                 else:
-                    value = gui.tkinter.Label(frame, text=str(filled_val), anchor='w')
-                    value.pack(side='top', anchor='w', fill='x', expand=False)
+                    # Generic
+                    def do_stuff(filled_val, frame, filled_dct, k):
+                        """Use a function because otherwise Tkinter messes up the callbacks"""
+                        var = gui.tkinter.StringVar(value=str(filled_val))
+                        entry = gui.Entry(frame, textvariable=var, anchor='w')
+                        entry.pack(side='top', anchor='w', fill='x', expand=False)
+                        def cb(*_, filled_dct: dict, k: str):
+                            val = var.get()
+                            valid = True
+                            if val == '' and k in filled_dct:
+                                filled_dct.pop(k)
+                            else:
+                                try:
+                                    # FIXME it's an eval, what do you think needs fixing?
+                                    obj = eval(val)
+                                except Exception:
+                                    valid = False
+                                else:
+                                    # Just assume it's valid, since this is the generic option
+                                    filled_dct[k] = obj
+                            entry['bg'] = '#ffffff' if valid else '#ffc8c8'
+                        var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
+                    do_stuff(filled_val=filled_val, frame=frame, filled_dct=filled_dct, k=k)
             frame.pack(side='left', fill='both', expand=True)
             return frame
 
