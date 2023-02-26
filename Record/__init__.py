@@ -1,24 +1,91 @@
 import datetime
+import typing as _import_typing
 
 from Root import Buckets
 
-class BaseRecord:
-    account: str
-    date: datetime.date
-    desc: str
-    value: float
-    source_specific: dict
-    def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
-        assert isinstance(account, str), f"Type is '{type(account)}'"
-        self.account = account
-        assert type(date) is datetime.date, f"Type is '{type(date)}'"
-        self.date = date
-        assert isinstance(desc, str), f"Type is '{type(desc)}'"
-        self.desc = desc
-        assert isinstance(value, float), f"Type is '{type(value)}'"
+class Field:
+    _type: _import_typing.Type
+    def __init__(self, value):
+        self.set(value=value)
+
+    def set(self, value):
+        self.check_value(value=value)
         self.value = value
-        assert isinstance(source_specific, dict), f"Type is '{type(source_specific)}'"
-        self.source_specific = source_specific
+
+    def check_value(self, value):
+        """Error if value is invalid"""
+        assert isinstance(value, self._type), f"Type is '{type(value)}', not '{self._type}"
+
+class StrField(Field):
+    _type = str
+
+class CatField(Field):
+    _type = str
+    def check_value(self, value):
+        assert isinstance(value, self._type), f"Type is '{type(value)}', not '{self._type}"
+        assert value in Buckets.categories_inclTodo, f"Category '{value}' not recognized"
+
+class DateField(Field):
+    _type = datetime.date
+
+class IntField(Field):
+    _type = int
+
+class PosIntField(IntField):
+    def check_value(self, value):
+        super().check_value(value)
+        assert value > 0, f"Value '{value}' must be positive"
+
+class MoneyField(Field):
+    _type = float
+
+class DictField(Field):
+    _type = dict
+
+class BaseRecord:
+    _account: StrField
+    _date: DateField
+    _desc: StrField
+    _value: MoneyField
+    _source_specific: DictField
+    def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific = {}):
+        self._account = StrField(account)
+        self._date = DateField(date)
+        self._desc = StrField(desc)
+        self._value = MoneyField(value)
+        self._source_specific = DictField(source_specific)
+
+    @property
+    def account(self):
+        return self._account.value
+    @property
+    def date(self):
+        return self._date.value
+    @property
+    def desc(self):
+        return self._desc.value
+    @property
+    def value(self):
+        return self._value.value
+    @property
+    def source_specific(self):
+        return self._source_specific.value
+
+    @account.setter
+    def account(self, value):
+        return self._account.set(value)
+    @date.setter
+    def date(self, value):
+        return self._date.set(value)
+    @desc.setter
+    def desc(self, value):
+        return self._desc.set(value)
+    @value.setter
+    def value(self, value):
+        return self._value.set(value)
+    @source_specific.setter
+    def source_specific(self, value):
+        return self._source_specific.set(value)
 
     def __getitem__(self, key):
         if key == 'account': return self.account
@@ -43,6 +110,9 @@ class BaseRecord:
 
     def keys(self):
         return ['account', 'date', 'desc', 'value', 'source_specific']
+    
+    def fields(self) -> list[Field]:
+        return [self._account, self._date, self._desc, self._value, self._source_specific]
 
     def items(self) -> dict:
         return {k:v for k,v in zip(self.keys(), self.values())}
@@ -65,15 +135,31 @@ class CategorizedRecord(BaseRecord):
         assert rawRecord is None or isinstance(rawRecord, RawRecord)
         self.rawRecord = rawRecord
 
-        assert isinstance(category, str)
-        self.category = category
+        self._category = CatField(category)
 
-        assert (comment is None) or (isinstance(comment, str))
-        self.comment = comment
+        self._comment = StrField(comment)
 
-        assert isinstance(duration, int)
-        assert duration > 0
-        self.duration = duration
+        self._duration = PosIntField(duration)
+
+    @property
+    def category(self):
+        return self._category.value
+    @property
+    def comment(self):
+        return self._comment.value
+    @property
+    def duration(self):
+        return self._duration.value
+
+    @category.setter
+    def category(self, value):
+        return self._category.set(value)
+    @comment.setter
+    def comment(self, value):
+        return self._comment.set(value)
+    @duration.setter
+    def duration(self, value):
+        return self._duration.set(value)
 
     @classmethod
     def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str = '', duration: int = 1):
