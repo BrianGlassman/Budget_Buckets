@@ -30,8 +30,7 @@ folders = [
 for folder in folders:
     os.mkdir(os.path.join(dist_dir, folder))
 
-for dir, file in Constants.filepaths:
-    filepath = os.path.join(dir, file)
+for filepath in Constants.filepaths:
     shutil.copy2(filepath, os.path.join(dist_dir, filepath))
 
 for file in os.listdir('Raw_Data'):
