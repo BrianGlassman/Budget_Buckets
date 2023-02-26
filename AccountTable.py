@@ -100,7 +100,7 @@ def run():
         date = fn.inc_month(date)
     
     # Get all the accounts
-    accounts = set(t.account for t in categorized_transactions)
+    accounts = Constants.accounts
 
     # Initialize all month's deltas as 0
     deltas: dict[str, dict[datetime.date, float]] # {account: {date_key: delta this month}}

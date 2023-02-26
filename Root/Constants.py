@@ -11,7 +11,7 @@ AutoTemplates_file = _import_os.path.join('Categorize', 'AutoTemplates.json')
 Templates_file = _import_os.path.join('Categorize', 'Templates.json')
 ManualAccountHandling_file = _import_os.path.join('Categorize', 'ManualAccountHandling.json')
 ParseSettings_file = _import_os.path.join('Parsing', 'ParseSettings.csv')
-Constants_file = _import_os.path.join('Root', 'Constants.py') # Not used, but good for the user to have
+Constants_file = _import_os.path.join('Root', 'Constants.py')
 BucketInfo_file = _import_os.path.join('Root', 'BucketInfo.csv')
 todo_file = 'TODO.txt'
 filepaths = [
@@ -22,4 +22,20 @@ filepaths = [
     Constants_file,
     BucketInfo_file,
     todo_file
+]
+
+# List of all accounts
+accounts = [
+    'Checking',
+    'Credit Card',
+    'CU Bills',
+    'Student Loans',
+    'M1',
+    'FStocks',
+    '529',
+    'Venmo',
+    'Campus Cash',
+    '401(k)',
+    'Roth IRA',
+    'Trad IRA',
 ]
