@@ -205,9 +205,9 @@ def run_config():
     window.mainloop()
 
 def run_templates():
-    import TemplateViewer
+    from TemplateViewer import TemplateViewer
 
-    TemplateViewer.run()
+    TemplateViewer()
 
 def load_data():
     # Parse
