@@ -1,9 +1,6 @@
 [BUG]
 can't add templates from Main > CategorizerView because of scoping problems
 
-[infrastructure]
-TemplateViewer needs to add/modify templates that aren't auto-generated
-
 [other users]
 examples for <Raw_Data, Templates, ParseSettings>
 	Build.py can copy these examples instead of my real data
@@ -15,16 +12,17 @@ finish Templates GUI
 GUI to view templates
 	make table interactive to add new templates or modify existing
 		done - a. button to add new, empty templates
-		b. template view has a button to add Create items
+		done - b. template view has a button to add Create items
 		c. template view has a button to remove Create items
-		d. template view has ability to edit Name, Pattern, New, and Create
+		d. template view has ability to edit:
+			done - i. Name
+			doneish - ii. Pattern
+				current version relies on eval, and can't handle dates
+			iii. New
+			iv. Create
 		e. branch view has a button to delete templates (could also be in template view)
 			this is maybe optional? Deleting via file edit isn't too hard
 	for now, assume that Trunks and Branches are fixed (edit in file if needed)
-
-[general]
-figure out how to do user settings/templates and data so that other people can use it
-	don't worry about GUIs for now, assume they're Python devs themselves
 
 [config]
 use a selectable dropdown or separate window for category filter
@@ -63,10 +61,6 @@ Make a "slush fund" bucket. Income categories add to it, expense categories take
 [CategorizerView]
 Allow typing with autocomplete for category
 
-[Categorizing]
-Some system for creating generic templates
-	will probably need to figure out how to put it in the right nested group
-
 [MView]
 Option for hiding categories with no transactions
 
@@ -101,7 +95,7 @@ Color-code based on broad category, then either use color variation or markers t
 Use matplotlip picker event handler thing to allow interrogating points (ex. what was this transaction?)
 
 [BucketTimeline]
-Hard-code initial value for each bucket
+Make initial value for each bucket editable
 	right now starts as bucket max value
 
 [MView]
@@ -123,6 +117,3 @@ Make a module to convert from the old system (with categorizations and descripti
 	This is better than doing it manually, or making something temporary
 	Actually... this should probably be lower priority
 	Just start fresh from some date, and ignore the old stuff for now
-
-[general]
-Create false data to include for other users to use as example

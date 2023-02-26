@@ -13,6 +13,7 @@ ManualAccountHandling_file = _import_os.path.join('Categorize', 'ManualAccountHa
 ParseSettings_file = _import_os.path.join('Parsing', 'ParseSettings.csv')
 Constants_file = _import_os.path.join('Root', 'Constants.py') # Not used, but good for the user to have
 BucketInfo_file = _import_os.path.join('Root', 'BucketInfo.csv')
+todo_file = 'TODO.txt'
 filepaths = [
     AutoTemplates_file,
     Templates_file,
@@ -20,4 +21,5 @@ filepaths = [
     ParseSettings_file,
     Constants_file,
     BucketInfo_file,
+    todo_file
 ]
