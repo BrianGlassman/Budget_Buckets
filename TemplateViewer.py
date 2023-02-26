@@ -166,87 +166,32 @@ class TemplateViewer(gui.Root):
             frame.pack(side='left', fill='both', expand=True)
             return frame
         
-        def make_edit_pattern(title: str, filled_dct: dict, parent: gui.Frame | None = frame):
+        def make_edit_pattern(title: str, pattern: Categorize.Pattern, parent: gui.Frame | None = frame):
             """Makes the sub-window for editing the Template's Pattern member"""
             frame = gui.Frame(parent)
             label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
             label.pack(side='top', anchor='n', fill='x', expand=False)
-            for k, field_type in Record.RawRecord.class_items():
+            for k, field_type in pattern.field_dict.items():
                 label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
                 label.pack(side='top', anchor='w')
-
                 
-                filled_val = filled_dct.get(k, '')
-                if issubclass(field_type, (Record.StrField, Record.CatField)):
-                    # Strings
-                    def do_stuff(filled_val, frame, filled_dct, k):
-                        """Use a function because otherwise Tkinter messes up the callbacks"""
-                        var = gui.tkinter.StringVar(value=filled_val)
-                        entry = gui.Entry(frame, textvariable=var, anchor='w')
-                        entry.pack(side='top', anchor='w', fill='x', expand=False)
-
-                        def cb(*_, filled_dct: dict, k: str):
-                            val = var.get()
-                            if val == '' and k in filled_dct:
-                                filled_dct.pop(k)
-                            else:
-                                filled_dct[k] = val
-                        var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
-                    do_stuff(filled_val, frame, filled_dct, k)
-                elif issubclass(field_type, Record.MoneyField):
-                    # Values
-                    # Use StringVar because DoubleVar default to 0.0
-                    var = gui.tkinter.StringVar(value=str(filled_val))
+                def do_stuff(frame, pattern: Categorize.Pattern, k):
+                    """Use a function because otherwise Tkinter messes up the callbacks"""
+                    filled_val = pattern.get(k, '')
+                    var = gui.tkinter.StringVar(value=filled_val)
                     entry = gui.Entry(frame, textvariable=var, anchor='w')
                     entry.pack(side='top', anchor='w', fill='x', expand=False)
-                    def cb(*_, filled_dct: dict, k: str):
+
+                    def cb(*_, key: str):
                         val = var.get()
                         valid = True
-                        if val == '' and k in filled_dct:
-                            filled_dct.pop(k)
+                        if val == '':
+                            pattern.clear(key)
                         else:
-                            try:
-                                # FIXME it's an eval, what do you think needs fixing?
-                                obj = eval(val)
-                            except Exception:
-                                # Might still be typing (ex. entered '-' or '[13,')
-                                valid = False
-                            else:
-                                if isinstance(obj, (int, float)):
-                                    pass # Good as-is
-                                elif isinstance(obj, list):
-                                    assert len(obj) == 2
-                                else:
-                                    valid = False
-                                filled_dct[k] = obj
+                            valid = pattern.try_set(key, value=val)
                         entry['bg'] = '#ffffff' if valid else '#ffc8c8'
-                    var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
-                # elif issubclass(field_type, Record.DictField):
-                    # TODO this is gonna be a pain
-                else:
-                    # Generic
-                    def do_stuff(filled_val, frame, filled_dct, k):
-                        """Use a function because otherwise Tkinter messes up the callbacks"""
-                        var = gui.tkinter.StringVar(value=str(filled_val))
-                        entry = gui.Entry(frame, textvariable=var, anchor='w')
-                        entry.pack(side='top', anchor='w', fill='x', expand=False)
-                        def cb(*_, filled_dct: dict, k: str):
-                            val = var.get()
-                            valid = True
-                            if val == '' and k in filled_dct:
-                                filled_dct.pop(k)
-                            else:
-                                try:
-                                    # FIXME it's an eval, what do you think needs fixing?
-                                    obj = eval(val)
-                                except Exception:
-                                    valid = False
-                                else:
-                                    # Just assume it's valid, since this is the generic option
-                                    filled_dct[k] = obj
-                            entry['bg'] = '#ffffff' if valid else '#ffc8c8'
-                        var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
-                    do_stuff(filled_val=filled_val, frame=frame, filled_dct=filled_dct, k=k)
+                    var.trace_add('write', partial(cb, key=k))
+                do_stuff(frame=frame, pattern=pattern, k=k)
             frame.pack(side='left', fill='both', expand=True)
             return frame
 
@@ -258,7 +203,7 @@ class TemplateViewer(gui.Root):
         if edit:
             pattern_frame = make_edit_pattern('Pattern', t.pattern)
         else:
-            pattern_frame = make_sub('Pattern', t.pattern)
+            pattern_frame = make_sub('Pattern', t.pattern.as_dict())
 
         # New
         if edit:

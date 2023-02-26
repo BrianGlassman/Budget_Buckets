@@ -4,6 +4,8 @@ import json as _imported_json
 from functools import partial
 from _collections_abc import Iterable as _imported_Iterable
 from _collections_abc import Mapping as _imported_Mapping
+import datetime as _imported_datetime
+from typing import Type as _imported_Type
 
 if __name__ == "__main__":
     import sys
@@ -14,6 +16,7 @@ if __name__ == "__main__":
 from Root import Constants as _imported_Constants
 from Root.Buckets import categories as _imported_categories
 import Record # Only used for type-checking
+from Categorize import Fields
 
 _re_prefix = 'REGEX:'
 
@@ -21,15 +24,93 @@ auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing
 if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
 
+class Pattern:
+    """Functions like a dictionary"""
+    account: Fields.Account
+    date: Fields.Date
+    desc: Fields.Desc
+    value: Fields.Value
+    source_specifc: Fields.SourceSpecific
+    def __init__(self, account=None, date=None, desc=None, value=None, source_specific=None):
+        self.account = Fields.Account(account)
+        self.date = Fields.Date(date)
+        self.desc = Fields.Desc(desc)
+        self.value = Fields.Value(value)
+        self.source_specifc = Fields.SourceSpecific(source_specific)
+        
+    field_dict = {
+        'account': Fields.Account,
+        'date': Fields.Date,
+        'desc': Fields.Desc,
+        'value': Fields.Value,
+        'source_specific': Fields.SourceSpecific,
+    }
+    field_dict: dict[str, _imported_Type[Fields.Field]]
+
+    def as_dict(self):
+        """Returns the values of all set fields as a dictionary
+        Fields that have not been set (or have been cleared) are not included"""
+        ret = {}
+        for key, target in {
+            'account': self.account,
+            'date': self.date,
+            'desc': self.desc,
+            'value': self.value,
+            'source_specific': self.source_specifc,
+        }.items():
+            target: Fields.Field
+            if target.is_set:
+                ret[key] = target.get()
+        return ret
+    
+    def __getitem__(self, key):
+        return self.as_dict()[key]
+    
+    def get(self, key: str, default):
+        """Like dict.get, gets the value in the field"""
+        return self.as_dict().get(key, default)
+    
+    def get_field(self, key: str):
+        """Gets the Field object itself"""
+        match key:
+            case 'account':
+                return self.account
+            case 'date':
+                return self.date
+            case 'desc':
+                return self.desc
+            case 'value':
+                return self.value
+            case 'source_specific':
+                return self.source_specifc
+            case _:
+                raise KeyError(f"Invalid key '{key}'")
+
+    def __setitem__(self, key, value):
+        field = self.get_field(key)
+        field.set(value=value)
+    
+    def try_set(self, key, value) -> bool:
+        """Tries to set the value, return True if successful False if failed"""
+        field = self.get_field(key)
+        return field.try_set(value=value)
+
+    def __iter__(self):
+        yield from self.as_dict().keys()
+    
+    def clear(self, key):
+        field = self.get_field(key)
+        field.clear()
+
 class Template:
     """Functions like a dictionary"""
     name: str
-    pattern: dict
+    pattern: Pattern
     new: dict
     create: list[dict]
     def __init__(self, name: str, pattern: dict, new: dict, create=[]):
         self.name = name
-        self.pattern = pattern
+        self.pattern = Pattern(**pattern)
         self.new = new
         # Avoid stupid Python reference shenanigans
         self.create = create if create else []
@@ -41,7 +122,7 @@ class Template:
     def as_dict(self):
         ret = {
             'name': self.name,
-            'pattern': self.pattern,
+            'pattern': self.pattern.as_dict(),
             'new': self.new}
         # Only include a "create" entry if it's relevant
         # This mimics the old dictionary behavior
@@ -94,8 +175,8 @@ class Template:
     def match_date(self, record: Record.BaseRecord) -> bool:
         """True if record date matches the template"""
         pattern = self.pattern['date']
-        assert isinstance(pattern, str)
-        return pattern == str(record.date)
+        assert isinstance(pattern, _imported_datetime.date)
+        return pattern == record.date
     
     def match_generic(self, record: Record.BaseRecord, key: str) -> bool:
         """True if record[key] matches template pattern[key]"""

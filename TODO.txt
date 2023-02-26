@@ -17,7 +17,7 @@ GUI to view templates
 		d. template view has ability to edit:
 			done - i. Name
 			doneish - ii. Pattern
-				current version relies on eval, and can't handle dates
+				need to make sure that all the different fields actually work
 			iii. New
 			iv. Create
 		e. branch view has a button to delete templates (could also be in template view)
