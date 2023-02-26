@@ -59,7 +59,7 @@ class RawRecord(BaseRecord):
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific={},
-                 category: str = Buckets.todo_category, comment: str | None = None, rawRecord: RawRecord | None = None,
+                 category: str = Buckets.todo_category, comment: str = '', rawRecord: RawRecord | None = None,
                  duration: int = 1):
         super().__init__(account, date, desc, value, source_specific)
         assert rawRecord is None or isinstance(rawRecord, RawRecord)
@@ -76,7 +76,7 @@ class CategorizedRecord(BaseRecord):
         self.duration = duration
 
     @classmethod
-    def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str | None = None, duration: int = 1):
+    def from_RawRecord(cls, rawRecord: RawRecord, category: str, comment: str = '', duration: int = 1):
         assert isinstance(rawRecord, RawRecord)
         return cls(rawRecord.account, rawRecord.date, rawRecord.desc, rawRecord.value, rawRecord.source_specific,
                    category, comment, rawRecord, duration)

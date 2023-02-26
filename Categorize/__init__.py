@@ -135,7 +135,7 @@ class Template:
             category = create['category']
 
             # Comment
-            comment = create.get('comment', None)
+            comment = create.get('comment', '')
 
             # Duration
             duration = create.get('duration', 1)
@@ -470,7 +470,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             # No match, fill in with placeholder values
             if use_uncat:
                 category = Buckets.todo_category
-                comment = None
+                comment = ''
                 duration = 1
                 ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
             else:
@@ -488,7 +488,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             if not use_cat:
                 # FIXME probably cases where this causes the wrong control flow
                 continue
-            comment = new.get('comment', None)
+            comment = new.get('comment', '')
             duration = new.get('duration', 1)
             ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
 

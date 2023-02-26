@@ -93,7 +93,6 @@ def create_table(root, categorized_transactions):
                 cat.disable_scroll()
             elif c == 6:
                 # Comment
-                if cell is None: cell = ''
                 cmt = Comment(table.frame, text = str(cell), relief='solid', bd = 1, width=widths[c], height=1)
                 cmt.grid(row=r, column=c)
                 cmt.watch(func = Cmt_onModification)

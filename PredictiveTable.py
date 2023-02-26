@@ -18,7 +18,6 @@ def create_table(root, actual, future):
         for c, cell in enumerate(row.values()):
             c = c + 1 # Account for the Status column that's not part of the transaction
             if c == 5: continue # Skip the source-specific data
-            elif c == 7 and cell is None: cell = '' # Comment=None --> Comment=''
             gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
 
     # Populate the table
