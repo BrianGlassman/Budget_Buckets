@@ -130,13 +130,13 @@ class TemplateViewer(gui.Root):
 
         def edit_cb():
             self.leaf_gui(id=id, edit=True)
-        def save_cb():
+        def lock_cb():
             self.leaf_gui(id=id, edit=False)
 
         top_frame = gui.Frame(master=frame)
         top_frame.pack(side='top', anchor='n', fill='x', expand=False)
         if edit:
-            button = gui.Button(top_frame, text='Save', command=save_cb)
+            button = gui.Button(top_frame, text='Lock', command=lock_cb)
         else:
             button = gui.Button(top_frame, text='Edit', command=edit_cb)
         button.pack(side='left', fill='none', expand=False)
@@ -173,7 +173,7 @@ class TemplateViewer(gui.Root):
                 label.pack(side='top', anchor='w')
 
                 
-                filled_val = filled_dct.get(k)
+                filled_val = filled_dct.get(k, '')
                 if issubclass(field_type, (Record.StrField, Record.CatField)):
                     # Strings
                     def do_stuff(filled_val, frame, filled_dct, k):
@@ -184,7 +184,7 @@ class TemplateViewer(gui.Root):
 
                         def cb(*_, filled_dct: dict, k: str):
                             val = var.get()
-                            if val == '':
+                            if val == '' and k in filled_dct:
                                 filled_dct.pop(k)
                             else:
                                 filled_dct[k] = val
@@ -192,44 +192,32 @@ class TemplateViewer(gui.Root):
                     do_stuff(filled_val, frame, filled_dct, k)
                 elif issubclass(field_type, Record.MoneyField):
                     # Values
-                    # Use StringVars because DoubleVars default to 0.0
-                    if isinstance(filled_val, list):
-                        assert len(filled_val) == 2
-                        vars = [
-                            gui.tkinter.StringVar(value=filled_val[0]),
-                            gui.tkinter.StringVar(value=filled_val[1])
-                        ]
-                        raise NotImplementedError("Don't have a good way to handle callbacks yet")
-                    else:
-                        vars = [
-                            gui.tkinter.StringVar(value=filled_val),
-                            gui.tkinter.StringVar(value='')
-                        ]
-                    sub_frame = gui.Frame(frame, bd=0)
-                    sub_frame.pack(side='top', fill='x', expand=False)
-
-                    entry = gui.Entry(sub_frame, textvariable=vars[0], anchor='w')
-                    entry.pack(side='left', anchor='w', fill='x', expand=False)
+                    # Use StringVar because DoubleVar default to 0.0
+                    var = gui.tkinter.StringVar(value=str(filled_val))
+                    entry = gui.Entry(frame, textvariable=var, anchor='w')
+                    entry.pack(side='top', anchor='w', fill='x', expand=False)
                     def cb(*_, filled_dct: dict, k: str):
-                        val = vars[0].get()
-                        if val == '':
+                        val = var.get()
+                        valid = True
+                        if val == '' and k in filled_dct:
                             filled_dct.pop(k)
                         else:
                             try:
-                                val = float(val)
-                            except ValueError:
-                                # Can happen while typing the number (ex. entered '-' on the way to '-42')
-                                pass
-                                # TODO make the field red or something to show it's invalid
+                                # FIXME it's an eval, what do you think needs fixing?
+                                obj = eval(val)
+                            except Exception:
+                                # Might still be typing (ex. entered '-' or '[13,')
+                                valid = False
                             else:
-                                filled_dct[k] = val
-                    vars[0].trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
-
-                    # label = gui.tkinter.Label(sub_frame, text=' to ')
-                    # label.pack(side='left', anchor='center', fill='x', expand=False)
-
-                    # entry = gui.Entry(sub_frame, textvariable=vars[1], anchor='w')
-                    # entry.pack(side='left', anchor='w', fill='x', expand=False)
+                                if isinstance(obj, (int, float)):
+                                    pass # Good as-is
+                                elif isinstance(obj, list):
+                                    assert len(obj) == 2
+                                else:
+                                    valid = False
+                                filled_dct[k] = obj
+                        entry['bg'] = '#ffffff' if valid else '#ffc8c8'
+                    var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
                 # elif issubclass(field_type, Record.DictField):
                     # TODO this is gonna be a pain
                 else:
