@@ -5,7 +5,7 @@ can't add templates from Main > CategorizerView because of scoping problems
 examples for <Raw_Data, Templates, ParseSettings>
 	Build.py can copy these examples instead of my real data
 	that way I don't even need to mess with checking which exists at runtime
-don't hard-code categories
+don't hard-code income and transfer categories
 finish Templates GUI
 
 [templates]
@@ -26,6 +26,7 @@ GUI to view templates
 
 [config]
 use a selectable dropdown or separate window for category filter
+BUG? category filter may not actually get passed through to the Model
 
 [BUG]
 income transactions count towards the Categorize limit even if they are then discarded
