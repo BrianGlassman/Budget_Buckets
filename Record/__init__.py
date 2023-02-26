@@ -108,11 +108,20 @@ class BaseRecord:
     def values(self) -> list[str | datetime.date | float | dict]:
         return [self.account, self.date, self.desc, self.value, self.source_specific]
 
-    def keys(self):
+    @classmethod
+    def keys(cls):
         return ['account', 'date', 'desc', 'value', 'source_specific']
     
     def fields(self) -> list[Field]:
         return [self._account, self._date, self._desc, self._value, self._source_specific]
+    
+    @classmethod
+    def class_fields(cls):
+        return [StrField, DateField, StrField, MoneyField, DictField]
+
+    @classmethod
+    def class_items(cls):
+        return zip(cls.keys(), cls.class_fields())
 
     def items(self) -> dict:
         return {k:v for k,v in zip(self.keys(), self.values())}
@@ -170,5 +179,13 @@ class CategorizedRecord(BaseRecord):
     def values(self):
         return super().values() + [self.category, self.comment, self.duration]
 
-    def keys(self):
+    @classmethod
+    def keys(cls):
         return super().keys() + ['category', 'comment', 'duration']
+
+    def fields(self):
+        return super().fields() + [self._category, self._comment, self._duration]
+
+    @classmethod
+    def class_fields(cls):
+        return super().class_fields() + [CatField, StrField, PosIntField]

@@ -1,3 +1,6 @@
+from functools import partial
+
+import Record
 import Categorize
 import TkinterPlus as gui
 
@@ -137,7 +140,14 @@ class TemplateViewer(gui.Root):
         else:
             button = gui.Button(top_frame, text='Edit', command=edit_cb)
         button.pack(side='left', fill='none', expand=False)
-        name = gui.tkinter.Label(top_frame, text=t.name, font=bold, anchor='center')
+        if edit:
+            var = gui.tkinter.StringVar(value = t.name)
+            name = gui.Entry(top_frame, textvariable=var, font=bold, anchor='center')
+            def cb(*_, t: Categorize.Template):
+                t.name = var.get()
+            var.trace_add('write', partial(cb, t=t))
+        else:
+            name = gui.tkinter.Label(top_frame, text=t.name, font=bold, anchor='center')
         name.pack(side='left', anchor='center', fill='x', expand=True)
 
         def make_sub(title: str, dct: dict, parent: gui.Frame | None = frame):
@@ -152,12 +162,97 @@ class TemplateViewer(gui.Root):
                 value.pack(side='top', anchor='w', fill='x', expand=False)
             frame.pack(side='left', fill='both', expand=True)
             return frame
+        
+        def make_edit_pattern(title: str, filled_dct: dict, parent: gui.Frame | None = frame):
+            """Makes the sub-window for editing the Template's Pattern member"""
+            frame = gui.Frame(parent)
+            label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
+            label.pack(side='top', anchor='n', fill='x', expand=False)
+            for k, field_type in Record.RawRecord.class_items():
+                label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
+                label.pack(side='top', anchor='w')
+
+                
+                filled_val = filled_dct.get(k)
+                if issubclass(field_type, (Record.StrField, Record.CatField)):
+                    # Strings
+                    def do_stuff(filled_val, frame, filled_dct, k):
+                        """Use a function because otherwise Tkinter messes up the callbacks"""
+                        var = gui.tkinter.StringVar(value=filled_val)
+                        entry = gui.Entry(frame, textvariable=var, anchor='w')
+                        entry.pack(side='top', anchor='w', fill='x', expand=False)
+
+                        def cb(*_, filled_dct: dict, k: str):
+                            val = var.get()
+                            if val == '':
+                                filled_dct.pop(k)
+                            else:
+                                filled_dct[k] = val
+                        var.trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
+                    do_stuff(filled_val, frame, filled_dct, k)
+                elif issubclass(field_type, Record.MoneyField):
+                    # Values
+                    # Use StringVars because DoubleVars default to 0.0
+                    if isinstance(filled_val, list):
+                        assert len(filled_val) == 2
+                        vars = [
+                            gui.tkinter.StringVar(value=filled_val[0]),
+                            gui.tkinter.StringVar(value=filled_val[1])
+                        ]
+                        raise NotImplementedError("Don't have a good way to handle callbacks yet")
+                    else:
+                        vars = [
+                            gui.tkinter.StringVar(value=filled_val),
+                            gui.tkinter.StringVar(value='')
+                        ]
+                    sub_frame = gui.Frame(frame, bd=0)
+                    sub_frame.pack(side='top', fill='x', expand=False)
+
+                    entry = gui.Entry(sub_frame, textvariable=vars[0], anchor='w')
+                    entry.pack(side='left', anchor='w', fill='x', expand=False)
+                    def cb(*_, filled_dct: dict, k: str):
+                        val = vars[0].get()
+                        if val == '':
+                            filled_dct.pop(k)
+                        else:
+                            try:
+                                val = float(val)
+                            except ValueError:
+                                # Can happen while typing the number (ex. entered '-' on the way to '-42')
+                                pass
+                                # TODO make the field red or something to show it's invalid
+                            else:
+                                filled_dct[k] = val
+                    vars[0].trace_add('write', partial(cb, filled_dct=filled_dct, k=k))
+
+                    # label = gui.tkinter.Label(sub_frame, text=' to ')
+                    # label.pack(side='left', anchor='center', fill='x', expand=False)
+
+                    # entry = gui.Entry(sub_frame, textvariable=vars[1], anchor='w')
+                    # entry.pack(side='left', anchor='w', fill='x', expand=False)
+                # elif issubclass(field_type, Record.DictField):
+                    # TODO this is gonna be a pain
+                else:
+                    value = gui.tkinter.Label(frame, text=str(filled_val), anchor='w')
+                    value.pack(side='top', anchor='w', fill='x', expand=False)
+            frame.pack(side='left', fill='both', expand=True)
+            return frame
+
+        def make_edit_new(title: str, filled_dct: dict, parent: gui.Frame | None = frame):
+            """Makes the sub-window for editing the Template's New member"""
+            make_sub(title=title, dct=filled_dct, parent=parent)
 
         # Pattern
-        pattern_frame = make_sub('Pattern', t.pattern)
+        if edit:
+            pattern_frame = make_edit_pattern('Pattern', t.pattern)
+        else:
+            pattern_frame = make_sub('Pattern', t.pattern)
 
         # New
-        new_frame = make_sub('New', t.new)
+        if edit:
+            new_frame = make_edit_new('New', t.new)
+        else:
+            new_frame = make_sub('New', t.new)
 
         # Create
         create_frame = None

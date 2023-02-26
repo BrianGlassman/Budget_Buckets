@@ -114,6 +114,16 @@ _import_Functions.add_functions(Combobox)
 class Entry(tkinter.Entry, _import_Functions.FuncDeclare):
     # Like a Text widget, but single-line
     def __init__(self, master = None, textvariable: tkinter.Variable = ..., *args, **kwargs):
+        # Entry uses 'justify' instead of 'anchor'
+        if 'anchor' in kwargs:
+            assert 'justify' not in kwargs
+            anchor = kwargs.pop('anchor')
+            if anchor == 'w':
+                anchor = 'left'
+            if anchor == 'e':
+                anchor = 'right'
+            kwargs['justify'] = anchor
+
         super().__init__(master, textvariable=textvariable, *args, **kwargs)
 _import_Functions.add_functions(Entry)
 
