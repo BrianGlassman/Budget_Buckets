@@ -1,6 +1,3 @@
-[BUG]
-TkinterPlus.Root mainloop blocks
-
 [other users]
 examples for <Raw_Data, Templates, ParseSettings>
 	Build.py can copy these examples instead of my real data

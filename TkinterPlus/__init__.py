@@ -7,21 +7,48 @@ from tkinter import ttk
 import TkinterPlus.Functions as _import_Functions
 import TkinterPlus.Values as _import_Values
 
+class RootTracker:
+    """Global state for tracking the Tk object"""
+    _root: tkinter.Tk | None = None
+    _is_running: bool = False
+
+    @classmethod
+    @property
+    def root(cls):
+        return cls._root
+
+    @classmethod
+    def bind(cls, root: tkinter.Tk):
+        assert isinstance(root, tkinter.Tk)
+        cls._root = root
+    
+    @classmethod
+    @property
+    def is_bound(cls):
+        return cls._root is not None
+
+    @classmethod
+    def mainloop(cls):
+        if cls._is_running:
+            return
+        else:
+            assert cls._root is not None, "Tk not created"
+            cls._is_running = True
+            tkinter.Tk.mainloop(self=cls._root)
+
 class Root(tkinter.Tk, tkinter.Toplevel, _import_Functions.FuncDeclare):
     """A Root or Toplevel window, as appropriate, with useful settings
     
     Note: MUST inherit from both Tk and Toplevel, or it errors
     Error is only on Windows, not Linux, because of a slight difference in Tkinter implementation"""
-    running: bool
     def __init__(self, x_stretch, y_stretch, title = 'Budget Buckets'):
-        global root
-        if root is None:
-            # Create a Root window and save as root
-            tkinter.Tk.__init__(self)
-            root = self
-        else:
+        if RootTracker.is_bound:
             # Create a Toplevel window
-            tkinter.Toplevel.__init__(self, master=root) # type: ignore
+            tkinter.Toplevel.__init__(self, master=RootTracker.root) # type: ignore
+        else:
+            # Create a Root window and bind it
+            tkinter.Tk.__init__(self)
+            RootTracker.bind(self)
         
         res = [int(16*_import_Values.scale*x_stretch), int(9*_import_Values.scale*y_stretch)] # Default to 16:9
         self.geometry(f"{res[0]}x{res[1]}")
@@ -46,13 +73,8 @@ class Root(tkinter.Tk, tkinter.Toplevel, _import_Functions.FuncDeclare):
     
     def mainloop(self) -> None:
         """Gives a way to call mainloop safely"""
-        if self.running:
-            return
-        else:
-            self.running = True
-            super().mainloop()
+        RootTracker.mainloop()
 _import_Functions.add_functions(Root)
-root: Root = None # type: ignore
 
 class Button(tkinter.Button, _import_Functions.FuncDeclare):
     def __init__(self, *args, **kwargs):

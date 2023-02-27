@@ -7,6 +7,7 @@ from Root import Sorting
 import Record
 import Parsing
 import Categorize
+import Functionified as fn
 
 #%% Definitions for GUI
 
@@ -146,6 +147,18 @@ def post_process():
     elif len(successful_add) > 0 and len(failed_add) == 0:
         print("\nSuccess\n")
 
+class CategorizerView(gui.Root):
+    def __init__(self, categorized_transactions: list[Record.CategorizedRecord]):
+        super().__init__(17, 30)
+        create_table(root=self, categorized_transactions=categorized_transactions)
+
+        self.protocol('WM_DELETE_WINDOW', self.on_close)
+        self.mainloop()
+    
+    def on_close(self):
+        post_process()
+        self.destroy()
+
 #%% Main
 if __name__ == "__main__":
     import Functionified as fn
@@ -160,8 +173,4 @@ if __name__ == "__main__":
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
-    root = gui.Root(17, 30)
-    table = create_table(root, categorized_transactions)
-    root.mainloop()
-
-    post_process()
+    CategorizerView(categorized_transactions)

@@ -235,11 +235,7 @@ def predict():
 def run_CView():
     categorized_transactions = Model.categorized_transactions
 
-    root = gui.Root(17, 30)
-    _ = CategorizerView.create_table(root, categorized_transactions)
-    root.mainloop()
-
-    CategorizerView.post_process()
+    CategorizerView.CategorizerView(categorized_transactions)
 
 def run_BTime():
     categorized_transactions = Model.categorized_transactions
