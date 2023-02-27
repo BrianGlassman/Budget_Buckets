@@ -681,11 +681,11 @@
         "create": [
           {
             "account": "Venmo",
-            "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer from Checking",
-            "duration": 1,
-            "value": "$NEG"
+            "value": "$NEG",
+            "category": "Internal Transfers",
+            "duration": 1
           }
         ]
       },
@@ -702,11 +702,11 @@
         "create": [
           {
             "account": "Venmo",
-            "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer to Checking",
-            "duration": 1,
-            "value": "$NEG"
+            "value": "$NEG",
+            "category": "Internal Transfers",
+            "duration": 1
           }
         ]
       },
@@ -733,12 +733,11 @@
         "create": [
           {
             "account": "529",
-            "category": "Internal Transfers",
-            "comment": "",
             "date": "$SAME",
             "desc": "Test transfer",
-            "duration": 1,
-            "value": "$NEG"
+            "value": "$NEG",
+            "category": "Internal Transfers",
+            "duration": 1
           }
         ]
       },
@@ -919,11 +918,11 @@
         "create": [
           {
             "account": "Student Loans",
-            "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "CU Loan",
-            "duration": 1,
-            "value": "$NEG"
+            "value": "$NEG",
+            "category": "Internal Transfers",
+            "duration": 1
           }
         ]
       }
@@ -939,18 +938,18 @@
           "value": -433.0
         },
         "new": {
-          "category": "Food - nice",
           "desc": "CU Meal Plan - Food - nice",
           "value": -233.0,
+          "category": "Food - nice",
           "duration": 105
         },
         "create": [
           {
             "account": "CU Bills",
-            "category": "Groceries",
-            "desc": "CU Meal Plan - Groceries",
             "date": "$SAME",
+            "desc": "CU Meal Plan - Groceries",
             "value": -200.0,
+            "category": "Groceries",
             "duration": 105
           }
         ]
@@ -968,11 +967,11 @@
         "create": [
           {
             "account": "Campus Cash",
-            "category": "Internal Transfers",
             "date": "$SAME",
             "desc": "Transfer from Credit Card",
-            "duration": 1,
-            "value": "$NEG"
+            "value": "$NEG",
+            "category": "Internal Transfers",
+            "duration": 1
           }
         ]
       }

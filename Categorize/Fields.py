@@ -1,12 +1,13 @@
 import datetime
 from dateutil import parser as dateParser
-import typing as _import_typing
+from typing import Type as _import_Type
 
 from Root import Buckets, Constants
 
 class Field:
-    _type: _import_typing.Type
+    _type: _import_Type | tuple[_import_Type]
     is_set: bool
+    flags: list[str] = [] # Flags that are valid values for special processing
     def __init__(self, value):
         if value is None:
             self.clear()
@@ -42,6 +43,9 @@ class Field:
         self._value = None
         self.is_set = False
 
+    def is_flag(self, value) -> bool:
+        return value in self.flags
+    
     def is_valid(self, value, msg=None) -> bool:
         """Tells whether value is a valid value for this field
         Pass a list to msg to receive error message(s), if there are any
@@ -51,17 +55,19 @@ class Field:
             print(msg)
         Will print any error message(s)"""
         valid = True
-        if not isinstance(value, self._type):
+        if self.is_flag(value):
+            return True
+        elif not isinstance(value, self._type):
             valid = False
             if msg is not None:
-                msg.append("Type is '{type(value)}', not '{self._type}")
+                msg.append(f"Type is '{type(value)}', not '{self._type}")
         return valid
 
 class StrField(Field):
     _type = str
     allowed = []
     def is_valid(self, value, msg=None) -> bool:
-        valid = super().is_valid(value=value)
+        valid = super().is_valid(value=value, msg=msg)
         if self.allowed and (value not in self.allowed):
             valid = False
             if msg is not None:
@@ -73,7 +79,7 @@ class IntField(Field):
 
 class PosIntField(IntField):
     def is_valid(self, value, msg=None) -> bool:
-        valid = super().is_valid(value)
+        valid = super().is_valid(value=value, msg=msg)
         if value <= 0:
             valid = False
             if msg is not None:
@@ -103,7 +109,7 @@ class Desc(StrField):
     def is_valid(self, value, msg=None) -> bool:
         valid = True
         if isinstance(value, str):
-            pass
+            valid = super().is_valid(value, msg=msg)
         elif isinstance(value, (list, tuple)):
             if not all(self.is_valid(v, msg=msg) for v in value):
                 valid = False
@@ -112,6 +118,7 @@ class Desc(StrField):
         return valid
 
 class Value(Field):
+    _type = (int, float)
     def set(self, value):
         if isinstance(value, str):
             try:
@@ -123,8 +130,11 @@ class Value(Field):
 
     def is_valid(self, value, msg=None) -> bool:
         valid = True
-        if isinstance(value, (int, float)):
-            pass
+        if self.is_flag(value):
+            return True
+        elif isinstance(value, (int, float)):
+            # Can't call super().is_valid because _type isn't defined
+            valid = super().is_valid(value=value, msg=msg)
         elif isinstance(value, (list, tuple)):
             if len(value) != 2:
                 valid = False
@@ -156,14 +166,15 @@ class SourceSpecific(Field):
 class Category(StrField):
     allowed = Buckets.categories_inclTodo
 
-class Comment(Field):
+class Comment(StrField):
     pass # No restrictions
 
 class Duration(PosIntField):
     pass # No additional restrictions
 
-class MoneyField(Field):
-    _type = float
+#%% Create fields
+class CreateDate(Date):
+    flags = ['$SAME']
 
-class DictField(Field):
-    _type = dict
+class CreateValue(Value):
+    flags = ['$SAME', '$NEG']

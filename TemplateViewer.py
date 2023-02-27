@@ -133,13 +133,16 @@ class TemplateViewer(gui.Root):
         def lock_cb():
             self.leaf_gui(id=id, edit=False)
 
+        # The header bar with the Template name and Edit/Lock button
         top_frame = gui.Frame(master=frame)
         top_frame.pack(side='top', anchor='n', fill='x', expand=False)
+        # The Edit/Lock button
         if edit:
             button = gui.Button(top_frame, text='Lock', command=lock_cb)
         else:
             button = gui.Button(top_frame, text='Edit', command=edit_cb)
         button.pack(side='left', fill='none', expand=False)
+        # The Template name
         if edit:
             var = gui.tkinter.StringVar(value = t.name)
             name = gui.Entry(top_frame, textvariable=var, font=bold, anchor='center')
@@ -150,15 +153,13 @@ class TemplateViewer(gui.Root):
             name = gui.tkinter.Label(top_frame, text=t.name, font=bold, anchor='center')
         name.pack(side='left', anchor='center', fill='x', expand=True)
 
-        def make_sub(title: str, dct: dict, parent: gui.Frame | None = frame):
+        def make_sub(title: str, pattern: Categorize.BasePattern, parent: gui.Frame | None = frame):
             """Makes the sub-window for one of the items"""
             frame = gui.Frame(parent)
             label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
             label.pack(side='top', anchor='n', fill='x', expand=False)
-            # Use Record keys to make sure it's always the same order
-            for k in Record.RawRecord.keys():
-                if k not in dct: continue
-                v = dct[k]
+            # Use as_dict to get only the filled items
+            for k,v in pattern.as_dict().items():
                 label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
                 label.pack(side='top', anchor='w')
                 value = gui.tkinter.Label(frame, text=str(v), anchor='w')
@@ -166,16 +167,17 @@ class TemplateViewer(gui.Root):
             frame.pack(side='left', fill='both', expand=True)
             return frame
         
-        def make_edit_pattern(title: str, pattern: Categorize.Pattern, parent: gui.Frame | None = frame):
-            """Makes the sub-window for editing the Template's Pattern member"""
+        def make_edit_sub(title: str, pattern: Categorize.BasePattern, parent: gui.Frame | None = frame):
+            """Makes the sub-window for editing one of the items"""
             frame = gui.Frame(parent)
             label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
             label.pack(side='top', anchor='n', fill='x', expand=False)
-            for k, field_type in pattern.field_dict.items():
+            # Use field_dict to get all items, even the unfilled ones
+            for k in pattern.field_dict().keys():
                 label = gui.tkinter.Label(frame, text=k.capitalize(), anchor='w', font=bold)
                 label.pack(side='top', anchor='w')
                 
-                def do_stuff(frame, pattern: Categorize.Pattern, k):
+                def do_stuff(frame, pattern: Categorize.BasePattern, k):
                     """Use a function because otherwise Tkinter messes up the callbacks"""
                     filled_val = pattern.get(k, '')
                     var = gui.tkinter.StringVar(value=filled_val)
@@ -195,19 +197,15 @@ class TemplateViewer(gui.Root):
             frame.pack(side='left', fill='both', expand=True)
             return frame
 
-        def make_edit_new(title: str, filled_dct: dict, parent: gui.Frame | None = frame):
-            """Makes the sub-window for editing the Template's New member"""
-            make_sub(title=title, dct=filled_dct, parent=parent)
-
         # Pattern
         if edit:
-            pattern_frame = make_edit_pattern('Pattern', t.pattern)
+            pattern_frame = make_edit_sub('Pattern', t.pattern)
         else:
-            pattern_frame = make_sub('Pattern', t.pattern.as_dict())
+            pattern_frame = make_sub('Pattern', t.pattern)
 
         # New
         if edit:
-            new_frame = make_edit_new('New', t.new)
+            new_frame = make_edit_sub('New', t.new)
         else:
             new_frame = make_sub('New', t.new)
 
@@ -220,7 +218,7 @@ class TemplateViewer(gui.Root):
             make_sub(f'Create {i}', c, parent=create_frame)
         if edit:
             def create_cb():
-                t.create.append(dict())
+                t.create.append(Categorize.Create())
                 make_sub(f'Create {len(t.create)-1}', t.create[-1], parent=create_frame)
             create_button = gui.Button(create_frame, text='+', command=create_cb)
             create_button.pack(side='right', fill='y', expand=False)

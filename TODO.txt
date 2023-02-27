@@ -11,11 +11,13 @@ GUI to view templates
 		done - a. button to add new, empty templates
 		done - b. template view has a button to add Create items
 		c. template view has a button to remove Create items
+			this is maybe optional? Deleting via file edit isn't too hard
 		d. template view has ability to edit:
 			done - i. Name
 			doneish - ii. Pattern
 				need to make sure that all the different fields actually work
-			iii. New
+			doneish - iii. New
+				need to make sure that all the different fields actually work
 			iv. Create
 		e. branch view has a button to delete templates (could also be in template view)
 			this is maybe optional? Deleting via file edit isn't too hard

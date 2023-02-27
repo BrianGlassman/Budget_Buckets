@@ -24,40 +24,40 @@ auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing
 if not auto_templates_file.startswith("Categorize"):
     auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
 
-class Pattern:
+class BasePattern:
     """Functions like a dictionary"""
-    account: Fields.Account
-    date: Fields.Date
-    desc: Fields.Desc
-    value: Fields.Value
-    source_specifc: Fields.SourceSpecific
-    def __init__(self, account=None, date=None, desc=None, value=None, source_specific=None):
-        self.account = Fields.Account(account)
-        self.date = Fields.Date(date)
-        self.desc = Fields.Desc(desc)
-        self.value = Fields.Value(value)
-        self.source_specifc = Fields.SourceSpecific(source_specific)
+    def __init__(self, *args, **kwargs):
+        """Positional args should be in the same order as field_dict and fieldType_dict
+        Keyword kwargs can be in any order"""
+        for key, fieldType, arg in zip(self.keys(), self.fieldType_dict().values(), args):
+            self._set_field(key, fieldType, arg)
         
-    field_dict = {
-        'account': Fields.Account,
-        'date': Fields.Date,
-        'desc': Fields.Desc,
-        'value': Fields.Value,
-        'source_specific': Fields.SourceSpecific,
-    }
-    field_dict: dict[str, _imported_Type[Fields.Field]]
+        for key, fieldType in self.fieldType_dict().items():
+            fieldType = self.fieldType_dict()[key]
+            self._set_field(key, fieldType, kwargs.get(key))
+    def _set_field(self, key: str, fieldType: _imported_Type[Fields.Field], value):
+        try:
+            setattr(self, key, fieldType(value))
+        except Exception:
+            print(f"Failed to set {key} = {fieldType}({value})")
+            raise
+
+    @classmethod
+    def fieldType_dict(cls) -> dict[str, _imported_Type[Fields.Field]]:
+        return {}
+
+    @classmethod
+    def keys(cls):
+        return cls.fieldType_dict().keys()
+
+    def field_dict(self) -> dict[str, Fields.Field]:
+        return {}
 
     def as_dict(self):
         """Returns the values of all set fields as a dictionary
         Fields that have not been set (or have been cleared) are not included"""
         ret = {}
-        for key, target in {
-            'account': self.account,
-            'date': self.date,
-            'desc': self.desc,
-            'value': self.value,
-            'source_specific': self.source_specifc,
-        }.items():
+        for key, target in self.field_dict().items():
             target: Fields.Field
             if target.is_set:
                 ret[key] = target.get()
@@ -70,50 +70,105 @@ class Pattern:
         """Like dict.get, gets the value in the field"""
         return self.as_dict().get(key, default)
     
-    def get_field(self, key: str):
-        """Gets the Field object itself"""
-        match key:
-            case 'account':
-                return self.account
-            case 'date':
-                return self.date
-            case 'desc':
-                return self.desc
-            case 'value':
-                return self.value
-            case 'source_specific':
-                return self.source_specifc
-            case _:
-                raise KeyError(f"Invalid key '{key}'")
-
     def __setitem__(self, key, value):
-        field = self.get_field(key)
+        field = self.field_dict()[key]
         field.set(value=value)
     
     def try_set(self, key, value) -> bool:
         """Tries to set the value, return True if successful False if failed"""
-        field = self.get_field(key)
+        field = self.field_dict()[key]
         return field.try_set(value=value)
 
     def __iter__(self):
         yield from self.as_dict().keys()
     
+    def items(self):
+        return self.as_dict().items()
+    
     def clear(self, key):
-        field = self.get_field(key)
+        field = self.field_dict()[key]
         field.clear()
+
+class Pattern(BasePattern):
+    """The Pattern part of a Template that matches a RawRecord"""
+    account: Fields.Account
+    date: Fields.Date
+    desc: Fields.Desc
+    value: Fields.Value
+    source_specific: Fields.SourceSpecific
+    
+    @classmethod
+    def fieldType_dict(cls):
+        """Maps key to Field type"""
+        return {
+            'account': Fields.Account,
+            'date': Fields.Date,
+            'desc': Fields.Desc,
+            'value': Fields.Value,
+            'source_specific': Fields.SourceSpecific,
+        }
+
+    def field_dict(self):
+        """Maps key to Field"""
+        return {
+            'account': self.account,
+            'date': self.date,
+            'desc': self.desc,
+            'value': self.value,
+            'source_specific': self.source_specific,
+        }
+
+class New(Pattern):
+    """The New part of a Template that sets up a CategorizedRecord
+    Inherits all the RawRecord stuff from Pattern, so only needs to define the parts
+    that are specific to CategorizedRecords"""
+    category: Fields.Category
+    comment: Fields.Comment
+    duration: Fields.Duration
+    
+    @classmethod
+    def fieldType_dict(cls):
+        return super().fieldType_dict() | {
+            'category': Fields.Category,
+            'duration': Fields.Duration,
+            'comment': Fields.Comment,
+        }
+
+    def field_dict(self):
+        return super().field_dict() | {
+            'category': self.category,
+            'duration': self.duration,
+            'comment': self.comment,
+        }
+
+class Create(New):
+    """One of the Create elements of a Template that creates a new CategorizedRecord
+    Functionally similar to New, but some fields have special processing"""
+    date: Fields.CreateDate
+    value: Fields.CreateValue
+
+    @classmethod
+    def fieldType_dict(cls):
+        return super().fieldType_dict() | {
+            'date': Fields.CreateDate,
+            'value': Fields.CreateValue,
+        }
 
 class Template:
     """Functions like a dictionary"""
     name: str
     pattern: Pattern
-    new: dict
-    create: list[dict]
+    new: New
+    create: list[Create]
     def __init__(self, name: str, pattern: dict, new: dict, create=[]):
         self.name = name
         self.pattern = Pattern(**pattern)
-        self.new = new
-        # Avoid stupid Python reference shenanigans
-        self.create = create if create else []
+        self.new = New(**new)
+        if create:
+            self.create = [Create(**c) for c in create]
+        else:
+            # Avoid stupid Python reference shenanigans
+            self.create = []
 
     @classmethod
     def from_json(cls, dct: dict):
@@ -123,11 +178,12 @@ class Template:
         ret = {
             'name': self.name,
             'pattern': self.pattern.as_dict(),
-            'new': self.new}
+            'new': self.new.as_dict(),
+            }
         # Only include a "create" entry if it's relevant
         # This mimics the old dictionary behavior
         if self.create:
-            ret['create'] = self.create
+            ret['create'] = [c.as_dict() for c in self.create]
         return ret
     
     def __str__(self) -> str:
