@@ -235,14 +235,11 @@ def predict():
 def run_CView():
     categorized_transactions = Model.categorized_transactions
 
-    # Needed because some functions use enclosing scope
-    added_templates: list[CategorizerView.AddedTemplate] = []
-    
     root = gui.Root(17, 30)
     _ = CategorizerView.create_table(root, categorized_transactions)
     root.mainloop()
 
-    CategorizerView.post_process(added_templates)
+    CategorizerView.post_process()
 
 def run_BTime():
     categorized_transactions = Model.categorized_transactions

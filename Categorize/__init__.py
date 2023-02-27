@@ -404,7 +404,7 @@ class AllTemplates(_imported_Mapping):
         return self.file_dict.__len__()
     
     def save(self):
-        """Save all children, or just the given names"""
+        """Save all children"""
         for file in self.files:
             file.save()
     
@@ -534,11 +534,14 @@ def get_all_templates():
 def match_templates(record) -> Template | None:
     return _nested_templates.match_template(record)
 
-def add_template(name: str, pattern: dict, new: dict) -> None:
+def add_auto_template(name: str, pattern: dict, new: dict) -> None:
     _nested_templates.add_auto_template(name=name, pattern=pattern, new=new)
 
-def save_templates() -> None:
+def save_auto_templates() -> None:
     _nested_templates.save_auto_templates()
+
+def save_all_templates() -> None:
+    _nested_templates.save()
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
     import Record

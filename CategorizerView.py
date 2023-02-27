@@ -17,6 +17,8 @@ class AddedTemplate:
     raw: Record.RawRecord # The existing RawRecord to match against
     new: dict # Dict of new values to set
 
+added_templates: list[AddedTemplate] = []
+
 def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # FIXME doesn't detect generic templates (i.e. only detects existing individual templates)
     # Get/create the matching entry
@@ -111,14 +113,14 @@ def create_table(root, categorized_transactions):
             break
     return table
 
-def post_process(added_templates):
+def post_process():
     successful_add = []
     failed_add = []
     for template in added_templates:
         pattern = template.raw.items()
         new = template.new
         try:
-            Categorize.add_template("", pattern, new)
+            Categorize.add_auto_template("", pattern, new)
         except Exception as e:
             failed_add.append(template)
             print('-'*25)
@@ -132,7 +134,7 @@ def post_process(added_templates):
     if successful_add:
         print("Saving added templates:")
         print(successful_add)
-        Categorize.save_templates()
+        Categorize.save_auto_templates()
     if failed_add:
         print("FAILED TO ADD TEMPLATES:")
         print(failed_add)
@@ -158,11 +160,8 @@ if __name__ == "__main__":
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
-    # Needed because some functions use enclosing scope
-    added_templates: list[AddedTemplate] = []
-
     root = gui.Root(17, 30)
     table = create_table(root, categorized_transactions)
     root.mainloop()
 
-    post_process(added_templates)
+    post_process()

@@ -1,5 +1,5 @@
 [BUG]
-can't add templates from Main > CategorizerView because of scoping problems
+TkinterPlus.Root mainloop blocks
 
 [other users]
 examples for <Raw_Data, Templates, ParseSettings>

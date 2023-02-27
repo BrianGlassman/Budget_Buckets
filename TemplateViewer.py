@@ -226,7 +226,7 @@ class TemplateViewer(gui.Root):
             create_button.pack(side='right', fill='y', expand=False)
     
     def on_close(self):
-        nest_templates.save()
+        Categorize.save_all_templates()
         self.destroy()
 
 if __name__ == '__main__':
