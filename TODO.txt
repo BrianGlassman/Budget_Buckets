@@ -18,7 +18,8 @@ GUI to view templates
 				need to make sure that all the different fields actually work
 			doneish - iii. New
 				need to make sure that all the different fields actually work
-			iv. Create
+			doneish - iv. Create
+				need to make sure that all the different fields actually work
 		e. branch view has a button to delete templates (could also be in template view)
 			this is maybe optional? Deleting via file edit isn't too hard
 	for now, assume that Trunks and Branches are fixed (edit in file if needed)

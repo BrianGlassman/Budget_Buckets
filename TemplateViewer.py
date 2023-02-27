@@ -153,7 +153,7 @@ class TemplateViewer(gui.Root):
             name = gui.tkinter.Label(top_frame, text=t.name, font=bold, anchor='center')
         name.pack(side='left', anchor='center', fill='x', expand=True)
 
-        def make_sub(title: str, pattern: Categorize.BasePattern, parent: gui.Frame | None = frame):
+        def make_locked_sub(title: str, pattern: Categorize.BasePattern, parent: gui.Frame | None = frame):
             """Makes the sub-window for one of the items"""
             frame = gui.Frame(parent)
             label = gui.tkinter.Label(frame, text=title, font=bold, anchor='center', relief='groove')
@@ -196,18 +196,18 @@ class TemplateViewer(gui.Root):
                 do_stuff(frame=frame, pattern=pattern, k=k)
             frame.pack(side='left', fill='both', expand=True)
             return frame
+        
+        def make_sub(title: str, pattern: Categorize.BasePattern, parent: gui.Frame | None = frame):
+            if edit:
+                return make_edit_sub(title=title, pattern=pattern, parent=parent)
+            else:
+                return make_locked_sub(title=title, pattern=pattern, parent=parent)
 
         # Pattern
-        if edit:
-            pattern_frame = make_edit_sub('Pattern', t.pattern)
-        else:
-            pattern_frame = make_sub('Pattern', t.pattern)
+        pattern_frame = make_sub('Pattern', t.pattern)
 
         # New
-        if edit:
-            new_frame = make_edit_sub('New', t.new)
-        else:
-            new_frame = make_sub('New', t.new)
+        new_frame = make_sub('New', t.new)
 
         # Create
         create_frame = None
