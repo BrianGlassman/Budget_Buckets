@@ -5,14 +5,14 @@ examples for <Raw_Data, Templates, ParseSettings>
 don't hard-code income and transfer categories
 finish Templates GUI
 
-[templates]
+[templates] - doneish/optional
 GUI to view templates
-	make table interactive to add new templates or modify existing
+	doneish/optional - make table interactive to add new templates or modify existing
 		done - a. button to add new, empty templates
 		done - b. template view has a button to add Create items
-		c. template view has a button to remove Create items
+		optional - c. template view has a button to remove Create items
 			this is maybe optional? Deleting via file edit isn't too hard
-		d. template view has ability to edit:
+		doneish - d. template view has ability to edit:
 			done - i. Name
 			doneish - ii. Pattern
 				need to make sure that all the different fields actually work
@@ -20,7 +20,7 @@ GUI to view templates
 				need to make sure that all the different fields actually work
 			doneish - iv. Create
 				need to make sure that all the different fields actually work
-		e. branch view has a button to delete templates (could also be in template view)
+		optional - e. branch view has a button to delete templates (could also be in template view)
 			this is maybe optional? Deleting via file edit isn't too hard
 	for now, assume that Trunks and Branches are fixed (edit in file if needed)
 
