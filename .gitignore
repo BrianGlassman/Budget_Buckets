@@ -1,3 +1,7 @@
+# Nuitka
+*.build/
+*.dist/
+
 # Visual Studio
 .vs
 *.sln
