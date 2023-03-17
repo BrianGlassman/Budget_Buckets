@@ -1,6 +1,14 @@
 # Comment lines start with # and are ignored (same for empty lines)
 
+# Grouping flags - separate categories into overall groups
+# Starts with $ then the flag in all caps
+# Expenses
+# Income
+# Internal - Movement between accounts
+
 Category Name,Bucket Max Value,Monthly Contribution to Bucket
+
+$ EXPENSES
 
 # Car
 Car - Note,320,320
@@ -47,3 +55,15 @@ Other - Other,200,20
 
 # Personal Care / Clothing
 Clothes/Personal care,100,30
+
+$ INCOME
+
+Parental Funds
+Loans
+Salary
+Income - Other
+
+$ INTERNAL
+
+CC Payments
+Internal Transfers
