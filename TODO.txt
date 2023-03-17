@@ -1,5 +1,5 @@
 [other users]
-examples for <Raw_Data, Templates, ParseSettings>
+examples for <Raw_Data, Templates, AccountSetup.json>
 	Build.py can copy these examples instead of my real data
 	that way I don't even need to mess with checking which exists at runtime
 don't hard-code income and transfer categories

@@ -316,16 +316,12 @@ def run() -> list[RawRecord]:
 
     transactions: list[RawRecord] = []
 
-
-    with open(_import_Constants.ParseSettings_file, 'r', newline='') as f:
-        reader = _import_csv.DictReader(f)
-        mapper_list = [x for x in reader]
-    for mapper in mapper_list:
-        parseCls = Parsers[mapper['parser']]
-        account = mapper['account']
-        filename = mapper['file']
-        filepath = _import_os.path.join("Raw_Data", filename)
-        transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=filepath))
+    for account, act_infos in _import_Constants.account_setup.items():
+        for act_info in act_infos:
+            parseCls = Parsers[act_info['parser']]
+            filename = act_info['file']
+            filepath = _import_os.path.join("Raw_Data", filename)
+            transactions.extend(parse_file(parseCls=parseCls, account=account, filepath=filepath))
     return transactions
 
 if __name__ == "__main__":

@@ -60,7 +60,6 @@ def run(mode: Literal['nuitka', 'pyinstaller'], compile=True, **kwargs):
 
     folders = [
         'Categorize',
-        'Parsing',
         'Raw_Data',
         'Root',
     ]
