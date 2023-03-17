@@ -1,10 +1,9 @@
 import datetime
 
-import Record
+from BaseLib import Categories
 import Parsing
 import Functionified as fn
 import Categorize
-from Root import Buckets
 import TkinterPlus as gui
 
 #%% Display pre-processing
@@ -167,7 +166,7 @@ def run():
         months.append(date)
         date = fn.inc_month(date)
 
-    cat_groups = {'income': Buckets.income_categories, 'expenses': Buckets.expense_categories, 'internal': Buckets.internal_categories}
+    cat_groups = {'income': Categories.income_categories, 'expenses': Categories.expense_categories, 'internal': Categories.internal_categories}
     values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: {cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
@@ -176,6 +175,11 @@ def run():
     for t in categorized_transactions:
         cat = t.category
         group = None
+
+        # Skip meta-flagged transactions
+        if cat in (Categories.todo_category, Categories.del_category):
+            continue
+
         for g, categories in cat_groups.items():
             if cat in categories:
                 assert group is None, f"Category '{cat}' appears in multiple groups"
@@ -185,10 +189,10 @@ def run():
 
     root = gui.Root(25, 10)
 
-    # make_tracker_sheet(root, values['income'], "Income", Buckets.income_categories, months)
-    # make_tracker_sheet(root, values['expenses'], "Expenses", Buckets.expense_categories, months)
+    # make_tracker_sheet(root, values['income'], "Income", Categories.income_categories, months)
+    # make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
 
-    make_summary_sheet(root, values, 5000, months)
+    make_summary_sheet(root, values, 0, months)
 
     root.mainloop()
 
