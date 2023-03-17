@@ -58,17 +58,9 @@ def run(mode: Literal['nuitka', 'pyinstaller'], compile=True, **kwargs):
     else:
         raise NotImplementedError()
 
-    folders = [
-        'Categorize',
-        'Raw_Data',
-        'Root',
-    ]
-    for folder in folders:
-        target = os.path.join(dist_dir, folder)
-        if not os.path.isdir(target):
-            os.mkdir(target)
-
     for filepath in Constants.filepaths:
+        dist_subdir = os.path.join(dist_dir, os.path.dirname(filepath))
+        os.makedirs(dist_subdir, exist_ok=True)
         shutil.copy2(filepath, os.path.join(dist_dir, filepath))
 
     for file in os.listdir('Raw_Data'):
@@ -80,4 +72,4 @@ def run(mode: Literal['nuitka', 'pyinstaller'], compile=True, **kwargs):
         shutil.copy2(src, dst)
 
 if __name__ == "__main__":
-    run('pyinstaller', compile=True)
+    run('pyinstaller', compile=False)
