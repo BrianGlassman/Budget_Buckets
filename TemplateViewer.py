@@ -1,6 +1,5 @@
 from functools import partial
 
-import Record
 import Categorize
 import TkinterPlus as gui
 

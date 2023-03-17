@@ -1,8 +1,8 @@
 """Script to help with adding new data"""
 
+from BaseLib import Sorting
+from Classes import Record
 import Parsing
-import Record
-from Root import Sorting
 
 class Modes:
     last = 'last transactions'
