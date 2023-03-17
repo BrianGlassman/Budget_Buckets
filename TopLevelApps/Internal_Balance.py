@@ -3,8 +3,8 @@
 import _collections_abc
 
 from BaseLib import Categories
-from Classes import Buckets, Record
-import Parsing
+from Classes import Record
+from Handlers import Parsing
 import Functionified as fn
 
 transactions = Parsing.run()

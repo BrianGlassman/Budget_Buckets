@@ -1,14 +1,12 @@
 from functools import partial
+import datetime
 
-from BaseLib import Sorting
+from BaseLib import Categories, Sorting
 from Handlers import Parsing
 import Functionified as fn
 import TkinterPlus as gui
 
-import CategorizerView
-import BucketTimeline
-# import TransactionTimeline
-# import MView
+from TopLevelApps import BucketTimeline, CategorizerView, MView, TemplateViewer
 
 import Predict
 
@@ -205,9 +203,7 @@ def run_config():
     window.mainloop()
 
 def run_templates():
-    from TemplateViewer import TemplateViewer
-
-    TemplateViewer()
+    TemplateViewer.TemplateViewer()
 
 def load_data():
     # Parse
@@ -249,11 +245,6 @@ def run_BTime():
 
 def run_MView():
     categorized_transactions = Model.categorized_transactions
-    
-    import datetime
-
-    from BaseLib import Categories
-    import MView
 
     # Get first/last month (instead of first/last date)
     strt, stop = fn.get_str_stop(categorized_transactions)
