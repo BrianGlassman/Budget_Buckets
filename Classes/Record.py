@@ -1,10 +1,10 @@
 import datetime
-import typing as _import_typing
+import typing as typing
 
-import Classes.Buckets as Buckets
+import BaseLib.Categories as Categories
 
 class Field:
-    _type: _import_typing.Type
+    _type: typing.Type
     def __init__(self, value):
         self.set(value=value)
 
@@ -23,7 +23,7 @@ class CatField(Field):
     _type = str
     def check_value(self, value):
         assert isinstance(value, self._type), f"Type is '{type(value)}', not '{self._type}"
-        assert value in Buckets.categories_inclTodo, f"Category '{value}' not recognized"
+        assert value in Categories.categories, f"Category '{value}' not recognized"
 
 class DateField(Field):
     _type = datetime.date
@@ -138,7 +138,7 @@ class RawRecord(BaseRecord):
 class CategorizedRecord(BaseRecord):
     """A record that has been categorized"""
     def __init__(self, account: str, date: datetime.date, desc: str, value: float, source_specific={},
-                 category: str = Buckets.todo_category, comment: str = '', rawRecord: RawRecord | None = None,
+                 category: str = Categories.todo_category, comment: str = '', rawRecord: RawRecord | None = None,
                  duration: int = 1):
         super().__init__(account, date, desc, value, source_specific)
         assert rawRecord is None or isinstance(rawRecord, RawRecord)
