@@ -1,6 +1,6 @@
 import json as _import_json
 
-from Root.Constants import AccountSetup_file as _AccountSetup_file
+from BaseLib.Constants import AccountSetup_file as _AccountSetup_file
 
 with open(_AccountSetup_file) as _f:
     account_setup = _import_json.load(_f)
