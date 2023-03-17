@@ -16,7 +16,7 @@ def _read_buckets() -> dict[Constants.CatType, Bucket]:
     lines = data['EXPENSES']
 
     bucket_info = {}
-    for line in lines[1:]:
+    for line in lines:
         category, max_s, monthly_s = line.split(',')
         assert category not in bucket_info
         max_f = float(max_s)

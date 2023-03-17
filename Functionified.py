@@ -1,8 +1,8 @@
 import datetime
 import _collections_abc
 
-from Root import Buckets
-import Record
+from BaseLib import Categories
+from Classes import Record # Only used for type-hinting
 
 class CategorizeConfig(_collections_abc.Mapping):
     cat_filter: list
@@ -42,7 +42,7 @@ def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filte
     """
     import Categorize
 
-    assert all(cat in Buckets.categories for cat in cat_filter)
+    assert all(cat in Categories.categories for cat in cat_filter)
 
     categorized_transactions = Categorize.run(
         transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=use_internal)

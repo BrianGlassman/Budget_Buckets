@@ -5,9 +5,11 @@ import datetime
 from collections import UserDict
 from typing import TypeVar
 
-from Root import Constants, Buckets
+from BaseLib import Constants, Categories, Sorting
+from Classes import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
+from Classes import Bucket
+import Classes
 import Parsing
-import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 
 # Type aliasing
 Cat = Constants.CatType
@@ -98,7 +100,7 @@ class BaseTracker():
 
     def get_category(self, key: Cat) -> ConsecCalendar:
         """Gets the values across all days for a given category"""
-        assert key in Buckets.categories_inclTodo
+        assert key in Categories.categories
         return self._cat_tracker[key]
 
     def get_date(self, key: Date) -> dict[Cat, float]:
@@ -127,7 +129,7 @@ class DeltaTracker(BaseTracker):
     _cat_adates: dict[Cat, list[Date]] # {category: [dates where amortized transactions began]}
     def __init__(self, dated_transactions: list[Record.CategorizedRecord]):
         # Note: dated_transactions must be sorted
-        categories = Buckets.categories_inclTodo
+        categories = Categories.categories
 
         # Group transactions by category, then date
         cat_transactions = {}
@@ -214,15 +216,13 @@ class DeltaTracker(BaseTracker):
     
     def get_tdates(self, key: Cat) -> list[Date]:
         """Gets the single-day transaction dates for a given category"""
-        assert key in Buckets.categories_inclTodo
+        assert key in Categories.categories
         return self._cat_tdates[key]
     
     def get_adates(self, key: Cat) -> list[Date]:
         """Gets the amortized transaction start dates for a given category"""
-        assert key in Buckets.categories_inclTodo
+        assert key in Categories.categories
         return self._cat_adates[key]
-
-from Root.Buckets import Bucket
 
 class BucketTracker(BaseTracker):
     _empty_bucket = Bucket("empty", 0, 0)
@@ -278,12 +278,13 @@ class BucketTracker(BaseTracker):
         line = ax.plot(values.keys(), values.values(), 'x', color=color)
         return line[0]
 
-    def _plot_bucket_vals(self, values: dict[Date, float], ax: plt.Axes, color: str, max_value: float):
+    def _plot_bucket_vals(self, values: ConsecCalendar, ax: plt.Axes, color: str, category: Cat):
         """Plot the bucket values"""
         # Make sure the line starts from bucket max_value
         keys = list(values.keys())
         vals = list(values.values())
 
+        max_value = Classes.bucket_info[category].max_value
         if vals[0] != max_value:
             keys = [keys[0]] + keys
             vals = [max_value] + vals
@@ -302,26 +303,22 @@ class BucketTracker(BaseTracker):
         line = self._plot_transaction_points(value_timeline, ax, category) # type: ignore
         color = line.get_color()
         self._plot_amort_points(value_timeline, ax, category, color) # type: ignore
-        self._plot_bucket_vals(value_timeline, ax, color, bucket_info[category].max_value) # type: ignore
+        self._plot_bucket_vals(value_timeline, ax, color, category)
         
     def plot_all(self, ax: plt.Axes):
         """Sugar syntax to call plot on all categories"""
         for cat in self.categories:
             self.plot(ax, cat)
 
-#%% Define buckets
-from Root.Buckets import bucket_info
-
 #%% Pre-processing
 
 skip_cats = [
     '401k', # Not relevant
-    *(Buckets.income_categories), # Not really a bucket
+    *(Categories.income_categories), # Not really a bucket
     'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
 ]
 
 def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> BucketTracker:
-    from Root import Sorting
 
     # Sort by date
     sorted_transactions = Sorting.by_date(categorized_transactions)
@@ -332,7 +329,7 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
     # Track bucket values
     bucket_tracker = BucketTracker(delta_tracker,
         initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
-        bucket_info=bucket_info)
+        bucket_info=Classes.bucket_info)
     
     return bucket_tracker
 #%% Display

@@ -5,7 +5,7 @@ Can also be used for checksumming against current balance
 
 import datetime
 
-from Root import Constants
+from BaseLib import Accounts
 import Parsing
 import Functionified as fn
 import TkinterPlus as gui
@@ -100,7 +100,7 @@ def run():
         date = fn.inc_month(date)
     
     # Get all the accounts
-    accounts = Constants.accounts
+    accounts = Accounts.accounts
 
     # Initialize all month's deltas as 0
     deltas: dict[str, dict[datetime.date, float]] # {account: {date_key: delta this month}}
