@@ -1,7 +1,7 @@
 import datetime
 
-from Root import Sorting
-import Record
+from BaseLib import Sorting
+from Classes import Record
 import Functionified as fn
 
 #%% Category separating

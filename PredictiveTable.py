@@ -2,10 +2,11 @@
 import datetime
 
 import TkinterPlus as gui
-from Root import Buckets
-from Root import Sorting
-import Record
+from BaseLib import Categories, Sorting
+from Classes import Buckets, Record
 import Parsing
+
+raise NotImplementedError("This file is out of date")
 
 #%% Table creation
 def create_table(root, actual, future):
@@ -134,7 +135,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, cat_filter=Buckets.expense_categories, keep_filter=True)
+    categorized_transactions = fn.categorize(transactions, cat_filter=Categories.expense_categories, keep_filter=True)
 
     # Pre-processing
     categorized_transactions = Sorting.by_date(categorized_transactions)
