@@ -1,6 +1,15 @@
 import datetime as _import_datetime
 import os as _import_os
 
+# Path shenanigans for relative import when running directly
+if __name__ == "__main__":
+    import os, sys
+    path = os.path.dirname(__file__)
+    path = os.path.dirname(path)
+    sys.path.append(path)
+
+from Root import funcs as _import_funcs
+
 one_day = _import_datetime.timedelta(days=1)
 
 CatType = str
@@ -13,6 +22,7 @@ ManualAccountHandling_file = _import_os.path.join('Categorize', 'ManualAccountHa
 ParseSettings_file = _import_os.path.join('Parsing', 'ParseSettings.csv')
 Constants_file = _import_os.path.join('Root', 'Constants.py')
 BucketInfo_file = _import_os.path.join('Root', 'BucketInfo.csv')
+Accounts_file = _import_os.path.join('Root', 'Accounts.csv')
 todo_file = 'TODO.txt'
 readme_file = 'README.md'
 filepaths = [
@@ -22,22 +32,9 @@ filepaths = [
     ParseSettings_file,
     Constants_file,
     BucketInfo_file,
+    Accounts_file,
     todo_file,
     readme_file,
 ]
 
-# List of all accounts
-accounts = [
-    'Checking',
-    'Credit Card',
-    'CU Bills',
-    'Student Loans',
-    'M1',
-    'FStocks',
-    '529',
-    'Venmo',
-    'Campus Cash',
-    '401(k)',
-    'Roth IRA',
-    'Trad IRA',
-]
+accounts = _import_funcs.read_commented_csv(Accounts_file)

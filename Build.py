@@ -81,4 +81,4 @@ def run(mode: Literal['nuitka', 'pyinstaller'], compile=True, **kwargs):
         shutil.copy2(src, dst)
 
 if __name__ == "__main__":
-    run('nuitka', compile=True, mac_bundle=True)
+    run('pyinstaller', compile=True)

@@ -5,6 +5,7 @@ if __name__ == "__main__":
     path = os.path.dirname(path)
     sys.path.append(path)
 
+from Root.funcs import read_commented_csv
 from Root import Constants as _import_Constants
 
 class Bucket:
@@ -16,10 +17,7 @@ class Bucket:
 todo_category = '*** TODO ***'
 
 def _read_buckets() -> tuple[dict[_import_Constants.CatType, Bucket], tuple[_import_Constants.CatType]]:
-    with open(_import_Constants.BucketInfo_file, 'r', newline='') as f:
-        lines = [line.strip() for line in f.readlines()]
-    lines = [line for line in lines if line] # Remove empty lines
-    lines = [line for line in lines if not line.startswith('#')] # Remove comment lines
+    lines = read_commented_csv(_import_Constants.BucketInfo_file)
 
     bucket_info = {}
     for line in lines[1:]:

@@ -5,7 +5,7 @@ WIP Budgeting tool that focuses on continuous operation rather than month-by-mon
 
 # Setup
 1. Setup categories in Root/BucketInfo.csv - this is what categories stuff goes into, the max amount of money in that "bucket", and how much to add per month
-1. Setup account names in Root/Constants.py
+1. Setup account names in Root/Accounts.csv
 1. Put data files in Raw_Data, they should be CSVs with columns Date, Description, Value. Negative values are expenses, positive values are income. Any other columns get saved, but not used.
 1. Setup which files to pull data from in Parsing/ParseSettings.csv
 
