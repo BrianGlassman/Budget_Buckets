@@ -7,12 +7,6 @@ from _collections_abc import Mapping as _imported_Mapping
 import datetime as _imported_datetime
 from typing import Type as _imported_Type
 
-if __name__ == "__main__":
-    import sys
-    path = _imported_os.path.dirname(__file__)
-    path = _imported_os.path.dirname(path)
-    sys.path.append(path)
-
 from Root import Constants as _imported_Constants
 from Root.Buckets import categories as _imported_categories
 import Record # Only used for type-checking
@@ -21,8 +15,6 @@ from Categorize import Fields
 _re_prefix = 'REGEX:'
 
 auto_templates_file = _imported_Constants.AutoTemplates_file # Store for writing to later
-if not auto_templates_file.startswith("Categorize"):
-    auto_templates_file = _imported_os.path.join("Categorize", auto_templates_file)
 
 class BasePattern:
     """Functions like a dictionary"""

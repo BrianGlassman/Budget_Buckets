@@ -1,7 +1,7 @@
 import datetime
 import typing as _import_typing
 
-from Root import Buckets
+import Classes.Buckets as Buckets
 
 class Field:
     _type: _import_typing.Type

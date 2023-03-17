@@ -7,12 +7,6 @@ from dateutil import parser as _import_date_parser
 import os as _import_os
 import csv as _import_csv
 
-if __name__ == "__main__":
-    import sys
-    path = _import_os.path.dirname(__file__)
-    path = _import_os.path.dirname(path)
-    sys.path.append(path)
-
 from Root import Constants as _import_Constants
 from Record import RawRecord
 
