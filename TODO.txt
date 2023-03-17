@@ -37,6 +37,9 @@ income transactions count towards the Categorize limit even if they are then dis
 make a workflow that allows changing the data source
 	next step will be creating future transactions after parsing/categorizing but before display
 
+[debt paydown]
+M added a page to her sheet that tracks spending and payments for credit cards, to see how you pay down debt
+
 [Predicting]
 have ways to compare predicted vs actual
 	ex. "this transaction was predicted to be X, but is actually Y"
@@ -103,6 +106,7 @@ Make initial value for each bucket editable
 summary sheet:
 	add monthly super-category timeline
 	add category average bar chart
+	add category distribution pie chart
 	add income/expenses/internal tables
 
 [MView]
