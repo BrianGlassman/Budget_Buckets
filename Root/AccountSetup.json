@@ -29,31 +29,31 @@
   ],
   "M1": [
     {
-      "parser": "Generic",
+      "parser": "GenericNeg",
       "file": "M1_manual.csv"
     }
   ],
   "FStocks": [
     {
-      "parser": "Generic",
+      "parser": "GenericNeg",
       "file": "Fidelity_Investment_manual.csv"
     }
   ],
   "Roth IRA": [
     {
-      "parser": "Generic",
+      "parser": "GenericNeg",
       "file": "Fidelity_RothIRA_manual.csv"
     }
   ],
   "Trad IRA": [
     {
-      "parser": "Generic",
+      "parser": "GenericNeg",
       "file": "Fidelity_TradIRA_manual.csv"
     }
   ],
   "401(k)": [
     {
-      "parser": "Generic",
+      "parser": "GenericNeg",
       "file": "PrudentialEmpower_401k_manual.csv"
     }
   ],

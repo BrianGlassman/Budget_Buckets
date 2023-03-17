@@ -57,14 +57,33 @@ class GenericParser(BaseParser):
         with open(self.infile, 'r') as f:
             return [self._make_transaction(line) for line in _import_csv.DictReader(f)]
     
+    def _handle_value(self, value):
+        raise NotImplementedError()
+
     def _make_transaction(self, line) -> RawRecord:
         line = dict(line) # Copy so that it can be modified
         date = _make_date(line.pop('Date'))
         desc = line.pop('Description')
         value = float(line.pop('Value'))
+        value = self._handle_value(value)
         # Anything left in the line is source-specific values
         return RawRecord(account=self.account, date=date, desc=desc, value=value, source_specific=line)
-Parsers['Generic'] = GenericParser
+
+class GenericNegParser(GenericParser):
+    """
+    Parser for handling generic CSV files that use negative values as expenses
+    """
+    def _handle_value(self, value):
+        return value
+Parsers['GenericNeg'] = GenericNegParser
+
+class GenericPosParser(GenericParser):
+    """
+    Parser for handling generic CSV files that use positive values as expenses
+    """
+    def _handle_value(self, value):
+        return -value
+Parsers['GenericPos'] = GenericPosParser
 
 class BaseUSAAParser(BaseParser):
     pass
