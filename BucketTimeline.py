@@ -9,7 +9,7 @@ from BaseLib import Constants, Categories, Sorting
 from Classes import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 from Classes import Bucket
 import Classes
-import Parsing
+from Handlers import Parsing
 
 # Type aliasing
 Cat = Constants.CatType

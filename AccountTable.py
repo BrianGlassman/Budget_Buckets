@@ -6,7 +6,7 @@ Can also be used for checksumming against current balance
 import datetime
 
 from BaseLib import Accounts
-import Parsing
+from Handlers import Parsing
 import Functionified as fn
 import TkinterPlus as gui
 

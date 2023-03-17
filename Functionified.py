@@ -40,7 +40,7 @@ def categorize(transactions, cat_filter=df.cat_filter, keep_filter=df.keep_filte
     use_uncat = True # Whether to show uncategorized items
     use_cat = True # Whether to show categorized items
     """
-    import Categorize
+    from Handlers import Categorize
 
     assert all(cat in Categories.categories for cat in cat_filter)
 

@@ -1,7 +1,7 @@
 from functools import partial
 
 from BaseLib import Sorting
-import Parsing
+from Handlers import Parsing
 import Functionified as fn
 import TkinterPlus as gui
 

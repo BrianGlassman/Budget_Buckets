@@ -4,7 +4,7 @@ import os
 import shutil
 from typing import Literal
 
-from Root import Constants
+from BaseLib import Constants
 
 def run_nuitka(compile=True, mac_bundle=False):
     dist_dir = 'Main.dist'

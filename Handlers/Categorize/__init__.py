@@ -10,7 +10,7 @@ from typing import Type as _imported_Type
 from BaseLib import Constants as _imported_Constants
 import BaseLib.Categories as _imported_Categories
 import Classes.Record as Record
-from Categorize import Fields
+from Handlers.Categorize import Fields
 
 _re_prefix = 'REGEX:'
 
@@ -661,7 +661,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     return categorized_transactions
 
 if __name__ == "__main__":
-    import Parsing
+    from Handlers import Parsing
 
     transactions: list[Record.RawRecord]
     transactions = Parsing.run()

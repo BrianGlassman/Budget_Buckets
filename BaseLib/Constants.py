@@ -7,9 +7,9 @@ CatType = str
 
 # Collect file paths in one place so that other things can reference them
 # (namely, the Build script)
-AutoTemplates_file = _import_os.path.join('Categorize', 'AutoTemplates.json')
-Templates_file = _import_os.path.join('Categorize', 'Templates.json')
-ManualAccountHandling_file = _import_os.path.join('Categorize', 'ManualAccountHandling.json')
+AutoTemplates_file = _import_os.path.join('Handlers', 'Categorize', 'AutoTemplates.json')
+Templates_file = _import_os.path.join('Handlers', 'Categorize', 'Templates.json')
+ManualAccountHandling_file = _import_os.path.join('Handlers', 'Categorize', 'ManualAccountHandling.json')
 BucketInfo_file = _import_os.path.join('BaseLib', 'BucketInfo.csv')
 AccountSetup_file = _import_os.path.join('BaseLib', 'AccountSetup.json')
 todo_file = 'TODO.txt'

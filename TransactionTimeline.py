@@ -1,14 +1,13 @@
 from BaseLib import Categories
 from Classes import Record
+from Handlers import Categorize, Parsing
 
 #%% Parsing
-import Parsing
 
 transactions: list[Record.RawRecord]
 transactions = Parsing.run()
 
 #%% Categorizing
-import Categorize
 
 limit = -1 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items

@@ -3,9 +3,9 @@ from dataclasses import dataclass
 import TkinterPlus as gui
 
 from BaseLib import Categories, Sorting
-from Classes import Buckets, Record
-import Parsing
-import Categorize
+from Classes import Record
+from Handlers import Parsing
+from Handlers import Categorize
 import Functionified as fn
 
 #%% Definitions for GUI

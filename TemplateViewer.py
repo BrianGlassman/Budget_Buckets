@@ -1,6 +1,6 @@
 from functools import partial
 
-import Categorize
+from Handlers import Categorize
 import TkinterPlus as gui
 
 nest_templates = Categorize.get_all_templates()

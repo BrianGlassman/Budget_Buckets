@@ -1,9 +1,8 @@
 import datetime
 
 from BaseLib import Categories
-import Parsing
+from Handlers import Parsing
 import Functionified as fn
-import Categorize
 import TkinterPlus as gui
 
 #%% Display pre-processing
