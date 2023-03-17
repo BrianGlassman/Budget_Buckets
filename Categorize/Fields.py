@@ -2,7 +2,7 @@ import datetime
 from dateutil import parser as dateParser
 from typing import Type as _import_Type
 
-from Root import Buckets, Constants
+from BaseLib import Accounts, Categories
 
 class Field:
     _type: _import_Type | tuple[_import_Type]
@@ -94,7 +94,7 @@ class Name(StrField):
 #%% RawRecord fields
 
 class Account(StrField):
-    allowed = Constants.accounts
+    allowed = Accounts.accounts
 
 class Date(Field):
     _type = datetime.date
@@ -164,7 +164,7 @@ class SourceSpecific(Field):
 #%% CategorizedRecord fields
 
 class Category(StrField):
-    allowed = Buckets.categories_inclTodo
+    allowed = Categories.categories
 
 class Comment(StrField):
     pass # No restrictions

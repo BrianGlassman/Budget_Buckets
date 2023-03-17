@@ -7,9 +7,9 @@ from _collections_abc import Mapping as _imported_Mapping
 import datetime as _imported_datetime
 from typing import Type as _imported_Type
 
-from Root import Constants as _imported_Constants
-from Root.Buckets import categories as _imported_categories
-import Record # Only used for type-checking
+from BaseLib import Constants as _imported_Constants
+import BaseLib.Categories as _imported_Categories
+import Classes.Record as Record
 from Categorize import Fields
 
 _re_prefix = 'REGEX:'
@@ -483,7 +483,7 @@ class AllTemplates(_imported_Mapping):
 
         # Category verification (must be a real, non-todo category)
         if 'category' in new:
-            assert new['category'] in _imported_categories, "Category '" + new['category'] + "' not found"
+            assert new['category'] in _imported_Categories.categories, "Category '" + new['category'] + "' not found"
 
         template = Template(name=name, pattern=pattern, new=new)
         self.auto_templates.append(template)
@@ -592,8 +592,6 @@ def save_all_templates() -> None:
     _nested_templates.save()
 
 def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, use_internal = True) -> list:
-    import Record
-    from Root import Buckets
     categorized_transactions: list[Record.CategorizedRecord] = []
     limited = False
     for rawRecord in transactions:
@@ -601,7 +599,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
         if match is None:
             # No match, fill in with placeholder values
             if use_uncat:
-                category = Buckets.todo_category
+                category = _imported_Categories.todo_category
                 comment = ''
                 duration = 1
                 ct = Record.CategorizedRecord.from_RawRecord(rawRecord, category, comment=comment, duration=duration)
@@ -612,11 +610,11 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             new = match.new
 
             category = new['category']
-            if category == Buckets.del_category:
+            if category == _imported_Categories.del_category:
                 # "Delete" this transaction by not adding it to the output list
                 # FIXME probably cases where this causes the wrong control flow
                 continue
-            assert category in Buckets.categories, f"Bad category: {category}"
+            assert category in _imported_Categories.categories, f"Bad category: {category}"
             if not use_cat:
                 # FIXME probably cases where this causes the wrong control flow
                 continue
@@ -640,14 +638,18 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     
     if not limited:
         # Can't checksum with partial data
-        internal_sum = sum(x.value for x in categorized_transactions if x.category in Buckets.internal_categories)
+        internal_sum = sum(x.value for x in categorized_transactions if x.category in _imported_Categories.internal_categories)
+
+        import warnings
         if abs(internal_sum) >= 0.01:
-            import warnings
-            warnings.warn(f"Internals ({', '.join(Buckets.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
+            warnings.warn(f"Internals ({', '.join(_imported_Categories.internal_categories)}) unbalanced by ${internal_sum:0,.2f}")
+        else:
+            # Use warning anyway so that it only prints once
+            warnings.warn(f"(Not actually a warning) Internals ({', '.join(_imported_Categories.internal_categories)}) successfully balanced")
     
     if not use_internal:
         # Remove the internal transactions
-        categorized_transactions = [x for x in categorized_transactions if x.category not in Buckets.internal_categories]
+        categorized_transactions = [x for x in categorized_transactions if x.category not in _imported_Categories.internal_categories]
 
     # Easy way to filter stuff
     categorized_transactions = [x for x in categorized_transactions if
@@ -659,7 +661,6 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
     return categorized_transactions
 
 if __name__ == "__main__":
-    import Record
     import Parsing
 
     transactions: list[Record.RawRecord]
@@ -667,4 +668,3 @@ if __name__ == "__main__":
 
     categorized_transactions = run(transactions=transactions, 
         limit=0, use_uncat=True, use_cat=True, use_internal=True)
-

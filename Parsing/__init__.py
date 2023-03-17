@@ -7,8 +7,9 @@ from dateutil import parser as _import_date_parser
 import os as _import_os
 import csv as _import_csv
 
-from Root import Constants as _import_Constants
-from Record import RawRecord
+from BaseLib import Constants as _import_Constants
+from BaseLib import Accounts as _import_Accounts
+from Classes import RawRecord
 
 # Dictionary of Parsers that are available for use
 Parsers = {}
@@ -329,7 +330,7 @@ def run() -> list[RawRecord]:
 
     transactions: list[RawRecord] = []
 
-    for account, act_infos in _import_Constants.account_setup.items():
+    for account, act_infos in _import_Accounts.account_setup.items():
         for act_info in act_infos:
             parseCls = Parsers[act_info['parser']]
             filename = act_info['file']
