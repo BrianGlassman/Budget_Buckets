@@ -1,7 +1,7 @@
 from functools import partial
 
+from BaseLib import Sorting
 import Parsing
-from Root import Sorting
 import Functionified as fn
 import TkinterPlus as gui
 
@@ -252,7 +252,7 @@ def run_MView():
     
     import datetime
 
-    from Root import Buckets
+    from BaseLib import Categories
     import MView
 
     # Get first/last month (instead of first/last date)
@@ -267,7 +267,7 @@ def run_MView():
         months.append(date)
         date = fn.inc_month(date)
 
-    cat_groups = {'income': Buckets.income_categories, 'expenses': Buckets.expense_categories, 'internal': Buckets.internal_categories, 'UNCATEGORIZED': (Buckets.todo_category,)}
+    cat_groups = {'income': Categories.income_categories, 'expenses': Categories.expense_categories, 'internal': Categories.internal_categories, 'UNCATEGORIZED': (Categories.todo_category,)}
     values: dict[str, dict[str, dict[datetime.date, float]]] # {grouping: cat: {date_key: value}}}
     values = {}
     for group, categories in cat_groups.items():
@@ -286,7 +286,7 @@ def run_MView():
     root = gui.Root(25, 10)
 
     # MView.make_tracker_sheet(root, values['income'], "Income", Buckets.income_categories, months)
-    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Buckets.expense_categories, months)
+    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
     # MView.make_summary_sheet(root, values, 5000, months)
 
     root.mainloop()
