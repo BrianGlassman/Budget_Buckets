@@ -2596,7 +2596,8 @@
         },
         "new": {
           "category": "Internal Transfers",
-          "duration": 1
+          "duration": 1,
+          "comment": "Deposit leftover loan"
         }
       },
       {
@@ -2634,6 +2635,137 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "CU Fall 2023 refund"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-02-10",
+          "desc": "Fisher Honda",
+          "value": -227.79,
+          "source_specific": {
+            "Original Description": "FISHER HONDA             BOULDER      CO",
+            "Category": "Auto & Transport",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "duration": 1,
+          "comment": "Maintenance A7"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-02-24",
+          "desc": "Mobile Deposit",
+          "value": 4000.0,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Transfer from 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-02-26",
+          "desc": "Wild Pastures Burger",
+          "value": -25.02,
+          "source_specific": {
+            "Original Description": "TST* Wild Pastures BurgerBoulder      CO",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-03-03",
+          "desc": "FedEx",
+          "value": -2.22,
+          "source_specific": {
+            "Original Description": "FEDEX OFFIC40200004028   BOULDER      CO",
+            "Category": "Shipping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Other - Other",
+          "duration": 1,
+          "comment": "Resume printing"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-03-06",
+          "desc": "USAA Transfer",
+          "value": 50.0,
+          "source_specific": {
+            "Original Description": "USAA FUNDS TRANSFER CR",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Salary",
+          "duration": 1,
+          "comment": "AttendeeNet Excel Consulting"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-03-09",
+          "desc": "Federal Tax Refund",
+          "value": 1250.0,
+          "source_specific": {
+            "Original Description": "IRS  TREAS 310     TAX REF  ***********0918",
+            "Category": "Federal Tax",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Income - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-02-18",
+          "desc": "Riot Games",
+          "value": -21.8,
+          "source_specific": {
+            "Original Description": "PAYPAL *RIOTGAMESIN      402-935-7733 CA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Games",
+          "duration": 1,
+          "comment": "Valorant skin"
         }
       }
     ]

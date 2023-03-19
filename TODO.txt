@@ -1,3 +1,14 @@
+[BUG]
+adding a generic template from the GUI doesn't set a duration
+
+[BUG?]
+Seems like the template GUI glitches out when multiple GUI windows are opened
+	Says "No changes made" even though there were changes
+	Possibly because that message is from CategorizerView, and the template GUI is separate?
+
+[BUG?]
+Can't put multiple option descriptions into the Template GUI
+
 [other users]
 examples for <Raw_Data, Templates, AccountSetup.json>
 	Build.py can copy these examples instead of my real data

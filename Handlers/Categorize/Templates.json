@@ -133,6 +133,18 @@
           "category": "Entertainment - Other",
           "duration": 1
         }
+      },
+      {
+        "name": "HBO Max",
+        "pattern": {
+          "account": "Credit Card",
+          "desc": "HBO Max",
+          "value": -17.31
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "duration": 1
+        }
       }
     ],
     "Games": [
@@ -340,7 +352,7 @@
           "desc": "Xcel Energy",
           "value": [
             -30,
-            -70
+            -120
           ]
         },
         "new": {
@@ -393,7 +405,10 @@
         "name": "Comcast",
         "pattern": {
           "desc": "Comcast",
-          "value": -40.41
+          "value": [
+            -40.41,
+            -40.50
+          ]
         },
         "new": {
           "category": "Internet",
@@ -603,7 +618,10 @@
       {
         "name": "Cash rewards credit",
         "pattern": {
-          "desc": "Reward Points Redemption",
+          "desc": [
+            "Reward Points Redemption",
+            "Recurring Reward Points Redemption"
+          ],
           "value": [
             0,
             90
@@ -755,7 +773,7 @@
         "new": {
           "category": "Internal Transfers",
           "duration": 1,
-          "comment": "FirstBank 529"
+          "comment": "Transfer to FirstBank 529"
         }
       }
     ],
