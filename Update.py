@@ -2,7 +2,7 @@
 
 from BaseLib import Sorting
 from Classes import Record
-import Parsing
+from Handlers import Parsing
 
 class Modes:
     last = 'last transactions'
