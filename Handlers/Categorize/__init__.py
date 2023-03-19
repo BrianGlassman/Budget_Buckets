@@ -617,6 +617,7 @@ def run(transactions: list, limit: int = -1, use_uncat = True, use_cat = True, u
             assert category in _imported_Categories.categories, f"Bad category: {category}"
             if not use_cat:
                 # FIXME probably cases where this causes the wrong control flow
+                limited = True
                 continue
             comment = new.get('comment', '')
             duration = new.get('duration', 1)
