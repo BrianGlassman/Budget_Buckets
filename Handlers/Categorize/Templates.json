@@ -760,7 +760,7 @@
         ]
       },
       {
-        "name": "FirstBank 529",
+        "name": "USAA to FirstBank 529",
         "pattern": {
           "account": "Checking",
           "desc": "Transfer",
@@ -774,6 +774,29 @@
           "category": "Internal Transfers",
           "duration": 1,
           "comment": "Transfer to FirstBank 529"
+        }
+      },
+      {
+        "name": "FirstBank 529 to USAA",
+        "pattern": {
+          "account": "529",
+          "desc": "Transfer to USAA"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Transfer from FirstBank 529"
+        }
+      },
+      {
+        "name": "FirstBank 529 to CU",
+        "pattern": {
+          "account": "529",
+          "desc": "Payment to CU"
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1
         }
       }
     ],
