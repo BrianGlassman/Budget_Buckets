@@ -1,4 +1,4 @@
-from BaseLib import Categories
+from BaseLib import Categories, Constants
 from Classes import Record
 from Handlers import Categorize, Parsing
 
@@ -9,9 +9,9 @@ transactions = Parsing.run()
 
 #%% Categorizing
 
-limit = -1 # Use -1 for all
+limit = 20 # Use -1 for all
 use_uncat = True # Whether to show uncategorized items
-use_cat = False # Whether to show categorized items
+use_cat = True # Whether to show categorized items
 
 categorized_transactions = Categorize.run(
     transactions=transactions, limit=limit, use_uncat=use_uncat, use_cat=use_cat, use_internal=True)
@@ -36,7 +36,6 @@ class Tracker():
         self.dates = set()
 
         # Setup the first day
-        one_day = datetime.timedelta(days=1)
         i = 0 # Index within dated_transactions
         t = dated_transactions[i]
         date = t.date
@@ -59,12 +58,12 @@ class Tracker():
             if i == len(dated_transactions): break
 
             # Go to tomorrow
-            date += one_day
+            date += Constants.one_day
 
             # Add days until the next transaction is reached
             while date < t.date:
                 self.create_day(date)
-                date += one_day
+                date += Constants.one_day
             self.create_day(date)
 
     def create_day(self, date: datetime.date) -> None:
