@@ -5,7 +5,7 @@ import datetime
 from collections import UserDict
 from typing import TypeVar
 
-from BaseLib import Constants, Categories, Sorting
+from BaseLib import Accounts, Categories, Constants, Sorting
 from Classes import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
 from Classes import Bucket
 import Classes
@@ -366,10 +366,15 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
     # Track daily changes
     delta_tracker = DeltaTracker(sorted_transactions)
 
+    # Initial slush fund
+    initial_slush = 0
+    for key in ['M1', 'Checking', 'FStocks', 'Credit Card']:
+        initial_slush += Accounts.starting_balances[key]
+
     # Track bucket values
     bucket_tracker = BucketTracker(delta_tracker,
         initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
-        initial_slush=30000)
+        initial_slush=initial_slush)
     
     return bucket_tracker
 #%% Display
