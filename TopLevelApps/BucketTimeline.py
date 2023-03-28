@@ -230,38 +230,46 @@ class BucketTracker(BaseTracker):
         """refill_amts - {category: amount to add per DAY}"""
         self._delta_tracker = delta_tracker
 
+        # Create the tracker with initial values
         self._cat_tracker = {}
         for cat in delta_tracker.categories:
-            tracker = self._cat_tracker[cat] = ConsecCalendar() ; tracker: ConsecCalendar
-            dtracker = delta_tracker.get_category(cat)
+            tracker = ConsecCalendar()
             bucket = bucket_info.get(cat, self._empty_bucket)
-            refill = bucket.refill
+            tracker[initial_date] = bucket.initial_value
+            self._cat_tracker[cat] = tracker
+        
+        # Iterate
+        date = initial_date
+        yesterday = initial_date
+        while date <= final_date:
+            dtracker = delta_tracker.get_date(date)
+            for cat, tracker in self._cat_tracker.items():
+                # Skip if already handled
+                if cat in skip_cats: continue
+                # Aliasing
+                bucket = bucket_info.get(cat, self._empty_bucket)
 
-            # Skip categories that never change (use max_value as initial/constant value)
-            if refill == 0 and all(v == 0 for v in dtracker.values()):
-                tracker[initial_date] = bucket.max_value
-                continue
+                # Yesterday's value
+                last_value = tracker.get(yesterday, None)
+                assert last_value is not None
 
-            # Calculate the value for each day (previous day + transactions + refilling)
-            last_value = bucket.max_value # Initial value or value of previous day (start at max_value)
-            date = initial_date
-            while date <= final_date:
-                # Handle transactions
-                tvalue = dtracker.get(date, 0)
+                # Today's transactions
+                transaction_value = dtracker.get(cat, 0)
 
                 # Handle refilling and max value
                 # Do transaction first, then refill if below max
-                new_value = last_value + tvalue
+                new_value = last_value + transaction_value
                 if new_value < bucket.max_value:
-                    new_value += min(refill, bucket.max_value - new_value)
+                    new_value += min(bucket.refill, bucket.max_value - new_value)
                 
-                # Save the value
+                # Save the new value
                 tracker[date] = new_value
 
-                # Increment for next loop
-                date += Constants.one_day
-                last_value = new_value
-
+            # Increment for the next loop
+            yesterday = date
+            date += Constants.one_day
+        
+        for tracker in self._cat_tracker.values():
             tracker.verify()
 
     def _plot_transaction_points(self, values: dict[Date, float], ax: plt.Axes, category: Cat):
