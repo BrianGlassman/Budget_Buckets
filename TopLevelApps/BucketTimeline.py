@@ -227,7 +227,6 @@ class DeltaTracker(BaseTracker):
 class BucketTracker(BaseTracker):
     _empty_bucket = Bucket("empty", 0, 0)
     def __init__(self, delta_tracker: DeltaTracker, initial_date: Date, final_date: Date, bucket_info: dict[Cat, Bucket] = {}):
-        """refill_amts - {category: amount to add per DAY}"""
         self._delta_tracker = delta_tracker
 
         # Create the tracker with initial values
@@ -243,6 +242,26 @@ class BucketTracker(BaseTracker):
         yesterday = initial_date
         while date <= final_date:
             dtracker = delta_tracker.get_date(date)
+
+            # Get the values from yesterday, save for later use
+            yesterday_values = {cat: tracker.get(yesterday, None) for cat, tracker in self._cat_tracker.items()}
+            assert not any(v is None for v in yesterday_values.values())
+
+            # Amount needed to refill all buckets to cap, limited by max refill setting
+            # TODO should refill be calculated after the day's transactions?
+            target_refills = {}
+            for cat, tracker in self._cat_tracker.items():
+                bucket = bucket_info.get(cat, self._empty_bucket)
+                target = bucket.max_value - yesterday_values[cat]
+                target = max(target, 0) # Only fill, never take
+                target = min(target, bucket.refill) # Don't exceed the limit
+                target_refills[cat] = target
+            target_sum = sum(v for v in target_refills.values())
+            # TODO calculate this
+            scale = 1.0
+
+            actual_refills = {cat: v*scale for cat,v in target_refills.items()}
+
             for cat, tracker in self._cat_tracker.items():
                 # Skip if already handled
                 if cat in skip_cats: continue
@@ -258,10 +277,8 @@ class BucketTracker(BaseTracker):
 
                 # Handle refilling and max value
                 # Do transaction first, then refill if below max
-                new_value = last_value + transaction_value
-                if new_value < bucket.max_value:
-                    new_value += min(bucket.refill, bucket.max_value - new_value)
-                
+                new_value = last_value + transaction_value + actual_refills[cat]
+
                 # Save the new value
                 tracker[date] = new_value
 
