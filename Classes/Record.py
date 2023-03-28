@@ -56,16 +56,16 @@ class BaseRecord:
         self._source_specific = DictField(source_specific)
 
     @property
-    def account(self):
+    def account(self) -> str:
         return self._account.value
     @property
-    def date(self):
+    def date(self) -> datetime.date:
         return self._date.value
     @property
-    def desc(self):
+    def desc(self) -> str:
         return self._desc.value
     @property
-    def value(self):
+    def value(self) -> float:
         return self._value.value
     @property
     def source_specific(self):
