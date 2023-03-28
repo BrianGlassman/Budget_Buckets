@@ -6,12 +6,12 @@
 # Income
 # Internal - Movement between accounts
 
-Category Name,Bucket Max Value,Monthly Contribution to Bucket
+Category Name,Bucket Max Value,Max Monthly Contribution to Bucket
 
 $ EXPENSES
 
 # Car
-Car - Note,320,320
+Car - Note,320,330
 Car/Rental Insurance,175,160
 Car - Other,300,75
 # TODO change to just "Parking" or split pass from incidental. Can't do until after porting over old sheet
@@ -26,7 +26,7 @@ Entertainment - Other,75,20
 Games,75,20
 Going Out,150,50
 Books,75,20
-Big Fun,500,20
+Big Fun,500,75
 
 # Food
 Groceries,300,250
@@ -35,7 +35,7 @@ Food - nice,100,80
 # Housing
 Rent,1850,1850
 Utilities,200,150
-Internet,40.41,40.41
+Internet,40.41,50
 Housing - Other,150,100
 Decoration,150,20
 

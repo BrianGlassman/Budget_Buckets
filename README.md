@@ -4,7 +4,7 @@ WIP Budgeting tool that focuses on continuous operation rather than month-by-mon
 ---
 
 # Setup
-1. Setup categories in Root/BucketInfo.csv - this is what categories stuff goes into, the max amount of money in that "bucket", and how much to add per month
+1. Setup categories in Root/BucketInfo.csv - this is what categories stuff goes into, the max amount of money in that "bucket", and the max amount to add per month
 2. Setup account names and data files in Root/AccountSetup.json. Accounts that have no recorded transactions should have an empty list
     - ex. Student loan transactions that are auto-generated when a loan is disbursed
     - If negative values are expenses, use GenericNeg parser

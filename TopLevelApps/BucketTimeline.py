@@ -226,7 +226,8 @@ class DeltaTracker(BaseTracker):
 
 class BucketTracker(BaseTracker):
     _empty_bucket = Bucket("empty", 0, 0)
-    def __init__(self, delta_tracker: DeltaTracker, initial_date: Date, final_date: Date, bucket_info: dict[Cat, Bucket] = {}):
+    def __init__(self, delta_tracker: DeltaTracker, initial_date: Date, final_date: Date, initial_slush: float):
+        bucket_info = Classes.bucket_info
         self._delta_tracker = delta_tracker
 
         # Create the tracker with initial values
@@ -240,7 +241,7 @@ class BucketTracker(BaseTracker):
         
         # Iterate
         self._slush_tracker = ConsecCalendar()
-        slush = 0.0
+        slush = initial_slush
         date = initial_date
         yesterday = initial_date
         while date <= final_date:
@@ -341,7 +342,11 @@ class BucketTracker(BaseTracker):
         
     def plot_all(self, ax: plt.Axes):
         """Sugar syntax to call plot on all categories"""
+        # Need these categories for slush fund to be correct, but they mess up the graph
+        skip_graph = ['Long-term', 'Rent', 'Housing - Other', 'Medical Insurance']
+
         for cat in self.categories:
+            if cat in skip_graph: continue
             self.plot(ax, cat)
         slush_ax = ax.twinx()
         self._plot_slush_vals(slush_ax)
@@ -351,7 +356,6 @@ class BucketTracker(BaseTracker):
 skip_cats = [
     '401k', # Not relevant
     # *(Categories.income_categories), # Not really a bucket, but needed to fill slush fund
-    'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
 ]
 
 def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> BucketTracker:
@@ -365,7 +369,7 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
     # Track bucket values
     bucket_tracker = BucketTracker(delta_tracker,
         initial_date=sorted_transactions[0].date, final_date=sorted_transactions[-1].date,
-        bucket_info=Classes.bucket_info)
+        initial_slush=30000)
     
     return bucket_tracker
 #%% Display
