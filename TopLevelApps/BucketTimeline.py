@@ -232,12 +232,15 @@ class BucketTracker(BaseTracker):
         # Create the tracker with initial values
         self._cat_tracker = {}
         for cat in delta_tracker.categories:
+            if cat in Categories.income_categories: continue # Don't need a bucket for income
             tracker = ConsecCalendar()
             bucket = bucket_info.get(cat, self._empty_bucket)
             tracker[initial_date] = bucket.initial_value
             self._cat_tracker[cat] = tracker
         
         # Iterate
+        self._slush_tracker = ConsecCalendar()
+        slush = 0.0
         date = initial_date
         yesterday = initial_date
         while date <= final_date:
@@ -251,6 +254,9 @@ class BucketTracker(BaseTracker):
             # Apply today's transactions
             today_values = {cat: value + today_deltas.get(cat, 0) for cat, value in yesterday_values.items()}
 
+            # Apply today's income
+            slush += sum(today_deltas.get(cat, 0) for cat in Categories.income_categories)
+
             # Amount needed to refill all buckets to cap, limited by max refill setting
             # TODO should refill be calculated after the day's transactions?
             target_refills = {}
@@ -260,12 +266,21 @@ class BucketTracker(BaseTracker):
                 target = max(target, 0) # Only fill, never take
                 target = min(target, bucket.refill) # Don't exceed the limit
                 target_refills[cat] = target
+            target_refills: dict[Cat, float]
             target_sum = sum(v for v in target_refills.values())
-            # TODO calculate this
-            scale = 1.0
 
+            # Scale refill amount to not exceed the available slush fund
+            scale = slush / target_sum if target_sum != 0 else 0
+            scale = max(0, min(1, scale)) # Clamp to [0, 1]
+
+            # Actual amount to refill, constrained by bucket max refill, bucket max value, and slush fund
             actual_refills = {cat: v*scale for cat,v in target_refills.items()}
 
+            # Decrement slush fund and save
+            slush -= sum(actual_refills.values())
+            self._slush_tracker[date] = slush
+
+            # Apply the refill and save the result
             for cat, value in today_values.items():
                 self._cat_tracker[cat][date] = value + actual_refills[cat]
 
@@ -296,6 +311,7 @@ class BucketTracker(BaseTracker):
         keys = list(values.keys())
         vals = list(values.values())
 
+        # Insert a point at the beginning that is at bucket max_value
         max_value = Classes.bucket_info[category].max_value
         if vals[0] != max_value:
             keys = [keys[0]] + keys
@@ -303,6 +319,12 @@ class BucketTracker(BaseTracker):
 
         # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
         line = ax.plot(keys, vals, '-', color=color, linewidth=0.5)
+        return line[0]
+
+    def _plot_slush_vals(self, ax: plt.Axes):
+        keys = list(self._slush_tracker.keys())
+        vals = list(self._slush_tracker.values())
+        line = ax.plot(keys, vals, '--', color='black', linewidth=1.0, label='Slush Fund')
         return line[0]
 
     def plot(self, ax: plt.Axes, category: Cat) -> None:
@@ -321,12 +343,14 @@ class BucketTracker(BaseTracker):
         """Sugar syntax to call plot on all categories"""
         for cat in self.categories:
             self.plot(ax, cat)
+        slush_ax = ax.twinx()
+        self._plot_slush_vals(slush_ax)
 
 #%% Pre-processing
 
 skip_cats = [
     '401k', # Not relevant
-    *(Categories.income_categories), # Not really a bucket
+    # *(Categories.income_categories), # Not really a bucket, but needed to fill slush fund
     'Long-term', 'Rent', 'Medical Insurance', # Messes up the graph
 ]
 
