@@ -52,8 +52,12 @@ if __name__ == "__main__":
             }
             # TODO handle CU Bills
         }
-        # TODO add setting for Windows
-        downloads = '/home/brian/Downloads'
+        if os.name == 'nt':
+            # Windows
+            downloads = 'D:\\Users\\Brian\\Downloads'
+        else:
+            # Assume Nix
+            downloads = '/home/brian/Downloads'
 
         for account, info in mapper.items():
             dl_path = os.path.join(downloads, info['dl'])

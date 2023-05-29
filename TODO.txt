@@ -1,3 +1,11 @@
+[building]
+the build should include a file or something that says what revision it was produced from
+	including the Raw_Data revision as long as I still copy those files
+also there should be a warning/error if the working directory isn't clean
+
+[building]
+should automatically prefix builds with the platform
+
 [BUG]
 adding a generic template from the GUI doesn't set a duration
 

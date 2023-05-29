@@ -9,6 +9,7 @@
             // Runs as a module so that imports don't need to be handled specially
             "type": "python",
             "request": "launch",
+            // Needs the Command Variable extension from rioj7
             "module": "${command:extension.commandvariable.file.relativeFileDotsNoExtension}",
             "console": "integratedTerminal",
             "justMyCode": true
