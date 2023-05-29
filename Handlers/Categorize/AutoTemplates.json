@@ -2749,6 +2749,170 @@
           "duration": 1,
           "comment": "Valorant skin"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-05-03",
+          "desc": "The Apothecary at Warden",
+          "value": -5.42,
+          "source_specific": {
+            "Original Description": "THE APOTHECARY AT WARDEN BOULDER      CO",
+            "Category": "Pharmacy",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Medical - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-05-06",
+          "desc": "Gondolier",
+          "value": -31.17,
+          "source_specific": {
+            "Original Description": "TST* The Gondolier       Boulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-05-12",
+          "desc": "Birdcall Boulder",
+          "value": -14.29,
+          "source_specific": {
+            "Original Description": "BIRDCALL BOULDER         BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-05-13",
+          "desc": "Conoco",
+          "value": -36.4,
+          "source_specific": {
+            "Original Description": "CONOCO - DIAGONAL CONOCO BOULDER      CO",
+            "Category": "Gas",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-04-13",
+          "desc": "Great Scotts Eatery",
+          "value": -18.02,
+          "source_specific": {
+            "Original Description": "GREAT SCOTTS EATERY      WESTMINSTER  CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-04-11",
+          "desc": "Staples",
+          "value": -23.87,
+          "source_specific": {
+            "Original Description": "STAPLES       00114462   WESTMINSTER  CO",
+            "Category": "Office Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Housing - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-03-18",
+          "desc": "Twisted Pine",
+          "value": -8.05,
+          "source_specific": {
+            "Original Description": "TWISTED PINE BREWING CO  BOULDER      CO",
+            "Category": "Alcohol & Bars",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Going Out",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-03-20",
+          "desc": "Mobile Deposit",
+          "value": 563.0,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Income - Other",
+          "duration": 1,
+          "comment": "Tax refund"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-05-01",
+          "desc": "Mobile Deposit",
+          "value": 4000.0,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Transfer from 529"
+        }
       }
     ]
   }
