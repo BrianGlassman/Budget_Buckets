@@ -203,12 +203,13 @@ if __name__ == "__main__":
     print("\nTotal for room and board: (TODO need to limit to only when I was enrolled)")
     for year in [2021, 2022, 2023]:
         if year == 2022:
-            cap = 15830.0
+            cap = -15830.0
         else:
-            cap = 15830/2
+            cap = -15830/2
         year_total = sum(x.value for x in room_board if x.date.year == year)
-        print(f"{year}: ${year_total:0,.2f} (cap: ${cap:0,.2f})")
-        totals[year] += min(year_total, cap)
+        capped = max(year_total, cap) # Negative values, so use max to get "smallest"
+        print(f"{year}: ${year_total:0,.2f} (cap: ${cap:0,.2f}) --> ${capped:0,.2f}")
+        totals[year] += capped
 
     cu_bills = [x for x in categorized_transactions if x.account == 'CU Bills']
     def is_cu_bill(t: Record.CategorizedRecord):

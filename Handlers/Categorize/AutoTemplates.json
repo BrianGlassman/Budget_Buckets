@@ -2913,6 +2913,43 @@
           "duration": 1,
           "comment": "Transfer from 529"
         }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-06-02",
+          "desc": "Mobile Deposit",
+          "value": 3000.0,
+          "source_specific": {
+            "Original Description": "DEPOSIT@MOBILE",
+            "Category": "Income",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Internal Transfers",
+          "duration": 1,
+          "comment": "Transfer from 529"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-06-04",
+          "desc": "Snooze",
+          "value": -24.17,
+          "source_specific": {
+            "Original Description": "SNOOZE                   BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Dates",
+          "duration": 1
+        }
       }
     ]
   }
