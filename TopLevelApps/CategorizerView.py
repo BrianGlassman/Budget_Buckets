@@ -166,7 +166,7 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, use_cat=True, use_uncat=True, limit=20)
+    categorized_transactions = fn.categorize(transactions, use_cat=False, use_uncat=True, limit=20)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)

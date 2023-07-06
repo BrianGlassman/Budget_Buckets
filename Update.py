@@ -31,13 +31,25 @@ def last_transactions(transactions: list[Record.RawRecord]):
             count += 1
 
 if __name__ == "__main__":
-    mode = Modes.add_new
+    mode = Modes.last
+    choice = None
+    print("Select mode:")
+    while choice is None:
+        print("1. Display last transactions")
+        print("2. Process new transactions")
+        choice = input()
+
+        if choice == '1':
+            mode = Modes.last
+        elif choice == '2':
+            mode = Modes.add_new
+        else:
+            choice = None
 
     if mode == Modes.last:
         transactions = Parsing.run()
         last_transactions(transactions=transactions)
-
-    if mode == Modes.add_new:
+    elif mode == Modes.add_new:
         import os
         mapper = {
             'Credit Card': {
