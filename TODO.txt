@@ -45,6 +45,7 @@ GUI to view templates
 [config]
 use a selectable dropdown or separate window for category filter
 BUG? category filter may not actually get passed through to the Model
+	It does not.
 
 [BUG]
 income transactions count towards the Categorize limit even if they are then discarded

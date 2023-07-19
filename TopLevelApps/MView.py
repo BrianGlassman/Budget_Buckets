@@ -189,9 +189,9 @@ def run():
     root = gui.Root(25, 10)
 
     # make_tracker_sheet(root, values['income'], "Income", Categories.income_categories, months)
-    # make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
+    make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
 
-    make_summary_sheet(root, values, 0, months)
+    # make_summary_sheet(root, values, 0, months)
 
     root.mainloop()
 

@@ -175,6 +175,7 @@ class CUParser(BaseParser):
             'CU_2022-12-13_bill.txt':   {'prefix': 'CU Fall 2022', 'date': '08/22/2022'},
             'CU_2023-01-10_bill.txt': {'prefix': 'CU Spring 2023', 'date': '01/17/2023'},
             'CU_2023-02-07_bill.txt': {'prefix': 'CU Spring 2023', 'date': '01/17/2023'},
+            'CU_2023-07-11_bill.txt': {'prefix': 'CU Spring 2023', 'date': '07/05/2023'},
         }
         # TODO may want to combine charges from all bills in a single term (i.e. tuition and refund)
         filename = _import_os.path.basename(infile) # infile is a path, we just want the filename
