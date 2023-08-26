@@ -3091,20 +3091,244 @@
           }
         },
         "new": {
+          "value": 2000.0,
           "category": "Parental Funds",
-          "duration": 1,
-          "value": 2000.0
+          "duration": 1
         },
         "create": [
           {
             "account": "Checking",
             "date": "$SAME",
             "desc": "Jill graduation gift",
-            "duration": 1,
             "value": 1000.0,
-            "category": "Income - Other"
+            "category": "Income - Other",
+            "duration": 1
           }
         ]
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-02",
+          "desc": "Van Leeuwen Ice Cream",
+          "value": -10.44,
+          "source_specific": {
+            "Original Description": "SQ *VAN LEEUWEN ICE CREAMBoulder      CO",
+            "Category": "Food & Dining",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "Abby trip"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-02",
+          "desc": "Purrfect Pause Cat Ca",
+          "value": -50.4,
+          "source_specific": {
+            "Original Description": "SQ *PURRFECT PAUSE CAT CABoulder      CO",
+            "Category": "Shopping",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "Abby trip"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-02",
+          "desc": "Cava Boulder",
+          "value": -31.01,
+          "source_specific": {
+            "Original Description": "10106 CAVA BOULDER       BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "Abby trip"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-07-31",
+          "desc": "Ben & Jerry's",
+          "value": -30.14,
+          "source_specific": {
+            "Original Description": "SQ *BEN & JERRY'S - BOULDBoulder      CO",
+            "Category": "Fast Food",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Big Fun",
+          "duration": 1,
+          "comment": "Abby trip"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-07-31",
+          "desc": "Rooted Craft Kitchen",
+          "value": -21.62,
+          "source_specific": {
+            "Original Description": "TST* Rooted Craft Kitchenboulder      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-07-26",
+          "desc": "Staples",
+          "value": -19.62,
+          "source_specific": {
+            "Original Description": "STAPLES DIRECT           800-3333330  MA",
+            "Category": "Office Supplies",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "duration": 1,
+          "comment": "Business cards"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-06",
+          "desc": "Boulderswing",
+          "value": -42.5,
+          "source_specific": {
+            "Original Description": "BOULDERSWING             BOULDERSWINGDCO",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "duration": 1,
+          "comment": "Swing class"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-16",
+          "desc": "Patreon",
+          "value": -2.0,
+          "source_specific": {
+            "Original Description": "PAYPAL *PATREON INC  ME  402-935-7733 CA",
+            "Category": "Entertainment",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Entertainment - Other",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-20",
+          "desc": "Cava Boulder",
+          "value": -13.59,
+          "source_specific": {
+            "Original Description": "10106 CAVA BOULDER       BOULDER      CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Food - nice",
+          "duration": 1
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-07-24",
+          "desc": "Cal Welton Parking",
+          "value": -3.5,
+          "source_specific": {
+            "Original Description": "CAL WELTON-PARKING       DENVER       CO",
+            "Category": "Parking",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Car - Parking Pass",
+          "duration": 1,
+          "comment": "Merc parking"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Credit Card",
+          "date": "2023-08-04",
+          "desc": "Legacy Point",
+          "value": -7.71,
+          "source_specific": {
+            "Original Description": "TST* LEGACY POINT        WESTMINSTER  CO",
+            "Category": "Restaurants",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Self-improvement",
+          "duration": 1,
+          "comment": "Advanced Space happy hour"
+        }
+      },
+      {
+        "name": "",
+        "pattern": {
+          "account": "Checking",
+          "date": "2023-08-03",
+          "desc": "USAA Transfer",
+          "value": 3000.0,
+          "source_specific": {
+            "Original Description": "USAA FUNDS TRANSFER CR",
+            "Category": "Transfer",
+            "Status": "Posted"
+          }
+        },
+        "new": {
+          "category": "Parental Funds",
+          "duration": 1
+        }
       }
     ]
   }

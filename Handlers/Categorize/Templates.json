@@ -414,6 +414,17 @@
           "category": "Internet",
           "duration": 30
         }
+      },
+      {
+        "name": "Comcast",
+        "pattern": {
+          "desc": "Comcast",
+          "value": -60.74
+        },
+        "new": {
+          "category": "Internet",
+          "duration": 30
+        }
       }
     ],
     "Housing - Other": [
