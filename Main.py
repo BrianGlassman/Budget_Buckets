@@ -4,7 +4,8 @@ import datetime
 from BaseLib import Categories, Sorting
 from Handlers import Parsing
 import Functionified as fn
-import TkinterPlus as gui
+from dash import Dash, html, Output, Input, State, dcc
+import dash
 
 from TopLevelApps import BucketTimeline, CategorizerView, MView, TemplateViewer
 
@@ -71,10 +72,57 @@ def report(*args, **kwargs):
     # TODO display to gui
     print(*args, **kwargs)
 
-def run_MainMenu():
+def _run_MainMenu():
     """Opens a GUI for selecting options"""
-    root = gui.Root(10, 10)
 
+    app = Dash(__name__)
+
+    buttons = []
+    inputs = []
+    for key, label, (callback, cb_args), dependencies in (
+            # ('Config', 'Configure', (run_config, []), set()),
+            # ('Template', 'Template Viewer', (run_templates, []), set()),
+            ('Load', 'Load Data', (load_data, []), set()),
+            # ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
+            # ('MView', 'Summary Table', (run_MView, []), {'data'}),
+            # ('CView', 'Categorizing', (run_CView, []), {'data'}),
+            # # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
+            # ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
+        ):
+        # Add the arguments to the callback
+        callback = partial(callback, *cb_args) # type: ignore
+
+        # FIXME handle dependencies
+        # FIXME buttons are all different sizes and left-aligned
+        buttons.append(html.Button(label, id=key, style=dict(display='block')))
+        inputs.append(Input(buttons[-1], 'n_clicks'))
+
+    # def update(*inputs):
+    #     return 'You pushed a button'
+    # dash.callback(Output('output', 'children'), inputs, prevent_initial_call=True)(update)
+    def external_op(*_):
+        """Executes a function without changing the callback's Output"""
+        load_data()
+        return dash.no_update
+    dash.callback(Output('Buttons', 'children'), inputs, prevent_initial_call=True)(external_op)
+
+    app.layout = html.Div([
+        html.Section(buttons, id='Buttons'),
+        html.Div(id='output', children='Push a button!'),
+    ])
+
+    # @callback(
+    #     Output('container-button-basic', 'children'),
+    #     Input('submit-val', 'n_clicks'),
+    #     State('input-on-submit', 'value'),
+    #     prevent_initial_call=True,
+    # )
+    # def update_output(n_clicks, value):
+    #     return f'The input value was {value} and the button has been clicked {n_clicks} times'
+
+    app.run(debug=True)
+
+def do_nothing():
     class Button:
         key: str
         label: str
@@ -289,7 +337,7 @@ mode = ModeSetter(
     predict=True)
 
 if mode.isMainMenu:
-    run_MainMenu()
+    _run_MainMenu()
 else:
     load_data()
 
