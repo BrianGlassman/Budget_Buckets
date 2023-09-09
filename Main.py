@@ -87,8 +87,8 @@ def _run_MainMenu():
             # ('Config', 'Configure', (run_config, []), set()),
             # ('Template', 'Template Viewer', (run_templates, []), set()),
             ('Load', 'Load Data', (load_data, []), set()),
-            # ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
-            # ('MView', 'Summary Table', (run_MView, []), {'data'}),
+            ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
+            ('MView', 'Summary Table', (run_MView, []), {'data'}),
             # ('CView', 'Categorizing', (run_CView, []), {'data'}),
             # # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
             ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
@@ -120,57 +120,7 @@ def _run_MainMenu():
 
     app.run(debug=True)
 
-def do_nothing():
-    class Button:
-        key: str
-        label: str
-        # callback: 
-        dependencies: list[str]
-        obj: gui.Button
-        def __init__(self, key, label, *, callback, dependencies=set()) -> None:
-            self.key = key
-            self.label = label
-            self.callback = callback
-            self.dependencies = dependencies
-
-            if 'data' in dependencies:
-                Model.data_listeners.append(self)
-
-        def create(self, parent, width):
-            state = gui.tkinter.DISABLED if self.dependencies else gui.tkinter.ACTIVE
-            self.obj = gui.Button(master=parent, text=self.label, command=self.callback, width=width, state=state)
-
-        def update(self):
-            if Model.data_read:
-                self.obj['state'] = gui.tkinter.ACTIVE
-
-    buttons = {}
-    buttons: dict[str, Button]
-    def _make_buttons():
-        """Function for scoping reasons"""
-        for key, label, (callback, cb_args), dependencies in (
-                ('Config', 'Configure', (run_config, []), set()),
-                ('Template', 'Template Viewer', (run_templates, []), set()),
-                ('Load', 'Load Data', (load_data, []), set()),
-                ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
-                ('MView', 'Summary Table', (run_MView, []), {'data'}),
-                ('CView', 'Categorizing', (run_CView, []), {'data'}),
-                # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
-                ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
-            ):
-            # Add the arguments to the callback
-            callback = partial(callback, *cb_args) # type: ignore
-            buttons[key] = Button(key=key, label=label, callback=callback, dependencies=dependencies)
-    _make_buttons()
-
-    # Make the buttons
-    width = max(len(b.label) for b in buttons.values())
-    for button in buttons.values():
-        button.create(parent=root, width=width)
-        button.obj.pack()
-    
-    root.mainloop()
-
+# FIXME dashi-ify
 def run_config():
     window = gui.Root(3,6, title='Config')
 
@@ -248,6 +198,7 @@ def run_config():
 
     window.mainloop()
 
+# FIXME dashi-ify
 def run_templates():
     TemplateViewer.TemplateViewer()
 
@@ -261,21 +212,27 @@ def load_data():
     # Pre-processing
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
-    report(f"Loading complete ({len(categorized_transactions)} records)")
+    output = f"Loading complete ({len(categorized_transactions)} records)"
+    report(output)
     Model.update_data()
     
     Model.categorized_transactions = categorized_transactions
 
-    return html.Div("Data loaded")
+    return html.Div(output)
 
+# FIXME I don't think this actually works. See todo text file
 def predict():
     actual_transactions = Model.categorized_transactions
     future_transactions = Predict.make_predictions(actual_transactions)
     oldest = future_transactions[0].date
     newest = future_transactions[-1].date
-    report(f"Predicted {len(future_transactions)} future transactions from {oldest} to {newest}")
+    output = f"Predicted {len(future_transactions)} future transactions from {oldest} to {newest}"
+    report(output)
     Model.categorized_transactions.extend(future_transactions)
 
+    return html.Div(output)
+
+# FIXME dashi-ify
 def run_CView():
     categorized_transactions = Model.categorized_transactions
 
@@ -331,13 +288,11 @@ def run_MView():
         assert group is not None, f"Category '{cat}' not found in any group"
         values[group][cat][MView.make_date_key(t.date)] += t.value
 
-    root = gui.Root(25, 10)
-
     # MView.make_tracker_sheet(root, values['income'], "Income", Buckets.income_categories, months)
-    MView.make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
+    output = MView.make_tracker_sheet(values['expenses'], "Expenses", Categories.expense_categories, months)
     # MView.make_summary_sheet(root, values, 5000, months)
 
-    root.mainloop()
+    return output
 
 #%% Main
 

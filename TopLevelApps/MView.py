@@ -35,49 +35,55 @@ def _add_text(parent, text: str, width: int, coords: list, inc_row = False, inc_
     if inc_col: _next_col(coords)
     return label
 
-def make_tracker_sheet(parent, values, title: str, categories: tuple[str, ...], months: list[datetime.date]) -> None:
+def make_tracker_sheet(values, title: str, categories: tuple[str, ...], months: list[datetime.date]):
     """
     values - {category: {month number (Jan = 1): value}}
     """
-    table = gui.ScrollableFrame(parent)
-    table.pack(side="top", fill="both", expand=True)
-
-    coords = [0, 0]
-    widths = {'label': 20, 'data': 10, 'total': 10, 'average': 10}
+    import dash
 
     # Header row
-    _add_text(table.frame, title.upper(), widths['label'], coords, bd=2, anchor='center')
+    header = [title.upper()]
     for month in months:
-        _add_text(table.frame, make_date_label(month), widths['data'], coords, anchor='center')
-    _add_text(table.frame, "Total", widths['total'], coords, anchor='center')
-    _add_text(table.frame, "Average", widths['average'], coords, anchor='center')
-    _next_row(coords)
+        header.append(make_date_label(month))
+    header.extend(['Total', 'Average'])
+    
+    # Use 'label' for first key even though column displays the title
+    keys = list(header)
+    keys[0] = 'label'
 
     # Category rows
+    data = []
     grand_total = 0
     for cat in categories:
-        # Label
-        _add_text(table.frame, cat, widths['label'], coords, anchor='e')
+        row = {'label': cat}
         # Values
         total = 0
         for month in months:
             val = values[cat][month]
-            _add_text(table.frame, f"${val:0,.2f}", widths['data'], coords, anchor='e')
+            row[make_date_label(month)] = (f"${val:0,.2f}")
             total += val
-        _add_text(table.frame, f"${total:0,.2f}", widths['total'], coords, anchor='e')
-        _add_text(table.frame, f"${total/len(months):0,.2f}", widths['average'], coords, anchor='e')
+        row['Total'] = f"${total:0,.2f}"
+        row['Average'] = f"${total/len(months):0,.2f}"
         
         grand_total += total
-        _next_row(coords)
+        data.append(row)
 
-    # Total row
-    coords[1] = len(months) # Start in last data column
-    # Label
-    _add_text(table.frame, "Total", widths['data'], coords, anchor='center')
-    # Total of all categories
-    _add_text(table.frame, f"${grand_total:0,.2f}", widths['total'], coords, anchor='e')
-    # Average monthly total
-    _add_text(table.frame, f"${grand_total/len(months):0,.2f}", widths['average'], coords, anchor='e')
+    # # Total row
+    # coords[1] = len(months) # Start in last data column
+    # # Label
+    # _add_text(table.frame, "Total", widths['data'], coords, anchor='center')
+    # # Total of all categories
+    # _add_text(table.frame, f"${grand_total:0,.2f}", widths['total'], coords, anchor='e')
+    # # Average monthly total
+    # _add_text(table.frame, f"${grand_total/len(months):0,.2f}", widths['average'], coords, anchor='e')
+
+
+    table = dash.dash_table.DataTable(
+        columns = [{'name': name, 'id': key} for name, key in zip(header, keys)],
+        data = data
+    )
+
+    return table
 
 def make_summary_sheet(parent, values, starting_balance: float, months: list[datetime.date]) -> None:
     month_count = len(months)
