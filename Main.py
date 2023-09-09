@@ -77,8 +77,12 @@ def _run_MainMenu():
 
     app = Dash(__name__)
 
+    def discard_args(func, *_):
+        return func()
+
+    output = html.Section(html.Div("Push a button to begin, output will be displayed here"), id='Output')
+
     buttons = []
-    inputs = []
     for key, label, (callback, cb_args), dependencies in (
             # ('Config', 'Configure', (run_config, []), set()),
             # ('Template', 'Template Viewer', (run_templates, []), set()),
@@ -87,28 +91,22 @@ def _run_MainMenu():
             # ('MView', 'Summary Table', (run_MView, []), {'data'}),
             # ('CView', 'Categorizing', (run_CView, []), {'data'}),
             # # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
-            # ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
+            ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
         ):
-        # Add the arguments to the callback
-        callback = partial(callback, *cb_args) # type: ignore
-
         # FIXME handle dependencies
         # FIXME buttons are all different sizes and left-aligned
-        buttons.append(html.Button(label, id=key, style=dict(display='block')))
-        inputs.append(Input(buttons[-1], 'n_clicks'))
+        button = html.Button(label, id=key, style=dict(display='block'))
+        buttons.append(button)
+        
+        # Add the arguments to the callback and wrap it to discard the Input
+        callback = partial(callback, *cb_args) # type: ignore
+        callback = partial(discard_args, callback)
 
-    # def update(*inputs):
-    #     return 'You pushed a button'
-    # dash.callback(Output('output', 'children'), inputs, prevent_initial_call=True)(update)
-    def external_op(*_):
-        """Executes a function without changing the callback's Output"""
-        load_data()
-        return dash.no_update
-    dash.callback(Output('Buttons', 'children'), inputs, prevent_initial_call=True)(external_op)
+        dash.callback(Output(output, 'children', allow_duplicate=True), Input(button, 'n_clicks'), prevent_initial_call=True)(callback)
 
     app.layout = html.Div([
         html.Section(buttons, id='Buttons'),
-        html.Div(id='output', children='Push a button!'),
+        output,
     ])
 
     # @callback(
@@ -268,6 +266,8 @@ def load_data():
     
     Model.categorized_transactions = categorized_transactions
 
+    return html.Div("Data loaded")
+
 def predict():
     actual_transactions = Model.categorized_transactions
     future_transactions = Predict.make_predictions(actual_transactions)
@@ -289,7 +289,16 @@ def run_BTime():
     
     bucket_tracker = BucketTimeline.pre_process(categorized_transactions)
 
-    BucketTimeline.display(bucket_tracker)
+    fig, _ = BucketTimeline.display(bucket_tracker, show=False)
+
+    # https://stackoverflow.com/a/56932297/21195101
+    import base64, io
+    buffer = io.BytesIO()
+    fig.savefig(buffer, format='png')
+    data = base64.b64encode(buffer.getbuffer()).decode('utf8')
+    buffer.close()
+    
+    return html.Img(src="data:inage/png;base64,{}".format(data))
 
 def run_MView():
     categorized_transactions = Model.categorized_transactions

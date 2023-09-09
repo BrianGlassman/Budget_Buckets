@@ -335,7 +335,7 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
 #%% Display
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
-def display(bucket_tracker: BucketTracker):
+def display(bucket_tracker: BucketTracker, show=True):
     fig, ax = plt.subplots()
     fig.subplots_adjust(right=0.75)
     bucket_tracker.plot_all(ax)
@@ -352,7 +352,7 @@ def display(bucket_tracker: BucketTracker):
         fig.canvas.draw_idle()
     fig.canvas.mpl_connect("scroll_event", scroll)
 
-    plt.show()
+    if show: plt.show()
 
     return fig, ax
 
