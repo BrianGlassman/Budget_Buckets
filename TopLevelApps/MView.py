@@ -54,33 +54,69 @@ def make_tracker_sheet(values, title: str, categories: tuple[str, ...], months: 
     # Category rows
     data = []
     grand_total = 0
+    monthly_totals = {make_date_label(month): 0 for month in months}
     for cat in categories:
         row = {'label': cat}
         # Values
-        total = 0
+        cat_total = 0
         for month in months:
             val = values[cat][month]
             row[make_date_label(month)] = (f"${val:0,.2f}")
-            total += val
-        row['Total'] = f"${total:0,.2f}"
-        row['Average'] = f"${total/len(months):0,.2f}"
+            cat_total += val
+            monthly_totals[make_date_label(month)] += val
+        row['Total'] = f"${cat_total:0,.2f}"
+        row['Average'] = f"${cat_total/len(months):0,.2f}"
         
-        grand_total += total
+        grand_total += cat_total
         data.append(row)
 
-    # # Total row
-    # coords[1] = len(months) # Start in last data column
-    # # Label
-    # _add_text(table.frame, "Total", widths['data'], coords, anchor='center')
-    # # Total of all categories
-    # _add_text(table.frame, f"${grand_total:0,.2f}", widths['total'], coords, anchor='e')
-    # # Average monthly total
-    # _add_text(table.frame, f"${grand_total/len(months):0,.2f}", widths['average'], coords, anchor='e')
+    # Total row
+    totals_row = {'label': 'Total'}
+    for month in months:
+        key = make_date_label(month)
+        totals_row[key] = f"${monthly_totals[key]:0,.2f}"
+    # Total of all categories
+    totals_row['Total'] = f"${grand_total:0,.2f}"
+    # Average monthly total
+    totals_row['Average'] = f"${grand_total/len(months):0,.2f}"
+    data.append(totals_row)
 
+    header_style = dict(fontWeight='bold', backgroundColor='rgb(' + ', '.join(['180']*3) + ')')
+    title_style = dict(fontWeight='bold', backgroundColor='rgb(' + ', '.join(['50']*3) + ')', color='rgb(' + ', '.join(['255']*3) + ')')
+    meta_style = dict(fontWeight='bold', backgroundColor='rgb(' + ', '.join(['220']*3) + ')', border='1px solid ' + 'rgb(' + ', '.join(['255']*3) + ')')
 
     table = dash.dash_table.DataTable(
         columns = [{'name': name, 'id': key} for name, key in zip(header, keys)],
-        data = data
+        data = data,
+        fixed_rows={'headers': True},
+        fixed_columns={'headers': True, 'data': 1},
+        style_table={'minWidth': '100%'},
+
+        # Style the row and column headers
+        style_header=header_style,
+        style_data_conditional=[
+            {
+                'if': {'column_id': 'label'},
+                **header_style,
+            },
+            # Style the calculated cells specially
+            {
+                'if': {'column_id': ['Total', 'Average']},
+                **meta_style,
+            },
+            {
+                'if': {'row_index': len(data)-1},
+                **meta_style,
+            },
+        ],
+
+        # Style the title cell specially
+        style_header_conditional=[
+            {
+                'if': {'column_id': 'label'},
+                **title_style,
+            },
+        ],
     )
 
     return table
@@ -195,11 +231,11 @@ def run():
     root = gui.Root(25, 10)
 
     # make_tracker_sheet(root, values['income'], "Income", Categories.income_categories, months)
-    make_tracker_sheet(root, values['expenses'], "Expenses", Categories.expense_categories, months)
+    make_tracker_sheet(values['expenses'], "Expenses", Categories.expense_categories, months)
 
     # make_summary_sheet(root, values, 0, months)
 
     root.mainloop()
 
 if __name__ == "__main__":
-    run()
+    raise NotImplementedError("Not updated to use Dash")
