@@ -246,16 +246,9 @@ def run_BTime():
     
     bucket_tracker = BucketTimeline.pre_process(categorized_transactions)
 
-    fig, _ = BucketTimeline.display(bucket_tracker, show=False)
+    fig = BucketTimeline.display(bucket_tracker, show=False)
 
-    # https://stackoverflow.com/a/56932297/21195101
-    import base64, io
-    buffer = io.BytesIO()
-    fig.savefig(buffer, format='png')
-    data = base64.b64encode(buffer.getbuffer()).decode('utf8')
-    buffer.close()
-    
-    return html.Img(src="data:inage/png;base64,{}".format(data))
+    return dcc.Graph(figure=fig, style=dict(height='900px'))
 
 def run_MView():
     categorized_transactions = Model.categorized_transactions

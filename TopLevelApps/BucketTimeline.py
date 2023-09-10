@@ -1,6 +1,6 @@
 #%% Imports
-from matplotlib import pyplot as plt
-from matplotlib.transforms import Bbox
+import plotly
+import plotly.graph_objects as go
 import datetime
 from collections import UserDict
 from typing import TypeVar
@@ -264,21 +264,22 @@ class BucketTracker(BaseTracker):
 
             tracker.verify()
 
-    def _plot_transaction_points(self, values: dict[Date, float], ax: plt.Axes, category: Cat):
+    def _plot_transaction_points(self, values: dict[Date, float], fig: go.Figure, category: Cat, color: str):
         """Plot the points where single-day transactions occurred"""
         values = {date:v for date,v in values.items() if date in self._delta_tracker.get_tdates(category)}
         # Plot transaction points
-        line = ax.plot(values.keys(), values.values(), '.', label=category)
-        return line[0]
+        fig.add_scatter(x=list(values.keys()), y=list(values.values()), mode='markers', marker_color=color,
+                        name=category, showlegend=True, legendgroup=category)
     
-    def _plot_amort_points(self, values: dict[Date, float], ax: plt.Axes, category: Cat, color: str):
+    def _plot_amort_points(self, values: dict[Date, float], fig: go.Figure, category: Cat, color: str):
         """Plot the points where amortized transactions began"""
         values = {date:v for date,v in values.items() if date in self._delta_tracker.get_adates(category)}
-        # Plot amortized transaction points (no label, so doesn't show up on auto-legend)
-        line = ax.plot(values.keys(), values.values(), 'x', color=color)
-        return line[0]
+        # Plot amortized transaction points
+        fig.add_scatter(x=list(values.keys()), y=list(values.values()),
+                        mode='markers', marker=go.scatter.Marker(symbol='circle-open', color=color, size=5),
+                        name=category, showlegend=False, legendgroup=category)
 
-    def _plot_bucket_vals(self, values: ConsecCalendar, ax: plt.Axes, color: str, category: Cat):
+    def _plot_bucket_vals(self, values: ConsecCalendar, fig: go.Figure, category: Cat, color: str):
         """Plot the bucket values"""
         # Make sure the line starts from bucket max_value
         keys = list(values.keys())
@@ -289,26 +290,27 @@ class BucketTracker(BaseTracker):
             keys = [keys[0]] + keys
             vals = [max_value] + vals
 
-        # Plot bucket value including refills (no label, so doesn't show up on auto-legend)
-        line = ax.plot(keys, vals, '-', color=color, linewidth=0.5)
-        return line[0]
+        # Plot bucket value including refills
+        fig.add_scatter(x=keys, y=vals, mode='lines', line=go.scatter.Line(width=1, color=color),
+                        name=category, showlegend=False, legendgroup=category)
 
-    def plot(self, ax: plt.Axes, category: Cat) -> None:
-        """Plot the values for the given category on the given Axes"""
+    def plot(self, fig: go.Figure, category: Cat, color) -> None:
+        """Plot the values for the given category on the given graph"""
         value_timeline = self.get_category(category)
         if len(self._delta_tracker.get_tdates(category)) == 0 and len(self._delta_tracker.get_adates(category)) == 0:
             # Skip categories with no transactions
             return
 
-        line = self._plot_transaction_points(value_timeline, ax, category) # type: ignore
-        color = line.get_color()
-        self._plot_amort_points(value_timeline, ax, category, color) # type: ignore
-        self._plot_bucket_vals(value_timeline, ax, color, category)
+        self._plot_transaction_points(value_timeline, fig, category, color=color) # type: ignore
+        self._plot_amort_points(value_timeline, fig, category, color=color) # type: ignore
+        self._plot_bucket_vals(value_timeline, fig, category, color=color)
         
-    def plot_all(self, ax: plt.Axes):
+    def plot_all(self, fig: go.Figure):
         """Sugar syntax to call plot on all categories"""
-        for cat in self.categories:
-            self.plot(ax, cat)
+        n_cats = len(self.categories)
+        colors = plotly.colors.sample_colorscale('turbo', [n/(n_cats - 1) for n in range(n_cats)])
+        for cat, color in zip(self.categories, colors):
+            self.plot(fig, cat, color)
 
 #%% Pre-processing
 
@@ -336,25 +338,18 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
 def display(bucket_tracker: BucketTracker, show=True):
-    fig, ax = plt.subplots()
-    fig.subplots_adjust(right=0.75)
-    bucket_tracker.plot_all(ax)
-    ax.grid(True)
-    legend = ax.legend(bbox_to_anchor=(1.05, 1.0))
+    fig = go.Figure(layout=go.Layout(title="Bucket Timeline", plot_bgcolor='white'))
+    fig.update_yaxes(title_text="Value ($)",
+        showline=True, linecolor='black', mirror=True,
+        gridcolor='LightGray', zerolinecolor='LightGray')
+    fig.update_xaxes(title_text="Date",
+        showline=True, linecolor='black', mirror=True,
+        gridcolor='LightGray', zerolinecolor='LightGray')
+    bucket_tracker.plot_all(fig)
 
-    _scroll_pixels = {'down': 30, 'up': -30}
-    def scroll(event):
-        if not legend.contains(event): return
-        bbox = legend.get_bbox_to_anchor()
-        bbox = Bbox.from_bounds(bbox.x0, bbox.y0+_scroll_pixels[event.button], bbox.width, bbox.height)
-        tr = legend.axes.transAxes.inverted()
-        legend.set_bbox_to_anchor(bbox.transformed(tr))
-        fig.canvas.draw_idle()
-    fig.canvas.mpl_connect("scroll_event", scroll)
+    if show: fig.show()
 
-    if show: plt.show()
-
-    return fig, ax
+    return fig
 
 #%% Main
 if __name__ == "__main__":
@@ -369,4 +364,4 @@ if __name__ == "__main__":
     # Pre-processing
     bucket_tracker = pre_process(categorized_transactions)
 
-    fig, ax = display(bucket_tracker)
+    fig = display(bucket_tracker)
