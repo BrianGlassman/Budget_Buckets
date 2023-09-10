@@ -89,7 +89,7 @@ def _run_MainMenu():
             ('Load', 'Load Data', (load_data, []), set()),
             ('Predict', 'Predict Future Transactions', (predict, []), {'data'}),
             ('MView', 'Summary Table', (run_MView, []), {'data'}),
-            # ('CView', 'Categorizing', (run_CView, []), {'data'}),
+            ('CView', 'Categorizing', (run_CView, []), {'data'}),
             # # ('TTime', 'Transaction Timeline', (lambda: 0, []), {'data'}), # FIXME TransactionTimeline.py exists, but isn't functionified
             ('BTime', 'Bucket Timeline', (run_BTime, []), {'data'}),
         ):
@@ -236,7 +236,7 @@ def predict():
 def run_CView():
     categorized_transactions = Model.categorized_transactions
 
-    CategorizerView.CategorizerView(categorized_transactions)
+    return CategorizerView.create_table(categorized_transactions)
 
 def run_BTime():
     categorized_transactions = Model.categorized_transactions

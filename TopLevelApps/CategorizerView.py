@@ -1,6 +1,6 @@
 #%% Imports
 from dataclasses import dataclass
-import TkinterPlus as gui
+import dash
 
 from BaseLib import Categories, Sorting
 from Classes import Record
@@ -39,12 +39,8 @@ def update_templates(transaction: Record.RawRecord, new: dict) -> None:
     # Fill in the given information
     n.update(new)
 
-# Callbacks (and subclasses for typing)
-class CategoryBox(gui.Combobox):
-    transaction: Record.CategorizedRecord
-class CBevent(gui.tkinter.Event):
-    widget: CategoryBox
-def CB_onModification(event: CBevent):
+# Callbacks
+def CB_onModification(event):
     text = event.widget.get()
 
     t = event.widget.transaction
@@ -53,11 +49,7 @@ def CB_onModification(event: CBevent):
     assert t.rawRecord is not None
     update_templates(t.rawRecord, new)
 
-class Comment(gui.WatchedText):
-    transaction: Record.CategorizedRecord
-class CmtEvent(gui.tkinter.Event):
-    widget: Comment
-def Cmt_onModification(event: CmtEvent):
+def Cmt_onModification(event):
     text = event.widget.get('1.0', 'end').strip()
 
     t = event.widget.transaction
@@ -67,50 +59,44 @@ def Cmt_onModification(event: CmtEvent):
     update_templates(t.rawRecord, new)
 
 #%% Table processing
-def create_table(root, categorized_transactions):
-    table = gui.ScrollableFrame(root, hscroll=False)
-    table.pack(side = "top", fill="both", expand=True)
-
-    # Table settings
-    widths = {'account': 10, 'date': 10, 'desc': 40, 'value': 8, 'source-specific': None, 'category': 20, 'comment': 30, 'duration': 4}
-    widths = list(widths.values())
-
+def create_table(categorized_transactions):
     # Header
-    for c, name in enumerate(['Account', 'Date', 'Description', 'Value', 'UNUSED source-specific', 'Category', 'Comment', 'Dur.']):
-        if name.startswith('UNUSED'): continue
-        gui.tkinter.Label(table.frame, text=name, anchor='center', relief='solid', bd=1, width=widths[c]).grid(row=0, column=c)
+    header = ['Account', 'Date', 'Description', 'Value', 'UNUSED source-specific', 'Category', 'Comment', 'Dur.']
 
     # Populate the table
-    for r, row in enumerate(categorized_transactions):
-        r += 1 # Account for header
-        for c, cell in enumerate(row.values()):
-            if c == 4: continue # Skip the source-specific data
-            elif c == 5:
-                # Category
-                cat = CategoryBox(master = table.frame, values = Categories.categories, initial = row.category, width = widths[c])
-                cat.set_state_readonly()
-                cat.grid(row=r, column=c)
-                cat.bind(func = CB_onModification)
-                cat.transaction = row
-                cat.disable_scroll()
-            elif c == 6:
-                # Comment
-                cmt = Comment(table.frame, text = str(cell), relief='solid', bd = 1, width=widths[c], height=1)
-                cmt.grid(row=r, column=c)
-                cmt.watch(func = Cmt_onModification)
-                cmt.transaction = row
-            else:
-                if c < len(widths) and (widths[c] is not None):
-                    gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1, width=widths[c]).grid(row=r, column=c)
-                else:
-                    gui.tkinter.Label(table.frame, text = str(cell), anchor = 'w', relief='solid', bd = 1).grid(row=r, column=c)
-        
-        # Avoid freezing the computer with too much stuff
-        if r >= 50:
-            label = gui.tkinter.Label(table.frame, text = 'Max row count reached, use Configure menu to limit transactions',
-                anchor='center', font=('', 20, 'bold'))
-            label.grid(row=r+1, column=0, columnspan=table.frame.grid_size()[0])
-            break
+    data = []
+    for transaction in categorized_transactions:
+        table_row = {}
+        for key, cell in zip(header, transaction.values()):
+            if key.startswith('UNUSED'): continue # Skip the source-specific data
+            elif key == 'Category': table_row[key] = cell
+            elif key == 'Comment': table_row[key] = str(cell)
+            else: table_row[key] = (str(cell))
+        data.append(table_row)
+    
+    columns = []
+    for name in header:
+        if name.startswith('UNUSED'): continue
+        entry = {'name': name, 'id': name}
+        if name == 'Category':
+            entry.update(dict(presentation = 'dropdown'))
+        if name in ('Category', 'Comment', 'Dur.'):
+            entry.update(dict(editable = True)) # type: ignore
+        columns.append(entry)
+
+
+    table = dash.dash_table.DataTable(
+        columns=columns,
+        data=data,
+        dropdown={
+            'Category': {
+                'options': [{'label': cat, 'value': cat} for cat in Categories.categories],
+            }
+        },
+        page_size=50,
+        # page_action='none', # Can uncomment to show everything on one page, but then it gets pretty slow
+    )
+
     return table
 
 def post_process():
@@ -146,17 +132,14 @@ def post_process():
     elif len(successful_add) > 0 and len(failed_add) == 0:
         print("\nSuccess\n")
 
-class CategorizerView(gui.Root):
+class CategorizerView:
     def __init__(self, categorized_transactions: list[Record.CategorizedRecord]):
-        super().__init__(17, 30)
-        create_table(root=self, categorized_transactions=categorized_transactions)
+        create_table(categorized_transactions=categorized_transactions)
 
-        self.protocol('WM_DELETE_WINDOW', self.on_close)
-        self.mainloop()
-    
-    def on_close(self):
-        post_process()
-        self.destroy()
+    # FIXME re-enable this somehow
+    # def on_close(self):
+    #     post_process()
+    #     self.destroy()
 
 #%% Main
 if __name__ == "__main__":
@@ -166,10 +149,16 @@ if __name__ == "__main__":
     transactions = Parsing.run()
 
     # Categorize
-    categorized_transactions = fn.categorize(transactions, use_cat=False, use_uncat=True, limit=20)
+    categorized_transactions = fn.categorize(transactions, use_cat=True, use_uncat=True, limit=0)
 
     # Pre-processing
     # categorized_transactions = Sorting.cat_then_desc(categorized_transactions)
     categorized_transactions = Sorting.by_date(categorized_transactions)
 
-    CategorizerView(categorized_transactions)
+    app = dash.Dash(__name__)
+
+    table = create_table(categorized_transactions)
+
+    app.layout = dash.html.Div(table)
+
+    app.run(debug=True)
