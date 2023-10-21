@@ -1,3 +1,11 @@
+CategorizerView
+	RE-ENABLE SAVING CHANGES
+	Should reverse the order, so that newest shows first
+	Should add a button to only display uncategorized
+	Can I add filters to the columns?
+	Why are category dropdowns pink???
+
+
 I think Predict has problems now that the current date is past the "stop" date
 	And maybe had undiagnosed problems before that?
 	Ran on 9/9/2023 and it said it created transactions from 6/1/2023 to 8/20/2023
