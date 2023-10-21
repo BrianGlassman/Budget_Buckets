@@ -1,4 +1,5 @@
 """Script to help with adding new data"""
+import datetime
 
 from BaseLib import Sorting
 from Classes import Record
@@ -30,21 +31,26 @@ def last_transactions(transactions: list[Record.RawRecord]):
                 date = t.date
             count += 1
 
-if __name__ == "__main__":
-    mode = Modes.last
+def choose(prompt, options: dict):
     choice = None
-    print("Select mode:")
+    print(prompt)
     while choice is None:
-        print("1. Display last transactions")
-        print("2. Process new transactions")
+        for i, option in enumerate(options.keys()):
+            print(f'{i+1}. {option}')
         choice = input()
 
-        if choice == '1':
-            mode = Modes.last
-        elif choice == '2':
-            mode = Modes.add_new
-        else:
+        try:
+            choice = int(choice) - 1
+            return list(options.values())[choice]
+        except:
             choice = None
+
+if __name__ == "__main__":
+    options = {
+        "Display last transactions": Modes.last,
+        "Process new transactions": Modes.add_new
+    }
+    mode = choose("Select mode:", options)
 
     if mode == Modes.last:
         transactions = Parsing.run()
@@ -73,7 +79,7 @@ if __name__ == "__main__":
 
         for account, info in mapper.items():
             dl_path = os.path.join(downloads, info['dl'])
-            parser = info['parser'] ; parser: Parsing.BaseParser
+            parser: Parsing.BaseParser = info['parser']
             data_path = os.path.join('Raw_Data', info['data'])
             header = ','.join(parser.fields)
 
@@ -95,22 +101,45 @@ if __name__ == "__main__":
                     if 'AUTOMATIC PAYMENT - THANK YOU' in line:
                         # Possible match, check for PI
                         fields = line.split(',')
-                        desc = fields[1].replace('"', '').replace("'", "")
+                        desc = fields[parser.fields.index('Description')].replace('"', '').replace("'", "")
                         if all(c.isnumeric() or c in ['"', "'"] for c in desc):
                             new[i] = line.replace(desc, 'USAA Credit Card')
                             print(f'Scrubbed PI:\n\t{line}\n\tto\n\t{new[i]}')
+            
+            # Skip pending transactions
+            today = datetime.date.today()
+            temp = []
+            for line in new:
+                fields = line.split(',')
+                date = datetime.datetime.strptime(fields[0], '%Y-%m-%d').date()
+                status = fields[parser.fields.index('Status')]
+                if status == 'Pending':
+                    assert (today - date).days <= 7, "Pending transaction found more than a week ago: " + line
+                    print("Skipping pending transaction: " + line)
+                else:
+                    temp.append(line)
+            new = temp ; del temp
 
-            # Check for duplicates
-            # Sometimes (ex. parking) duplicate transactions appear the same day so can't just use set intersection
-            # There's a problem if num_dupes(new+old) != num_dupes(old) + num_dupes(new)
-            def num_dupes(t): return len(t) - len(set(t))
-            old_dupes = num_dupes(old) ; new_dupes = num_dupes(new)
-            comb_dupes = num_dupes(old+new)
-            if comb_dupes == old_dupes + len(new):
-                print(f"WARNING: all {account} new transactions already exist")
-                continue
-            elif comb_dupes != old_dupes + new_dupes:
-                raise RuntimeError(f"New set includes duplicated transactions")
+            # Only copy new transactions (i.e. don't include ones that were already recorded)
+            # Sometimes (ex. parking) duplicate transactions appear the same day so can't just throw away all duplicates
+            options = {
+                "Skip": 'skip',
+                "Keep both": 'keep',
+            }
+            temp = []
+            for line in new:
+                if line in old:
+                    prompt = "Possible duplicate line found: " + line
+                    choice = choose(prompt, options)
+                    if choice == 'skip':
+                        pass
+                    elif choice == 'keep':
+                        temp.append(line)
+                    else:
+                        raise NotImplementedError()
+                else:
+                    temp.append(line)
+            new = temp ; del temp
 
             # Write combined list back to file (newest at the top)
             with open(data_path, 'w') as f:
