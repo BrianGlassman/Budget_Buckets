@@ -74,6 +74,7 @@ def create_table(categorized_transactions):
             else: table_row[key] = (str(cell))
         data.append(table_row)
     
+    # Dash wants a list of dicts
     columns = []
     for name in header:
         if name.startswith('UNUSED'): continue

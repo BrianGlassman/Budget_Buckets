@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import datetime
 from collections import UserDict
 from typing import TypeVar
+import dash
 
 from BaseLib import Constants, Categories, Sorting
 from Classes import Record # TODO? Only needed for type-hinting, so probably a way to get rid of this import
@@ -121,6 +122,7 @@ class BaseTracker():
 
     @property
     def categories(self):
+        """Returns all categories"""
         return self._cat_tracker.keys()
 
 class DeltaTracker(BaseTracker):
@@ -311,6 +313,60 @@ class BucketTracker(BaseTracker):
         colors = plotly.colors.sample_colorscale('turbo', [n/(n_cats - 1) for n in range(n_cats)])
         for cat, color in zip(self.categories, colors):
             self.plot(fig, cat, color)
+    
+    def table_row(self, category: Cat):
+        """Make a row for the given category"""
+        value_timeline = self.get_category(category)
+        if len(self._delta_tracker.get_tdates(category)) == 0 and len(self._delta_tracker.get_adates(category)) == 0:
+            # Skip categories with no transactions
+            return
+
+        keys = list(value_timeline.keys())
+        vals = list(value_timeline.values())
+
+        # Start the line at bucket max_value
+        max_value = Classes.bucket_info[category].max_value
+        if vals[0] != max_value:
+            # Insert a max_value entry
+            keys = [keys[0]] + keys
+            vals = [max_value] + vals
+        
+        # Only show initial value, month-start, and final value
+        # Note: uses month-start instead of month-end just because it's always 1
+        # TODO allow a configurable list of dates to show
+        data = {}
+        # Initial value
+        data[keys[0]] = vals[0]
+        # All month-starts
+        data.update({key:val for key, val in zip(keys[1:-1], vals[1:-1]) if key.day==1})
+        # Final value
+        data[keys[-1]] = vals[-1]
+        
+        # Keys must be str, int, float, bool or None for Dash
+        data = {str(key):f'${val:0,.2f}' for key, val in data.items()}
+
+        # Add the category to the front and return
+        row = {'Category': category}
+        row.update(data)
+        return row
+
+    def table(self):
+        data = [self.table_row(cat) for cat in self.categories]
+
+        row = data[0]
+        assert row is not None
+        header = row.keys()
+
+        columns = [{'name': name, 'id': name, 'editable': False, 'selectable': False} for name in header]
+        table = dash.dash_table.DataTable(
+            columns=columns,
+            data=data,
+            page_action='none', # Show everything on one page
+            # fixed_columns={'headers': True, 'data': 1},
+            fixed_rows={'headers': True},
+        )
+
+        return table
 
 #%% Pre-processing
 
@@ -334,6 +390,7 @@ def pre_process(categorized_transactions: list[Record.CategorizedRecord]) -> Buc
         bucket_info=Classes.bucket_info)
     
     return bucket_tracker
+
 #%% Display
 # Legend outside and scrollablehttps://stackoverflow.com/a/55869324
 
@@ -352,6 +409,19 @@ def display(bucket_tracker: BucketTracker, show=True):
     return fig
 
 #%% Main
+def show_plot(tracker: BucketTracker):
+    fig = display(tracker)
+    return fig
+
+def show_table(tracker: BucketTracker):
+    app = dash.Dash(__name__)
+
+    table = tracker.table()
+
+    app.layout = dash.html.Div(table)
+
+    app.run(debug=False)
+
 if __name__ == "__main__":
     import Functionified as fn
 
@@ -364,4 +434,5 @@ if __name__ == "__main__":
     # Pre-processing
     bucket_tracker = pre_process(categorized_transactions)
 
-    fig = display(bucket_tracker)
+    # show_plot(bucket_tracker)
+    show_table(bucket_tracker)
