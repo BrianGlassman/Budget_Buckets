@@ -1,3 +1,24 @@
+[Refactor]
+Switch to using a SQL (or similar) database for storing everything
+	Read in from the CSVs, no change there
+	Put into a DB as "raw"
+	Then do template stuff and make a new DB
+	Then bucket stuff gets a new DB
+	Use SQL for doing things like:
+		aggregating across dates
+		finding dates where amortized transactions started (union of value tracker table and date table?)
+
+[Feature]
+I want a good (i.e. readable and trustworthy) way to keep track of how much I owe:
+	car
+	student loans
+	parental loans
+
+[Feature]
+When selecting a cell in Bucket Timeline table, display detailed information below the table:
+	can probably use this: https://dash.plotly.com/dash-ag-grid/cell-selection
+	should show all the deltas between this cell and the previous cell
+
 CategorizerView
 	RE-ENABLE SAVING CHANGES
 	Should reverse the order, so that newest shows first
