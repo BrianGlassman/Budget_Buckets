@@ -186,7 +186,7 @@ class Checks(Transactions):
         # No-op, processing is done during read
         pass
 
-def main(filepath: str, date: Date, show=True):
+def parse_statement(filepath: str, date: Date, show=True):
     reader = PdfReader(filepath)
     general: content_type = {}
     account_table = AccountTable(date)
@@ -326,7 +326,7 @@ if __name__ == "__main__":
         filepath = os.path.join(data_dir, filename)
         
         try:
-            prev, new = main(filepath, date, show=False)
+            prev, new = parse_statement(filepath, date, show=False)
         except Exception as e:
             # print(repr(e))
             raise
