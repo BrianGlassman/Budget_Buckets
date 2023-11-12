@@ -85,34 +85,49 @@ class SummaryTable(Table):
         data = [d[0].strip() for d in data]
         self.data = {k:d for k,d in zip(self.columns, data)}
 
-class Deposits:
-    header = "DATE..........AMOUNT.TRANSACTION DESCRIPTION"
+class Transactions:
+    header = '' # Set by subclass, the header text for this section
     header_seen: bool
     content: content_type
-    line: str # Transaction currently being parsed, may take multiple lines
-    lines: list # All transactions, each on a single line
     transactions: list # Parsed transactions
     def __init__(self, date: Date) -> None:
         self.header_seen = False
         self.content = {}
-        self.line = ''
-        self.lines = []
+    
+    def print(self):
+        print('\n'.join(str(t) for t in self.transactions))
     
     def reset(self):
+        """Start a new section, but keep the existing data"""
         self.flush()
         self.header_seen = False
     
-    def flush(self):
-        if self.line: self.lines.append(self.line)
-    
     def add(self, text: str, x: float, y: float):
+        """Process a line, either data or header"""
         if not self.header_seen:
             assert text.strip() == self.header
             self.header_seen = True
             return
         
-        # add_content(self.content, text, x, y)
         self._handle_line(text)
+    
+    def flush(self): """Flush any buffered data"""
+
+    def _handle_line(self, line: str): """Process a line of data"""
+
+    def process(self): """Process the accumulated data after reading everything"""
+
+class Deposits(Transactions):
+    header = "DATE..........AMOUNT.TRANSACTION DESCRIPTION"
+    line: str # Transaction currently being parsed, may take multiple lines
+    lines: list[str] # All transactions, each on a single line
+    def __init__(self, date: Date) -> None:
+        super().__init__(date)
+        self.line = ''
+        self.lines = []
+    
+    def flush(self):
+        if self.line: self.lines.append(self.line)
     
     def _handle_line(self, line: str):
         if line[0] == ' ':
@@ -137,16 +152,44 @@ class Deposits:
             transactions.append({'date': date, 'amount': amount.strip(), 'description': description.strip()})
         self.transactions = transactions
 
+class Checks(Transactions):
+    header = 'DATE..CHECK NO...........AMOUNT   DATE..CHECK NO...........AMOUNT'
+    fields = ['date', 'check_num', 'amount']
+    def __init__(self, date: Date) -> None:
+        super().__init__(date)
+        self.transactions = []
+    
+    def flush(self):
+        return super().flush()
+    
+    def _make(self, date, check_no, amount):
+        pass
+
+    def _handle_line(self, line: str):
+        fields = line.split()
+        n = len(fields)
+        if n == 3:
+            self.transactions.append({k:v for k,v in zip(self.fields, fields)})
+        elif n == 6:
+            self.transactions.append({k:v for k,v in zip(self.fields, fields[:3])})
+            self.transactions.append({k:v for k,v in zip(self.fields, fields[3:])})
+        else: raise ValueError(f"Found {n} fields in line:\n{line}")
+    
+    def process(self):
+        # No-op, processing is done during read
+        pass
+
 def main(filepath: str, date: Date, show=True):
     account_table = AccountTable(date)
     summary_table = SummaryTable(date)
     reader = PdfReader(filepath)
 
     deposits = Deposits(date)
+    checks = Checks(date)
 
     transaction_groups = {
         'DEPOSITS AND OTHER CREDITS': deposits,
-        'CHECKS': None,
+        'CHECKS': checks,
         'OTHER DEBITS': None
     }
     transaction_processor = None
@@ -155,6 +198,8 @@ def main(filepath: str, date: Date, show=True):
     def visitor(text: str, cm: list, tm: list, font_dict: dict, font_size: dict):
         """cm - current matrix to move from user coordinate space (also known as CTM)
         tm - current matrix from text coordinate space"""
+        # WARNING: visitor is suppressing Exceptions in a weird way
+
         nonlocal started_main, transaction_processor
 
         _, _, _, _, x, y = tm
@@ -163,15 +208,18 @@ def main(filepath: str, date: Date, show=True):
         elif summary_table.contains(x, y):
             summary_table.add(text, x, y)
         elif text.strip() in transaction_groups:
+            # Enter main processing
             started_main = True
 
+            # Pick the right processor for this section
             transaction_processor = transaction_groups[text.strip()]
             if transaction_processor is not None:
                 transaction_processor.reset()
         elif started_main:
-            if transaction_processor is None: return
-            transaction_processor.add(text, x, y)
-            # add_content(general, text, x, y)
+            if transaction_processor is None:
+                add_content(general, text, x, y)
+            else:
+                transaction_processor.add(text, x, y)
         else:
             pass
     
@@ -186,16 +234,14 @@ def main(filepath: str, date: Date, show=True):
     account_table.process()
     summary_table.process()
     deposits.process()
+    checks.process()
 
     if show:
-        print("Account:")
-        account_table.print()
-        print("Summary:")
-        summary_table.print()
-        print("Credits:")
-        print('\n'.join(str(t) for t in deposits.transactions))
-        # print("General:")
-        # print(sort_content(general))
+        print("Account Table:") ; account_table.print()
+        print("Summary Table:") ; summary_table.print()
+        print("Deposits:") ; deposits.print()
+        print("Checks:") ; checks.print()
+        print("General:") ; print(sort_content(general))
     else:
         print(f"{summary_table.data['Previous Balance']} --> {summary_table.data['New Balance']}")
     
