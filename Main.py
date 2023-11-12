@@ -100,7 +100,7 @@ class Transactions:
     
     def reset(self):
         """Start a new section, but keep the existing data"""
-        self.flush()
+        # Note: multi-line transactions can split across pages
         self.header_seen = False
     
     def add(self, text: str, x: float, y: float):
@@ -251,7 +251,7 @@ def main(filepath: str, date: Date, show=True):
         if done:
             return
         elif text.strip() == "ACCOUNT BALANCE SUMMARY":
-            print("Done")
+            if show: print("Done")
             done = True
         elif text.strip() in transaction_groups:
             # Enter main processing
@@ -270,14 +270,14 @@ def main(filepath: str, date: Date, show=True):
             pass
     
     # First page
-    print("Page 1")
+    if show: print("Page 1")
     raw = [reader.pages[0].extract_text(visitor_text=first_page_visitor)]
     
     # Second page is always a checkbook balancing worksheet
-    print("Page A - skip")
+    if show: print("Page A - skip")
     for i, page in enumerate(reader.pages[2:], start=2):
         reset()
-        print(f"Page {i}") # Page numbers are 0-indexed, but second page isn't counted
+        if show: print(f"Page {i}") # Page numbers are 0-indexed, but second page isn't counted
         raw.append(page.extract_text(visitor_text=visitor))
         if done: break
 
@@ -298,8 +298,8 @@ def main(filepath: str, date: Date, show=True):
         print(f"{summary_table.data['Previous Balance']} --> {summary_table.data['New Balance']}")
 
     # Error checking
-    assert int(summary_table.data['# of Debits']) == len(checks) + len(charges), "Mismatched number of debits"
-    assert int(summary_table.data['# of Deposits']) == len(deposits), 'Mismatched number of deposits'
+    assert (st := int(summary_table.data['# of Debits'])) == (ck := len(checks)) + (ch := len(charges)), f"Mismatched number of debits: {st} != {ck} + {ch}"
+    assert (st := int(summary_table.data['# of Deposits'])) == (d := len(deposits)), f"Mismatched number of deposits: {st} != {d}"
     
     return summary_table.data['Previous Balance'], summary_table.data['New Balance']
 
@@ -309,16 +309,24 @@ if __name__ == "__main__":
     last = None # "new" balance from the last statement
     prev = None # "previous" balance from the current statement
     new = None # "new" balance from the current statement
-    for filename in os.listdir(data_dir)[0:1]:
+    for i, filename in enumerate(os.listdir(data_dir)):
         date = strptime(filename.split('_')[0], '%Y%m%d').date()
         # TODO write parsers for later dates
         if date >= Date(2021, 2, 1):
             continue
-        print(filename)
+
+        print(f"{i} - {filename}")
+
+        # FIXME tehse specific statements doesn't have the section header on page 2
+        if any(date == d for d in [Date(2018, 10, 30), Date(2019, 8, 29), Date(2020, 7, 30)]):
+            last = None
+            print("   BUGGED STATEMENT   ")
+            continue
+
         filepath = os.path.join(data_dir, filename)
         
         try:
-            prev, new = main(filepath, date, show=True)
+            prev, new = main(filepath, date, show=False)
         except Exception as e:
             # print(repr(e))
             raise
