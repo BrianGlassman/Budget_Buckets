@@ -9,7 +9,6 @@ strptime = datetime.datetime.strptime
 
 # Dict like {y: {x: [text]}}
 content_type = dict[float, dict[float, list]]
-general: content_type = {}
 def add_content(target: content_type, text, x, y):
     if not text: return
     if y not in target: target[y] = {}
@@ -44,11 +43,12 @@ class Table:
 
 class AccountTable(Table):
     top = 565
-    header_y = 555.36
+    header_y = 555.36 # Header Y is consistent, data Y changes
     columns = ['Account', 'Type', 'Statement Period']
     bot = 530
     def add(self, text: str, x: float, y: float):
         text = text.strip()
+        # Ignore header cells, save data cells
         if y == self.header_y: return
         else: add_content(self.content, text, x, y)
     def process(self):
@@ -68,11 +68,12 @@ class AccountTable(Table):
 
 class SummaryTable(Table):
     top = 520
-    data_y = 493.2
+    data_y = 493.2 # Header Y changes, data Y is consistent
     columns = ['Previous Balance', '# of Debits', 'Total of Debits', '# of Deposits', 'Total of Deposits', 'Service Charges', 'New Balance']
     bot = 490
     def add(self, text: str, x: float, y: float):
         text = text.strip()
+        # Ignore header cells, save data cells
         if y == self.data_y: add_content(self.content, text, x, y)
         else: return
     def process(self):
@@ -117,6 +118,9 @@ class Transactions:
 
     def process(self): """Process the accumulated data after reading everything"""
 
+    def __len__(self):
+        return len(self.transactions)
+
 class DepositsDebits(Transactions):
     """Deposits and Debits have the same format"""
     header = "DATE..........AMOUNT.TRANSACTION DESCRIPTION"
@@ -128,7 +132,9 @@ class DepositsDebits(Transactions):
         self.lines = []
     
     def flush(self):
-        if self.line: self.lines.append(self.line)
+        if self.line:
+            self.lines.append(self.line)
+            self.line = ''
     
     def _handle_line(self, line: str):
         if line[0] == ' ':
@@ -181,9 +187,10 @@ class Checks(Transactions):
         pass
 
 def main(filepath: str, date: Date, show=True):
+    reader = PdfReader(filepath)
+    general: content_type = {}
     account_table = AccountTable(date)
     summary_table = SummaryTable(date)
-    reader = PdfReader(filepath)
 
     deposits = DepositsDebits(date)
     checks = Checks(date)
@@ -196,9 +203,16 @@ def main(filepath: str, date: Date, show=True):
     }
     transaction_processor = None
     started_main = False # Flag set to true when the transaction processing has started
+    done = False # Flag set to true when finished processing, to ignore the remainder
+
+    def reset():
+        nonlocal started_main, transaction_processor
+        started_main = False
+        transaction_processor = None
     
-    def visitor(text: str, cm: list, tm: list, font_dict: dict, font_size: dict):
-        """cm - current matrix to move from user coordinate space (also known as CTM)
+    def first_page_visitor(text: str, cm: list, tm: list, font_dict: dict, font_size: dict):
+        """Handles the first page, which includes the Account Table and Summary Table\n
+        cm - current matrix to move from user coordinate space (also known as CTM)\n
         tm - current matrix from text coordinate space"""
         # WARNING: visitor is suppressing Exceptions in a weird way
 
@@ -225,13 +239,47 @@ def main(filepath: str, date: Date, show=True):
         else:
             pass
     
+    def visitor(text: str, cm: list, tm: list, font_dict: dict, font_size: dict):
+        """Handles all pages besides the first, only paying attention to data\n
+        cm - current matrix to move from user coordinate space (also known as CTM)
+        tm - current matrix from text coordinate space"""
+        # WARNING: visitor is suppressing Exceptions in a weird way
+
+        nonlocal started_main, transaction_processor, done
+
+        _, _, _, _, x, y = tm
+        if done:
+            return
+        elif text.strip() == "ACCOUNT BALANCE SUMMARY":
+            print("Done")
+            done = True
+        elif text.strip() in transaction_groups:
+            # Enter main processing
+            started_main = True
+
+            # Pick the right processor for this section
+            transaction_processor = transaction_groups[text.strip()]
+            if transaction_processor is not None:
+                transaction_processor.reset()
+        elif started_main:
+            if transaction_processor is None:
+                add_content(general, text, x, y)
+            else:
+                transaction_processor.add(text, x, y)
+        else:
+            pass
+    
     # First page
-    raw = reader.pages[0].extract_text(visitor_text=visitor)
+    print("Page 1")
+    raw = [reader.pages[0].extract_text(visitor_text=first_page_visitor)]
     
     # Second page is always a checkbook balancing worksheet
-    # pages = [reader.pages[0]] + reader.pages[2:]
-
-    # raw = '\n'.join(page.extract_text(visitor_text=visitor) for page in pages)
+    print("Page A - skip")
+    for i, page in enumerate(reader.pages[2:], start=2):
+        reset()
+        print(f"Page {i}") # Page numbers are 0-indexed, but second page isn't counted
+        raw.append(page.extract_text(visitor_text=visitor))
+        if done: break
 
     account_table.process()
     summary_table.process()
@@ -242,12 +290,16 @@ def main(filepath: str, date: Date, show=True):
     if show:
         print("Account Table:") ; account_table.print()
         print("Summary Table:") ; summary_table.print()
-        print("Deposits:") ; deposits.print()
-        print("Checks:") ; checks.print()
-        print("Charges:") ; charges.print()
+        print(f"{len(deposits)} Deposits:") ; deposits.print()
+        print(f"{len(checks)} Checks:") ; checks.print()
+        print(f"{len(charges)} Charges:") ; charges.print()
         print("General:") ; print(sort_content(general))
     else:
         print(f"{summary_table.data['Previous Balance']} --> {summary_table.data['New Balance']}")
+
+    # Error checking
+    assert int(summary_table.data['# of Debits']) == len(checks) + len(charges), "Mismatched number of debits"
+    assert int(summary_table.data['# of Deposits']) == len(deposits), 'Mismatched number of deposits'
     
     return summary_table.data['Previous Balance'], summary_table.data['New Balance']
 
