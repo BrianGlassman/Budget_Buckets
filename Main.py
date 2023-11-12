@@ -117,7 +117,8 @@ class Transactions:
 
     def process(self): """Process the accumulated data after reading everything"""
 
-class Deposits(Transactions):
+class DepositsDebits(Transactions):
+    """Deposits and Debits have the same format"""
     header = "DATE..........AMOUNT.TRANSACTION DESCRIPTION"
     line: str # Transaction currently being parsed, may take multiple lines
     lines: list[str] # All transactions, each on a single line
@@ -184,13 +185,14 @@ def main(filepath: str, date: Date, show=True):
     summary_table = SummaryTable(date)
     reader = PdfReader(filepath)
 
-    deposits = Deposits(date)
+    deposits = DepositsDebits(date)
     checks = Checks(date)
+    charges = DepositsDebits(date)
 
     transaction_groups = {
         'DEPOSITS AND OTHER CREDITS': deposits,
         'CHECKS': checks,
-        'OTHER DEBITS': None
+        'OTHER DEBITS': charges,
     }
     transaction_processor = None
     started_main = False # Flag set to true when the transaction processing has started
@@ -235,12 +237,14 @@ def main(filepath: str, date: Date, show=True):
     summary_table.process()
     deposits.process()
     checks.process()
+    charges.process()
 
     if show:
         print("Account Table:") ; account_table.print()
         print("Summary Table:") ; summary_table.print()
         print("Deposits:") ; deposits.print()
         print("Checks:") ; checks.print()
+        print("Charges:") ; charges.print()
         print("General:") ; print(sort_content(general))
     else:
         print(f"{summary_table.data['Previous Balance']} --> {summary_table.data['New Balance']}")
