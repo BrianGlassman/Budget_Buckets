@@ -8,4 +8,5 @@ from ..Base import DescAmount
 handler = DescAmount([
     "USAA P&C INT AUTOPAY",
     "USAA P&C AUTOPAY",
-    ], 150, 250)
+    "USAA Property and Casualty Insurance",
+    ], 150, 200)
