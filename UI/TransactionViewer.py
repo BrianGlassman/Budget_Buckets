@@ -9,7 +9,8 @@ Date = datetime.date
 
 
 # Project imports
-from Raw_Data.Parsing.USAA_checking import Transaction, main as parse
+from Raw_Data.Parsing.USAAChecking.Transaction import Transaction
+from Raw_Data.Parsing.USAAChecking import main as parse
 
 
 
@@ -79,14 +80,13 @@ def create_table(transactions: Sequence[Transaction]):
     return table
 
 if __name__ == "__main__":
-    transactions = []
-
     app = dash.Dash(__name__)
 
-    transactions = parse(Date(2016, 1, 1), Date(2016, 12, 30), show=0)
+    transactions = parse()
+    print(f"Loaded {len(transactions)} transactions")
 
     table = create_table(transactions)
 
-    app.layout = dash.html.Div(table, style={'backgroundColor': 'black'})
+    app.layout = dash.html.Div(table, style={'backgroundColor': 'lightBlue'})
 
     app.run(debug=True)
