@@ -1,5 +1,5 @@
 # Project imports
-from ..Base import DescAmount
+from ...Base import DescAmount
 
 
 # Note: Medical insurance is under Medical
@@ -9,4 +9,4 @@ handler = DescAmount([
     "USAA P&C INT AUTOPAY",
     "USAA P&C AUTOPAY",
     "USAA Property and Casualty Insurance",
-    ], 150, 200)
+    ], 150, 200, name="Insurance")

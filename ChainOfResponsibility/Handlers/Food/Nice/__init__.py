@@ -1,14 +1,15 @@
 # Project imports
-from ...Base import HandlerChain, DescAmount
+from ....Base import HandlerChain, DescAmount
 
 
 restaurants = HandlerChain(
-    DescAmount([ # Expensive
+    DescAmount([
         "Cosmos Pizza",
         "Domino's",
+        "Grubhub",
         "Panera Bread",
-    ], 15, 60),
-    DescAmount([ # Normal
+    ], 10, 60, name="Expensive Restaurants"),
+    DescAmount([
         "Applebees",
         "Asian Chao",
         "BJ's Restaurant",
@@ -17,7 +18,6 @@ restaurants = HandlerChain(
         "Chipotle",
         "Dunkin'",
         "Falafel King",
-        "Grubhub",
         "Gurkhas On The Hill",
         "Illegal Pete S Hil",
         "Ipie",
@@ -38,9 +38,10 @@ restaurants = HandlerChain(
         "Village Cafe",
         "Wawa",
         "Zodiac Subs",
-    ], 0, 30)
+    ], 0, 30, name="Normal Restaurants"),
+    name="Restaurants"
 )
 
-vending_machines = DescAmount("PepsiCo", 0, 4)
+vending_machines = DescAmount("PepsiCo", 0, 4, name="Vending Machines")
 
-handler = HandlerChain(restaurants, vending_machines)
+handler = HandlerChain(restaurants, vending_machines, name="Nice Food")
