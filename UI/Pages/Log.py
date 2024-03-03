@@ -2,7 +2,6 @@
 import csv
 import dash
 from functools import partial
-import locale
 
 
 # Styling
@@ -17,8 +16,7 @@ Data = partial(dash.html.Td, style=style)
 
 def format_money(val: str) -> str:
     """Copy Excel's money formatting"""
-    locale.setlocale(locale.LC_ALL, '')
-    return locale.currency(float(val), grouping=True)
+    return "${:,.2f}".format(float(val)).replace('$-', '-$')
 
 def create_table(data: list[dict]):
     # Headers
@@ -99,7 +97,7 @@ def load_validation():
 
 def check(data: list[dict], validation: list[dict]):
     for d_line, v_line in zip(data[2:], validation[2:]):
-        assert d_line == v_line, [f'{d}{"==" if d==v else "!="}{v}' for d, v in zip(d_line.values(), v_line.values())]
+        assert d_line == v_line, [f'{d}"!="{v}' for d, v in zip(d_line.values(), v_line.values()) if d != v]
 
 if __name__ == "__main__":
     data = load_data()
