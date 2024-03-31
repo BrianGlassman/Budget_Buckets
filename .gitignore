@@ -142,3 +142,6 @@ dmypy.json
 
 # Weird file that git seems to output
 .goutputstream*
+
+# Office autosaves
+~$*
