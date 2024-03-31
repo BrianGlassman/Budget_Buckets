@@ -1,3 +1,7 @@
+"""
+Duplicates the "Log" tabs in the Excel sheet
+"""
+
 # General imports
 import csv
 import dash
@@ -7,6 +11,7 @@ from typing import Any
 
 
 # Project imports
+from BaseLib.utils import format_money
 from CategoryList import categories
 categories = [c.lower() for c in categories] # I got some capitalization wrong when making the log
 
@@ -20,10 +25,6 @@ Row = partial(dash.html.Tr, style=style)
 Header = partial(dash.html.Th, style=style)
 Data = partial(dash.html.Td, style=style)
 
-
-def format_money(val: str) -> str:
-    """Copy Excel's money formatting"""
-    return "${:,.2f}".format(float(val)).replace('$-', '-$')
 
 def create_table(data: list[dict]):
     # Headers
@@ -126,7 +127,21 @@ def format_data(data: list[dict]):
 
     return data
 
+def prep_for_export(data: list[dict[str, Any]]):
+    """Name TBD. Remove all the extra fields that aren't needed downstream"""
+    data = data.copy()
+    
+    # Remove headers
+    data = data[2:]
+
+    # Remove non-final fields
+    for line in data:
+        line = {k:v for k,v in line.items() if not k.endswith(('_i', '_o'))}
+    
+    return data
+
 def load_validation():
+    """Get the validation data from the static file"""
     with open('log_2024_validation.csv') as f:
         lines = list(csv.reader(f))
     
@@ -158,3 +173,5 @@ if __name__ == "__main__":
     table = create_table(format_data(data))
     app.layout = dash.html.Div(table)
     app.run(debug=True)
+else:
+    log = prep_for_export(load_data())
