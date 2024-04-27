@@ -1,5 +1,5 @@
 """
-Duplicates the "Log" tabs in the Excel sheet
+Validates the "Log" tabs in the Excel sheet
 """
 
 # General imports
@@ -7,7 +7,7 @@ import json
 
 
 # Project imports
-from CategoryList import categories
+from Validation.Handling.Log import handle
 
 
 # Typing
@@ -15,23 +15,9 @@ Item = dict[str, dict[str, str]]
 
 
 with open('Validation/Data/log_2024.json', 'r') as f:
-    data: list[Item] = json.load(f)
+    data = handle(json.load(f))
 with open('Validation/Data/log_2024_validation.json', 'r') as f:
     validation: list[Item] = json.load(f)
-
-for item in data:
-    # Handle override logic
-    final = item['Final'] = {}
-    for key, override in item['Override'].items():
-        final[key] = override if override else item['Imported'][key]
-
-    # Handle error logic
-    item['E'] = {
-        'E': '.' if (item['My Category']['My Category'] in categories) else 'E'
-    }
-
-    if item['E']['E'] == 'E':
-        raise ValueError()
 
 if data != validation:
     found = False
