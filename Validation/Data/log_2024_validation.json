@@ -1,0 +1,2624 @@
+[
+  {
+    "Imported": {
+      "Date": "2/28/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "5616.04",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/28/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "5616.04",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Salary"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "0.1",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "0.1",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/26/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-14.53",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/26/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-14.53",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/23/2024",
+      "Description": "Los Dos Potrillos",
+      "Original Description": "TST* LOS DOS POTRILLOS - Northglenn   CO",
+      "Category": "Restaurants",
+      "Amount": "-18.37",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/23/2024",
+      "Description": "Los Dos Potrillos",
+      "Original Description": "TST* LOS DOS POTRILLOS - Northglenn   CO",
+      "Category": "Restaurants",
+      "Amount": "-18.37",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/21/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-63.92",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/21/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-63.92",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/19/2024",
+      "Description": "Recurring Reward Points Redemption",
+      "Original Description": "RECURRING REWARD POINTS REDEMPTION",
+      "Category": "Credit Card Payment",
+      "Amount": "25.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/19/2024",
+      "Description": "Recurring Reward Points Redemption",
+      "Original Description": "RECURRING REWARD POINTS REDEMPTION",
+      "Category": "Credit Card Payment",
+      "Amount": "25.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/17/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-2.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/17/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-2.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/15/2024",
+      "Description": "Ah Mychart Medepay",
+      "Original Description": "AH MYCHART MEDEPAY       855-2412455  FL",
+      "Category": "Doctor",
+      "Amount": "-70.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/15/2024",
+      "Description": "Ah Mychart Medepay",
+      "Original Description": "AH MYCHART MEDEPAY       855-2412455  FL",
+      "Category": "Doctor",
+      "Amount": "-70.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/15/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-14.43",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/15/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-14.43",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/15/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-11.51",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/15/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-11.51",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-705.86",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-705.86",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/14/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "1169.82",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/14/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "1169.82",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Bonus"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "705.86",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "705.86",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/13/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
+      "Category": "Credit Card Payment",
+      "Amount": "-579.91",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/13/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
+      "Category": "Credit Card Payment",
+      "Amount": "-579.91",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/13/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-163.7",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/13/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-163.7",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car/Rental Insurance"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/13/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-43.29",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/13/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-43.29",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Games"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/12/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-500.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/12/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-500.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Self-improvement"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/12/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-11.9",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/12/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-11.9",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/12/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-82.31",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/12/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-82.31",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/12/2024",
+      "Description": "127311211",
+      "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
+      "Category": "Uncategorized",
+      "Amount": "579.91",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/12/2024",
+      "Description": "127311211",
+      "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
+      "Category": "Uncategorized",
+      "Amount": "579.91",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/8/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-31.83",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/8/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-31.83",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/8/2024",
+      "Description": "Afc Urgent Care Denver",
+      "Original Description": "AFC URGENT CARE DENVER H DENVER       CO",
+      "Category": "Doctor",
+      "Amount": "-75.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/8/2024",
+      "Description": "Afc Urgent Care Denver",
+      "Original Description": "AFC URGENT CARE DENVER H DENVER       CO",
+      "Category": "Doctor",
+      "Amount": "-75.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-30.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-30.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Other - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/7/2024",
+      "Description": "Rocket",
+      "Original Description": "ROCKET 6515              NORTHGLENN   CO",
+      "Category": "Gas",
+      "Amount": "-26.51",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/7/2024",
+      "Description": "Rocket",
+      "Original Description": "ROCKET 6515              NORTHGLENN   CO",
+      "Category": "Gas",
+      "Amount": "-26.51",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/6/2024",
+      "Description": "CVS",
+      "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
+      "Category": "Pharmacy",
+      "Amount": "-13.59",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/6/2024",
+      "Description": "CVS",
+      "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
+      "Category": "Pharmacy",
+      "Amount": "-13.59",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/5/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
+      "Category": "Uncategorized",
+      "Amount": "-1945.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/5/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
+      "Category": "Uncategorized",
+      "Amount": "-1945.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/5/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-3.56",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/5/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-3.56",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/5/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-99.24",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/5/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-99.24",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-35.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-35.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********QHPF",
+      "Category": "Uncategorized",
+      "Amount": "-110.33",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********QHPF",
+      "Category": "Uncategorized",
+      "Amount": "-110.33",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/31/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-12.16",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/31/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-12.16",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/30/2024",
+      "Description": "Chick-fil-A",
+      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-10.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/30/2024",
+      "Description": "Chick-fil-A",
+      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-10.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/30/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "5616.04",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/30/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "5616.04",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Salary"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/29/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-62.15",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/29/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-62.15",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/29/2024",
+      "Description": "The Pasty Republic",
+      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
+      "Category": "Fast Food",
+      "Amount": "-11.87",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/29/2024",
+      "Description": "The Pasty Republic",
+      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
+      "Category": "Fast Food",
+      "Amount": "-11.87",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "0.09",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "0.09",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/24/2024",
+      "Description": "Mugi Ramen and Poke",
+      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
+      "Category": "Food & Dining",
+      "Amount": "-16.17",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/24/2024",
+      "Description": "Mugi Ramen and Poke",
+      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
+      "Category": "Food & Dining",
+      "Amount": "-16.17",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/22/2024",
+      "Description": "Bad Daddy's Burger Bar",
+      "Original Description": "BAD DADDY'S BURGER BAR   CENTENNIAL   CO",
+      "Category": "Food & Dining",
+      "Amount": "-51.9",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/22/2024",
+      "Description": "Bad Daddy's Burger Bar",
+      "Original Description": "BAD DADDY'S BURGER BAR   CENTENNIAL   CO",
+      "Category": "Food & Dining",
+      "Amount": "-51.9",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Dates"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/21/2024",
+      "Description": "Scott @ Tried & True",
+      "Original Description": "SQ *SCOTT @ TRIED & TRUE Denver       CO",
+      "Category": "Hair",
+      "Amount": "-56.25",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/21/2024",
+      "Description": "Scott @ Tried & True",
+      "Original Description": "SQ *SCOTT @ TRIED & TRUE Denver       CO",
+      "Category": "Hair",
+      "Amount": "-56.25",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Clothes/Personal care"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/21/2024",
+      "Description": "The Grateful Gnome",
+      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
+      "Category": "Alcohol & Bars",
+      "Amount": "-14.9",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/21/2024",
+      "Description": "The Grateful Gnome",
+      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
+      "Category": "Alcohol & Bars",
+      "Amount": "-14.9",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "Account Verification Deposit from Bill.com",
+      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
+      "Category": "Transfer",
+      "Amount": "0.01",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "Account Verification Deposit from Bill.com",
+      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
+      "Category": "Transfer",
+      "Amount": "0.01",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-10.65",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-10.65",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "Outlaw Wings",
+      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
+      "Category": "Restaurants",
+      "Amount": "-21.24",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "Outlaw Wings",
+      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
+      "Category": "Restaurants",
+      "Amount": "-21.24",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-14.53",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-14.53",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "Safeway Fuel",
+      "Original Description": "SAFEWAY FUEL0244         DENVER       CO",
+      "Category": "Gas",
+      "Amount": "-26.05",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "Safeway Fuel",
+      "Original Description": "SAFEWAY FUEL0244         DENVER       CO",
+      "Category": "Gas",
+      "Amount": "-26.05",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/16/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-150.41",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/16/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-150.41",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/16/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-2.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/16/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-2.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/13/2024",
+      "Description": "An Honda",
+      "Original Description": "AN HONDA 104             303-469-5551 CO",
+      "Category": "Auto & Transport",
+      "Amount": "-107.48",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/13/2024",
+      "Description": "An Honda",
+      "Original Description": "AN HONDA 104             303-469-5551 CO",
+      "Category": "Auto & Transport",
+      "Amount": "-107.48",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/12/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-14.57",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/12/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-14.57",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/11/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-500.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/11/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-500.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Self-improvement"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/11/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-20.06",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/11/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-20.06",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/11/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-163.71",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/11/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-163.71",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car/Rental Insurance"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/10/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-11.9",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/10/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-11.9",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/9/2024",
+      "Description": "Post Oak Bbq",
+      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
+      "Category": "Restaurants",
+      "Amount": "-23.23",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/9/2024",
+      "Description": "Post Oak Bbq",
+      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
+      "Category": "Restaurants",
+      "Amount": "-23.23",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/8/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-30.08",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/8/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-30.08",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-30.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-30.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Other - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/5/2024",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-10.65",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/5/2024",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-10.65",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/5/2024",
+      "Description": "Tokyo Joe's",
+      "Original Description": "TOKYO JOES 120TH 006     612-3607277  CO",
+      "Category": "Fast Food",
+      "Amount": "-12.3",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/5/2024",
+      "Description": "Tokyo Joe's",
+      "Original Description": "TOKYO JOES 120TH 006     612-3607277  CO",
+      "Category": "Fast Food",
+      "Amount": "-12.3",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/5/2024",
+      "Description": "Walgreens",
+      "Original Description": "WALGREENS #6345          DENVER       CO",
+      "Category": "Pharmacy",
+      "Amount": "-12.52",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/5/2024",
+      "Description": "Walgreens",
+      "Original Description": "WALGREENS #6345          DENVER       CO",
+      "Category": "Pharmacy",
+      "Amount": "-12.52",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/4/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
+      "Category": "Uncategorized",
+      "Amount": "-1945.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/4/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
+      "Category": "Uncategorized",
+      "Amount": "-1945.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-35.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-35.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/4/2024",
+      "Description": "Yardi",
+      "Original Description": "YARDI SERVICECHG WEB PMTS   ***********0WJF",
+      "Category": "Mortgage & Rent",
+      "Amount": "-0.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/4/2024",
+      "Description": "Yardi",
+      "Original Description": "YARDI SERVICECHG WEB PMTS   ***********0WJF",
+      "Category": "Mortgage & Rent",
+      "Amount": "-0.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/3/2024",
+      "Description": "Honda Financial",
+      "Original Description": "HONDA PMT        8004489307 ***********LE9E",
+      "Category": "Auto Payment",
+      "Amount": "-320.0",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/3/2024",
+      "Description": "Honda Financial",
+      "Original Description": "HONDA PMT        8004489307 ***********LE9E",
+      "Category": "Auto Payment",
+      "Amount": "-320.0",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Note"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/3/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-13.35",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/3/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-13.35",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
+      "Category": "Uncategorized",
+      "Amount": "-99.91",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
+      "Category": "Uncategorized",
+      "Amount": "-99.91",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-80.03",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-80.03",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-823.79",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-823.79",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "Yardi",
+      "Original Description": "YARDI SERVICECHG WEB PMTS   ***********M9HF",
+      "Category": "Mortgage & Rent",
+      "Amount": "-0.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "Yardi",
+      "Original Description": "YARDI SERVICECHG WEB PMTS   ***********M9HF",
+      "Category": "Mortgage & Rent",
+      "Amount": "-0.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "12/30/2023",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Transfer",
+      "Amount": "823.79",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "1/2/2024",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": "",
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Transfer",
+      "Amount": "823.79",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Date-shifted to match withdrawal"
+    }
+  }
+]
