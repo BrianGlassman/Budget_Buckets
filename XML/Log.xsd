@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- Define the types that will be used -->
+  <xs:complexType name="OriginalType">
+  </xs:complexType>
+  
+  <xs:complexType name="OverrideType">
+  </xs:complexType>
+  
+  <xs:complexType name="FinalType">
+  </xs:complexType>
+
+  <!-- Define the Transaction element -->
+  <xs:element name="LogTransaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Original" type="OriginalType"/>
+        <xs:element name="Override" type="OverrideType"/>
+        <xs:element name="Final" type="FinalType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
