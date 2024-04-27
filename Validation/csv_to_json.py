@@ -63,7 +63,7 @@ def log_csv_to_json(filename, validation):
             if amount == '':
                 assert key == 'Override'
             else:
-                amount = str(float(amount))
+                amount = str(Decimal(amount).quantize(Decimal('0.01')))
             item[key]['Amount'] = amount
         
         # Enforce consistent category capitalization

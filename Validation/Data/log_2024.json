@@ -32,7 +32,7 @@
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
-      "Amount": "0.1",
+      "Amount": "0.10",
       "Status": "Posted"
     },
     "Account": {
@@ -140,7 +140,7 @@
       "Description": "Recurring Reward Points Redemption",
       "Original Description": "RECURRING REWARD POINTS REDEMPTION",
       "Category": "Credit Card Payment",
-      "Amount": "25.0",
+      "Amount": "25.00",
       "Status": "Posted"
     },
     "Account": {
@@ -167,7 +167,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.0",
+      "Amount": "-2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -194,7 +194,7 @@
       "Description": "Ah Mychart Medepay",
       "Original Description": "AH MYCHART MEDEPAY       855-2412455  FL",
       "Category": "Doctor",
-      "Amount": "-70.0",
+      "Amount": "-70.00",
       "Status": "Posted"
     },
     "Account": {
@@ -383,7 +383,7 @@
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
-      "Amount": "-163.7",
+      "Amount": "-163.70",
       "Status": "Posted"
     },
     "Account": {
@@ -437,7 +437,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.0",
+      "Amount": "-500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -464,7 +464,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.9",
+      "Amount": "-11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -572,7 +572,7 @@
       "Description": "Afc Urgent Care Denver",
       "Original Description": "AFC URGENT CARE DENVER H DENVER       CO",
       "Category": "Doctor",
-      "Amount": "-75.0",
+      "Amount": "-75.00",
       "Status": "Posted"
     },
     "Account": {
@@ -599,7 +599,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.0",
+      "Amount": "-30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -680,7 +680,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
       "Category": "Uncategorized",
-      "Amount": "-1945.0",
+      "Amount": "-1945.00",
       "Status": "Posted"
     },
     "Account": {
@@ -761,7 +761,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.0",
+      "Amount": "-35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1004,7 +1004,7 @@
       "Description": "Bad Daddy's Burger Bar",
       "Original Description": "BAD DADDY'S BURGER BAR   CENTENNIAL   CO",
       "Category": "Food & Dining",
-      "Amount": "-51.9",
+      "Amount": "-51.90",
       "Status": "Posted"
     },
     "Account": {
@@ -1058,7 +1058,7 @@
       "Description": "The Grateful Gnome",
       "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
       "Category": "Alcohol & Bars",
-      "Amount": "-14.9",
+      "Amount": "-14.90",
       "Status": "Posted"
     },
     "Account": {
@@ -1247,7 +1247,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.0",
+      "Amount": "-2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1328,7 +1328,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.0",
+      "Amount": "-500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1409,7 +1409,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.9",
+      "Amount": "-11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -1490,7 +1490,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.0",
+      "Amount": "-30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1544,7 +1544,7 @@
       "Description": "Tokyo Joe's",
       "Original Description": "TOKYO JOES 120TH 006     612-3607277  CO",
       "Category": "Fast Food",
-      "Amount": "-12.3",
+      "Amount": "-12.30",
       "Status": "Posted"
     },
     "Account": {
@@ -1598,7 +1598,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
       "Category": "Uncategorized",
-      "Amount": "-1945.0",
+      "Amount": "-1945.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1625,7 +1625,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.0",
+      "Amount": "-35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1679,7 +1679,7 @@
       "Description": "Honda Financial",
       "Original Description": "HONDA PMT        8004489307 ***********LE9E",
       "Category": "Auto Payment",
-      "Amount": "-320.0",
+      "Amount": "-320.00",
       "Status": "Posted"
     },
     "Account": {
