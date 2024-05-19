@@ -7,14 +7,12 @@ import json
 
 
 # Project imports
-from Validation.Log import handle_log, LogItem, log_data_path, log_validation_path
+from Validation.Log import load_log_data, laod_log_validation
 
 
 def load():
-    with open(log_data_path, 'r') as f:
-        data = handle_log(json.load(f))
-    with open(log_validation_path, 'r') as f:
-        validation: list[LogItem] = json.load(f)
+    data = load_log_data()
+    validation = laod_log_validation()
     return data, validation
 
 def test_log_duplication():
