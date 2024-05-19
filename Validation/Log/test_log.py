@@ -4,24 +4,30 @@ Validates the "Log" tabs in the Excel sheet
 
 # General imports
 import json
-import os
 
 
 # Project imports
-from Validation.Log.Handling import handle
+from Validation.Log import handle_log, LogItem, log_data_path, log_validation_path
 
 
-# Typing
-Item = dict[str, dict[str, str]]
+def load():
+    with open(log_data_path, 'r') as f:
+        data = handle_log(json.load(f))
+    with open(log_validation_path, 'r') as f:
+        validation: list[LogItem] = json.load(f)
+    return data, validation
 
+def test_log_duplication():
+    data, validation = load()
 
-basedir = os.path.dirname(__file__)
-with open(os.path.join(basedir, 'log_2024.json'), 'r') as f:
-    data = handle(json.load(f))
-with open(os.path.join(basedir, 'log_2024_validation.json'), 'r') as f:
-    validation: list[Item] = json.load(f)
+    if data != validation:
+        print_diff(data, validation)
+        raise Exception("Validation failed")
+    
+    print("Validation complete")
 
-if data != validation:
+def print_diff(data, validation):
+    """Print differences in a useful way"""
     found = False
     for d, v in zip(data, validation):
         # Full-item match
@@ -40,5 +46,3 @@ if data != validation:
         
         # Avoid console spam, just show the first problem
         if found: break
-    raise Exception("Validation failed")
-print("Validation complete")
