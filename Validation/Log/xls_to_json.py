@@ -1,22 +1,37 @@
 # General imports
-import csv
 from decimal import Decimal
-import json
+import datetime
+import openpyxl
+import openpyxl.worksheet._read_only
 import os
+import json
 
 
 # Project imports
 from CategoryList import categories
+from BaseLib.utils import unparse_date, safe_open
 
 
 # Typing
 Item = dict[str, dict[str, str]]
 
 
-def csv_to_json(filename, validation):
-    print(filename)
-    with open(filename, 'r') as f:
-        raw_lines = list(csv.reader(f))
+def format_value(value) -> str:
+    """Convert an openpyxl Cell value to a string the same as in a CSV"""
+    if value is None:
+        return ''
+    elif isinstance(value, datetime.datetime):
+        return unparse_date(value)
+    else:
+        return str(value)
+
+
+def xls_to_json(filename, sheet_name: str):
+    wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
+    sheet = wb[sheet_name]
+    assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
+    # Do some manipulating so it looks like the CSV version
+    raw_lines = [[format_value(value) for value in row] for row in sheet.values]
 
     # First line is meta-header
     meta_header = (
@@ -42,6 +57,16 @@ def csv_to_json(filename, validation):
     print("Section headers as-expected")
 
     # Remaining lines are data
+    data = handle_data(raw_lines, section_header_template, False)
+    validation = handle_data(raw_lines, section_header_template, True)
+
+    # Save to file
+    base_filename = sheet_name.replace(' ', '_').lower()
+    save_to_file(data, base_filename + ".json")
+    save_to_file(validation, base_filename + "_validation.json")
+
+
+def handle_data(raw_lines: list, section_header_template, validation: bool):
     # Note: including empty Overrides/Comments
     data = []
     for raw_line in raw_lines[2:]:
@@ -77,14 +102,17 @@ def csv_to_json(filename, validation):
         
         data.append(item)
     print("Data parsing complete")
+    return data
 
+
+def save_to_file(contents, filename):
     # Output to file
-    outfile = os.path.join(os.path.dirname(__file__), filename.replace('.csv', '.json'))
-    with open(outfile, 'w') as f:
-        json.dump(data, f, indent=2)
+    outfile = os.path.join(os.path.dirname(__file__), filename)
+    with safe_open(outfile, 'w') as f:
+        json.dump(contents, f, indent=2)
     print("Export complete")
 
+
 if __name__ == "__main__":
-    for filename in ["log_2024.csv", "log_2024_validation.csv"]:
-        validation = "validation" in filename
-        csv_to_json(filename, validation)
+    sheet_name = "Log 2024"
+    xls_to_json("Budget_Buckets.xlsm", sheet_name)

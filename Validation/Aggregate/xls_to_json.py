@@ -1,22 +1,37 @@
 # General imports
-import csv
 from decimal import Decimal
-import json
+import datetime
+import openpyxl
+import openpyxl.worksheet._read_only
 import os
+import json
 
 
 # Project imports
 from CategoryList import categories
+from BaseLib.utils import unparse_date, safe_open
 
 
 # Typing
 Item = dict[str, dict[str, str]]
 
 
-def csv_to_json(filename):
-    print(filename)
-    with open(filename, 'r') as f:
-        raw_lines = list(csv.reader(f))
+def format_value(value) -> str:
+    """Convert an openpyxl Cell value to a string the same as in a CSV"""
+    if value is None:
+        return ''
+    elif isinstance(value, datetime.datetime):
+        return unparse_date(value)
+    else:
+        return str(value)
+
+
+def xls_to_json(filename, sheet_name: str):
+    wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
+    sheet = wb[sheet_name]
+    assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
+    # Do some manipulating so it looks like the CSV version
+    raw_lines = [[format_value(value) for value in row] for row in sheet.values]
     
     # First line is meta-header
     # FIXME don't hard-code date
@@ -43,6 +58,17 @@ def csv_to_json(filename):
     print("Totals line as-expected")
 
     # Remaining lines are data
+    validation = handle_data(raw_lines, True)
+
+    # Save to file
+    base_filename = sheet_name.replace(' ', '_').lower()
+    save_to_file(validation, base_filename + "_validation.json")
+
+
+def handle_data(raw_lines: list, validation: bool):
+    assert validation, "No non-validation data for Aggregate"
+
+    # Remaining lines are data
     data = [] # [{start: date, end: date, data: {category: value}}]
     for raw_line in raw_lines[2:-1]:
         item = {}
@@ -56,17 +82,22 @@ def csv_to_json(filename):
             else:
                 v = str(Decimal(v).quantize(Decimal('0.01')))
             vals[k] = v
-        total = Decimal(raw_line[-1])
+        total = Decimal(raw_line[-1]).quantize(Decimal('0.01'))
         assert total == sum(Decimal(v) for v in vals.values())
         item['data'] = vals
         data.append(item)
     print("Data parsing complete")
+    return data
 
+
+def save_to_file(contents, filename):
     # Output to file
-    outfile = os.path.join(os.path.dirname(__file__), filename.replace('.csv', '.json'))
-    with open(outfile, 'w') as f:
-        json.dump(data, f, indent=2)
+    outfile = os.path.join(os.path.dirname(__file__), filename)
+    with safe_open(outfile, 'w') as f:
+        json.dump(contents, f, indent=2)
     print("Export complete")
 
+
 if __name__ == "__main__":
-    csv_to_json('aggregate_2024_validation.csv')
+    sheet_name = "Aggregate 2024"
+    xls_to_json("Budget_Buckets.xlsm", sheet_name)
