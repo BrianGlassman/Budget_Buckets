@@ -4,6 +4,7 @@ import openpyxl
 import openpyxl.worksheet._read_only
 import os
 import json
+from typing import Literal
 
 
 # Project imports
@@ -41,10 +42,11 @@ def make_ValueCapacityCritical(data_cols: list[tuple[str, ...]]) -> Types.ValueC
     assert header == [col[0] for col in data_cols]
     data_cols = [col[1:] for col in data_cols]
 
-    ret = Types.ValueCapacityCritical()
-    ret.value = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])}
-    ret.capacity = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])}
-    ret.is_critical = {cat:val for cat,val in zip(categories, data_cols[2])}
+    ret = Types.ValueCapacityCritical(
+        value = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])},
+        capacity = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])},
+        is_critical = {cat:val for cat,val in zip(categories, data_cols[2])},
+    )
     assert data_cols[2][len(categories)] == ''
     return ret
 
@@ -61,11 +63,12 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
     assert header == [col[0] for col in data_cols]
     data_cols = [col[1:] for col in data_cols]
 
-    ret = Types.ChangeSet()
-    ret.value_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])}
-    ret.value_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])}
-    ret.capacity_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[2])}
-    ret.capacity_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[3])}
+    ret = Types.ChangeSet(
+        value_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])},
+        value_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])},
+        capacity_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[2])},
+        capacity_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[3])},
+    )
     return ret
 
 
@@ -92,8 +95,18 @@ def xls_to_json(filename, sheet_name: str):
         c = assert_blank(raw_columns, c)
 
         # Repeating pattern of months and transitions with blanks between
+        bucketsInput = Types.BucketsInput(initial=initial)
+        bucketsFull = Types.BucketsFull(initial=initial)
         while True:
             c, month, month_data, transition_data = handle_month_and_transition(raw_columns, c)
+
+            # Month
+            bucketsFull.months[month] = month_data
+
+            # Transition
+            bucketsInput.transitions[month] = {'changes': transition_data.changes}
+            bucketsFull.transitions[month] = transition_data
+
             if c >= len(raw_columns): break # Last column won't exist to be blank, so exit early
             c = assert_blank(raw_columns, c)
     except Exception:
@@ -159,7 +172,6 @@ def handle_month_and_transition(raw_columns, c) -> tuple[int, Types.month, Types
 
 def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.MonthFull]:
     rows: list[tuple[str, ...]] = list(zip(*columns))
-    ret = Types.MonthFull()
     r = 0
 
     # First cell is the month itself
@@ -214,7 +226,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     r += 1
 
     # Then data and totals
-    ret.columns = {
+    ret_columns = {
         column_name: {
             cat:val for cat,val in zip(categories_plus_total, column[r:])
         }
@@ -235,7 +247,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     assert rows[r+1] == tuple(['']*10 + [key] + ['']*6)
     val = rows[r+2][10]
     assert rows[r+2] == tuple(['']*10 + [val] + ['']*6)
-    ret.intermediate = {key:val}
+    intermediate: dict[Literal["Slush After Crit"], str] = {key:val}
     r += 3
 
     # Blank row
@@ -253,20 +265,25 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
         ["Final"] + ['']*2
     )
     assert rows[r+1] == keys
-    ret.error_checks = {}
+    error_checks = {}
     for key, val in zip(keys, rows[r+2]):
         if key == '':
             assert val == ''
         else:
-            ret.error_checks[key] = val
+            error_checks[key] = val
     r += 3
+
+    ret = Types.MonthFull(
+        columns=ret_columns,
+        intermediate=intermediate,
+        error_checks=error_checks,
+    )
 
     return month, ret
 
 
 def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
     rows: list[tuple[str, ...]] = list(zip(*columns))
-    ret = Types.TransitionFull()
     r = 0
 
     # First row is blank
@@ -284,9 +301,9 @@ def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
     
     # Then data and totals (add one for header)
     data_cols = [column[r:r+1+len(categories_plus_total)] for column in columns]
-    ret.end_previous = make_ValueCapacityCritical(data_cols[:3])
-    ret.changes = make_ChangeSet(data_cols[3:-3])
-    ret.start_next = make_ValueCapacityCritical(data_cols[-3:])
+    end_previous = make_ValueCapacityCritical(data_cols[:3])
+    changes = make_ChangeSet(data_cols[3:-3])
+    start_next = make_ValueCapacityCritical(data_cols[-3:])
     r += 1+len(categories_plus_total)
 
     # Two blank rows
@@ -308,8 +325,15 @@ def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
     assert rows[r+1] == tuple(['']*8 + [key] + ['']*2)
     val = rows[r+2][8]
     assert rows[r+2] == tuple(['']*8 + [val] + ['']*2)
-    ret.error_checks = {key:val}
+    error_checks: dict[Literal['Total'], str] = {key:val}
     r += 3
+
+    ret = Types.TransitionFull(
+        end_previous=end_previous,
+        changes=changes,
+        start_next=start_next,
+        error_checks=error_checks,
+    )
 
     return ret
 
