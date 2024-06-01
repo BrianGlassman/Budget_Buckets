@@ -135,7 +135,7 @@
       "Internet": "0.00",
       "Housing - Other": "0.00",
       "Decoration": "0.00",
-      "401k": "0.00",
+      "401k": "-6500.00",
       "Retirement": "0.00",
       "Long-term": "0.00",
       "Unexpected Fund": "0.00",
@@ -148,7 +148,7 @@
       "Salary": "5616.04",
       "Income - Other": "5283.13",
       "CC Payments": "0.00",
-      "Internal Transfers": "-6500.00"
+      "Internal Transfers": "0.00"
     }
   }
 ]

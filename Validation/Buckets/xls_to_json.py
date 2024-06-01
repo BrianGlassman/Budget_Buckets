@@ -95,23 +95,28 @@ def xls_to_json(filename, sheet_name: str):
         c = assert_blank(raw_columns, c)
 
         # Repeating pattern of months and transitions with blanks between
-        bucketsInput = Types.BucketsInput(initial=initial)
-        bucketsFull = Types.BucketsFull(initial=initial)
+        data = Types.BucketsInput(initial=initial)
+        validation = Types.BucketsFull(initial=initial)
         while True:
             c, month, month_data, transition_data = handle_month_and_transition(raw_columns, c)
 
             # Month
-            bucketsFull.months[month] = month_data
+            validation.months[month] = month_data
 
             # Transition
-            bucketsInput.transitions[month] = {'changes': transition_data.changes}
-            bucketsFull.transitions[month] = transition_data
+            data.transitions[month] = {'changes': transition_data.changes}
+            validation.transitions[month] = transition_data
 
             if c >= len(raw_columns): break # Last column won't exist to be blank, so exit early
             c = assert_blank(raw_columns, c)
     except Exception:
         print(f"Failed with c = {c}")
         raise
+
+    # Save to file
+    base_filename = sheet_name.replace(' ', '_').lower()
+    save_to_file(data, base_filename + ".json")
+    save_to_file(validation, base_filename + "_validation.json")
 
 
 def handle_categories(raw_columns, c):
@@ -338,11 +343,11 @@ def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
     return ret
 
 
-def save_to_file(contents, filename):
+def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, filename):
     # Output to file
     outfile = os.path.join(os.path.dirname(__file__), filename)
     with safe_open(outfile, 'w') as f:
-        json.dump(contents, f, indent=2)
+        json.dump(contents.asdict(), f, indent=2)
     print("Export complete")
 
 

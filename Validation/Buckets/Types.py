@@ -1,6 +1,6 @@
 # General imports
 from typing import Literal, TypeVar
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from decimal import Decimal
 
 
@@ -49,6 +49,9 @@ class BucketsInput:
     def __init__(self, initial: ValueCapacityCritical):
         self.initial = initial
         self.transitions = {}
+    
+    def asdict(self):
+        return asdict(self)
 
 
 """VALIDATION / HANDLER OUTPUT"""
@@ -78,3 +81,6 @@ class BucketsFull:
         self.initial = initial
         self.months = {}
         self.transitions = {}
+    
+    def asdict(self):
+        return asdict(self)

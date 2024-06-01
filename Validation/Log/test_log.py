@@ -3,7 +3,6 @@ Validates the "Log" tabs in the Excel sheet
 """
 
 # General imports
-import json
 
 
 # Project imports
