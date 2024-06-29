@@ -17,7 +17,7 @@ def load_log_data():
         data = handle(_json.load(f))
     return data
 
-def laod_log_validation():
+def load_log_validation():
     with open(log_validation_path, 'r') as f:
         validation: list[LogItem] = _json.load(f)
     return validation

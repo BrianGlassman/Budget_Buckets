@@ -1,3 +1,7 @@
+"""
+Process the input data
+"""
+
 # General imports
 from copy import deepcopy
 from decimal import Decimal

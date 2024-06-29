@@ -10,10 +10,11 @@ import json
 # Project imports
 from BaseLib import utils
 from Validation.Log import load_log_data
-from Validation.Aggregate import handle_aggregate, aggregate_validation_path
+from Validation.Aggregate import aggregate_validation_path
 
 
 def load():
+    from .Handling import handle
     with open(aggregate_validation_path, 'r') as f:
         validation = json.load(f)
 
@@ -25,7 +26,7 @@ def load():
     ]
     
     log_data = load_log_data()
-    data = handle_aggregate(log_data, date_ranges)
+    data = handle(log_data, date_ranges)
     
     return data, validation
 

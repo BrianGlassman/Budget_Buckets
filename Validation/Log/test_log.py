@@ -6,12 +6,12 @@ Validates the "Log" tabs in the Excel sheet
 
 
 # Project imports
-from Validation.Log import load_log_data, laod_log_validation
+from Validation.Log import load_log_data, load_log_validation
 
 
 def load():
     data = load_log_data()
-    validation = laod_log_validation()
+    validation = load_log_validation()
     return data, validation
 
 def test_log_duplication():
