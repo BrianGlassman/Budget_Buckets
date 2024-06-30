@@ -21,8 +21,10 @@ def print_diff(data, validation):
 def test_aggregate_duplication():
     data, validation = load()
 
-    if data == validation:
+    if data != validation:
         print_diff(data, validation)
+        raise Exception("Validation Failed")
+    
     print("Validation complete")
 
 if __name__ == "__main__":
