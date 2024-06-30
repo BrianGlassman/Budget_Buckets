@@ -43,3 +43,6 @@ def test_log_duplication():
         raise Exception("Validation failed")
     
     print("Validation complete")
+
+if __name__ == "__main__":
+    test_log_duplication()
