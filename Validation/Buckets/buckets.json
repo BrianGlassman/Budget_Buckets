@@ -140,8 +140,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -175,8 +174,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -210,8 +208,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -245,8 +242,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -284,8 +314,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -319,8 +348,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -354,8 +382,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -389,8 +416,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -428,8 +488,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -463,8 +522,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -498,8 +556,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -533,8 +590,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "True",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "True",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -572,8 +662,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -607,8 +696,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -642,8 +730,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -677,8 +764,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -716,8 +836,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -751,8 +870,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -786,8 +904,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "0",
@@ -821,8 +938,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -860,8 +1010,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -895,8 +1044,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -930,8 +1078,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -965,8 +1112,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -1004,8 +1184,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -1039,8 +1218,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -1074,8 +1252,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -1109,8 +1286,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     },
@@ -1148,8 +1358,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "value_set": {
           "Car - Note": "",
@@ -1183,8 +1392,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_delta": {
           "Car - Note": "",
@@ -1218,8 +1426,7 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
         },
         "capacity_set": {
           "Car - Note": "",
@@ -1253,8 +1460,41 @@
           "Salary": "",
           "Income - Other": "",
           "CC Payments": "",
-          "Internal Transfers": "",
-          "total": ""
+          "Internal Transfers": ""
+        },
+        "crit_set": {
+          "Car - Note": "",
+          "Car/Rental Insurance": "",
+          "Car - Other": "",
+          "Car - Parking Pass": "",
+          "Self-improvement": "",
+          "Dates": "",
+          "Entertainment - Other": "",
+          "Games": "",
+          "Going out": "",
+          "Books": "",
+          "Big Fun": "",
+          "Groceries": "",
+          "Food - nice": "",
+          "Rent": "",
+          "Utilities": "",
+          "Internet": "",
+          "Housing - Other": "",
+          "Decoration": "",
+          "401k": "",
+          "Retirement": "",
+          "Long-term": "",
+          "Unexpected Fund": "",
+          "Medical - Other": "",
+          "Medical Insurance": "",
+          "ATM": "",
+          "Other - Other": "",
+          "Clothes/Personal care": "",
+          "Parental Funds": "",
+          "Salary": "",
+          "Income - Other": "",
+          "CC Payments": "",
+          "Internal Transfers": ""
         }
       }
     }

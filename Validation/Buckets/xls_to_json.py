@@ -63,11 +63,13 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
     assert header == [col[0] for col in data_cols]
     data_cols = [col[1:] for col in data_cols]
 
+    assert len(data_cols) == 5
     ret = Types.ChangeSet(
-        value_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])},
-        value_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])},
-        capacity_delta = {cat:val for cat,val in zip(categories_plus_total, data_cols[2])},
-        capacity_set = {cat:val for cat,val in zip(categories_plus_total, data_cols[3])},
+        value_delta = {cat:val for cat,val in zip(categories, data_cols[0])},
+        value_set = {cat:val for cat,val in zip(categories, data_cols[1])},
+        capacity_delta = {cat:val for cat,val in zip(categories, data_cols[2])},
+        capacity_set = {cat:val for cat,val in zip(categories, data_cols[3])},
+        crit_set= {cat:val for cat,val in zip(categories, data_cols[4])},
     )
     return ret
 
