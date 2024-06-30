@@ -8,16 +8,22 @@ from .Handling import Item as LogItem
 
 
 _basedir = _os.path.dirname(__file__)
-log_data_path = _os.path.join(_basedir, 'log_2024.json')
-log_validation_path = _os.path.join(_basedir, 'log_2024_validation.json')
+_years = ['2023', '2024']
+log_data_paths = [_os.path.join(_basedir, f'log_{year}.json') for year in _years]
+log_validation_paths = [_os.path.join(_basedir, f'log_{year}_validation.json') for year in _years]
 
 def load_log_data():
     from .Handling import handle
-    with open(log_data_path, 'r') as f:
-        data = handle(_json.load(f))
+    raw = []
+    for log_data_path in log_data_paths:
+        with open(log_data_path, 'r') as f:
+            raw.extend(_json.load(f))
+    data = handle(raw)
     return data
 
 def load_log_validation():
-    with open(log_validation_path, 'r') as f:
-        validation: list[LogItem] = _json.load(f)
+    validation: list[LogItem] = []
+    for log_validation_path in log_validation_paths:
+        with open(log_validation_path, 'r') as f:
+            validation.extend(_json.load(f))
     return validation

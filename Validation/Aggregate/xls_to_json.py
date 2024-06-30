@@ -26,7 +26,10 @@ def format_value(value) -> str:
         return str(value)
 
 
-def xls_to_json(filename, sheet_name: str):
+def xls_to_json(filename, sheet_name: str, log_start: str):
+    """
+    log_start: Cell C1, the first month of the logged period
+    """
     wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
     sheet = wb[sheet_name]
     assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
@@ -35,7 +38,7 @@ def xls_to_json(filename, sheet_name: str):
     
     # First line is meta-header
     # FIXME don't hard-code date
-    meta_header = ['Log Start', '', '1/1/2024']
+    meta_header = ['Log Start', '', log_start]
     meta_header += [''] * (len(raw_lines[0]) - len(meta_header))
     assert raw_lines[0] == meta_header
     print("Meta-header as-expected")
@@ -54,7 +57,8 @@ def xls_to_json(filename, sheet_name: str):
     assert totals_line[1] == 'Total'
     totals = {k:v for k,v in zip(categories, totals_line[2:-1])}
     grand_total = totals_line[-1]
-    assert float(grand_total) == sum(float(v) for v in totals.values())
+    # FIXME use money type
+    assert round(float(grand_total), 2) == round(sum(float(v) for v in totals.values()), 2)
     print("Totals line as-expected")
 
     # Remaining lines are data
@@ -99,5 +103,6 @@ def save_to_file(contents, filename):
 
 
 if __name__ == "__main__":
-    sheet_name = "Aggregate 2024"
-    xls_to_json("Budget_Buckets.xlsm", sheet_name)
+    for year, log_start in [('2023', '9/1/2023'), ('2024', '1/1/2024')]:
+        print(year)
+        xls_to_json("Budget_Buckets.xlsm", f"Aggregate {year}", log_start=log_start)

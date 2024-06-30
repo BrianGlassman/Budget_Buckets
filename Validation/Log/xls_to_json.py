@@ -114,5 +114,6 @@ def save_to_file(contents, filename):
 
 
 if __name__ == "__main__":
-    sheet_name = "Log 2024"
-    xls_to_json("Budget_Buckets.xlsm", sheet_name)
+    for year in ['2023', '2024']:
+        print(year)
+        xls_to_json("Budget_Buckets.xlsm", f"Log {year}")

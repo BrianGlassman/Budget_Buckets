@@ -7,7 +7,8 @@ from .Handling import handle as handle_aggregate
 
 
 _basedir = _os.path.dirname(__file__)
-aggregate_validation_path = _os.path.join(_basedir, 'aggregate_2024_validation.json')
+_years = ['2023', '2024']
+aggregate_validation_paths = [_os.path.join(_basedir, f'aggregate_{year}_validation.json') for year in _years]
 
 
 # Need validation (for now) to get the date ranges, so do loading in a weird way
@@ -19,8 +20,10 @@ def load_aggregate():
     from BaseLib import utils
     from Validation.Log import load_log_data
     from .Handling import handle
-    with open(aggregate_validation_path, 'r') as f:
-        validation = json.load(f)
+    validation = []
+    for aggregate_validation_path in aggregate_validation_paths:
+        with open(aggregate_validation_path, 'r') as f:
+            validation.extend(json.load(f))
 
     # Get the date ranges from validation
     # FIXME will these just always be months?

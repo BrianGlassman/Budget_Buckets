@@ -16,6 +16,7 @@ def handle(log_data, date_ranges):
     # Prep the aggregate with date ranges and 0 totals
     data: list[dict] = deepcopy(date_ranges)
     for item in data:
+        # FIXME use Money type
         item['data'] = {cat: Decimal('0.00') for cat in categories}
 
     # Aggregate the log data
@@ -25,6 +26,9 @@ def handle(log_data, date_ranges):
         for data_item in data:
             if data_item['start'] <= date <= data_item['end']:
                 data_item['data'][category] += Decimal(item['Final']['Amount'])
+                break
+        else:
+            raise RuntimeError(f"Couldn't find a date range to aggregate with: {item}")
 
     # Convert dates and amounts back to strings to match validation data
     for item in data:
