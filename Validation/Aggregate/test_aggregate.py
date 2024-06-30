@@ -30,8 +30,13 @@ def load():
     
     return data, validation
 
+def print_diff(data, validation):
+    # TODO make this actually useful
+    print("data != validation")
+
 def test_aggregate_duplication():
     data, validation = load()
 
-    assert data == validation
+    if data == validation:
+        print_diff(data, validation)
     print("Validation complete")

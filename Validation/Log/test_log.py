@@ -14,15 +14,6 @@ def load():
     validation = load_log_validation()
     return data, validation
 
-def test_log_duplication():
-    data, validation = load()
-
-    if data != validation:
-        print_diff(data, validation)
-        raise Exception("Validation failed")
-    
-    print("Validation complete")
-
 def print_diff(data, validation):
     """Print differences in a useful way"""
     found = False
@@ -43,3 +34,12 @@ def print_diff(data, validation):
         
         # Avoid console spam, just show the first problem
         if found: break
+
+def test_log_duplication():
+    data, validation = load()
+
+    if data != validation:
+        print_diff(data, validation)
+        raise Exception("Validation failed")
+    
+    print("Validation complete")
