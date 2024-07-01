@@ -8,12 +8,12 @@ from typing import Any
 
 
 # Project imports
-from CategoryList import categories
+from BaseLib.money import Money
 from Validation.Buckets import Types
 
 
-_column = Types.category_to_value[Types.money]
-_column_t = Types.category_with_total_to_value[Types.money]
+_column = Types.category_to_value[Money]
+_column_t = Types.category_with_total_to_value[Money]
 _crit_colum = Types.category_to_value[Types.is_critical]
 def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_colum, capacity: _column_t) -> Types.MonthFull:
     """
@@ -32,22 +32,18 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     capacity = remove_total(capacity)
     
     def add_columns(a: _column, b: _column) -> _column:
-        # TODO stop forcing money to be a float
         assert a.keys() == b.keys()
-        return {key: Types.money(float(a[key]) + float(b[key])) for key in a.keys()}
+        return {key: a[key] + b[key] for key in a.keys()}
     
     def subtract_columns(a: _column, b: _column) -> _column:
-        # TODO stop forcing money to be a float
         assert a.keys() == b.keys()
-        return {key: Types.money(float(a[key]) - float(b[key])) for key in a.keys()}
+        return {key: a[key] - b[key] for key in a.keys()}
 
     def scale_column(column: _column, scale: float) -> _column:
-        # TODO stop forcing money to be a float
-        return {key: Types.money(float(column[key]) * scale) for key in column.keys()}
+        return {key: Money.from_dollars(column[key].to_dollars() * scale) for key in column.keys()}
     
-    def sum_column(a: _column) -> Types.money:
-        # TODO stop forcing money to be a float
-        return Types.money(sum(float(v) for v in a.values()))
+    def sum_column(a: _column) -> Money:
+        return sum(a.values())
     
     def this_or_that(condition: _crit_colum, true_val, false_val) -> _column:
         """true_val and false_val can be columns or scalars"""
@@ -65,13 +61,12 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
         assert capacity.keys() == after_t.keys() == cap_diff.keys()
         vals = {}
         for i in capacity.keys():
-            # TODO stop forcing money to be a float
-            if float(after_t[i]) < 0:
+            if after_t[i] < 0:
                 # Negative bucket, immediately replenish from slush fund
                 vals[i] = after_t[i]
-            elif float(after_t[i]) > float(capacity[i]):
+            elif after_t[i] > capacity[i]:
                 # Bucket is over capacity, move excess to slush fund
-                vals[i] = Types.money(-float(cap_diff[i]))
+                vals[i] = -cap_diff[i]
             else:
                 # Do nothing
                 vals[i] = 0
@@ -92,21 +87,25 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     s_cap_diff: _column = subtract_columns(capacity, before_fill)
     # Use {is_crit} from arguments (see NOTE in compute_slush)
     # Amount needed to fill critical buckets to full
-    crit_to_fill: _column = this_or_that(is_crit, s_cap_diff, 0)
+    crit_to_fill: _column = this_or_that(is_crit, s_cap_diff, Money(0, 0))
     # Bucket values after refilling critical buckets
     crit_filled: _column = add_columns(before_fill, crit_to_fill)
     # Amount needed to fill non-critical buckets to full
-    nc_to_fill: _column = this_or_that(is_crit, 0, s_cap_diff)
+    nc_to_fill: _column = this_or_that(is_crit, Money(0, 0), s_cap_diff)
 
     # Intermediate value: remaining slush fund after filling critical buckets
-    # TODO stop forcing money to be a float
-    slush_after_crit = Types.money(round(float(sum_column(slush)) - float(sum_column(crit_to_fill)), 2))
+    slush_after_crit = sum_column(slush) - sum_column(crit_to_fill)
 
     # NC To Fill, but limited by slush fund
-    # TODO stop forcing money to be a float
-    # TODO once this actually uses money make sure the result is a float, not money-type
-    scale_ratio = float(slush_after_crit) / float(sum_column(nc_to_fill))
+    scale_ratio: float = slush_after_crit / sum_column(nc_to_fill)
     scaled: _column = scale_column(nc_to_fill, scale_ratio)
+
+    # TODO might be a better way of doing this?
+    # Because of rounding, there's sometimes a slight disagreement. Balance with Unexpected Fund
+    if (diff := (sum_column(scaled) - slush_after_crit)) != 0:
+        assert abs(diff.to_dollars()) < 0.05, f"Large difference encountered: {diff}"
+        scaled['Unexpected Fund'] -= diff
+
     # Bucket values after refilling non-critical buckets
     nc_filled: _column = add_columns(crit_filled, scaled)
     # Final bucket values
@@ -115,8 +114,7 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     unfilled: _column = subtract_columns(capacity, final)
     # Percentage filled (use 100% for capacity=0)
     # FIXME has a "total", but it's not actually just the sum. Also this is a percentage, not Money, so not really a _column type
-    # TODO stop forcing money to be a float
-    percent_filled = {key:(float(final[key]) / float(capacity[key]) if capacity[key] != '0' else 1) for key in capacity}
+    percent_filled = {key:(final[key] / capacity[key] if capacity[key] != 0 else 1) for key in capacity}
 
     def add_total(column: _column):
         """Adds the Total row"""
@@ -124,8 +122,8 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
         column['total'] = sum_column(column)
         return column
     
-    # TODO stop forcing money to be a float
-    percent_filled['total'] = round(float(sum_column(final)) / float(sum_column(capacity)), 2)
+    # TODO make sure this ends up matching the Validation format
+    percent_filled['total'] = round(sum_column(final) / sum_column(capacity), 2)
 
     columns = {
         'Start': add_total(start),
@@ -146,31 +144,30 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
         'Unfilled': add_total(unfilled),
         '% Filled': percent_filled,
     }
-    intermediate: dict[Any, Types.money] = {
+    intermediate: dict[Any, Money] = {
         'Slush After Crit': slush_after_crit
     }
-    # TODO stop forcing money to be a float
     error_checks = {
-        "Available": "ERROR: Underwater" if float(sum_column(start)) < 0 else "good",
+        "Available": "ERROR: Underwater" if sum_column(start) < 0 else "good",
         "Internal": "ERROR: Unbalanced internal transfers" if (
-            float(transactions['CC Payments']) != 0
+            transactions['CC Payments'] != 0
             or
-            float(transactions['Internal Transfers'])
+            transactions['Internal Transfers'] != 0
         ) else "good",
-        "Slush": "ERROR: No slush fund" if float(sum_column(slush)) < 0 else "good",
+        "Slush": "ERROR: No slush fund" if sum_column(slush) < 0 else "good",
         "Crit To Fill": "ERROR: Can't refill critical buckets" if (
-            float(sum_column(crit_to_fill)) > float(sum_column(slush))
+            sum_column(crit_to_fill) > sum_column(slush)
         ) else "good",
-        "Slush After Crit": "ERROR: Can't refill non-critical buckets" if float(slush_after_crit) < 0 else "good",
-        "NC To Fill": "ERROR: Unused slush funds" if float(sum_column(nc_to_fill)) < float(slush_after_crit) else "good",
-        "Scaled to Fill": "ERROR: Scaled doesn't match slush fund" if float(sum_column(scaled)) != float(slush_after_crit) else "good",
-        "Final": "ERROR: Refilling changed the total" if float(sum_column(final)) != float(sum_column(after_t)) else "good"
+        "Slush After Crit": "ERROR: Can't refill non-critical buckets" if slush_after_crit < 0 else "good",
+        "NC To Fill": "ERROR: Unused slush funds" if sum_column(nc_to_fill) < slush_after_crit else "good",
+        "Scaled to Fill": "ERROR: Scaled doesn't match slush fund" if sum_column(scaled) != slush_after_crit else "good",
+        "Final": "ERROR: Refilling changed the total" if sum_column(final) != sum_column(after_t) else "good"
     }
     return Types.MonthFull(columns=columns, intermediate=intermediate, error_checks=error_checks)
 
 def handle(aggregate_data: list[dict], data: dict[str, Any]) -> Types.BucketsFull:
     # Reformat aggregate for easier reference
-    transaction_lookup: dict[Types.month, Types.category_to_value[Types.money]]
+    transaction_lookup: dict[Types.month, Types.category_to_value[Money]]
     transaction_lookup = {item['start']:item['data'] for item in aggregate_data}
 
     # Initial - unchanged between Input and Full
@@ -237,12 +234,8 @@ def handle(aggregate_data: list[dict], data: dict[str, Any]) -> Types.BucketsFul
                     is_critical=is_crit,
                 )
             start_next = generate_start_next(end_previous, changes)
-            [float(v) for v in start_next.value.values()]
             error_checks: dict[Any, Types.error_check] = {'Total': 'ERROR: Totals changed' if (
-                    # TODO stop forcing money to be a float
-                    sum(float(v) for v in end_previous.value.values())
-                    !=
-                    sum(float(v) for v in start_next.value.values())
+                    sum(end_previous.value.values()) != sum(start_next.value.values())
                 ) else 'good'}
             transitions[month] = transition_obj = Types.TransitionFull(
                 end_previous=end_previous,

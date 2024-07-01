@@ -1,14 +1,15 @@
 # General imports
 from typing import Literal, TypeVar
 from dataclasses import dataclass, asdict as dataclass_to_dict
-from decimal import Decimal # Commented out while money is a string
+
+
+# Project imports
+from BaseLib.money import Money
 
 
 """Type definitions"""
 category = str
 category_with_total = category | Literal["total"]
-# money = Decimal
-money = str
 is_critical = bool
 # error_check = bool
 error_check = str
@@ -34,15 +35,15 @@ category_to_value = dict[category, T]
 category_with_total_to_value = dict[category_with_total, T]
 @dataclass
 class ValueCapacityCritical:
-    value: category_with_total_to_value[money]
-    capacity: category_with_total_to_value[money]
+    value: category_with_total_to_value[Money]
+    capacity: category_with_total_to_value[Money]
     is_critical: category_to_value[is_critical]
 @dataclass
 class ChangeSet:
-    value_delta: category_to_value[money | None]
-    value_set: category_to_value[money | None]
-    capacity_delta: category_to_value[money | None]
-    capacity_set: category_to_value[money | None]
+    value_delta: category_to_value[Money | None]
+    value_set: category_to_value[Money | None]
+    capacity_delta: category_to_value[Money | None]
+    capacity_set: category_to_value[Money | None]
     crit_set: category_to_value[is_critical | None]
 
     def get_row(self, key: category):
@@ -75,8 +76,8 @@ class BucketsInput:
 """VALIDATION / HANDLER OUTPUT"""
 @dataclass
 class MonthFull:
-    columns: dict[str, category_with_total_to_value[money]]
-    intermediate: dict[Literal["Slush After Crit"], money]
+    columns: dict[str, category_with_total_to_value[Money]]
+    intermediate: dict[Literal["Slush After Crit"], Money]
     error_checks: dict[str, error_check]
 @dataclass
 class TransitionFull:
@@ -93,7 +94,7 @@ class BucketsFull:
     initial: ValueCapacityCritical
     months: dict[month, MonthFull]
     transitions: dict[month, TransitionFull]
-    '''Key is preceding month'''
+    """Key is preceding month"""
 
     def __init__(self, initial: ValueCapacityCritical, *, months=None, transitions=None):
         self.initial = initial

@@ -3,13 +3,13 @@ import datetime
 import openpyxl
 import openpyxl.worksheet._read_only
 import os
-import json
 from typing import Literal
 
 
 # Project imports
 from CategoryList import categories
-from BaseLib.utils import unparse_date, safe_open
+from BaseLib.utils import unparse_date, json_dump
+from BaseLib.money import Money
 from . import Types
 
 
@@ -43,8 +43,8 @@ def make_ValueCapacityCritical(data_cols: list[tuple[str, ...]]) -> Types.ValueC
     data_cols = [col[1:] for col in data_cols]
 
     ret = Types.ValueCapacityCritical(
-        value = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])},
-        capacity = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])},
+        value = {cat:Money.from_dollars(val) for cat,val in zip(categories_plus_total, data_cols[0])},
+        capacity = {cat:Money.from_dollars(val) for cat,val in zip(categories_plus_total, data_cols[1])},
         is_critical = {cat:Types.to_is_critical(val) for cat,val in zip(categories, data_cols[2])},
     )
     assert data_cols[2][len(categories)] == ''
@@ -65,10 +65,10 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
 
     assert len(data_cols) == 5
     ret = Types.ChangeSet(
-        value_delta = {cat:val for cat,val in zip(categories, data_cols[0]) if val},
-        value_set = {cat:val for cat,val in zip(categories, data_cols[1]) if val},
-        capacity_delta = {cat:val for cat,val in zip(categories, data_cols[2]) if val},
-        capacity_set = {cat:val for cat,val in zip(categories, data_cols[3]) if val},
+        value_delta = {cat:Money.from_dollars(val) for cat,val in zip(categories, data_cols[0]) if val},
+        value_set = {cat:Money.from_dollars(val) for cat,val in zip(categories, data_cols[1]) if val},
+        capacity_delta = {cat:Money.from_dollars(val) for cat,val in zip(categories, data_cols[2]) if val},
+        capacity_set = {cat:Money.from_dollars(val) for cat,val in zip(categories, data_cols[3]) if val},
         crit_set= {cat:Types.to_is_critical(val) for cat,val in zip(categories, data_cols[4]) if val},
     )
     return ret
@@ -233,12 +233,16 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     r += 1
 
     # Then data and totals
-    ret_columns = {
-        column_name: {
-            cat:val for cat,val in zip(categories_plus_total, column[r:])
-        }
-        for column_name, column in zip(header, columns)
-    }
+    ret_columns = {}
+    for column_name, column in zip(header, columns):
+        if column_name =='Is Crit':
+            ret_columns[column_name] = {cat:val for cat,val in zip(categories, column[r:])}
+        elif column_name == '% Filled':
+            ret_columns[column_name] = {cat:val for cat,val in zip(categories, column[r:])}
+        else: # Money column
+            ret_columns[column_name] = {
+                cat:Money.from_dollars(val) for cat,val in zip(categories_plus_total, column[r:]) if val
+            }
     r += len(categories_plus_total)
 
     # Two blank rows
@@ -254,12 +258,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     assert rows[r+1] == tuple(['']*10 + [key] + ['']*6)
     val = rows[r+2][10]
     assert rows[r+2] == tuple(['']*10 + [val] + ['']*6)
-    # FIXME let Money type handle this
-    intermediate: dict[Literal["Slush After Crit"], str] = {key:Types.money(
-        round(
-            float(val),
-        2)
-    )}
+    intermediate: dict[Literal["Slush After Crit"], Money] = {key:Money.from_dollars(val)}
     r += 3
 
     # Blank row
@@ -353,8 +352,7 @@ def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
 def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, filename):
     # Output to file
     outfile = os.path.join(os.path.dirname(__file__), filename)
-    with safe_open(outfile, 'w') as f:
-        json.dump(contents.asdict(), f, indent=2)
+    json_dump(outfile, contents.asdict(), 2)
     print("Export complete")
 
 

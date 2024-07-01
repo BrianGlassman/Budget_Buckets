@@ -48,8 +48,9 @@ class Money:
     def to_dollars(self):
         return round(self.value / 100, 2)
     
-    # Math operators
+    # Math operators (binary)
     def _prep(self, value):
+        """Ensure value is a Money object (convert if zero)"""
         if isinstance(value, Money):
             return value
         elif value == 0:
@@ -63,14 +64,22 @@ class Money:
     def __sub__(self, value):
         value = self._prep(value)
         return Money.from_cents(self.value - value.value)
+    def __truediv__(self, value) -> float:
+        value = self._prep(value)
+        return self.value / value.value
+    def __mul__(self, value) -> int:
+        value = self._prep(value)
+        return self.value * value.value
+    # Math operators (unary)
+    def __neg__(self):
+        return Money.from_cents(-self.value)
     
     # Comparison operators
     def __lt__(self, value) -> bool:
-        assert isinstance(value, Money)
+        value = self._prep(value)
         return self.value.__lt__(value.value)
     def __eq__(self, value: object) -> bool:
-        if not isinstance(value, Money):
-            return False
+        value = self._prep(value)
         return self.value.__eq__(value.value)
 
     def pretty_str(self):
