@@ -29,8 +29,9 @@ def print_diff(data, validation):
             # Find mismatched values
             for k in v.keys():
                 if d[k] != v[k]:
+                    print(f"d[{k}]={d[k]}\n!=\nv[{k}]={v[k]}")
                     found = True
-                    print(f"{d[k]=} != {v[k]=}")
+                    break
         
         # Avoid console spam, just show the first problem
         if found: break

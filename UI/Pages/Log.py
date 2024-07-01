@@ -11,7 +11,6 @@ from typing import Any
 
 
 # Project imports
-from BaseLib.utils import format_money
 from CategoryList import categories
 categories = [c.lower() for c in categories] # I got some capitalization wrong when making the log
 
@@ -117,6 +116,7 @@ def format_data(data: list[dict]):
                 v = v.strftime('%#m/%#d/%Y') # Note: may have to be "#" on Windows and "-" on Unix
             # floats to amounts (Amount_i and Amount_o are formatted differently than Amount)
             elif k == 'Amount':
+                raise NotImplementedError("replace this line")
                 v = format_money(v)
             elif k in ('Amount_i', 'Amount_o'):
                 v = str(v) if v % 1 != 0 else f"{v:.0f}"

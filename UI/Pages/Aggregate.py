@@ -11,7 +11,6 @@ from functools import partial
 
 # Project imports
 from CategoryList import categories
-from BaseLib.utils import money_equal
 
 
 # Styling
@@ -80,6 +79,7 @@ def load_validation():
         end = line[1]
         vals = {k:v for k,v in zip(categories, line[2:-1])}
         total = line[-1]
+        raise NotImplementedError("replace this line")
         assert money_equal(float(total), sum(float(v) for v in vals.values()))
         data[(start, end)] = vals
     

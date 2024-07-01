@@ -1,19 +1,19 @@
 # General imports
-from decimal import Decimal
 import datetime
 import openpyxl
 import openpyxl.worksheet._read_only
 import os
-import json
 
 
 # Project imports
 from CategoryList import categories
-from BaseLib.utils import unparse_date, safe_open
+from BaseLib.money import Money
+from BaseLib.utils import unparse_date, json_dump
 
 
 # Typing
-Item = dict[str, dict[str, str]]
+Item = dict[str, dict[str, str | Money]]
+Category = str
 
 
 def format_value(value) -> str:
@@ -77,17 +77,12 @@ def handle_data(raw_lines: list, validation: bool):
     for raw_line in raw_lines[2:-1]:
         item = {}
         item['start'], item['end'] = raw_line[0:2]
-        vals = {}
-        for k,v in zip(categories, raw_line[2:-1]):
+        vals: dict[Category, Money] = {}
+        for category, amount in zip(categories, raw_line[2:-1]):
             # Enforce consistent amount formatting
-            v = v.replace('$', '').replace(',', '')
-            if v == '':
-                assert k == 'Override'
-            else:
-                v = str(Decimal(v).quantize(Decimal('0.01')))
-            vals[k] = v
-        total = Decimal(raw_line[-1]).quantize(Decimal('0.01'))
-        assert total == sum(Decimal(v) for v in vals.values())
+            vals[category] = Money.from_dollars(amount)
+        total = Money.from_dollars(raw_line[-1])
+        assert total == sum(vals.values())
         item['data'] = vals
         data.append(item)
     print("Data parsing complete")
@@ -97,8 +92,7 @@ def handle_data(raw_lines: list, validation: bool):
 def save_to_file(contents, filename):
     # Output to file
     outfile = os.path.join(os.path.dirname(__file__), filename)
-    with safe_open(outfile, 'w') as f:
-        json.dump(contents, f, indent=2)
+    json_dump(outfile, contents, 2)
     print("Export complete")
 
 

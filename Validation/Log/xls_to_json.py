@@ -1,19 +1,18 @@
 # General imports
-from decimal import Decimal
 import datetime
 import openpyxl
 import openpyxl.worksheet._read_only
 import os
-import json
 
 
 # Project imports
 from CategoryList import categories
-from BaseLib.utils import unparse_date, safe_open
+from BaseLib.money import Money
+from BaseLib.utils import unparse_date, json_dump
 
 
 # Typing
-Item = dict[str, dict[str, str]]
+Item = dict[str, dict[str, str | Money | None]]
 
 
 def format_value(value) -> str:
@@ -85,15 +84,17 @@ def handle_data(raw_lines: list, section_header_template, validation: bool):
         for key in ['Imported', 'Override', 'Final']:
             if key not in item: continue
             amount = item[key]['Amount']
-            amount = amount.replace('$', '').replace(',', '')
+            assert isinstance(amount, str)
             if amount == '':
                 assert key == 'Override'
+                amount = None
             else:
-                amount = str(Decimal(amount).quantize(Decimal('0.01')))
+                amount = Money.from_dollars(amount)
             item[key]['Amount'] = amount
         
         # Enforce consistent category capitalization
         category = item['My Category']['My Category']
+        assert isinstance(category, str)
         for cat in categories:
             if category.lower() == cat.lower() and category != cat:
                 # Same category, just wrong capitalization
@@ -108,8 +109,7 @@ def handle_data(raw_lines: list, section_header_template, validation: bool):
 def save_to_file(contents, filename):
     # Output to file
     outfile = os.path.join(os.path.dirname(__file__), filename)
-    with safe_open(outfile, 'w') as f:
-        json.dump(contents, f, indent=2)
+    json_dump(outfile, contents, 2)
     print("Export complete")
 
 

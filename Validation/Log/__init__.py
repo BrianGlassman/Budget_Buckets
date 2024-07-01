@@ -1,9 +1,9 @@
 # General imports
 import os as _os
-import json as _json
 
 
 # Project imports
+from BaseLib.utils import json_load
 from .Handling import Item as LogItem
 
 
@@ -16,14 +16,12 @@ def load_log_data():
     from .Handling import handle
     raw = []
     for log_data_path in log_data_paths:
-        with open(log_data_path, 'r') as f:
-            raw.extend(_json.load(f))
+        raw.extend(json_load(log_data_path))
     data = handle(raw)
     return data
 
 def load_log_validation():
     validation: list[LogItem] = []
     for log_validation_path in log_validation_paths:
-        with open(log_validation_path, 'r') as f:
-            validation.extend(_json.load(f))
+        validation.extend(json_load(log_validation_path))
     return validation

@@ -1,4 +1,9 @@
-import datetime
+# General imports
+import datetime as _datetime
+import json as _json
+
+# Project imports
+from .money import MoneyEncoder, MoneyDecoder
 
 
 def safe_open(*args, **kwargs):
@@ -8,20 +13,23 @@ def safe_open(*args, **kwargs):
     return open(*args, **kwargs)
 
 
-def money_equal(v1, v2):
-    """Compare two money values"""
-    return round(v1, 2) == round(v2, 2)
+def json_dump(outfile: str, contents, indent: int|None = None):
+    """Sugar syntax for JSON dump using safe_open and MoneyEncoder"""
+    with safe_open(outfile, 'w') as f:
+        _json.dump(contents, f, indent=indent, cls=MoneyEncoder)
 
 
-def format_money(val: str) -> str:
-    """Copy Excel's money formatting"""
-    return "${:,.2f}".format(float(val)).replace('$-', '-$')
+def json_load(infile: str):
+    """Sugar syntax for JSON load using safe_open and MoneyDecoder"""
+    with safe_open(infile, 'r') as f:
+        ret = _json.load(f, cls=MoneyDecoder)
+    return ret
 
 
-def parse_date(date_str) -> datetime.date:
-    return datetime.datetime.strptime(date_str, '%m/%d/%Y').date()
+def parse_date(date_str) -> _datetime.date:
+    return _datetime.datetime.strptime(date_str, '%m/%d/%Y').date()
 
-def unparse_date(date: datetime.date) -> str:
+def unparse_date(date: _datetime.date) -> str:
     # Can't just use strftime because it includes leading zeroes
     # Can remove leading zeroes using "-" (Unix) or "#" (Windows), but this way is more portable
     return f'{date.month}/{date.day}/{date.year}'

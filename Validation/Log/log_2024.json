@@ -5,7 +5,7 @@
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
-      "Amount": "5616.04",
+      "Amount": "$5,616.04",
       "Status": "Posted"
     },
     "Account": {
@@ -16,7 +16,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -32,7 +32,7 @@
       "Description": "Xcel Energy",
       "Original Description": "XCEL ENERGY-PSCO XCELENERGY ***********6821",
       "Category": "Utilities",
-      "Amount": "-33.89",
+      "Amount": "-$33.89",
       "Status": "Posted"
     },
     "Account": {
@@ -43,7 +43,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -59,7 +59,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-73.26",
+      "Amount": "-$73.26",
       "Status": "Posted"
     },
     "Account": {
@@ -70,7 +70,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -86,7 +86,7 @@
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
-      "Amount": "0.13",
+      "Amount": "$0.13",
       "Status": "Posted"
     },
     "Account": {
@@ -97,7 +97,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -113,7 +113,7 @@
       "Description": "Babajoon's Kabobs & More",
       "Original Description": "BABAJOON`S KABOBS & MORE WESTMINSTER  CO",
       "Category": "Restaurants",
-      "Amount": "-26.79",
+      "Amount": "-$26.79",
       "Status": "Posted"
     },
     "Account": {
@@ -124,7 +124,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -140,7 +140,7 @@
       "Description": "Snarf's",
       "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
       "Category": "Fast Food",
-      "Amount": "-20.06",
+      "Amount": "-$20.06",
       "Status": "Posted"
     },
     "Account": {
@@ -151,7 +151,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -167,7 +167,7 @@
       "Description": "Pho Fusion Asian",
       "Original Description": "PHO FUSION ASIAN         DENVER       CO",
       "Category": "Food & Dining",
-      "Amount": "-27.17",
+      "Amount": "-$27.17",
       "Status": "Posted"
     },
     "Account": {
@@ -178,7 +178,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -194,7 +194,7 @@
       "Description": "Cosmos Pizza Federal",
       "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
       "Category": "Food & Dining",
-      "Amount": "-34.14",
+      "Amount": "-$34.14",
       "Status": "Posted"
     },
     "Account": {
@@ -205,7 +205,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -221,7 +221,7 @@
       "Description": "Federal Tax Refund",
       "Original Description": "IRS  TREAS 310     TAX REF  ***********0918",
       "Category": "Federal Tax",
-      "Amount": "3934.00",
+      "Amount": "$3,934.00",
       "Status": "Posted"
     },
     "Account": {
@@ -232,7 +232,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -248,7 +248,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0657 FUEL QWHEAT RIDGE  CO",
       "Category": "Gas",
-      "Amount": "-32.19",
+      "Amount": "-$32.19",
       "Status": "Posted"
     },
     "Account": {
@@ -259,7 +259,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -275,7 +275,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-139.77",
+      "Amount": "-$139.77",
       "Status": "Posted"
     },
     "Account": {
@@ -286,7 +286,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -302,7 +302,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.00",
+      "Amount": "-$2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -313,7 +313,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -329,7 +329,7 @@
       "Description": "State of Colorado",
       "Original Description": "CO DEPT REVENUE  COSTTAXRFD ***********7107",
       "Category": "State Tax",
-      "Amount": "1349.00",
+      "Amount": "$1,349.00",
       "Status": "Posted"
     },
     "Account": {
@@ -340,7 +340,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -356,7 +356,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
       "Category": "Credit Card Payment",
-      "Amount": "-652.29",
+      "Amount": "-$652.29",
       "Status": "Posted"
     },
     "Account": {
@@ -367,7 +367,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -383,7 +383,7 @@
       "Description": "CVS",
       "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
       "Category": "Pharmacy",
-      "Amount": "-47.31",
+      "Amount": "-$47.31",
       "Status": "Posted"
     },
     "Account": {
@@ -394,7 +394,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -410,7 +410,7 @@
       "Description": "Steam",
       "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
       "Category": "Entertainment",
-      "Amount": "-18.18",
+      "Amount": "-$18.18",
       "Status": "Posted"
     },
     "Account": {
@@ -421,7 +421,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -437,7 +437,7 @@
       "Description": "Credit Card Payment",
       "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
       "Category": "Credit Card Payment",
-      "Amount": "652.29",
+      "Amount": "$652.29",
       "Status": "Posted"
     },
     "Account": {
@@ -448,7 +448,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -464,7 +464,7 @@
       "Description": "CVS",
       "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
       "Category": "Pharmacy",
-      "Amount": "-37.83",
+      "Amount": "-$37.83",
       "Status": "Posted"
     },
     "Account": {
@@ -475,7 +475,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -491,7 +491,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.00",
+      "Amount": "-$500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -502,7 +502,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -518,7 +518,7 @@
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
-      "Amount": "-189.69",
+      "Amount": "-$189.69",
       "Status": "Posted"
     },
     "Account": {
@@ -529,7 +529,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -545,7 +545,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.90",
+      "Amount": "-$11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -556,7 +556,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -572,7 +572,7 @@
       "Description": "Amazon Prime Membership",
       "Original Description": "AMAZON PRIME*EP9AT3V53   888-802-3080 WA",
       "Category": "Shopping",
-      "Amount": "-10.81",
+      "Amount": "-$10.81",
       "Status": "Posted"
     },
     "Account": {
@@ -583,7 +583,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -599,7 +599,7 @@
       "Description": "Fidelity",
       "Original Description": "FID BKG SVC LLC  MONEYLINE  ***********VNNL",
       "Category": "Investments",
-      "Amount": "-6500.00",
+      "Amount": "-$6,500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -610,7 +610,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -626,7 +626,7 @@
       "Description": "Great Clips",
       "Original Description": "0415 GREAT CLIPS AT 44TH DENVER       CO",
       "Category": "Hair",
-      "Amount": "-34.00",
+      "Amount": "-$34.00",
       "Status": "Posted"
     },
     "Account": {
@@ -637,7 +637,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -653,7 +653,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.00",
+      "Amount": "-$30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -664,7 +664,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -680,7 +680,7 @@
       "Description": "Post Oak Bbq",
       "Original Description": "TST* POST OAK BBQ        DENVER       CO",
       "Category": "Restaurants",
-      "Amount": "-14.67",
+      "Amount": "-$14.67",
       "Status": "Posted"
     },
     "Account": {
@@ -691,7 +691,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -707,7 +707,7 @@
       "Description": "Safeway",
       "Original Description": "SAFEWAY #0244            DENVER       CO",
       "Category": "Groceries",
-      "Amount": "-155.44",
+      "Amount": "-$155.44",
       "Status": "Posted"
     },
     "Account": {
@@ -718,7 +718,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -734,7 +734,7 @@
       "Description": "Archery Games Denver",
       "Original Description": "ARCHERY GAMES DENVER     303-3054531  CO",
       "Category": "Sporting Goods",
-      "Amount": "-31.20",
+      "Amount": "-$31.20",
       "Status": "Posted"
     },
     "Account": {
@@ -745,7 +745,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -761,7 +761,7 @@
       "Description": "Bakery Four",
       "Original Description": "TST* BAKERY FOUR         DENVER       CO",
       "Category": "Food & Dining",
-      "Amount": "-10.87",
+      "Amount": "-$10.87",
       "Status": "Posted"
     },
     "Account": {
@@ -772,7 +772,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -788,7 +788,7 @@
       "Description": "CVS",
       "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
       "Category": "Pharmacy",
-      "Amount": "-24.01",
+      "Amount": "-$24.01",
       "Status": "Posted"
     },
     "Account": {
@@ -799,7 +799,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -815,7 +815,7 @@
       "Description": "Sweetgreen",
       "Original Description": "SWEETGREEN TENNYSON      DENVER       CO",
       "Category": "Restaurants",
-      "Amount": "-16.57",
+      "Amount": "-$16.57",
       "Status": "Posted"
     },
     "Account": {
@@ -826,7 +826,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -842,7 +842,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.00",
+      "Amount": "-$35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -853,7 +853,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -869,7 +869,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********TJ1G",
       "Category": "Uncategorized",
-      "Amount": "-2060.04",
+      "Amount": "-$2,060.04",
       "Status": "Posted"
     },
     "Account": {
@@ -880,7 +880,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -896,7 +896,7 @@
       "Description": "The Pasty Republic Denver",
       "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
       "Category": "Fast Food",
-      "Amount": "-11.87",
+      "Amount": "-$11.87",
       "Status": "Posted"
     },
     "Account": {
@@ -907,7 +907,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -923,7 +923,7 @@
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
-      "Amount": "5616.04",
+      "Amount": "$5,616.04",
       "Status": "Posted"
     },
     "Account": {
@@ -934,7 +934,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -950,7 +950,7 @@
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
-      "Amount": "0.12",
+      "Amount": "$0.12",
       "Status": "Posted"
     },
     "Account": {
@@ -961,7 +961,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -977,7 +977,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-26.47",
+      "Amount": "-$26.47",
       "Status": "Posted"
     },
     "Account": {
@@ -988,7 +988,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1004,7 +1004,7 @@
       "Description": "Qdoba",
       "Original Description": "QDOBA 2063               WESTMINSTER  CA",
       "Category": "Fast Food",
-      "Amount": "-12.16",
+      "Amount": "-$12.16",
       "Status": "Posted"
     },
     "Account": {
@@ -1015,7 +1015,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1031,7 +1031,7 @@
       "Description": "Steam",
       "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
       "Category": "Entertainment",
-      "Amount": "-14.60",
+      "Amount": "-$14.60",
       "Status": "Posted"
     },
     "Account": {
@@ -1042,7 +1042,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1058,7 +1058,7 @@
       "Description": "I Hop Ipa",
       "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
       "Category": "Business Services",
-      "Amount": "-11.65",
+      "Amount": "-$11.65",
       "Status": "Posted"
     },
     "Account": {
@@ -1069,7 +1069,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1085,7 +1085,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.00",
+      "Amount": "-$2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1096,7 +1096,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1112,7 +1112,7 @@
       "Description": "Ah Mychart Medepay",
       "Original Description": "AH MYCHART MEDEPAY       855-2412455  FL",
       "Category": "Doctor",
-      "Amount": "-70.00",
+      "Amount": "-$70.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1123,7 +1123,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1139,7 +1139,7 @@
       "Description": "Steam",
       "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
       "Category": "Entertainment",
-      "Amount": "-20.29",
+      "Amount": "-$20.29",
       "Status": "Posted"
     },
     "Account": {
@@ -1150,7 +1150,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1166,7 +1166,7 @@
       "Description": "Steam",
       "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
       "Category": "Entertainment",
-      "Amount": "-12.98",
+      "Amount": "-$12.98",
       "Status": "Posted"
     },
     "Account": {
@@ -1177,7 +1177,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1193,7 +1193,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
       "Category": "Credit Card Payment",
-      "Amount": "-114.23",
+      "Amount": "-$114.23",
       "Status": "Posted"
     },
     "Account": {
@@ -1204,7 +1204,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1220,7 +1220,7 @@
       "Description": "Credit Card Payment",
       "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
       "Category": "Credit Card Payment",
-      "Amount": "114.23",
+      "Amount": "$114.23",
       "Status": "Posted"
     },
     "Account": {
@@ -1231,7 +1231,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1247,7 +1247,7 @@
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
-      "Amount": "-190.19",
+      "Amount": "-$190.19",
       "Status": "Posted"
     },
     "Account": {
@@ -1258,7 +1258,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1274,7 +1274,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.00",
+      "Amount": "-$500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1285,7 +1285,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1301,7 +1301,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.90",
+      "Amount": "-$11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -1312,7 +1312,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1328,7 +1328,7 @@
       "Description": "Tokyo Teriyaki",
       "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
       "Category": "Restaurants",
-      "Amount": "-19.58",
+      "Amount": "-$19.58",
       "Status": "Posted"
     },
     "Account": {
@@ -1339,7 +1339,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1355,7 +1355,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-87.45",
+      "Amount": "-$87.45",
       "Status": "Posted"
     },
     "Account": {
@@ -1366,7 +1366,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1382,7 +1382,7 @@
       "Description": "The Grateful Gnome",
       "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
       "Category": "Alcohol & Bars",
-      "Amount": "-15.70",
+      "Amount": "-$15.70",
       "Status": "Posted"
     },
     "Account": {
@@ -1393,7 +1393,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1409,7 +1409,7 @@
       "Description": "Cornerstoneapart Web Lyf",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1LYF",
       "Category": "Uncategorized",
-      "Amount": "-229.83",
+      "Amount": "-$229.83",
       "Status": "Posted"
     },
     "Account": {
@@ -1420,7 +1420,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1436,7 +1436,7 @@
       "Description": "Cosmos Pizza Federal",
       "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
       "Category": "Food & Dining",
-      "Amount": "-32.14",
+      "Amount": "-$32.14",
       "Status": "Posted"
     },
     "Account": {
@@ -1447,7 +1447,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1463,7 +1463,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.00",
+      "Amount": "-$30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1474,7 +1474,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1490,7 +1490,7 @@
       "Description": "Conoco",
       "Original Description": "CONOCO - SEI 25325       WESTMINSTER  CO",
       "Category": "Gas",
-      "Amount": "-26.36",
+      "Amount": "-$26.36",
       "Status": "Posted"
     },
     "Account": {
@@ -1501,7 +1501,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1517,7 +1517,7 @@
       "Description": "Jersey Mike's Subs",
       "Original Description": "JERSEY MIKES 22003       WESTMINSTER  CO",
       "Category": "Fast Food",
-      "Amount": "-12.67",
+      "Amount": "-$12.67",
       "Status": "Posted"
     },
     "Account": {
@@ -1528,7 +1528,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1544,7 +1544,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********0WVF",
       "Category": "Uncategorized",
-      "Amount": "-1945.00",
+      "Amount": "-$1,945.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1555,7 +1555,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1571,7 +1571,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.00",
+      "Amount": "-$35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1582,7 +1582,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1598,7 +1598,7 @@
       "Description": "Flower Child",
       "Original Description": "FLOWER CHILD BOULDER     BOULDER      CO",
       "Category": "Restaurants",
-      "Amount": "-21.69",
+      "Amount": "-$21.69",
       "Status": "Posted"
     },
     "Account": {
@@ -1609,7 +1609,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1625,7 +1625,7 @@
       "Description": "Gleam Car Wash",
       "Original Description": "GLEAM CAR WASH           DENVER       CO",
       "Category": "Service & Parts",
-      "Amount": "-24.20",
+      "Amount": "-$24.20",
       "Status": "Posted"
     },
     "Account": {
@@ -1636,7 +1636,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1652,7 +1652,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-143.41",
+      "Amount": "-$143.41",
       "Status": "Posted"
     },
     "Account": {
@@ -1663,7 +1663,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1679,7 +1679,7 @@
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
-      "Amount": "5616.04",
+      "Amount": "$5,616.04",
       "Status": "Posted"
     },
     "Account": {
@@ -1690,7 +1690,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1706,7 +1706,7 @@
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
-      "Amount": "0.10",
+      "Amount": "$0.10",
       "Status": "Posted"
     },
     "Account": {
@@ -1717,7 +1717,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1733,7 +1733,7 @@
       "Description": "Qdoba",
       "Original Description": "QDOBA 2063               WESTMINSTER  CA",
       "Category": "Fast Food",
-      "Amount": "-14.53",
+      "Amount": "-$14.53",
       "Status": "Posted"
     },
     "Account": {
@@ -1744,7 +1744,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1760,7 +1760,7 @@
       "Description": "Los Dos Potrillos",
       "Original Description": "TST* LOS DOS POTRILLOS - Northglenn   CO",
       "Category": "Restaurants",
-      "Amount": "-18.37",
+      "Amount": "-$18.37",
       "Status": "Posted"
     },
     "Account": {
@@ -1771,7 +1771,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1787,7 +1787,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-63.92",
+      "Amount": "-$63.92",
       "Status": "Posted"
     },
     "Account": {
@@ -1798,7 +1798,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1814,7 +1814,7 @@
       "Description": "Recurring Reward Points Redemption",
       "Original Description": "RECURRING REWARD POINTS REDEMPTION",
       "Category": "Credit Card Payment",
-      "Amount": "25.00",
+      "Amount": "$25.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1825,7 +1825,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1841,7 +1841,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.00",
+      "Amount": "-$2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1852,7 +1852,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1868,7 +1868,7 @@
       "Description": "Ah Mychart Medepay",
       "Original Description": "AH MYCHART MEDEPAY       855-2412455  FL",
       "Category": "Doctor",
-      "Amount": "-70.00",
+      "Amount": "-$70.00",
       "Status": "Posted"
     },
     "Account": {
@@ -1879,7 +1879,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1895,7 +1895,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-14.43",
+      "Amount": "-$14.43",
       "Status": "Posted"
     },
     "Account": {
@@ -1906,7 +1906,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1922,7 +1922,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-11.51",
+      "Amount": "-$11.51",
       "Status": "Posted"
     },
     "Account": {
@@ -1933,7 +1933,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1949,7 +1949,7 @@
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
-      "Amount": "1169.82",
+      "Amount": "$1,169.82",
       "Status": "Posted"
     },
     "Account": {
@@ -1960,7 +1960,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -1976,7 +1976,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT",
       "Category": "Credit Card Payment",
-      "Amount": "-705.86",
+      "Amount": "-$705.86",
       "Status": "Posted"
     },
     "Account": {
@@ -1987,7 +1987,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2003,7 +2003,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
       "Category": "Credit Card Payment",
-      "Amount": "705.86",
+      "Amount": "$705.86",
       "Status": "Posted"
     },
     "Account": {
@@ -2014,7 +2014,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2030,7 +2030,7 @@
       "Description": "Steam",
       "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
       "Category": "Entertainment",
-      "Amount": "-43.29",
+      "Amount": "-$43.29",
       "Status": "Posted"
     },
     "Account": {
@@ -2041,7 +2041,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2057,7 +2057,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
       "Category": "Credit Card Payment",
-      "Amount": "-579.91",
+      "Amount": "-$579.91",
       "Status": "Posted"
     },
     "Account": {
@@ -2068,7 +2068,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2084,7 +2084,7 @@
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
-      "Amount": "-163.70",
+      "Amount": "-$163.70",
       "Status": "Posted"
     },
     "Account": {
@@ -2095,7 +2095,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2111,7 +2111,7 @@
       "Description": "127311211",
       "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
       "Category": "Uncategorized",
-      "Amount": "579.91",
+      "Amount": "$579.91",
       "Status": "Posted"
     },
     "Account": {
@@ -2122,7 +2122,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2138,7 +2138,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.00",
+      "Amount": "-$500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2149,7 +2149,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2165,7 +2165,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-82.31",
+      "Amount": "-$82.31",
       "Status": "Posted"
     },
     "Account": {
@@ -2176,7 +2176,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2192,7 +2192,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.90",
+      "Amount": "-$11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -2203,7 +2203,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2219,7 +2219,7 @@
       "Description": "Afc Urgent Care Denver",
       "Original Description": "AFC URGENT CARE DENVER H DENVER       CO",
       "Category": "Doctor",
-      "Amount": "-75.00",
+      "Amount": "-$75.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2230,7 +2230,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2246,7 +2246,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-31.83",
+      "Amount": "-$31.83",
       "Status": "Posted"
     },
     "Account": {
@@ -2257,7 +2257,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2273,7 +2273,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.00",
+      "Amount": "-$30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2284,7 +2284,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2300,7 +2300,7 @@
       "Description": "Rocket",
       "Original Description": "ROCKET 6515              NORTHGLENN   CO",
       "Category": "Gas",
-      "Amount": "-26.51",
+      "Amount": "-$26.51",
       "Status": "Posted"
     },
     "Account": {
@@ -2311,7 +2311,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2327,7 +2327,7 @@
       "Description": "CVS",
       "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
       "Category": "Pharmacy",
-      "Amount": "-13.59",
+      "Amount": "-$13.59",
       "Status": "Posted"
     },
     "Account": {
@@ -2338,7 +2338,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2354,7 +2354,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
       "Category": "Uncategorized",
-      "Amount": "-1945.00",
+      "Amount": "-$1,945.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2365,7 +2365,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2381,7 +2381,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-99.24",
+      "Amount": "-$99.24",
       "Status": "Posted"
     },
     "Account": {
@@ -2392,7 +2392,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2408,7 +2408,7 @@
       "Description": "Snarf's",
       "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
       "Category": "Fast Food",
-      "Amount": "-3.56",
+      "Amount": "-$3.56",
       "Status": "Posted"
     },
     "Account": {
@@ -2419,7 +2419,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2435,7 +2435,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.00",
+      "Amount": "-$35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2446,7 +2446,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2462,7 +2462,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********QHPF",
       "Category": "Uncategorized",
-      "Amount": "-110.33",
+      "Amount": "-$110.33",
       "Status": "Posted"
     },
     "Account": {
@@ -2473,7 +2473,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2489,7 +2489,7 @@
       "Description": "Qdoba",
       "Original Description": "QDOBA 2063               WESTMINSTER  CA",
       "Category": "Fast Food",
-      "Amount": "-12.16",
+      "Amount": "-$12.16",
       "Status": "Posted"
     },
     "Account": {
@@ -2500,7 +2500,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2516,7 +2516,7 @@
       "Description": "Chick-fil-A",
       "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
       "Category": "Fast Food",
-      "Amount": "-10.95",
+      "Amount": "-$10.95",
       "Status": "Posted"
     },
     "Account": {
@@ -2527,7 +2527,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2543,7 +2543,7 @@
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
-      "Amount": "5616.04",
+      "Amount": "$5,616.04",
       "Status": "Posted"
     },
     "Account": {
@@ -2554,7 +2554,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2570,7 +2570,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-62.15",
+      "Amount": "-$62.15",
       "Status": "Posted"
     },
     "Account": {
@@ -2581,7 +2581,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2597,7 +2597,7 @@
       "Description": "The Pasty Republic",
       "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
       "Category": "Fast Food",
-      "Amount": "-11.87",
+      "Amount": "-$11.87",
       "Status": "Posted"
     },
     "Account": {
@@ -2608,7 +2608,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2624,7 +2624,7 @@
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
-      "Amount": "0.09",
+      "Amount": "$0.09",
       "Status": "Posted"
     },
     "Account": {
@@ -2635,7 +2635,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2651,7 +2651,7 @@
       "Description": "Mugi Ramen and Poke",
       "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
       "Category": "Food & Dining",
-      "Amount": "-16.17",
+      "Amount": "-$16.17",
       "Status": "Posted"
     },
     "Account": {
@@ -2662,7 +2662,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2678,7 +2678,7 @@
       "Description": "Bad Daddy's Burger Bar",
       "Original Description": "BAD DADDY'S BURGER BAR   CENTENNIAL   CO",
       "Category": "Food & Dining",
-      "Amount": "-51.90",
+      "Amount": "-$51.90",
       "Status": "Posted"
     },
     "Account": {
@@ -2689,7 +2689,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2705,7 +2705,7 @@
       "Description": "Scott @ Tried & True",
       "Original Description": "SQ *SCOTT @ TRIED & TRUE Denver       CO",
       "Category": "Hair",
-      "Amount": "-56.25",
+      "Amount": "-$56.25",
       "Status": "Posted"
     },
     "Account": {
@@ -2716,7 +2716,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2732,7 +2732,7 @@
       "Description": "The Grateful Gnome",
       "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
       "Category": "Alcohol & Bars",
-      "Amount": "-14.90",
+      "Amount": "-$14.90",
       "Status": "Posted"
     },
     "Account": {
@@ -2743,7 +2743,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2759,7 +2759,7 @@
       "Description": "Account Verification Deposit from Bill.com",
       "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
       "Category": "Transfer",
-      "Amount": "0.01",
+      "Amount": "$0.01",
       "Status": "Posted"
     },
     "Account": {
@@ -2770,7 +2770,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2786,7 +2786,7 @@
       "Description": "I Hop Ipa",
       "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
       "Category": "Business Services",
-      "Amount": "-10.65",
+      "Amount": "-$10.65",
       "Status": "Posted"
     },
     "Account": {
@@ -2797,7 +2797,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2813,7 +2813,7 @@
       "Description": "Outlaw Wings",
       "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
       "Category": "Restaurants",
-      "Amount": "-21.24",
+      "Amount": "-$21.24",
       "Status": "Posted"
     },
     "Account": {
@@ -2824,7 +2824,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2840,7 +2840,7 @@
       "Description": "Qdoba",
       "Original Description": "QDOBA 2063               WESTMINSTER  CA",
       "Category": "Fast Food",
-      "Amount": "-14.53",
+      "Amount": "-$14.53",
       "Status": "Posted"
     },
     "Account": {
@@ -2851,7 +2851,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2867,7 +2867,7 @@
       "Description": "Safeway Fuel",
       "Original Description": "SAFEWAY FUEL0244         DENVER       CO",
       "Category": "Gas",
-      "Amount": "-26.05",
+      "Amount": "-$26.05",
       "Status": "Posted"
     },
     "Account": {
@@ -2878,7 +2878,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2894,7 +2894,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-150.41",
+      "Amount": "-$150.41",
       "Status": "Posted"
     },
     "Account": {
@@ -2905,7 +2905,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2921,7 +2921,7 @@
       "Description": "Patreon",
       "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
       "Category": "Entertainment",
-      "Amount": "-2.00",
+      "Amount": "-$2.00",
       "Status": "Posted"
     },
     "Account": {
@@ -2932,7 +2932,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2948,7 +2948,7 @@
       "Description": "An Honda",
       "Original Description": "AN HONDA 104             303-469-5551 CO",
       "Category": "Auto & Transport",
-      "Amount": "-107.48",
+      "Amount": "-$107.48",
       "Status": "Posted"
     },
     "Account": {
@@ -2959,7 +2959,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -2975,7 +2975,7 @@
       "Description": "Mad Greens",
       "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
       "Category": "Restaurants",
-      "Amount": "-14.57",
+      "Amount": "-$14.57",
       "Status": "Posted"
     },
     "Account": {
@@ -2986,7 +2986,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3002,7 +3002,7 @@
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
-      "Amount": "-500.00",
+      "Amount": "-$500.00",
       "Status": "Posted"
     },
     "Account": {
@@ -3013,7 +3013,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3029,7 +3029,7 @@
       "Description": "Snarf's",
       "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
       "Category": "Fast Food",
-      "Amount": "-20.06",
+      "Amount": "-$20.06",
       "Status": "Posted"
     },
     "Account": {
@@ -3040,7 +3040,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3056,7 +3056,7 @@
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
-      "Amount": "-163.71",
+      "Amount": "-$163.71",
       "Status": "Posted"
     },
     "Account": {
@@ -3067,7 +3067,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3083,7 +3083,7 @@
       "Description": "Spotify",
       "Original Description": "PAYPAL           INST XFER  ***********USAI",
       "Category": "Music",
-      "Amount": "-11.90",
+      "Amount": "-$11.90",
       "Status": "Posted"
     },
     "Account": {
@@ -3094,7 +3094,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3110,7 +3110,7 @@
       "Description": "Post Oak Bbq",
       "Original Description": "TST* POST OAK BBQ        DENVER       CO",
       "Category": "Restaurants",
-      "Amount": "-23.23",
+      "Amount": "-$23.23",
       "Status": "Posted"
     },
     "Account": {
@@ -3121,7 +3121,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3137,7 +3137,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-30.08",
+      "Amount": "-$30.08",
       "Status": "Posted"
     },
     "Account": {
@@ -3148,7 +3148,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3164,7 +3164,7 @@
       "Description": "Nature Conservancy",
       "Original Description": "Nature Conservancy       800-6286860  VA",
       "Category": "Gifts & Donations",
-      "Amount": "-30.00",
+      "Amount": "-$30.00",
       "Status": "Posted"
     },
     "Account": {
@@ -3175,7 +3175,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3191,7 +3191,7 @@
       "Description": "I Hop Ipa",
       "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
       "Category": "Business Services",
-      "Amount": "-10.65",
+      "Amount": "-$10.65",
       "Status": "Posted"
     },
     "Account": {
@@ -3202,7 +3202,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3218,7 +3218,7 @@
       "Description": "Tokyo Joe's",
       "Original Description": "TOKYO JOES 120TH 006     612-3607277  CO",
       "Category": "Fast Food",
-      "Amount": "-12.30",
+      "Amount": "-$12.30",
       "Status": "Posted"
     },
     "Account": {
@@ -3229,7 +3229,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3245,7 +3245,7 @@
       "Description": "Walgreens",
       "Original Description": "WALGREENS #6345          DENVER       CO",
       "Category": "Pharmacy",
-      "Amount": "-12.52",
+      "Amount": "-$12.52",
       "Status": "Posted"
     },
     "Account": {
@@ -3256,7 +3256,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3272,7 +3272,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
       "Category": "Uncategorized",
-      "Amount": "-1945.00",
+      "Amount": "-$1,945.00",
       "Status": "Posted"
     },
     "Account": {
@@ -3283,7 +3283,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3299,7 +3299,7 @@
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
-      "Amount": "-35.00",
+      "Amount": "-$35.00",
       "Status": "Posted"
     },
     "Account": {
@@ -3310,7 +3310,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3326,7 +3326,7 @@
       "Description": "Yardi",
       "Original Description": "YARDI SERVICECHG WEB PMTS   ***********0WJF",
       "Category": "Mortgage & Rent",
-      "Amount": "-0.95",
+      "Amount": "-$0.95",
       "Status": "Posted"
     },
     "Account": {
@@ -3337,7 +3337,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3353,7 +3353,7 @@
       "Description": "Honda Financial",
       "Original Description": "HONDA PMT        8004489307 ***********LE9E",
       "Category": "Auto Payment",
-      "Amount": "-320.00",
+      "Amount": "-$320.00",
       "Status": "Posted"
     },
     "Account": {
@@ -3364,7 +3364,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3380,7 +3380,7 @@
       "Description": "Qdoba",
       "Original Description": "QDOBA 2063               WESTMINSTER  CA",
       "Category": "Fast Food",
-      "Amount": "-13.35",
+      "Amount": "-$13.35",
       "Status": "Posted"
     },
     "Account": {
@@ -3391,7 +3391,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3407,7 +3407,7 @@
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
       "Category": "Uncategorized",
-      "Amount": "-99.91",
+      "Amount": "-$99.91",
       "Status": "Posted"
     },
     "Account": {
@@ -3418,7 +3418,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3434,7 +3434,7 @@
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
-      "Amount": "-80.03",
+      "Amount": "-$80.03",
       "Status": "Posted"
     },
     "Account": {
@@ -3445,7 +3445,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3461,7 +3461,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT",
       "Category": "Credit Card Payment",
-      "Amount": "-823.79",
+      "Amount": "-$823.79",
       "Status": "Posted"
     },
     "Account": {
@@ -3472,7 +3472,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3488,7 +3488,7 @@
       "Description": "USAA Credit Card",
       "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
       "Category": "Transfer",
-      "Amount": "823.79",
+      "Amount": "$823.79",
       "Status": "Posted"
     },
     "Account": {
@@ -3499,7 +3499,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
@@ -3515,7 +3515,7 @@
       "Description": "Yardi",
       "Original Description": "YARDI SERVICECHG WEB PMTS   ***********M9HF",
       "Category": "Mortgage & Rent",
-      "Amount": "-0.95",
+      "Amount": "-$0.95",
       "Status": "Posted"
     },
     "Account": {
@@ -3526,7 +3526,7 @@
       "Description": "",
       "Original Description": "",
       "Category": "",
-      "Amount": "",
+      "Amount": null,
       "Status": ""
     },
     "My Category": {
