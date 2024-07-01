@@ -14,11 +14,6 @@ is_critical = bool
 error_check = str
 month = str
 all_months: list[month] = []
-month_to_month = tuple[month, month] # [preceding month, subsequent month]
-all_month_to_month: list[month_to_month] = [
-    month_to_month(args)
-    for args in zip(all_months[:-1], all_months[1:])
-]
 
 """Type conversions"""
 def to_is_critical(v: str) -> is_critical:
