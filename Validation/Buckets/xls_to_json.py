@@ -254,7 +254,12 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     assert rows[r+1] == tuple(['']*10 + [key] + ['']*6)
     val = rows[r+2][10]
     assert rows[r+2] == tuple(['']*10 + [val] + ['']*6)
-    intermediate: dict[Literal["Slush After Crit"], str] = {key:val}
+    # FIXME let Money type handle this
+    intermediate: dict[Literal["Slush After Crit"], str] = {key:Types.money(
+        round(
+            float(val),
+        2)
+    )}
     r += 3
 
     # Blank row

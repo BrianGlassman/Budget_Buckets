@@ -1,7 +1,7 @@
 # General imports
 from typing import Literal, TypeVar
-from dataclasses import dataclass, asdict
-from decimal import Decimal
+from dataclasses import dataclass, asdict as dataclass_to_dict
+from decimal import Decimal # Commented out while money is a string
 
 
 """Type definitions"""
@@ -32,10 +32,21 @@ class ValueCapacityCritical:
     is_critical: category_to_value[is_critical]
 @dataclass
 class ChangeSet:
-    value_delta: category_with_total_to_value[money]
-    value_set: category_with_total_to_value[money]
-    capacity_delta: category_with_total_to_value[money]
-    capacity_set: category_with_total_to_value[money]
+    value_delta: category_to_value[money]
+    value_set: category_to_value[money]
+    capacity_delta: category_to_value[money]
+    capacity_set: category_to_value[money]
+    crit_set: category_to_value[is_critical]
+
+    def get_row(self, key: category):
+        """Returns value_delta, value_set, capacity_delta, capacity_set, crit_set for a given category"""
+        return (
+            self.value_delta[key],
+            self.value_set[key],
+            self.capacity_delta[key],
+            self.capacity_set[key],
+            self.crit_set[key],
+        )
 
 
 """DATA INPUT"""
@@ -46,12 +57,12 @@ class BucketsInput:
     transitions: dict[month, dict[Literal["changes"], ChangeSet]]
     '''Key is preceding month'''
 
-    def __init__(self, initial: ValueCapacityCritical):
+    def __init__(self, initial: ValueCapacityCritical, transitions=None):
         self.initial = initial
-        self.transitions = {}
+        self.transitions = {} if transitions is None else transitions
     
     def asdict(self):
-        return asdict(self)
+        return dataclass_to_dict(self)
 
 
 """VALIDATION / HANDLER OUTPUT"""
@@ -77,10 +88,10 @@ class BucketsFull:
     transitions: dict[month, TransitionFull]
     '''Key is preceding month'''
 
-    def __init__(self, initial: ValueCapacityCritical):
+    def __init__(self, initial: ValueCapacityCritical, *, months=None, transitions=None):
         self.initial = initial
-        self.months = {}
-        self.transitions = {}
+        self.months = {} if months is None else months
+        self.transitions = {} if transitions is None else transitions
     
     def asdict(self):
-        return asdict(self)
+        return dataclass_to_dict(self)
