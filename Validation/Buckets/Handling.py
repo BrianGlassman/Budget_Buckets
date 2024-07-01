@@ -23,10 +23,6 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     is_crit: Which buckets are critical (fill first)
     capacity: Bucket capacity
     """
-    # FIXME shouldn't do this here
-    # is_crit is actually strings, so convert to bool
-    is_crit = {k:(v.lower() == 'true') for k,v in is_crit.items()} # type: ignore
-
     # Remove Total row to make data flow consistent
     def remove_total(column: _column_t) -> _column:
         """Return the column without the Total"""
@@ -122,9 +118,6 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     # TODO stop forcing money to be a float
     percent_filled = {key:(float(final[key]) / float(capacity[key]) if capacity[key] != '0' else 1) for key in capacity}
 
-    # Undo the string-to-bool conversion
-    is_crit = {k:('True' if v else 'False') for k,v in is_crit.items()}
-
     def add_total(column: _column):
         """Adds the Total row"""
         column = deepcopy(column)
@@ -208,7 +201,7 @@ def handle(aggregate_data: list[dict], data: dict[str, Any]) -> Types.BucketsFul
             end_previous = Types.ValueCapacityCritical(
                 value=month_obj.columns['Final'],
                 capacity=month_obj.columns['Capacity'],
-                is_critical=month_obj.columns['Is Crit'],
+                is_critical=month_obj.columns['Is Crit'], # type: ignore # This column isn't Money
             )
             changes = Types.ChangeSet(
                 value_delta=transition['changes']['value_delta'],
@@ -226,14 +219,17 @@ def handle(aggregate_data: list[dict], data: dict[str, Any]) -> Types.BucketsFul
                     # Unpack
                     value_delta, value_set, capacity_delta, capacity_set, crit_set = changes.get_row(key)
                     # Value
-                    assert not (value_delta and value_set), "Can't use both delta and setter for value"
-                    value[key] = value_set if value_set else end.value[key] + value_delta
+                    if value_delta and value_set: raise ValueError("Can't use both delta and setter for value")
+                    elif value_set: value[key] = value_set
+                    elif value_delta: value[key] = end.value[key] + value_delta
+                    else: value[key] = end.value[key]
                     # Capacity
-                    assert not (capacity_delta and capacity_set), "Can't use both delta and setter for capacity"
-                    capacity[key] = capacity_set if capacity_set else end.capacity[key] + capacity_delta
+                    if capacity_delta and capacity_set: raise ValueError("Can't use both delta and setter for capacity")
+                    elif capacity_set: capacity[key] = capacity_set
+                    elif capacity_delta: capacity[key] = end.capacity[key] + capacity_delta
+                    else: capacity[key] = end.capacity[key]
                     # Is_crit
                     is_crit[key] = crit_set if crit_set else end.is_critical[key]
-
 
                 return Types.ValueCapacityCritical(
                     value=value,

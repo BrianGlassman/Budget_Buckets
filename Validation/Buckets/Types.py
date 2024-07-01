@@ -9,8 +9,7 @@ category = str
 category_with_total = category | Literal["total"]
 # money = Decimal
 money = str
-# is_critical = bool
-is_critical = str
+is_critical = bool
 # error_check = bool
 error_check = str
 month = str
@@ -20,6 +19,19 @@ all_month_to_month: list[month_to_month] = [
     month_to_month(args)
     for args in zip(all_months[:-1], all_months[1:])
 ]
+
+"""Type conversions"""
+def to_is_critical(v: str) -> is_critical:
+    if isinstance(v, str):
+        lower = v.lower()
+        if lower == 'true':
+            return True
+        elif lower == 'false':
+            return False
+        else:
+            raise ValueError(f"Unknown string: {v}")
+    else:
+        raise TypeError(f"Unknown type: {type(v)}")
 
 """Shared section definitions"""
 T = TypeVar('T')
@@ -32,20 +44,20 @@ class ValueCapacityCritical:
     is_critical: category_to_value[is_critical]
 @dataclass
 class ChangeSet:
-    value_delta: category_to_value[money]
-    value_set: category_to_value[money]
-    capacity_delta: category_to_value[money]
-    capacity_set: category_to_value[money]
-    crit_set: category_to_value[is_critical]
+    value_delta: category_to_value[money | None]
+    value_set: category_to_value[money | None]
+    capacity_delta: category_to_value[money | None]
+    capacity_set: category_to_value[money | None]
+    crit_set: category_to_value[is_critical | None]
 
     def get_row(self, key: category):
         """Returns value_delta, value_set, capacity_delta, capacity_set, crit_set for a given category"""
         return (
-            self.value_delta[key],
-            self.value_set[key],
-            self.capacity_delta[key],
-            self.capacity_set[key],
-            self.crit_set[key],
+            self.value_delta.get(key, None),
+            self.value_set.get(key, None),
+            self.capacity_delta.get(key, None),
+            self.capacity_set.get(key, None),
+            self.crit_set.get(key, None),
         )
 
 

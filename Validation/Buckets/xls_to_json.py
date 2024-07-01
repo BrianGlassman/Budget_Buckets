@@ -45,7 +45,7 @@ def make_ValueCapacityCritical(data_cols: list[tuple[str, ...]]) -> Types.ValueC
     ret = Types.ValueCapacityCritical(
         value = {cat:val for cat,val in zip(categories_plus_total, data_cols[0])},
         capacity = {cat:val for cat,val in zip(categories_plus_total, data_cols[1])},
-        is_critical = {cat:val for cat,val in zip(categories, data_cols[2])},
+        is_critical = {cat:Types.to_is_critical(val) for cat,val in zip(categories, data_cols[2])},
     )
     assert data_cols[2][len(categories)] == ''
     return ret
@@ -65,11 +65,11 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
 
     assert len(data_cols) == 5
     ret = Types.ChangeSet(
-        value_delta = {cat:val for cat,val in zip(categories, data_cols[0])},
-        value_set = {cat:val for cat,val in zip(categories, data_cols[1])},
-        capacity_delta = {cat:val for cat,val in zip(categories, data_cols[2])},
-        capacity_set = {cat:val for cat,val in zip(categories, data_cols[3])},
-        crit_set= {cat:val for cat,val in zip(categories, data_cols[4])},
+        value_delta = {cat:val for cat,val in zip(categories, data_cols[0]) if val},
+        value_set = {cat:val for cat,val in zip(categories, data_cols[1]) if val},
+        capacity_delta = {cat:val for cat,val in zip(categories, data_cols[2]) if val},
+        capacity_set = {cat:val for cat,val in zip(categories, data_cols[3]) if val},
+        crit_set= {cat:Types.to_is_critical(val) for cat,val in zip(categories, data_cols[4]) if val},
     )
     return ret
 
