@@ -21,8 +21,8 @@ def print_diff(data: list[dict], validation: list[dict]):
     
     def printer(indent: int, k, d, v):
         print(f"{'>>' * indent} {k} mismatched")
-        print(f"{'>>' * indent}       Data: {d[k]}")
-        print(f"{'>>' * indent} Validation: {v[k]}")
+        print(f"{'>>' * indent}       Data: {repr(d[k])}")
+        print(f"{'>>' * indent} Validation: {repr(v[k])}")
     
     for i, (d, v) in enumerate(zip(data, validation)):
         if d != v:

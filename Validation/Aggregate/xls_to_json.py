@@ -55,10 +55,9 @@ def xls_to_json(filename, sheet_name: str, log_start: str):
     totals_line = raw_lines[-1]
     assert totals_line[0] == ''
     assert totals_line[1] == 'Total'
-    totals = {k:v for k,v in zip(categories, totals_line[2:-1])}
-    grand_total = totals_line[-1]
-    # FIXME use money type
-    assert round(float(grand_total), 2) == round(sum(float(v) for v in totals.values()), 2)
+    totals = {k:Money.from_dollars(v) for k,v in zip(categories, totals_line[2:-1])}
+    grand_total = Money.from_dollars(totals_line[-1])
+    assert grand_total == sum(totals.values())
     print("Totals line as-expected")
 
     # Remaining lines are data

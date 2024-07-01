@@ -16,14 +16,12 @@ _data = []
 _validation = []
 def load_aggregate():
     import datetime
-    import json
     from BaseLib import utils
     from Validation.Log import load_log_data
     from .Handling import handle
     validation = []
     for aggregate_validation_path in aggregate_validation_paths:
-        with open(aggregate_validation_path, 'r') as f:
-            validation.extend(json.load(f))
+        validation.extend(utils.json_load(aggregate_validation_path))
 
     # Get the date ranges from validation
     # FIXME will these just always be months?

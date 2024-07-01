@@ -1,10 +1,12 @@
 import json
 
 
+symbol = '$' # Prefix indicating a Money type
 class Money:
     """Avoid floating point problems when doing math with money"""
     value: int
     "Total number of cents"
+
     def __init__(self, dollars: str|int|float, cents: str|int|float):
         if isinstance(dollars, str):
             dollars = float(dollars)
@@ -67,15 +69,17 @@ class Money:
         assert isinstance(value, Money)
         return self.value.__lt__(value.value)
     def __eq__(self, value: object) -> bool:
-        assert isinstance(value, Money)
+        if not isinstance(value, Money):
+            return False
         return self.value.__eq__(value.value)
 
     def pretty_str(self):
-        """Copy Excel's money formatting"""
-        return "${:,.2f}".format(self.to_dollars()).replace('$-', '-$')
+        """Copy Excel's money formatting (assuming symbol='$')"""
+        return f"{symbol}{self.to_dollars():,.2f}".replace(f'{symbol}-', f'-{symbol}')
     to_excel_format = pretty_str
     __str__ = pretty_str
-    __repr__ = pretty_str
+    def __repr__(self) -> str:
+        return f"<Money {str(self)}>"
 
 
 class MoneyEncoder(json.JSONEncoder):
@@ -94,8 +98,8 @@ class MoneyDecoder(json.JSONDecoder):
         # Example: [('Date', '12/30/2023'), ('Description', 'USAA Credit Card'), ('Original Description', 'USAA CREDIT CARD PAYMENT SAN ANTONIO  TX'), ('Category', 'Transfer'), ('Amount', '82379.00'), ('Status', 'Posted')]
         ret = []
         for key, value in dct:
-            if isinstance(value, str) and (value.startswith('$') or value.startswith('-$')):
-                value = value.replace('$', '').replace(',', '')
+            if isinstance(value, str) and (value.startswith(symbol) or value.startswith(f'-{symbol}')):
+                value = value.replace(symbol, '').replace(',', '')
                 value = Money.from_dollars(dollars=value)
             ret.append((key, value))
         return dict(ret)

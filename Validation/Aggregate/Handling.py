@@ -17,7 +17,6 @@ def handle(log_data, date_ranges):
     # Prep the aggregate with date ranges and 0 totals
     data: list[dict] = deepcopy(date_ranges)
     for item in data:
-        # FIXME use Money type
         item['data'] = {cat: Money(0, 0) for cat in categories}
 
     # Aggregate the log data
@@ -35,7 +34,5 @@ def handle(log_data, date_ranges):
     for item in data:
         for key in ['start', 'end']:
             item[key] = utils.unparse_date(item[key])
-        for key in categories:
-            item['data'][key] = str(item['data'][key])
     
     return data
