@@ -87,6 +87,9 @@ class TransitionFull:
     changes: ChangeSet
     start_next: ValueCapacityCritical
     error_checks: dict[Literal["Total"], error_check]
+    
+    def asdict(self):
+        return dataclass_to_dict(self)
 
 @dataclass(init=False)
 class BucketsFull:

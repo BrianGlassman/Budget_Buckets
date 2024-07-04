@@ -6,58 +6,47 @@ Validates the "Buckets" tabs in the Excel sheet
 
 
 # Project imports
-from Validation.Buckets import load_buckets_data, load_buckets_validation
+from Validation.Buckets import load_buckets_data, load_buckets_validation, Types
 
 
 def load():
     data = load_buckets_data()
     validation = load_buckets_validation()
 
-    # FIXME temporarily just looking at the first month
-    from Validation.Buckets import BucketsFull
-    key = '9/1/2023'
-    validation = BucketsFull(
-        initial=validation.initial,
-        months={key: validation.months[key]},
-        transitions={key: validation.transitions[key]},
-    )
-
     return data, validation
 
-def print_diff(data, validation):
-    for key in ['initial', 'months', 'transitions']:
-        if getattr(data, key) == getattr(validation, key):
-            print(f"{key} matched")
-        else:
-            print(f"{key} MISMATCHED")
-            if key == 'months':
-                d = list(data.months.values())[0]
-                v = list(validation.months.values())[0]
-                for key in ['columns', 'intermediate', 'error_checks']:
-                    if getattr(d, key) == getattr(v, key):
-                        print(f"\t{key} matched")
-                    else:
-                        print(f"\t{key} MISMATCHED")
-                        if key == 'columns':
-                            if d.columns.keys() != v.columns.keys():
-                                print("\t\tMISMATCHED column keys")
-                            if d.columns.values() != v.columns.values():
-                                print("\t\tMISMATCHED column values")
+def print_VCC_diff(indent, data: Types.ValueCapacityCritical, validation: Types.ValueCapacityCritical):
+    if data.value != validation.value:
+        print(f"{indent}value MISMATCH")
+    if data.capacity != validation.capacity:
+        print(f"{indent}capacity MISMATCH")
+    if data.is_critical != validation.is_critical:
+        print(f"{indent}is_critical MISMATCH")
 
-                                print("\t\tColumns:")
-                                for k in d.columns.keys():
-                                    # Save to variables for debugging, but don't print because they're long
-                                    if (dd := d.columns[k]) != (vv := v.columns[k]):
-                                        print(k)
-                                pass
-                        else:
-                            print("\t\tD:", getattr(d, key))
-                            print("\t\tV:", getattr(v, key))
+def print_diff(data: Types.BucketsFull, validation: Types.BucketsFull):
+    if data.initial != validation.initial:
+        print("initial MISMATCHED")
+    
+    assert data.months.keys() == data.transitions.keys()
+    assert validation.months.keys() == validation.transitions.keys()
 
-
-    # print("      Data:", data.asdict())
-    # print("Validation:", validation.asdict())
-    pass # FIXME this is just so I have somewhere for breakpoints
+    for k in data.months.keys():
+        if (d := data.months[k]) != (v := validation.months[k]):
+            print(f"Month {k} MISMATCH")
+            break
+        if (d := data.transitions[k]) != (v := validation.transitions[k]):
+            print(f"Transition after {k} MISMATCH")
+            if d.end_previous != v.end_previous:
+                print("\tend_previous MISMATCH")
+                print_VCC_diff('\t'*2, d.end_previous, v.end_previous)
+            if d.changes != v.changes:
+                print("\tchanges MISMATCH")
+            if d.start_next != v.start_next:
+                print("\tstart_next MISMATCH")
+                print_VCC_diff('\t'*2, d.start_next, v.start_next)
+            if d.error_checks != v.error_checks:
+                print("\terror_checks MISMATCH")
+            break
 
 def test_buckets_duplication():
     data, validation = load()
