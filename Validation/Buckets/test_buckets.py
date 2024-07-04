@@ -44,8 +44,11 @@ def print_diff(data, validation):
                             if d.columns.values() != v.columns.values():
                                 print("\t\tMISMATCHED column values")
 
-                                dd = list(d.columns.values())
-                                vv = list(v.columns.values())
+                                print("\t\tColumns:")
+                                for k in d.columns.keys():
+                                    # Save to variables for debugging, but don't print because they're long
+                                    if (dd := d.columns[k]) != (vv := v.columns[k]):
+                                        print(k)
                                 pass
                         else:
                             print("\t\tD:", getattr(d, key))

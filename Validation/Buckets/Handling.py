@@ -98,11 +98,11 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
 
     # NC To Fill, but limited by slush fund
     scale_ratio: float = slush_after_crit / sum_column(nc_to_fill)
-    scaled: _column = scale_column(nc_to_fill, scale_ratio)
+    pre_scale: _column = scale_column(nc_to_fill, scale_ratio)
 
-    # TODO might be a better way of doing this?
     # Because of rounding, there's sometimes a slight disagreement. Balance with Unexpected Fund
-    if (diff := (sum_column(scaled) - slush_after_crit)) != 0:
+    scaled = deepcopy(pre_scale)
+    if (diff := (sum_column(pre_scale) - slush_after_crit)) != 0:
         assert abs(diff.to_dollars()) < 0.05, f"Large difference encountered: {diff}"
         scaled['Unexpected Fund'] -= diff
 
@@ -112,9 +112,6 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
     final: _column = nc_filled
     # Difference between bucket value and capacity at the end of the month
     unfilled: _column = subtract_columns(capacity, final)
-    # Percentage filled (use 100% for capacity=0)
-    # FIXME has a "total", but it's not actually just the sum. Also this is a percentage, not Money, so not really a _column type
-    percent_filled = {key:(final[key] / capacity[key] if capacity[key] != 0 else 1) for key in capacity}
 
     def add_total(column: _column):
         """Adds the Total row"""
@@ -122,9 +119,6 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
         column['total'] = sum_column(column)
         return column
     
-    # TODO make sure this ends up matching the Validation format
-    percent_filled['total'] = round(sum_column(final) / sum_column(capacity), 2)
-
     columns = {
         'Start': add_total(start),
         'Transactions': add_total(transactions),
@@ -138,11 +132,11 @@ def _generate_month(start: _column_t, transactions: _column_t, is_crit: _crit_co
         'Crit To Fill': add_total(crit_to_fill),
         'Crit Filled': crit_filled,
         'NC To Fill': add_total(nc_to_fill),
+        'Pre Scale': add_total(pre_scale),
         'Scaled': add_total(scaled),
         'NC Filled': nc_filled,
         'Final': add_total(final),
         'Unfilled': add_total(unfilled),
-        '% Filled': percent_filled,
     }
     intermediate: dict[Any, Money] = {
         'Slush After Crit': slush_after_crit
