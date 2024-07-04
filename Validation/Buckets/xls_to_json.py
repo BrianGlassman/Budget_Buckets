@@ -161,10 +161,10 @@ def handle_initial(raw_columns: list[tuple[str, str, str]], c: int) -> tuple[int
 
 
 def handle_month_and_transition(raw_columns, c) -> tuple[int, Types.month, Types.MonthFull, Types.TransitionFull]:
-    # 17 columns for the month
-    month_columns = raw_columns[c:c+17]
+    # 18 columns for the month
+    month_columns = raw_columns[c:c+18]
     month, month_data = handle_month(month_columns)
-    c += 17
+    c += 18
 
     # Blank column
     c = assert_blank(raw_columns, c)
@@ -201,10 +201,12 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
         "Amount needed to fill critical buckets to full",
         "Bucket values after refilling critical buckets",
         "Amount needed to fill non-critical buckets to full",
+        "Make sure Scaled avoids rounding problems",
         "NC To Fill, but limited by slush fund",
         "Bucket values after refilling non-critical buckets",
         "Final bucket values",
-        "", ""
+        "",
+        "",
     )
     assert rows[r] == descriptions
     r += 1
@@ -223,6 +225,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
         "Crit To Fill",
         "Crit Filled",
         "NC To Fill",
+        "Pre Scale",
         "Scaled",
         "NC Filled",
         "Final",
@@ -236,7 +239,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     ret_columns = {}
     for column_name, column in zip(header, columns):
         if column_name =='Is Crit':
-            ret_columns[column_name] = {cat:val for cat,val in zip(categories, column[r:])}
+            ret_columns[column_name] = {cat:Types.to_is_critical(val) for cat,val in zip(categories, column[r:])}
         elif column_name == '% Filled':
             ret_columns[column_name] = {cat:val for cat,val in zip(categories, column[r:])}
         else: # Money column
@@ -255,9 +258,9 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     assert all(v=='' for v in rows[r][1:])
     # Only one intermediate value
     key = "Slush After Crit"
-    assert rows[r+1] == tuple(['']*10 + [key] + ['']*6)
+    assert rows[r+1] == tuple(['']*10 + [key] + ['']*7)
     val = rows[r+2][10]
-    assert rows[r+2] == tuple(['']*10 + [val] + ['']*6)
+    assert rows[r+2] == tuple(['']*10 + [val] + ['']*7)
     intermediate: dict[Literal["Slush After Crit"], Money] = {key:Money.from_dollars(val)}
     r += 3
 
@@ -272,7 +275,7 @@ def handle_month(columns: list[tuple[str, ...]]) -> tuple[Types.month, Types.Mon
     keys = tuple(
         ["Available", "Internal"] + ['']*3 +
         ["Slush"] + ['']*3 +
-        ["Crit To Fill", "Slush After Crit", "NC To Fill", "Scaled to Fill"] + [''] +
+        ["Crit To Fill", "Slush After Crit", "NC To Fill", "", "Scaled to Fill"] + [''] +
         ["Final"] + ['']*2
     )
     assert rows[r+1] == keys
