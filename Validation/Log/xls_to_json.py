@@ -1,11 +1,11 @@
 # General imports
 import datetime
 import openpyxl
-import openpyxl.worksheet._read_only
-import os
+from openpyxl.worksheet._read_only import ReadOnlyWorksheet
 
 
 # Project imports
+from Validation.Log import spec
 from CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import unparse_date, json_dump
@@ -28,10 +28,11 @@ def format_value(value) -> str:
         return str(value)
 
 
-def xls_to_json(filename, sheet_name: str):
-    wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
+def xls_to_json(year: str):
+    sheet_name = f"Log {year}"
+    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
-    assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
+    assert isinstance(sheet, ReadOnlyWorksheet)
     # Do some manipulating so it looks like the CSV version
     raw_lines = [[format_value(value) for value in row] for row in sheet.values]
 
@@ -63,9 +64,8 @@ def xls_to_json(filename, sheet_name: str):
     validation = handle_data(raw_lines, section_header_template, True)
 
     # Save to file
-    base_filename = sheet_name.replace(' ', '_').lower()
-    save_to_file(data, base_filename + ".json")
-    save_to_file(validation, base_filename + "_validation.json")
+    save_to_file(data, spec.data_paths[year])
+    save_to_file(validation, spec.validation_paths[year])
 
 
 def handle_data(raw_lines: list, section_header_template, validation: bool):
@@ -109,14 +109,15 @@ def handle_data(raw_lines: list, section_header_template, validation: bool):
     return data
 
 
-def save_to_file(contents, filename):
-    # Output to file
-    outfile = os.path.join(os.path.dirname(__file__), filename)
+def save_to_file(contents, outfile):
     json_dump(outfile, contents, 2)
     print("Export complete")
 
 
-if __name__ == "__main__":
-    for year in ['2023', '2024']:
+def main():
+    for year in spec.years:
         print(year)
-        xls_to_json("Budget_Buckets.xlsm", f"Log {year}")
+        xls_to_json(year)
+
+if __name__ == "__main__":
+    main()

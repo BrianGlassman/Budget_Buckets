@@ -2,11 +2,11 @@
 import datetime
 import openpyxl
 import openpyxl.worksheet._read_only
-import os
 from typing import Literal
 
 
 # Project imports
+from Validation.Buckets import spec
 from CategoryList import categories
 from BaseLib.utils import unparse_date, json_dump
 from BaseLib.money import Money
@@ -77,8 +77,8 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
     return ret
 
 
-def xls_to_json(filename, sheet_name: str):
-    wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
+def xls_to_json(sheet_name: str):
+    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
     assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
     # Do some manipulating so it looks like the CSV version
@@ -119,9 +119,8 @@ def xls_to_json(filename, sheet_name: str):
         raise
 
     # Save to file
-    base_filename = sheet_name.replace(' ', '_').lower()
-    save_to_file(data, base_filename + ".json")
-    save_to_file(validation, base_filename + "_validation.json")
+    save_to_file(data, spec.data_path)
+    save_to_file(validation, spec.validation_path)
 
 
 def handle_categories(raw_columns, c):
@@ -351,13 +350,15 @@ def handle_transition(columns: list[tuple[str, ...]]) -> Types.TransitionFull:
     return ret
 
 
-def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, filename):
-    # Output to file
-    outfile = os.path.join(os.path.dirname(__file__), filename)
+def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, outfile):
     json_dump(outfile, contents.asdict(), 2)
     print("Export complete")
 
 
-if __name__ == "__main__":
+def main():
     sheet_name = "Buckets"
-    xls_to_json("Budget_Buckets.xlsm", sheet_name)
+    xls_to_json(sheet_name)
+
+if __name__ == "__main__":
+    main()
+

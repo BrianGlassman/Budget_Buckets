@@ -3,16 +3,13 @@ import os as _os
 
 
 # Project imports
-from .Handling import handle as handle_aggregate
+from Validation import YearlyValidationSpec as _Spec
 
 
-# Logging
-from BaseLib.logger import delegate_print as print
-
-_basedir = _os.path.dirname(__file__)
-_years = ['2023', '2024']
-aggregate_validation_paths = [_os.path.join(_basedir, f'aggregate_{year}_validation.json') for year in _years]
-
+spec = _Spec(
+    basedir=_os.path.dirname(__file__),
+    tag="aggregate",
+)
 
 # Need validation (for now) to get the date ranges, so do loading in a weird way
 _data = []
@@ -23,8 +20,8 @@ def load_aggregate():
     from Validation.Log import load_log_data
     from .Handling import handle
     validation = []
-    for aggregate_validation_path in aggregate_validation_paths:
-        validation.extend(utils.json_load(aggregate_validation_path))
+    for validation_path in spec.validation_paths.values():
+        validation.extend(utils.json_load(validation_path))
 
     # Get the date ranges from validation
     # FIXME will these just always be months?

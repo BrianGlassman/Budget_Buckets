@@ -2,10 +2,10 @@
 import datetime
 import openpyxl
 import openpyxl.worksheet._read_only
-import os
 
 
 # Project imports
+from Validation.Aggregate import spec
 from CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import unparse_date, json_dump
@@ -29,18 +29,18 @@ def format_value(value) -> str:
         return str(value)
 
 
-def xls_to_json(filename, sheet_name: str, log_start: str):
+def xls_to_json(year: str, log_start: str):
     """
     log_start: Cell C1, the first month of the logged period
     """
-    wb = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
+    sheet_name = f"Aggregate {year}"
+    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
     assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
     # Do some manipulating so it looks like the CSV version
     raw_lines = [[format_value(value) for value in row] for row in sheet.values]
     
     # First line is meta-header
-    # FIXME don't hard-code date
     meta_header = ['Log Start', '', log_start]
     meta_header += [''] * (len(raw_lines[0]) - len(meta_header))
     assert raw_lines[0] == meta_header
@@ -67,8 +67,7 @@ def xls_to_json(filename, sheet_name: str, log_start: str):
     validation = handle_data(raw_lines, True)
 
     # Save to file
-    base_filename = sheet_name.replace(' ', '_').lower()
-    save_to_file(validation, base_filename + "_validation.json")
+    save_to_file(validation, spec.validation_paths[year])
 
 
 def handle_data(raw_lines: list, validation: bool):
@@ -91,14 +90,17 @@ def handle_data(raw_lines: list, validation: bool):
     return data
 
 
-def save_to_file(contents, filename):
-    # Output to file
-    outfile = os.path.join(os.path.dirname(__file__), filename)
+def save_to_file(contents, outfile):
     json_dump(outfile, contents, 2)
     print("Export complete")
 
 
-if __name__ == "__main__":
+def main():
+    # FIXME don't hard-code date
     for year, log_start in [('2023', '9/1/2023'), ('2024', '1/1/2024')]:
         print(year)
-        xls_to_json("Budget_Buckets.xlsm", f"Aggregate {year}", log_start=log_start)
+        xls_to_json(year, log_start=log_start)
+
+if __name__ == "__main__":
+    main()
+
