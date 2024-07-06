@@ -8,3 +8,5 @@ Steps:
 1. Run `xls_to_json.py` to generate the JSON files
     - This also checks that the incoming format is as-expected and enforces a consistent output format
 1. Run the `test_*.py` scripts to validate the results (or use Pytest)
+
+For PyTest, use "python -m pytest" (can add "-s" to show console output)

@@ -77,7 +77,8 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
     return ret
 
 
-def xls_to_json(sheet_name: str):
+def xls_to_json():
+    sheet_name = "Buckets"
     wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
     assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
@@ -356,8 +357,7 @@ def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, outfile):
 
 
 def main():
-    sheet_name = "Buckets"
-    xls_to_json(sheet_name)
+    xls_to_json()
 
 if __name__ == "__main__":
     main()
