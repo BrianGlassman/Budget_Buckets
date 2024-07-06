@@ -13,6 +13,9 @@ from BaseLib.money import Money
 from CategoryList import categories
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 def handle(log_data, date_ranges):
     # Prep the aggregate with date ranges and 0 totals
     data: list[dict] = deepcopy(date_ranges)

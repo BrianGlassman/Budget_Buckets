@@ -6,6 +6,9 @@ import os as _os
 from .Handling import handle as handle_aggregate
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 _basedir = _os.path.dirname(__file__)
 _years = ['2023', '2024']
 aggregate_validation_paths = [_os.path.join(_basedir, f'aggregate_{year}_validation.json') for year in _years]

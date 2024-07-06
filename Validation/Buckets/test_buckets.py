@@ -9,6 +9,9 @@ Validates the "Buckets" tabs in the Excel sheet
 from Validation.Buckets import load_buckets_data, load_buckets_validation, Types
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 def load():
     data = load_buckets_data()
     validation = load_buckets_validation()

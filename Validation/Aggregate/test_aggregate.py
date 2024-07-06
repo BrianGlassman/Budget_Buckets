@@ -9,6 +9,9 @@ Validates the "Aggregate" tabs in the Excel sheet
 from Validation.Aggregate import load_aggregate_data, load_aggregate_validation
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 def load():
     data = load_aggregate_data()
     validation = load_aggregate_validation()

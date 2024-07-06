@@ -9,6 +9,9 @@ Validates the "Log" tabs in the Excel sheet
 from Validation.Log import load_log_data, load_log_validation
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 def load():
     data = load_log_data()
     validation = load_log_validation()

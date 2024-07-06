@@ -7,6 +7,9 @@ from BaseLib.utils import json_load
 from Validation.Buckets.Types import BucketsFull
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 _basedir = _os.path.dirname(__file__)
 buckets_data_path = _os.path.join(_basedir, 'buckets.json')
 buckets_validation_path = _os.path.join(_basedir, 'buckets_validation.json')

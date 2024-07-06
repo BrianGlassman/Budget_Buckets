@@ -13,6 +13,9 @@ from BaseLib.money import Money
 from . import Types
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 # Alias for convenience
 categories_plus_total = categories + ['total']
 

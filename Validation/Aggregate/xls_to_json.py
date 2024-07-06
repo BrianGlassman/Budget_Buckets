@@ -11,6 +11,9 @@ from BaseLib.money import Money
 from BaseLib.utils import unparse_date, json_dump
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 # Typing
 Item = dict[str, dict[str, str | Money]]
 Category = str

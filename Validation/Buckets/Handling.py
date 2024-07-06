@@ -12,6 +12,9 @@ from BaseLib.money import Money
 from Validation.Buckets import Types
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 _column = Types.category_to_value[Money]
 _column_t = Types.category_with_total_to_value[Money]
 _crit_colum = Types.category_to_value[Types.is_critical]

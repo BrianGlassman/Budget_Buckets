@@ -7,6 +7,9 @@ from BaseLib.utils import json_load
 from .Handling import Item as LogItem
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 _basedir = _os.path.dirname(__file__)
 _years = ['2023', '2024']
 log_data_paths = [_os.path.join(_basedir, f'log_{year}.json') for year in _years]

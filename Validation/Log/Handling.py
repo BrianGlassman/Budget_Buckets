@@ -10,6 +10,9 @@ from copy import deepcopy
 from CategoryList import categories
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 # Typing
 Item = dict[str, dict[str, str]]
 

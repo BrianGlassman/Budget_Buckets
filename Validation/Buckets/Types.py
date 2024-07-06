@@ -7,6 +7,9 @@ from dataclasses import dataclass, asdict as dataclass_to_dict
 from BaseLib.money import Money
 
 
+# Logging
+from BaseLib.logger import delegate_print as print
+
 """Type definitions"""
 category = str
 category_with_total = category | Literal["total"]
