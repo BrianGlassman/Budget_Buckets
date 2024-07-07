@@ -6,6 +6,9 @@ import dash
 from Validation.Log import LogItem
 
 
+# File format
+item_keys = ['Imported', 'Account', 'Override', 'Final', 'My Category', 'E', 'Comment']
+# First line is meta-header
 meta_header = (
     ['Imported - Untouched from base'] + ['']*5 +
     ['Account'] +
@@ -13,7 +16,7 @@ meta_header = (
     ['Final - Values with overrides, to be used for calculation'] + ['']*5 +
     ['My Category', 'E', 'Comment']
 )
-
+# Second line is section headers
 section_header_template = ["Date", "Description", "Original Description", "Category", "Amount", "Status"]
 section_headers = (
     [x+'_i' for x in section_header_template] +
@@ -24,25 +27,40 @@ section_headers = (
 )
 
 def Log(data: list[LogItem]):
+    # --- Data ---
     table_data = []
-    # First line is meta-header
-    # TODO
-
-    # Second line is section headers
-    # TODO
-    
-    # Remaining lines are data
     for item in data:
         row = []
-        for key in ['Imported', 'Account', 'Override', 'Final', 'My Category', 'E', 'Comment']:
+        for key in item_keys:
             row.extend(item[key].values())
-        table_data.append(dict((header, value) for header, value in zip(section_headers, row)))
+        table_data.append(dict((id, value) for id, value in zip(section_headers, row)))
 
-    # Dash wants a list of column dicts
-    columns = [{'name': name, 'id': name} for name in section_headers]
+    # --- Headers ---
+    # First line is meta-header
+    names = [[] for _ in meta_header]
+    ids = ['' for _ in meta_header]
+    for i, name in enumerate(meta_header):
+        if name:
+            # Update to new cell
+            last = name
+        else:
+            # Re-use last cell
+            name = last
+        names[i].append(name)
     
+    # Second line is section headers
+    for i, name in enumerate(section_headers):
+        names[i].append(name.replace('_i', '').replace('_o', ''))
+        ids[i] = name
+
+    # Turn lists into a single dict
+    columns = [{'name': name, 'id': id} for name, id in zip(names, ids)]
+    
+    # --- Table ---
     table = dash.dash_table.DataTable(
         columns=columns,
+        merge_duplicate_headers=True,
+        style_header=dict(textAlign='center'),
         data=table_data,
         page_size=50,
         # page_action='none', # Can uncomment to show everything on one page, but then it gets pretty slow
