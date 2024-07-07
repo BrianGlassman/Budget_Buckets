@@ -45,9 +45,7 @@ class Money:
         assert isinstance(cents, int)
         return cls(dollars=0, cents=cents)
     
-    def to_dollars(self):
-        return round(self.value / 100, 2)
-    
+    # --- Operators ---
     # Math operators (binary)
     def _prep(self, value):
         """Ensure value is a Money object (convert if zero)"""
@@ -82,6 +80,12 @@ class Money:
         value = self._prep(value)
         return self.value.__eq__(value.value)
 
+    # --- Output formatting ---
+    # JSON
+    def to_json(self):
+        return self.pretty_str()
+    to_plotly_json = to_json # Magic method that Dash uses for JSON serializing
+    # String
     def pretty_str(self):
         """Copy Excel's money formatting (assuming symbol='$')"""
         return f"{symbol}{self.to_dollars():,.2f}".replace(f'{symbol}-', f'-{symbol}')
@@ -89,12 +93,15 @@ class Money:
     __str__ = pretty_str
     def __repr__(self) -> str:
         return f"<Money {str(self)}>"
+    # Numeric
+    def to_dollars(self):
+        return round(self.value / 100, 2)
 
 
 class MoneyEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, Money):
-            return o.pretty_str()
+            return o.to_json()
         return super().default(o)
 
 
