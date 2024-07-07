@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "category_to_value[...]": {"<for each category>": "value"},
+        "category_with_total_to_value[...]": {"<for each category>": "value", "total": "value"},
+        "value_capacity_critical": {
+            "value": "#/definitions/category_with_total_to_value[money]",
+            "capacity": "#/definitions/category_with_total_to_value[money]",
+            "is_critical": "category_to_value[bool]"
+        },
+        "changeset": {
+            "value_delta": "#/definitions/category_with_total_to_value[money]",
+            "value_set": "#/definitions/category_with_total_to_value[money]",
+            "capacity_delta": "#/definitions/category_with_total_to_value[money]",
+            "capacity_set": "#/definitions/category_with_total_to_value[money]",
+            "is_critical": "category_to_value[bool]"
+        }
+    },
+    "DATA INPUT":
+    {
+        "initial": "#/definitions/value_capacity_critical",
+        "transitions": {"<for each month-month>": {"changes": "#/definitions/changeset"} }
+    },
+
+    "VALIDATION / HANDLER OUTPUT":
+    {
+        "initial": "#/definitions/value_capacity_critical",
+        "months": {
+            "<for each month>": {
+                "<for each column>": "#/definitions/category_with_total_to_value[money]",
+                "intermediate": {"slush_after_crit": "value"},
+                "error_checks": {"<for each check>": "value"}
+            }
+        },
+        "transitions": {
+            "<for each month-month>": {
+                "end_previous": "#/definitions/value_capacity_critical",
+                "changes": "#/definitions/changeset",
+                "start_next": "#/definitions/value_capacity_critical",
+                "error_checks": {"total": "value"}
+            }
+        }
+    }
+}

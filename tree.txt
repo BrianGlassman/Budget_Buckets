@@ -1,0 +1,24 @@
+git says this is the graph, but I probably deleted whole swaths along the way
+    initial commit
+        ||
+    origin/old
+        ||
+    probably_v0.1
+        ||
+    97e09b2
+     ||    \
+    v0.2    origin/slush_fund
+     ||
+    main
+        ||
+    origin/dash
+        ||
+    origin/object_heavy
+        ||
+    HackCU
+        ||
+    b276000
+        ||
+    exact_copy
+
+use "git log --diff-filter=D --summary" to get a list of files that were deleted by each commit

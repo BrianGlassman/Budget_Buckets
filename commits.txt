@@ -1,0 +1,77 @@
+  exact_copy Commit: cb6b414 - 2024-07-06 20:51:04-06:00: cleanup
+
+  exact_copy Commit: 6f6257d - 2024-07-06 16:30:54-06:00: make sure JSONs are up to date when testing
+
+  exact_copy Commit: 5543957 - 2024-07-06 16:17:54-06:00: unify Validation specification
+
+  Logger, exact_copy Commit: 7100d18 - 2024-07-06 14:22:37-06:00: custom logging
+
+  exact_copy Commit: d3e0018 - 2024-07-04 11:53:03-06:00: buckets fully validated
+
+  Excel, exact_copy Commit: 6bc3147 - 2024-07-04 11:52:22-06:00: unify Excel Slush column
+
+  exact_copy Commit: 2773c86 - 2024-07-04 10:57:45-06:00: WIP buckets, first month validates
+
+  Excel, exact_copy Commit: bf8253a - 2024-07-04 10:57:20-06:00: remove % Filled column
+
+  Excel, exact_copy Commit: bf3337c - 2024-07-04 10:32:18-06:00: round scaling, bugfix string Is Crit
+
+  Money, exact_copy Commit: 93118ae - 2024-07-01 00:41:24-06:00: WIP buckets
+
+  Money, exact_copy Commit: a8eaa2d - 2024-07-01 00:04:41-06:00: bugfix incomplete Money usage in Aggregate
+
+  Money, exact_copy Commit: ed76fa2 - 2024-06-30 22:35:02-06:00: use Money for Log and Aggregate
+
+  exact_copy Commit: 935baa8 - 2024-06-30 19:59:09-06:00: remove dead code
+
+  exact_copy Commit: 15d5f07 - 2024-06-30 19:57:20-06:00: use bool for is_critical, skip if no change in transition
+
+  exact_copy Commit: 08ad0dc - 2024-06-30 19:31:11-06:00: WIP Buckets
+
+  exact_copy Commit: e62c1c2 - 2024-06-30 15:21:17-06:00: update transition handling
+
+  Excel, Commit: e597db4 - 2024-06-30 15:01:42-06:00: make transitions more consistent
+
+  Excel, exact_copy Commit: a2cedd9 - 2024-06-30 13:54:09-06:00: include 2023
+
+  exact_copy Commit: 13fe2e4 - 2024-06-30 13:27:27-06:00: bugfix test not actually failing when it should
+
+  exact_copy Commit: 05d98aa - 2024-06-30 12:42:20-06:00: rework Aggregate to make it available for Buckets
+
+  exact_copy Commit: bef86ba - 2024-06-29 18:36:14-06:00: make tests more consistent
+
+  exact_copy Commit: 87f6399 - 2024-06-29 18:34:22-06:00: typo, comments, import tweak
+
+  exact_copy Commit: f41b19a - 2024-06-01 13:24:01-06:00: cleanup Log, save Buckets to file
+
+  exact_copy Commit: 5b069ba - 2024-06-01 12:43:29-06:00: save Bucket tab values
+
+  Excel, exact_copy Commit: e312850 - 2024-05-27 18:47:05-06:00: read in Buckets tab, no processing yet
+
+  Excel Commit: 00559cf - 2024-05-27 12:35:38-06:00: regularize Excel column names
+
+  Excel Commit: dc0e4fc - 2024-05-27 01:55:15-06:00: regularize Excel column counts
+
+  Excel Commit: e1fdf63 - 2024-05-26 14:48:46-06:00: data update through end of April
+
+  exact_copy Commit: 6f24950 - 2024-05-26 14:13:33-06:00: Go direct from Excel to JSON without CSV
+
+  exact_copy Commit: b9777d9 - 2024-05-19 15:43:14-06:00: streamline slightly
+
+  pytest, Commit: 005736e - 2024-05-19 15:31:27-06:00: rework to use pytest
+
+  exact_copy Commit: e966fa4 - 2024-04-28 11:03:33-06:00: reorganize
+
+  some QoL, mostly exact_copy Commit: 4814028 - 2024-04-27 17:06:08-06:00: Aggregate validates successfully
+
+  exact_copy Commit: b276000 - 2024-04-27 15:59:42-06:00: Log validates successfully
+
+  precursor money Commit: 1d640f0 - 2024-03-31 11:47:14-06:00: WIP move to WSL
+
+  partially QoL, partially ??? Commit: 75e61aa - 2024-03-03 18:34:02-07:00: store data internally in more sane format
+
+  Excel Commit: fd1462c - 2024-03-03 18:30:00-07:00: not sure
+
+  Commit: fe29a27 - 2024-03-02 09:57:26-07:00: commit before HackCU
+
+  QoL Commit: 2ddea46 - 2023-11-11 16:17:21-07:00: safe_open utility function
