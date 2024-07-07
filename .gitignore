@@ -1,3 +1,12 @@
+# Nuitka
+*.build/
+*.dist/
+
+# Visual Studio
+.vs
+*.sln
+*.pyproj
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +136,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pyLint (probably from Kite)
+.pylint.d/
+
+# Weird file that git seems to output
+.goutputstream*
+
+# Office autosaves
+~$*
