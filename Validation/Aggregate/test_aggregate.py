@@ -46,14 +46,8 @@ def print_diff(data: list[dict], validation: list[dict]):
 
 
 def test_aggregate_duplication():
-    from Validation import is_json_stale
-    from . import spec
-    from .xls_to_json import main
-    for year in spec.years:
-        # No data JSON, only validation
-        # FIXME, actually, it uses Log data
-        if is_json_stale(spec.excel_path, spec.export_script_path, spec.validation_paths[year]):
-            main()
+    from .xls_to_json import xls_to_json
+    xls_to_json()
     
     data, validation = load()
 

@@ -18,6 +18,8 @@ from BaseLib.logger import delegate_print as print
 Item = dict[str, dict[str, str | Money]]
 Category = str
 
+# Necessary information
+log_starts = {'2023': '9/1/2023', '2024': '1/1/2024'}
 
 def format_value(value) -> str:
     """Convert an openpyxl Cell value to a string the same as in a CSV"""
@@ -29,10 +31,9 @@ def format_value(value) -> str:
         return str(value)
 
 
-def xls_to_json(year: str, log_start: str):
-    """
-    log_start: Cell C1, the first month of the logged period
-    """
+def _xls_to_json(year: str):
+    # Cell C1, the first month of the logged period
+    log_start = log_starts[year]
     sheet_name = f"Aggregate {year}"
     wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
@@ -95,12 +96,20 @@ def save_to_file(contents, outfile):
     print("Export complete")
 
 
-def main():
-    # FIXME don't hard-code date
-    for year, log_start in [('2023', '9/1/2023'), ('2024', '1/1/2024')]:
+def xls_to_json():
+    from Validation import is_json_stale
+    # No data JSON, only validation
+    # FIXME, actually, uses Log data
+    for year in spec.years:
         print(year)
-        xls_to_json(year, log_start=log_start)
+        if is_json_stale(
+            spec.excel_path,
+            spec.export_script_path,
+            spec.validation_paths[year]
+        ):
+            # FIXME don't hard-code date
+            _xls_to_json(year)
 
 if __name__ == "__main__":
-    main()
+    xls_to_json()
 

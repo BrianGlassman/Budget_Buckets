@@ -28,7 +28,7 @@ def format_value(value) -> str:
         return str(value)
 
 
-def xls_to_json(year: str):
+def _xls_to_json(year: str):
     sheet_name = f"Log {year}"
     wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
     sheet = wb[sheet_name]
@@ -114,10 +114,22 @@ def save_to_file(contents, outfile):
     print("Export complete")
 
 
-def main():
+def xls_to_json():
+    from Validation import is_json_stale
     for year in spec.years:
         print(year)
-        xls_to_json(year)
+        if (is_json_stale(
+            spec.excel_path,
+            spec.export_script_path,
+            spec.data_paths[year])
+            or
+            is_json_stale(
+            spec.excel_path,
+            spec.export_script_path,
+            spec.validation_paths[year]
+            )
+        ):
+            _xls_to_json(year)
 
 if __name__ == "__main__":
-    main()
+    xls_to_json()
