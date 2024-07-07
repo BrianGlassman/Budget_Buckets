@@ -9,4 +9,12 @@ Steps:
     - This also checks that the incoming format is as-expected and enforces a consistent output format
 1. Run the `test_*.py` scripts to validate the results (or use Pytest)
 
-For PyTest, use "python -m pytest" (can add "-s" to show console output)
+Test
+    Preferablly, use VSCode to run tests
+    To run tests manually: python -m pytest
+    To run tests manually with stdout: python -m pytest -s
+    To generate coverage report: coverage run -m pytest
+    To view a basic report: coverage report
+    To generate an HTML report that allows inspecting files line-by-line:
+        coverage html
+        then open htmlcov/index.html in browser
