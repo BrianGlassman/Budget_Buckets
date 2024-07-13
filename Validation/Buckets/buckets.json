@@ -110,10 +110,11 @@
       "changes": {
         "value_delta": {},
         "value_set": {},
-        "capacity_delta": {},
+        "capacity_delta": {
+          "Unexpected Fund": "$500.00"
+        },
         "capacity_set": {
-          "Decoration": "$500.00",
-          "Unexpected Fund": "$2,500.00"
+          "Decoration": "$500.00"
         },
         "crit_set": {}
       }
@@ -122,10 +123,10 @@
       "changes": {
         "value_delta": {},
         "value_set": {},
-        "capacity_delta": {},
-        "capacity_set": {
-          "Unexpected Fund": "$3,000.00"
+        "capacity_delta": {
+          "Unexpected Fund": "$500.00"
         },
+        "capacity_set": {},
         "crit_set": {}
       }
     },
@@ -143,18 +144,19 @@
           "Other - Other": "-$200.00"
         },
         "value_set": {},
-        "capacity_delta": {},
+        "capacity_delta": {
+          "Big Fun": "$100.00",
+          "Unexpected Fund": "$500.00"
+        },
         "capacity_set": {
           "Dates": "$500.00",
           "Entertainment - Other": "$500.00",
           "Games": "$500.00",
           "Going out": "$500.00",
-          "Big Fun": "$600.00",
           "Rent": "$2,500.00",
           "Utilities": "$300.00",
           "Housing - Other": "$500.00",
-          "Decoration": "$1,000.00",
-          "Unexpected Fund": "$3,500.00"
+          "Decoration": "$1,000.00"
         },
         "crit_set": {
           "Car - Other": true,
@@ -166,11 +168,11 @@
       "changes": {
         "value_delta": {},
         "value_set": {},
-        "capacity_delta": {},
-        "capacity_set": {
-          "Big Fun": "$700.00",
-          "Unexpected Fund": "$4,000.00"
+        "capacity_delta": {
+          "Big Fun": "$100.00",
+          "Unexpected Fund": "$500.00"
         },
+        "capacity_set": {},
         "crit_set": {}
       }
     },
