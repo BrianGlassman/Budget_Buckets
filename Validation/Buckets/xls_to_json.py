@@ -137,7 +137,7 @@ def handle_categories(raw_columns, c):
     header = ('Dir', 'Broad', 'Specific', 'Key')
     assert rows[2] == header
 
-    # TODO handle Broand and Specific columns, not just Key (category)
+    # TODO handle Dir, Broad, and Specific columns, not just Key (category)
 
     # Fourth column, starting in the fourth row, is categories
     # Ensure that content AND order match
