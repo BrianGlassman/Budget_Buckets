@@ -50,6 +50,9 @@ header = (
     "Unfilled",
 )
 
+# Style to indicate a tooltip is present
+tt_indicator = {'textDecoration': 'underline', 'textDecorationStyle': 'dotted'}
+
 
 def Buckets(data: Types.BucketsFull):
     # for item in data.months.items():
@@ -90,7 +93,9 @@ def make_month(month: str, data: Types.MonthFull):
     # Rest of that row is blank
     top = [month] + [''] * (width - 1)
 
-    names = list(zip(top, descriptions, header))
+    names = list(zip(top, header))
+    tooltips = {i:d for i, d in zip(header, descriptions)}
+    # FIXME tooltips get applied to the top two lines of the three-line header
 
     # --- Table ---
     # Turn lists into a single dict
@@ -98,8 +103,9 @@ def make_month(month: str, data: Types.MonthFull):
     # Make the table
     table = dash.dash_table.DataTable(
         columns=columns,
+        tooltip_header=tooltips,
         merge_duplicate_headers=True,
-        style_header=dict(textAlign='center'),
+        style_header=tt_indicator | dict(textAlign='center'),
         data=table_data,
         page_action='none',
     )
@@ -109,7 +115,6 @@ def make_initial(initial: Types.ValueCapacityCritical) -> dash.dash_table.DataTa
     """The initial setup before the first month"""
     names = [
         ['WARNING: Approximate values']*3,
-        ['Result']*3,
         ['Value', 'Capacity', 'Is Crit'],
     ]
     ids = names[-1].copy()
@@ -142,7 +147,7 @@ def make_categories() -> dash.dash_table.DataTable:
     """The category list at the far left"""
     names = ['Dir', 'Broad', 'Specific', 'Key']
     ids = names.copy()
-    names = [['', '', name] for name in names]
+    names = [['', name] for name in names]
 
     # TODO handle Dir, Broad, and Specific columns, not just Key (category)
     table_data = []
