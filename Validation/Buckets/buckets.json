@@ -223,6 +223,33 @@
     },
     "4/1/2024": {
       "changes": {
+        "value_delta": {
+          "Self-improvement": "$2,750.00",
+          "Unexpected Fund": "-$2,750.00"
+        },
+        "value_set": {},
+        "capacity_delta": {
+          "Big Fun": "$100.00",
+          "Unexpected Fund": "$500.00"
+        },
+        "capacity_set": {},
+        "crit_set": {}
+      }
+    },
+    "5/1/2024": {
+      "changes": {
+        "value_delta": {},
+        "value_set": {},
+        "capacity_delta": {
+          "Big Fun": "$100.00",
+          "Unexpected Fund": "$500.00"
+        },
+        "capacity_set": {},
+        "crit_set": {}
+      }
+    },
+    "6/1/2024": {
+      "changes": {
         "value_delta": {},
         "value_set": {},
         "capacity_delta": {

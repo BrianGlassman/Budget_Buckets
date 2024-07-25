@@ -31,5 +31,5 @@ def handle(data: list[Item]):
         }
 
         if item['E']['E'] == 'E':
-            raise ValueError()
+            print("FOUND ERROR ITEM:\n" + str(item))
     return ret
