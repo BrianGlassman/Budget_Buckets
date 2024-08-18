@@ -10,6 +10,7 @@ _split_str = "Budget_Buckets/"
 class Logger:
     caller: str
     "Where the logging is happening, prefixed to each line"
+    
     def __init__(self, caller: str) -> None:
         self.caller = caller
     
@@ -24,6 +25,7 @@ class Logger:
 
 _delegate_dict: dict[str, Logger] = {}
 def delegate_print(*values, **kwargs):
+    """Delegates `print` to the Logger class"""
     caller = inspect.stack()[1].filename
     caller = caller.split(_split_str)[-1]
     if caller not in _delegate_dict:
