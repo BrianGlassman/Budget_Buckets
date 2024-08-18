@@ -6,17 +6,12 @@ Validates the "Buckets" tabs in the Excel sheet
 
 
 # Project imports
-from Validation.Buckets import load_buckets_data, load_buckets_validation, Types
+from Validation.Buckets import load_buckets_data as load_data, load_buckets_validation as load_validation, Types
 
 
 # Logging
 from BaseLib.logger import delegate_print as print
 
-def load():
-    data = load_buckets_data()
-    validation = load_buckets_validation()
-
-    return data, validation
 
 def print_VCC_diff(indent, data: Types.ValueCapacityCritical, validation: Types.ValueCapacityCritical):
     if data.value != validation.value:
@@ -54,8 +49,9 @@ def print_diff(data: Types.BucketsFull, validation: Types.BucketsFull):
 def test_buckets_duplication():
     from Loading.ExcelToJSON.log import xls_to_json
     xls_to_json()
-    
-    data, validation = load()
+
+    data = load_data()
+    validation = load_validation()
 
     if data != validation:
         print_diff(data, validation)

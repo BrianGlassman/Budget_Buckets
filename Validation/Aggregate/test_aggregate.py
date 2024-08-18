@@ -6,16 +6,12 @@ Validates the "Aggregate" tabs in the Excel sheet
 
 
 # Project imports
-from Validation.Aggregate import load_aggregate_data, load_aggregate_validation
+from Validation.Aggregate import load_aggregate_data as load_data, load_aggregate_validation as load_validation
 
 
 # Logging
 from BaseLib.logger import delegate_print as print
 
-def load():
-    data = load_aggregate_data()
-    validation = load_aggregate_validation()
-    return data, validation
 
 def print_diff(data: list[dict], validation: list[dict]):
     if len(data) != len(validation):
@@ -48,8 +44,9 @@ def print_diff(data: list[dict], validation: list[dict]):
 def test_aggregate_duplication():
     from Loading.ExcelToJSON.aggregate import xls_to_json
     xls_to_json()
-    
-    data, validation = load()
+
+    data = load_data()
+    validation = load_validation()
 
     if data != validation:
         print_diff(data, validation)

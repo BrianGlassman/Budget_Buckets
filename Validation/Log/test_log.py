@@ -6,16 +6,12 @@ Validates the "Log" tabs in the Excel sheet
 
 
 # Project imports
-from Validation.Log import load_log_data, load_log_validation
+from Validation.Log import load_log_data as load_data, load_log_validation as load_validation
 
 
 # Logging
 from BaseLib.logger import delegate_print as print
 
-def load():
-    data = load_log_data()
-    validation = load_log_validation()
-    return data, validation
 
 def print_diff(data, validation):
     """Print differences in a useful way"""
@@ -43,7 +39,8 @@ def test_log_duplication():
     from Loading.ExcelToJSON.log import xls_to_json
     xls_to_json()
 
-    data, validation = load()
+    data = load_data()
+    validation = load_validation()
 
     if data != validation:
         print_diff(data, validation)
