@@ -6,8 +6,8 @@ from BaseLib.CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import format_cell_value, json_dump
 from Loading.OpenExcel import buckets_sheet as sheet
-from Loading.JSON import buckets_data_path as data_path
-from Loading.JSON import buckets_validation_path as validation_path
+from Loading import buckets_data_path as data_path
+from Loading import buckets_validation_path as validation_path
 from Validation.Buckets import Types
 
 # Logging

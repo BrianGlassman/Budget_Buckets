@@ -3,7 +3,7 @@
 
 # Project imports
 from BaseLib.utils import json_load
-from Loading.JSON import log_data_paths as data_paths, log_validation_paths as validation_paths
+from Loading import log_data_paths as data_paths, log_validation_paths as validation_paths
 from .Handling import Item as LogItem
 
 

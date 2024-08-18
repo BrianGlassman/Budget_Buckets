@@ -4,7 +4,7 @@ import datetime as _datetime
 
 # Project imports
 from BaseLib.utils import json_load, parse_date
-from Loading.JSON import aggregate_validation_paths
+from Loading import aggregate_validation_paths
 from Validation.Log import load_log_data
 
 

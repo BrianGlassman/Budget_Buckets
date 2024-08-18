@@ -5,8 +5,8 @@ from BaseLib.CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import format_cell_value, json_dump
 from Loading.OpenExcel import log_sheets as sheets
-from Loading.JSON import log_data_paths as data_paths
-from Loading.JSON import log_validation_paths as validation_paths
+from Loading import log_data_paths as data_paths
+from Loading import log_validation_paths as validation_paths
 
 # Logging
 from BaseLib.logger import delegate_print as print
