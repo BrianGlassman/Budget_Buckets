@@ -1,13 +1,11 @@
 # General imports
-import datetime
-import openpyxl
-from openpyxl.worksheet._read_only import ReadOnlyWorksheet
 
 # Project imports
+from Loading import excel_path, logs as sheets
 from Validation.Log import spec
 from BaseLib.CategoryList import categories
 from BaseLib.money import Money
-from BaseLib.utils import unparse_date, json_dump
+from BaseLib.utils import format_cell_value, json_dump
 
 
 # Logging
@@ -17,23 +15,10 @@ from BaseLib.logger import delegate_print as print
 Item = dict[str, dict[str, str | Money | None]]
 
 
-def format_value(value) -> str:
-    """Convert an openpyxl Cell value to a string the same as in a CSV"""
-    if value is None:
-        return ''
-    elif isinstance(value, datetime.datetime):
-        return unparse_date(value)
-    else:
-        return str(value)
-
-
 def _xls_to_json(year: str):
-    sheet_name = f"Log {year}"
-    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
-    sheet = wb[sheet_name]
-    assert isinstance(sheet, ReadOnlyWorksheet)
+    sheet = sheets[year]
     # Do some manipulating so it looks like the CSV version
-    raw_lines = [[format_value(value) for value in row] for row in sheet.values]
+    raw_lines = [[format_cell_value(value) for value in row] for row in sheet.values]
 
     # First line is meta-header
     meta_header = (
@@ -118,12 +103,12 @@ def xls_to_json():
     for year in spec.years:
         print(year)
         if (is_json_stale(
-            spec.excel_path,
+            excel_path,
             spec.export_script_path,
             spec.data_paths[year])
             or
             is_json_stale(
-            spec.excel_path,
+            excel_path,
             spec.export_script_path,
             spec.validation_paths[year]
             )

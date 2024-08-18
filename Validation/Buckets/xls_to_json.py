@@ -1,14 +1,12 @@
 # General imports
-import datetime
-import openpyxl
-import openpyxl.worksheet._read_only
 from typing import Literal
 
 
 # Project imports
+from Loading import excel_path, buckets as sheet
 from Validation.Buckets import spec
 from BaseLib.CategoryList import categories
-from BaseLib.utils import unparse_date, json_dump
+from BaseLib.utils import format_cell_value, json_dump
 from BaseLib.money import Money
 from . import Types
 
@@ -18,16 +16,6 @@ from BaseLib.logger import delegate_print as print
 
 # Alias for convenience
 categories_plus_total = categories + ['total']
-
-
-def format_value(value) -> str:
-    """Convert an openpyxl Cell value to a string the same as in a CSV"""
-    if value is None:
-        return ''
-    elif isinstance(value, datetime.datetime):
-        return unparse_date(value)
-    else:
-        return str(value)
 
 
 def assert_blank(raw_columns, c):
@@ -78,12 +66,8 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
 
 
 def _xls_to_json():
-    sheet_name = "Buckets"
-    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
-    sheet = wb[sheet_name]
-    assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
     # Do some manipulating so it looks like the CSV version
-    raw_rows = [[format_value(value) for value in row] for row in sheet.values]
+    raw_rows = [[format_cell_value(value) for value in row] for row in sheet.values]
     raw_columns = list(zip(*raw_rows))
 
     c = 0
@@ -358,9 +342,9 @@ def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, outfile):
 
 def xls_to_json():
     from Validation import is_json_stale
-    if (is_json_stale(spec.excel_path, spec.export_script_path, spec.data_path)
+    if (is_json_stale(excel_path, spec.export_script_path, spec.data_path)
         or
-        is_json_stale(spec.excel_path, spec.export_script_path, spec.validation_path)
+        is_json_stale(excel_path, spec.export_script_path, spec.validation_path)
         ):
         _xls_to_json()
 

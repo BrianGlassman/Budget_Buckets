@@ -1,14 +1,12 @@
 # General imports
-import datetime
-import openpyxl
-import openpyxl.worksheet._read_only
 
 
 # Project imports
+from Loading import excel_path, aggregates as sheets
 from Validation.Aggregate import spec
 from BaseLib.CategoryList import categories
 from BaseLib.money import Money
-from BaseLib.utils import unparse_date, json_dump
+from BaseLib.utils import format_cell_value, json_dump
 
 
 # Logging
@@ -21,25 +19,13 @@ Category = str
 # Necessary information
 log_starts = {'2023': '9/1/2023', '2024': '1/1/2024'}
 
-def format_value(value) -> str:
-    """Convert an openpyxl Cell value to a string the same as in a CSV"""
-    if value is None:
-        return ''
-    elif isinstance(value, datetime.datetime):
-        return unparse_date(value)
-    else:
-        return str(value)
-
 
 def _xls_to_json(year: str):
+    sheet = sheets[year]
     # Cell C1, the first month of the logged period
     log_start = log_starts[year]
-    sheet_name = f"Aggregate {year}"
-    wb = openpyxl.load_workbook(filename=spec.excel_path, read_only=True, data_only=True)
-    sheet = wb[sheet_name]
-    assert isinstance(sheet, openpyxl.worksheet._read_only.ReadOnlyWorksheet)
     # Do some manipulating so it looks like the CSV version
-    raw_lines = [[format_value(value) for value in row] for row in sheet.values]
+    raw_lines = [[format_cell_value(value) for value in row] for row in sheet.values]
     
     # First line is meta-header
     meta_header = ['Log Start', '', log_start]
@@ -103,7 +89,7 @@ def xls_to_json():
     for year in spec.years:
         print(year)
         if is_json_stale(
-            spec.excel_path,
+            excel_path,
             spec.export_script_path,
             spec.validation_paths[year]
         ):

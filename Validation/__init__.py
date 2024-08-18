@@ -7,7 +7,6 @@ from BaseLib.logger import delegate_print as print
 
 class ValidationSpec:
     basedir: str
-    excel_path = 'Budget_Buckets.xlsm'
     export_script_path: str
 
 class SingleValidationSpec(ValidationSpec):
