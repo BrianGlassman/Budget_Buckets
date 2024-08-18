@@ -3,7 +3,7 @@ import dash
 
 
 # Project imports
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 
 
 # File format

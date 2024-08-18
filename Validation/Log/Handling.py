@@ -7,7 +7,7 @@ from copy import deepcopy
 
 
 # Project imports
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 
 
 # Logging
