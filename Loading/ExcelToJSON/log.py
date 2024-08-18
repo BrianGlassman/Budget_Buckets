@@ -1,12 +1,12 @@
 # General imports
 
 # Project imports
-from Loading import excel_path, logs as sheets
-from Validation.Log import spec
 from BaseLib.CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import format_cell_value, json_dump
-
+from Loading.OpenExcel import log_sheets as sheets
+from Loading.JSON import log_data_paths as data_paths
+from Loading.JSON import log_validation_paths as validation_paths
 
 # Logging
 from BaseLib.logger import delegate_print as print
@@ -15,8 +15,9 @@ from BaseLib.logger import delegate_print as print
 Item = dict[str, dict[str, str | Money | None]]
 
 
-def _xls_to_json(year: str):
+def process_year(year: str):
     sheet = sheets[year]
+
     # Do some manipulating so it looks like the CSV version
     raw_lines = [[format_cell_value(value) for value in row] for row in sheet.values]
 
@@ -44,15 +45,15 @@ def _xls_to_json(year: str):
     print("Section headers as-expected")
 
     # Remaining lines are data
-    data = handle_data(raw_lines, section_header_template, False)
-    validation = handle_data(raw_lines, section_header_template, True)
+    data = handle_data("user input", raw_lines, section_header_template, is_validation=False)
+    validation = handle_data("validation", raw_lines, section_header_template, is_validation=True)
 
     # Save to file
-    save_to_file(data, spec.data_paths[year])
-    save_to_file(validation, spec.validation_paths[year])
+    save_to_file("user input", data, data_paths[year])
+    save_to_file("validation", validation, validation_paths[year])
 
 
-def handle_data(raw_lines: list, section_header_template, validation: bool):
+def handle_data(tag: str, raw_lines: list, section_header_template, is_validation: bool):
     # Note: including empty Overrides/Comments
     data = []
     for raw_line in raw_lines[2:]:
@@ -60,10 +61,10 @@ def handle_data(raw_lines: list, section_header_template, validation: bool):
         item['Imported'] = {k:v for k,v in zip(section_header_template, raw_line[0:])}
         item['Account'] = {'Account': raw_line[6]}
         item['Override'] = {k:v for k,v in zip(section_header_template, raw_line[7:])}
-        if validation:
+        if is_validation:
             item['Final'] = {k:v for k,v in zip(section_header_template, raw_line[13:])}
         for i,key in enumerate(['My Category', 'E', 'Comment']):
-            if key == 'E' and not validation:
+            if key == 'E' and not is_validation:
                 continue
             item[key] = {key: raw_line[19+i]}
 
@@ -89,31 +90,34 @@ def handle_data(raw_lines: list, section_header_template, validation: bool):
                 break
         
         data.append(item)
-    print("Data parsing complete")
+    print(f"{tag.capitalize()} parsing complete")
     return data
 
 
-def save_to_file(contents, outfile):
+def save_to_file(tag: str, contents, outfile):
     json_dump(outfile, contents, 2)
-    print("Export complete")
+    print(f"{tag.capitalize()} export complete")
 
 
+# Call it this instead of "main" to make imports easier
 def xls_to_json():
-    from Validation import is_json_stale
-    for year in spec.years:
-        print(year)
-        if (is_json_stale(
-            excel_path,
-            spec.export_script_path,
-            spec.data_paths[year])
-            or
-            is_json_stale(
-            excel_path,
-            spec.export_script_path,
-            spec.validation_paths[year]
-            )
-        ):
-            _xls_to_json(year)
+    from Loading import years
+    from Loading import is_json_stale
+    for year in years:
+        # Check both to avoid confusing printouts
+        data_stale = is_json_stale(
+            tag=f"{year} input",
+            script_path=__file__,
+            json_path=data_paths[year]
+        )
+        val_stale = is_json_stale(
+            tag=f"{year} validation",
+            script_path=__file__,
+            json_path=validation_paths[year]
+        )
+        if data_stale or val_stale:
+            process_year(year)
+
 
 if __name__ == "__main__":
     xls_to_json()

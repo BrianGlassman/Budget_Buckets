@@ -1,32 +1,26 @@
 # General imports
-import os as _os
+import datetime as _datetime
 
 
 # Project imports
-from Validation import YearlyValidationSpec as _Spec
+from BaseLib.utils import json_load, parse_date
+from Loading.JSON import aggregate_validation_paths
+from Validation.Log import load_log_data
 
-
-spec = _Spec(
-    basedir=_os.path.dirname(__file__),
-    tag="aggregate",
-)
 
 # Need validation (for now) to get the date ranges, so do loading in a weird way
 _data = []
 _validation = []
 def load_aggregate():
-    import datetime
-    from BaseLib import utils
-    from Validation.Log import load_log_data
     from .Handling import handle
     validation = []
-    for validation_path in spec.validation_paths.values():
-        validation.extend(utils.json_load(validation_path))
+    for validation_path in aggregate_validation_paths.values():
+        validation.extend(json_load(validation_path))
 
     # Get the date ranges from validation
     # FIXME will these just always be months?
-    date_ranges: list[dict[str, datetime.date]] = [
-        {k:utils.parse_date(item[k]) for k in ('start', 'end')}
+    date_ranges: list[dict[str, _datetime.date]] = [
+        {k:parse_date(item[k]) for k in ('start', 'end')}
         for item in validation
     ]
     
