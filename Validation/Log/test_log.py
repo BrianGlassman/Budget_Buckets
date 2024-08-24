@@ -40,15 +40,8 @@ def print_diff(data, validation):
         if found: break
 
 def test_log_duplication():
-    from Validation import is_json_stale
-    from . import spec
     from .xls_to_json import xls_to_json
-    for year in spec.years:
-        if (is_json_stale(spec.excel_path, spec.export_script_path, spec.data_paths[year])
-            or
-            is_json_stale(spec.excel_path, spec.export_script_path, spec.validation_paths[year])
-            ):
-            xls_to_json(year)
+    xls_to_json()
 
     data, validation = load()
 

@@ -52,14 +52,8 @@ def print_diff(data: Types.BucketsFull, validation: Types.BucketsFull):
             break
 
 def test_buckets_duplication():
-    from Validation import is_json_stale
-    from . import spec
     from .xls_to_json import xls_to_json
-    if (is_json_stale(spec.excel_path, spec.export_script_path, spec.data_path)
-        or
-        is_json_stale(spec.excel_path, spec.export_script_path, spec.validation_path)
-        ):
-        xls_to_json()
+    xls_to_json()
     
     data, validation = load()
 

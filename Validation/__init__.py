@@ -38,8 +38,8 @@ def is_json_stale(excel_path: str, script_path: str, json_path: str):
 
     if (excel_diff := excel_mtime - json_mtime) > 0 or (script_diff := script_mtime - json_mtime) > 0:
         diff = _datetime.timedelta(seconds=max(excel_diff, script_diff))
-        print(f"JSON out of date by {diff}. Converting.")
+        print(f"JSON out of date by {diff}.")
         return True
     else:
-        print(f"Re-using existing JSON from {_datetime.datetime.fromtimestamp(json_mtime).strftime("%D %H:%M:%S")}.")
+        print(f"JSON from {_datetime.datetime.fromtimestamp(json_mtime).strftime("%D %H:%M:%S")} is up to date.")
         return False
