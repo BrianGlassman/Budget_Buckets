@@ -252,10 +252,19 @@
       "changes": {
         "value_delta": {},
         "value_set": {},
-        "capacity_delta": {
-          "Big Fun": "$100.00",
-          "Unexpected Fund": "$500.00"
+        "capacity_delta": {},
+        "capacity_set": {
+          "Big Fun": "$2,500.00",
+          "Unexpected Fund": "$10,000.00"
         },
+        "crit_set": {}
+      }
+    },
+    "7/1/2024": {
+      "changes": {
+        "value_delta": {},
+        "value_set": {},
+        "capacity_delta": {},
         "capacity_set": {},
         "crit_set": {}
       }

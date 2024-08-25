@@ -1,6 +1,1754 @@
 [
   {
     "Imported": {
+      "Date": "7/31/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$22.21",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/31/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$22.21",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/30/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "$6,010.65",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/30/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "$6,010.65",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Salary"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/29/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0062       WESTMINSTER  CO",
+      "Category": "Groceries",
+      "Amount": "-$89.91",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/29/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0062       WESTMINSTER  CO",
+      "Category": "Groceries",
+      "Amount": "-$89.91",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/29/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$12.92",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/29/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$12.92",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.16",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.16",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/24/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$25.92",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/24/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$25.92",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/23/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$6.28",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/23/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$6.28",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/22/2024",
+      "Description": "Xcel Energy",
+      "Original Description": "XCEL ENERGY-PSCO XCELENERGY ***********6821",
+      "Category": "Utilities",
+      "Amount": "-$18.16",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/22/2024",
+      "Description": "Xcel Energy",
+      "Original Description": "XCEL ENERGY-PSCO XCELENERGY ***********6821",
+      "Category": "Utilities",
+      "Amount": "-$18.16",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/20/2024",
+      "Description": "Sugarfire",
+      "Original Description": "TST* SUGARFIRE SMOKEHOUSEWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$34.66",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/20/2024",
+      "Description": "Sugarfire",
+      "Original Description": "TST* SUGARFIRE SMOKEHOUSEWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$34.66",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/19/2024",
+      "Description": "Quantum Fiber",
+      "Original Description": "QUANTUM FIBER    QUANTUM FI ***********7514",
+      "Category": "Internet",
+      "Amount": "-$49.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/19/2024",
+      "Description": "Quantum Fiber",
+      "Original Description": "QUANTUM FIBER    QUANTUM FI ***********7514",
+      "Category": "Internet",
+      "Amount": "-$49.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Internet"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/19/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.67",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/19/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.67",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/16/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-$2.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/16/2024",
+      "Description": "Patreon",
+      "Original Description": "PAYPAL *PATREON INC  MEMB402-935-7733 CA",
+      "Category": "Entertainment",
+      "Amount": "-$2.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "Fidelity",
+      "Original Description": "FID BKG SVC LLC  MONEYLINE  ***********GU0T",
+      "Category": "Investments",
+      "Amount": "-$210.33",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "Fidelity",
+      "Original Description": "FID BKG SVC LLC  MONEYLINE  ***********GU0T",
+      "Category": "Investments",
+      "Amount": "-$210.33",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "401k"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Transfer to 401k"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$16.85",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$16.85",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "Parking Pass Epermit Parkfl",
+      "Original Description": "PARKING PASS EPERMIT     HTTPSWWW.PARKFL",
+      "Category": "Parking",
+      "Amount": "-$10.61",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "Parking Pass Epermit Parkfl",
+      "Original Description": "PARKING PASS EPERMIT     HTTPSWWW.PARKFL",
+      "Category": "Parking",
+      "Amount": "-$10.61",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Parking Pass"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "Recurring Reward Points Redemption",
+      "Original Description": "RECURRING REWARD POINTS REDEMPTION",
+      "Category": "Credit Card Payment",
+      "Amount": "$25.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "Recurring Reward Points Redemption",
+      "Original Description": "RECURRING REWARD POINTS REDEMPTION",
+      "Category": "Credit Card Payment",
+      "Amount": "$25.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-$2,977.28",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-$2,977.28",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/15/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
+      "Category": "Credit Card Payment",
+      "Amount": "-$836.63",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/15/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT    ***********0051",
+      "Category": "Credit Card Payment",
+      "Amount": "-$836.63",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/14/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0062       WESTMINSTER  CO",
+      "Category": "Groceries",
+      "Amount": "-$99.01",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/14/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0062       WESTMINSTER  CO",
+      "Category": "Groceries",
+      "Amount": "-$99.01",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "$2,977.28",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "$2,977.28",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/14/2024",
+      "Description": "US Postal Service",
+      "Original Description": "USPS CHANGE OF ADDRESS   800-238-3150 TN",
+      "Category": "Shipping",
+      "Amount": "-$1.10",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/14/2024",
+      "Description": "US Postal Service",
+      "Original Description": "USPS CHANGE OF ADDRESS   800-238-3150 TN",
+      "Category": "Shipping",
+      "Amount": "-$1.10",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Other - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/13/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$15.54",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/13/2024",
+      "Description": "Mad Greens",
+      "Original Description": "MAD GREENS MG0115        WESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$15.54",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/12/2024",
+      "Description": "Credit Card Payment",
+      "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
+      "Category": "Credit Card Payment",
+      "Amount": "$836.63",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/12/2024",
+      "Description": "Credit Card Payment",
+      "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
+      "Category": "Credit Card Payment",
+      "Amount": "$836.63",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/12/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$94.36",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/12/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$94.36",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Housing - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-$500.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-$500.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Self-improvement"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "American Astronautical So",
+      "Original Description": "AMERICAN ASTRONAUTICAL SO866-4350666  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-$865.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "American Astronautical So",
+      "Original Description": "AMERICAN ASTRONAUTICAL SO866-4350666  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-$865.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": ""
+    },
+    "E": {
+      "E": "E"
+    },
+    "Comment": {
+      "Comment": "AAS conference"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "Park Center Lounge",
+      "Original Description": "TST* PARK CENTER LOUNGE  303-452-8057 CO",
+      "Category": "Restaurants",
+      "Amount": "-$22.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "Park Center Lounge",
+      "Original Description": "TST* PARK CENTER LOUNGE  303-452-8057 CO",
+      "Category": "Restaurants",
+      "Amount": "-$22.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Intern karaoke"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-$189.69",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "USAA Property and Casualty Insurance",
+      "Original Description": "USAA P&C         AUTOPAY    ***********4530",
+      "Category": "Financial",
+      "Amount": "-$189.69",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car/Rental Insurance"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$5.66",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$5.66",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/11/2024",
+      "Description": "Xcel Energy",
+      "Original Description": "XCEL ENERGY-PSCO XCELENERGY ***********6821",
+      "Category": "Utilities",
+      "Amount": "-$44.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/11/2024",
+      "Description": "Xcel Energy",
+      "Original Description": "XCEL ENERGY-PSCO XCELENERGY ***********6821",
+      "Category": "Utilities",
+      "Amount": "-$44.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/10/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-$12.98",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/10/2024",
+      "Description": "Spotify",
+      "Original Description": "PAYPAL           INST XFER  ***********USAI",
+      "Category": "Music",
+      "Amount": "-$12.98",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/10/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$18.41",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/10/2024",
+      "Description": "Bender's Bar",
+      "Original Description": "TST* BENDER'S BAR & GRILLWESTMINSTER  CO",
+      "Category": "Restaurants",
+      "Amount": "-$18.41",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/9/2024",
+      "Description": "Conoco",
+      "Original Description": "CONOCO - SEI 25325       WESTMINSTER  CO",
+      "Category": "Gas",
+      "Amount": "-$38.39",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/9/2024",
+      "Description": "Conoco",
+      "Original Description": "CONOCO - SEI 25325       WESTMINSTER  CO",
+      "Category": "Gas",
+      "Amount": "-$38.39",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/9/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-$20.98",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/9/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-$20.98",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/8/2024",
+      "Description": "Sonic",
+      "Original Description": "SONIC DRIVE IN #3657     NORTHGLENN   CO",
+      "Category": "Fast Food",
+      "Amount": "-$12.28",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/8/2024",
+      "Description": "Sonic",
+      "Original Description": "SONIC DRIVE IN #3657     NORTHGLENN   CO",
+      "Category": "Fast Food",
+      "Amount": "-$12.28",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/8/2024",
+      "Description": "Transfer to Venmo",
+      "Original Description": "VENMO            PAYMENT    ***********7412",
+      "Category": "Transfer",
+      "Amount": "-$11.21",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/8/2024",
+      "Description": "Transfer to Venmo",
+      "Original Description": "VENMO            PAYMENT    ***********7412",
+      "Category": "Transfer",
+      "Amount": "-$11.21",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "After DnD dinner"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-$30.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/7/2024",
+      "Description": "Nature Conservancy",
+      "Original Description": "Nature Conservancy       800-6286860  VA",
+      "Category": "Gifts & Donations",
+      "Amount": "-$30.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Other - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/5/2024",
+      "Description": "Panda Express",
+      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.85",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/5/2024",
+      "Description": "Panda Express",
+      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.85",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/5/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$142.66",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/5/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$142.66",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Housing - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-$35.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-$35.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/3/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********3RMG",
+      "Category": "Uncategorized",
+      "Amount": "-$95.39",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/3/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********3RMG",
+      "Category": "Uncategorized",
+      "Amount": "-$95.39",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/3/2024",
+      "Description": "Online Payment Web",
+      "Original Description": "Online Payment   WEB PMTS   ***********MXMG",
+      "Category": "Transfer",
+      "Amount": "-$1,792.99",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/3/2024",
+      "Description": "Online Payment Web",
+      "Original Description": "Online Payment   WEB PMTS   ***********MXMG",
+      "Category": "Transfer",
+      "Amount": "-$1,792.99",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/3/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.67",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/3/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.67",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/2/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-$7.57",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/2/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-$7.57",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Games"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Landnama"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/2/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$91.13",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/2/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$91.13",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Housing - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "7/2/2024",
+      "Description": "Uncle Henry Asian Food",
+      "Original Description": "UNCLE HENRY ASIAN FOOD   DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$18.20",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "7/2/2024",
+      "Description": "Uncle Henry Asian Food",
+      "Original Description": "UNCLE HENRY ASIAN FOOD   DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$18.20",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
       "Date": "6/30/2024",
       "Description": "Sonesta Select Raleigh",
       "Original Description": "SONESTA SELECT RALEIGH   919-4679 CREDIT",
@@ -78,6 +1826,44 @@
   {
     "Imported": {
       "Date": "6/27/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "$6,010.65",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/27/2024",
+      "Description": "Insperity",
+      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
+      "Category": "Paycheck",
+      "Amount": "$6,010.65",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Salary"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "6/27/2024",
       "Description": "Den Public Parking",
       "Original Description": "DEN PUBLIC PARKING       DENVER       CO",
       "Category": "Parking",
@@ -116,10 +1902,10 @@
   {
     "Imported": {
       "Date": "6/27/2024",
-      "Description": "Jason's Deli",
-      "Original Description": "RDU JASONS DELI 6201117  MORRISVILLE  NC",
-      "Category": "Fast Food",
-      "Amount": "-$14.06",
+      "Description": "Mugi Ramen and Poke",
+      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
+      "Category": "Food & Dining",
+      "Amount": "-$16.17",
       "Status": "Posted"
     },
     "Account": {
@@ -135,10 +1921,10 @@
     },
     "Final": {
       "Date": "6/27/2024",
-      "Description": "Jason's Deli",
-      "Original Description": "RDU JASONS DELI 6201117  MORRISVILLE  NC",
-      "Category": "Fast Food",
-      "Amount": "-$14.06",
+      "Description": "Mugi Ramen and Poke",
+      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
+      "Category": "Food & Dining",
+      "Amount": "-$16.17",
       "Status": "Posted"
     },
     "My Category": {
@@ -154,10 +1940,10 @@
   {
     "Imported": {
       "Date": "6/27/2024",
-      "Description": "Mugi Ramen and Poke",
-      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
-      "Category": "Food & Dining",
-      "Amount": "-$16.17",
+      "Description": "Jason's Deli",
+      "Original Description": "RDU JASONS DELI 6201117  MORRISVILLE  NC",
+      "Category": "Fast Food",
+      "Amount": "-$14.06",
       "Status": "Posted"
     },
     "Account": {
@@ -173,10 +1959,10 @@
     },
     "Final": {
       "Date": "6/27/2024",
-      "Description": "Mugi Ramen and Poke",
-      "Original Description": "MUGI RAMEN AND POKE      WESTMINSTER  CO",
-      "Category": "Food & Dining",
-      "Amount": "-$16.17",
+      "Description": "Jason's Deli",
+      "Original Description": "RDU JASONS DELI 6201117  MORRISVILLE  NC",
+      "Category": "Fast Food",
+      "Amount": "-$14.06",
       "Status": "Posted"
     },
     "My Category": {
@@ -229,11 +2015,11 @@
   },
   {
     "Imported": {
-      "Date": "6/27/2024",
-      "Description": "Insperity",
-      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
-      "Category": "Paycheck",
-      "Amount": "$6,010.65",
+      "Date": "6/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.17",
       "Status": "Posted"
     },
     "Account": {
@@ -248,15 +2034,15 @@
       "Status": ""
     },
     "Final": {
-      "Date": "6/27/2024",
-      "Description": "Insperity",
-      "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
-      "Category": "Paycheck",
-      "Amount": "$6,010.65",
+      "Date": "6/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.17",
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": "Salary"
+      "My Category": "Income - Other"
     },
     "E": {
       "E": "."
@@ -339,44 +2125,6 @@
     },
     "Comment": {
       "Comment": "Conference food"
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/26/2024",
-      "Description": "Interest Paid",
-      "Original Description": "INTEREST PAID",
-      "Category": "Interest Income",
-      "Amount": "$0.17",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/26/2024",
-      "Description": "Interest Paid",
-      "Original Description": "INTEREST PAID",
-      "Category": "Interest Income",
-      "Amount": "$0.17",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Income - Other"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
     }
   },
   {
@@ -496,44 +2244,6 @@
   {
     "Imported": {
       "Date": "6/24/2024",
-      "Description": "Jamba",
-      "Original Description": "TST* JAMBA JUICE - 1359 -NORTHGLENN   CO",
-      "Category": "Fast Food",
-      "Amount": "-$9.51",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/24/2024",
-      "Description": "Jamba",
-      "Original Description": "TST* JAMBA JUICE - 1359 -NORTHGLENN   CO",
-      "Category": "Fast Food",
-      "Amount": "-$9.51",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/24/2024",
       "Description": "Recurring Reward Points Redemption",
       "Original Description": "RECURRING REWARD POINTS REDEMPTION",
       "Category": "Credit Card Payment",
@@ -643,6 +2353,44 @@
     },
     "Comment": {
       "Comment": "Conference hotel"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "6/24/2024",
+      "Description": "Jamba",
+      "Original Description": "TST* JAMBA JUICE - 1359 -NORTHGLENN   CO",
+      "Category": "Fast Food",
+      "Amount": "-$9.51",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/24/2024",
+      "Description": "Jamba",
+      "Original Description": "TST* JAMBA JUICE - 1359 -NORTHGLENN   CO",
+      "Category": "Fast Food",
+      "Amount": "-$9.51",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
     }
   },
   {
@@ -914,82 +2662,6 @@
   {
     "Imported": {
       "Date": "6/20/2024",
-      "Description": "The Grateful Gnome",
-      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
-      "Category": "Alcohol & Bars",
-      "Amount": "-$15.70",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/20/2024",
-      "Description": "The Grateful Gnome",
-      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
-      "Category": "Alcohol & Bars",
-      "Amount": "-$15.70",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/20/2024",
-      "Description": "We Knead Donut",
-      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.35",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/20/2024",
-      "Description": "We Knead Donut",
-      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.35",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/20/2024",
       "Description": "Quantum Fiber",
       "Original Description": "QUANTUM FIBER    QUANTUM FI ***********2715",
       "Category": "Uncategorized",
@@ -1017,6 +2689,82 @@
     },
     "My Category": {
       "My Category": "Internet"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "6/20/2024",
+      "Description": "The Grateful Gnome",
+      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
+      "Category": "Alcohol & Bars",
+      "Amount": "-$15.70",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/20/2024",
+      "Description": "The Grateful Gnome",
+      "Original Description": "THE GRATEFUL GNOME       973-8858125  CO",
+      "Category": "Alcohol & Bars",
+      "Amount": "-$15.70",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "6/20/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.35",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/20/2024",
+      "Description": "We Knead Donut",
+      "Original Description": "WE KNEAD DONUT           WESTMINSTER  CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.35",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -1674,44 +3422,6 @@
   {
     "Imported": {
       "Date": "6/11/2024",
-      "Description": "Target",
-      "Original Description": "TARGET        00013722   THORNTON     CO",
-      "Category": "Shopping",
-      "Amount": "-$22.43",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/11/2024",
-      "Description": "Target",
-      "Original Description": "TARGET        00013722   THORNTON     CO",
-      "Category": "Shopping",
-      "Amount": "-$22.43",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/11/2024",
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
@@ -1788,6 +3498,44 @@
   {
     "Imported": {
       "Date": "6/11/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$22.43",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/11/2024",
+      "Description": "Target",
+      "Original Description": "TARGET        00013722   THORNTON     CO",
+      "Category": "Shopping",
+      "Amount": "-$22.43",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Housing - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "6/11/2024",
       "Description": "USAA Property and Casualty Insurance",
       "Original Description": "USAA P&C         AUTOPAY    ***********4530",
       "Category": "Financial",
@@ -1815,44 +3563,6 @@
     },
     "My Category": {
       "My Category": "Car/Rental Insurance"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/10/2024",
-      "Description": "Rocket Pack and Ship",
-      "Original Description": "ROCKET PACK AND SHIP     DENVER       CO",
-      "Category": "Office Supplies",
-      "Amount": "-$16.32",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/10/2024",
-      "Description": "Rocket Pack and Ship",
-      "Original Description": "ROCKET PACK AND SHIP     DENVER       CO",
-      "Category": "Office Supplies",
-      "Amount": "-$16.32",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "E": {
       "E": "."
@@ -1939,6 +3649,44 @@
   },
   {
     "Imported": {
+      "Date": "6/10/2024",
+      "Description": "Rocket Pack and Ship",
+      "Original Description": "ROCKET PACK AND SHIP     DENVER       CO",
+      "Category": "Office Supplies",
+      "Amount": "-$16.32",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "6/10/2024",
+      "Description": "Rocket Pack and Ship",
+      "Original Description": "ROCKET PACK AND SHIP     DENVER       CO",
+      "Category": "Office Supplies",
+      "Amount": "-$16.32",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Housing - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
       "Date": "6/9/2024",
       "Description": "Den Public Parking",
       "Original Description": "DEN PUBLIC PARKING       DENVER       CO",
@@ -1966,13 +3714,13 @@
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": ""
+      "My Category": "Big Fun"
     },
     "E": {
-      "E": "E"
+      "E": "."
     },
     "Comment": {
-      "Comment": ""
+      "Comment": "Lunch with Jennifer"
     }
   },
   {
@@ -2206,44 +3954,6 @@
   {
     "Imported": {
       "Date": "6/3/2024",
-      "Description": "Panda Express",
-      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.85",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "6/3/2024",
-      "Description": "Panda Express",
-      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.85",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "6/3/2024",
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********DFFG",
       "Category": "Uncategorized",
@@ -2281,11 +3991,11 @@
   },
   {
     "Imported": {
-      "Date": "5/30/2024",
-      "Description": "Tokyo Teriyaki",
-      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
-      "Category": "Restaurants",
-      "Amount": "-$20.04",
+      "Date": "6/3/2024",
+      "Description": "Panda Express",
+      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.85",
       "Status": "Posted"
     },
     "Account": {
@@ -2300,11 +4010,11 @@
       "Status": ""
     },
     "Final": {
-      "Date": "5/30/2024",
-      "Description": "Tokyo Teriyaki",
-      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
-      "Category": "Restaurants",
-      "Amount": "-$20.04",
+      "Date": "6/3/2024",
+      "Description": "Panda Express",
+      "Original Description": "PANDA EXPRESS #711       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.85",
       "Status": "Posted"
     },
     "My Category": {
@@ -2357,11 +4067,11 @@
   },
   {
     "Imported": {
-      "Date": "5/29/2024",
-      "Description": "Cosmos Pizza Federal",
-      "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
-      "Category": "Food & Dining",
-      "Amount": "-$34.14",
+      "Date": "5/30/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.04",
       "Status": "Posted"
     },
     "Account": {
@@ -2376,11 +4086,11 @@
       "Status": ""
     },
     "Final": {
-      "Date": "5/29/2024",
-      "Description": "Cosmos Pizza Federal",
-      "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
-      "Category": "Food & Dining",
-      "Amount": "-$34.14",
+      "Date": "5/30/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$20.04",
       "Status": "Posted"
     },
     "My Category": {
@@ -2429,6 +4139,44 @@
     },
     "Comment": {
       "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "5/29/2024",
+      "Description": "Cosmos Pizza Federal",
+      "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$34.14",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "5/29/2024",
+      "Description": "Cosmos Pizza Federal",
+      "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$34.14",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
     }
   },
   {
@@ -2764,7 +4512,7 @@
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": "Groceries"
+      "My Category": "Car - Other"
     },
     "E": {
       "E": "."
@@ -3460,44 +5208,6 @@
   {
     "Imported": {
       "Date": "5/2/2024",
-      "Description": "Steam",
-      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
-      "Category": "Entertainment",
-      "Amount": "-$32.46",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "5/2/2024",
-      "Description": "Steam",
-      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
-      "Category": "Entertainment",
-      "Amount": "-$32.46",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Games"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": "Palworld"
-    }
-  },
-  {
-    "Imported": {
-      "Date": "5/2/2024",
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********X97G",
       "Category": "Uncategorized",
@@ -3531,6 +5241,44 @@
     },
     "Comment": {
       "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "5/2/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-$32.46",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "5/2/2024",
+      "Description": "Steam",
+      "Original Description": "PAYPAL *STEAM GAMES      4259522985   WA",
+      "Category": "Entertainment",
+      "Amount": "-$32.46",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Games"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Palworld"
     }
   },
   {
@@ -3840,82 +5588,6 @@
   {
     "Imported": {
       "Date": "4/18/2024",
-      "Description": "King Soopers",
-      "Original Description": "KING SOOPERS #0657 FUEL QWHEAT RIDGE  CO",
-      "Category": "Gas",
-      "Amount": "-$32.19",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "4/18/2024",
-      "Description": "King Soopers",
-      "Original Description": "KING SOOPERS #0657 FUEL QWHEAT RIDGE  CO",
-      "Category": "Gas",
-      "Amount": "-$32.19",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Groceries"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "4/18/2024",
-      "Description": "King Soopers",
-      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
-      "Category": "Groceries",
-      "Amount": "-$139.77",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "4/18/2024",
-      "Description": "King Soopers",
-      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
-      "Category": "Groceries",
-      "Amount": "-$139.77",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Groceries"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "4/18/2024",
       "Description": "Federal Tax Refund",
       "Original Description": "IRS  TREAS 310     TAX REF  ***********0918",
       "Category": "Federal Tax",
@@ -3943,6 +5615,82 @@
     },
     "My Category": {
       "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "4/18/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-$139.77",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "4/18/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
+      "Category": "Groceries",
+      "Amount": "-$139.77",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "4/18/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0657 FUEL QWHEAT RIDGE  CO",
+      "Category": "Gas",
+      "Amount": "-$32.19",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "4/18/2024",
+      "Description": "King Soopers",
+      "Original Description": "KING SOOPERS #0657 FUEL QWHEAT RIDGE  CO",
+      "Category": "Gas",
+      "Amount": "-$32.19",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Car - Other"
     },
     "E": {
       "E": "."
@@ -4486,44 +6234,6 @@
   {
     "Imported": {
       "Date": "4/7/2024",
-      "Description": "Post Oak Bbq",
-      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
-      "Category": "Restaurants",
-      "Amount": "-$14.67",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "4/7/2024",
-      "Description": "Post Oak Bbq",
-      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
-      "Category": "Restaurants",
-      "Amount": "-$14.67",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "4/7/2024",
       "Description": "Safeway",
       "Original Description": "SAFEWAY #0244            DENVER       CO",
       "Category": "Groceries",
@@ -4551,6 +6261,44 @@
     },
     "My Category": {
       "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "4/7/2024",
+      "Description": "Post Oak Bbq",
+      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
+      "Category": "Restaurants",
+      "Amount": "-$14.67",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "4/7/2024",
+      "Description": "Post Oak Bbq",
+      "Original Description": "TST* POST OAK BBQ        DENVER       CO",
+      "Category": "Restaurants",
+      "Amount": "-$14.67",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -4600,44 +6348,6 @@
   {
     "Imported": {
       "Date": "4/6/2024",
-      "Description": "Bakery Four",
-      "Original Description": "TST* BAKERY FOUR         DENVER       CO",
-      "Category": "Food & Dining",
-      "Amount": "-$10.87",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "4/6/2024",
-      "Description": "Bakery Four",
-      "Original Description": "TST* BAKERY FOUR         DENVER       CO",
-      "Category": "Food & Dining",
-      "Amount": "-$10.87",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "4/6/2024",
       "Description": "CVS",
       "Original Description": "CVS/PHARMACY #10784      DENVER       CO",
       "Category": "Pharmacy",
@@ -4665,6 +6375,44 @@
     },
     "My Category": {
       "My Category": "Medical - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "4/6/2024",
+      "Description": "Bakery Four",
+      "Original Description": "TST* BAKERY FOUR         DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$10.87",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "4/6/2024",
+      "Description": "Bakery Four",
+      "Original Description": "TST* BAKERY FOUR         DENVER       CO",
+      "Category": "Food & Dining",
+      "Amount": "-$10.87",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -4752,44 +6500,6 @@
   {
     "Imported": {
       "Date": "4/2/2024",
-      "Description": "The Pasty Republic Denver",
-      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
-      "Category": "Fast Food",
-      "Amount": "-$11.87",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "4/2/2024",
-      "Description": "The Pasty Republic Denver",
-      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
-      "Category": "Fast Food",
-      "Amount": "-$11.87",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "4/2/2024",
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********TJ1G",
       "Category": "Uncategorized",
@@ -4817,6 +6527,44 @@
     },
     "My Category": {
       "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "4/2/2024",
+      "Description": "The Pasty Republic Denver",
+      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
+      "Category": "Fast Food",
+      "Amount": "-$11.87",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "4/2/2024",
+      "Description": "The Pasty Republic Denver",
+      "Original Description": "SQ *THE PASTY REPUBLIC   Denver       CO",
+      "Category": "Fast Food",
+      "Amount": "-$11.87",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -4866,6 +6614,44 @@
   {
     "Imported": {
       "Date": "3/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.12",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "3/26/2024",
+      "Description": "Interest Paid",
+      "Original Description": "INTEREST PAID",
+      "Category": "Interest Income",
+      "Amount": "$0.12",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "3/26/2024",
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
@@ -4893,44 +6679,6 @@
     },
     "My Category": {
       "My Category": "Groceries"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "3/26/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$12.16",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "3/26/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$12.16",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -4980,14 +6728,14 @@
   {
     "Imported": {
       "Date": "3/26/2024",
-      "Description": "Interest Paid",
-      "Original Description": "INTEREST PAID",
-      "Category": "Interest Income",
-      "Amount": "$0.12",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$12.16",
       "Status": "Posted"
     },
     "Account": {
-      "Account": "Chk 1121"
+      "Account": "CC 8366"
     },
     "Override": {
       "Date": "",
@@ -4999,14 +6747,14 @@
     },
     "Final": {
       "Date": "3/26/2024",
-      "Description": "Interest Paid",
-      "Original Description": "INTEREST PAID",
-      "Category": "Interest Income",
-      "Amount": "$0.12",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$12.16",
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": "Income - Other"
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -5322,44 +7070,6 @@
   {
     "Imported": {
       "Date": "3/11/2024",
-      "Description": "Tokyo Teriyaki",
-      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
-      "Category": "Restaurants",
-      "Amount": "-$19.58",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "3/11/2024",
-      "Description": "Tokyo Teriyaki",
-      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
-      "Category": "Restaurants",
-      "Amount": "-$19.58",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "3/11/2024",
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
@@ -5425,6 +7135,44 @@
     },
     "My Category": {
       "My Category": "Entertainment - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "3/11/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$19.58",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "3/11/2024",
+      "Description": "Tokyo Teriyaki",
+      "Original Description": "TOKYO TERIYAKI           NORTHGLENN   CO",
+      "Category": "Restaurants",
+      "Amount": "-$19.58",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -5512,6 +7260,44 @@
   {
     "Imported": {
       "Date": "3/7/2024",
+      "Description": "Cornerstoneapart Web Lyf",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1LYF",
+      "Category": "Uncategorized",
+      "Amount": "-$229.83",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "3/7/2024",
+      "Description": "Cornerstoneapart Web Lyf",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1LYF",
+      "Category": "Uncategorized",
+      "Amount": "-$229.83",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "3/7/2024",
       "Description": "Cosmos Pizza Federal",
       "Original Description": "COSMOS PIZZA - FEDERAL   DENVER       CO",
       "Category": "Food & Dining",
@@ -5577,44 +7363,6 @@
     },
     "My Category": {
       "My Category": "Other - Other"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "3/7/2024",
-      "Description": "Cornerstoneapart Web Lyf",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1LYF",
-      "Category": "Uncategorized",
-      "Amount": "-$229.83",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "3/7/2024",
-      "Description": "Cornerstoneapart Web Lyf",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1LYF",
-      "Category": "Uncategorized",
-      "Amount": "-$229.83",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "E": {
       "E": "."
@@ -5702,44 +7450,6 @@
   {
     "Imported": {
       "Date": "3/4/2024",
-      "Description": "T-Mobile",
-      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
-      "Category": "Mobile Phone",
-      "Amount": "-$35.00",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "3/4/2024",
-      "Description": "T-Mobile",
-      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
-      "Category": "Mobile Phone",
-      "Amount": "-$35.00",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Utilities"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "3/4/2024",
       "Description": "Cornerstoneapart Web",
       "Original Description": "CORNERSTONEAPART WEB PMTS   ***********0WVF",
       "Category": "Uncategorized",
@@ -5767,6 +7477,44 @@
     },
     "My Category": {
       "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "3/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-$35.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "3/4/2024",
+      "Description": "T-Mobile",
+      "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
+      "Category": "Mobile Phone",
+      "Amount": "-$35.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Utilities"
     },
     "E": {
       "E": "."
@@ -5930,44 +7678,6 @@
   {
     "Imported": {
       "Date": "2/26/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$14.53",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "2/26/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$14.53",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "2/26/2024",
       "Description": "Interest Paid",
       "Original Description": "INTEREST PAID",
       "Category": "Interest Income",
@@ -5995,6 +7705,44 @@
     },
     "My Category": {
       "My Category": "Income - Other"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/26/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$14.53",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/26/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$14.53",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -6272,44 +8020,6 @@
   {
     "Imported": {
       "Date": "2/14/2024",
-      "Description": "USAA Credit Card",
-      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
-      "Category": "Credit Card Payment",
-      "Amount": "$705.86",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "2/14/2024",
-      "Description": "USAA Credit Card",
-      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
-      "Category": "Credit Card Payment",
-      "Amount": "$705.86",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "2/14/2024",
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
@@ -6371,6 +8081,44 @@
       "Original Description": "USAA CREDIT CARD PAYMENT",
       "Category": "Credit Card Payment",
       "Amount": "-$705.86",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "$705.86",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/14/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT SAN ANTONIO  TX",
+      "Category": "Credit Card Payment",
+      "Amount": "$705.86",
       "Status": "Posted"
     },
     "My Category": {
@@ -6500,6 +8248,44 @@
   {
     "Imported": {
       "Date": "2/12/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-$500.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/12/2024",
+      "Description": "Advs Ed Serv Studntloan",
+      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
+      "Category": "Student Loan",
+      "Amount": "-$500.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Self-improvement"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/12/2024",
       "Description": "127311211",
       "Original Description": "AUTOMATIC PAYMENT - THANK YOU",
       "Category": "Uncategorized",
@@ -6571,44 +8357,6 @@
     },
     "Comment": {
       "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "2/12/2024",
-      "Description": "Advs Ed Serv Studntloan",
-      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
-      "Category": "Student Loan",
-      "Amount": "-$500.00",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "2/12/2024",
-      "Description": "Advs Ed Serv Studntloan",
-      "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
-      "Category": "Student Loan",
-      "Amount": "-$500.00",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Self-improvement"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": "Student loans"
     }
   },
   {
@@ -6842,6 +8590,44 @@
   {
     "Imported": {
       "Date": "2/5/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
+      "Category": "Uncategorized",
+      "Amount": "-$1,945.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "2/5/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
+      "Category": "Uncategorized",
+      "Amount": "-$1,945.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "2/5/2024",
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
       "Category": "Groceries",
@@ -6907,44 +8693,6 @@
     },
     "My Category": {
       "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "2/5/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
-      "Category": "Uncategorized",
-      "Amount": "-$1,945.00",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "2/5/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********F4QF",
-      "Category": "Uncategorized",
-      "Amount": "-$1,945.00",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "E": {
       "E": "."
@@ -7070,44 +8818,6 @@
   {
     "Imported": {
       "Date": "1/30/2024",
-      "Description": "Chick-fil-A",
-      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.95",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/30/2024",
-      "Description": "Chick-fil-A",
-      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
-      "Category": "Fast Food",
-      "Amount": "-$10.95",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/30/2024",
       "Description": "Insperity",
       "Original Description": "ASF, DBA Insperi PAYROLL    ***********5626",
       "Category": "Paycheck",
@@ -7135,6 +8845,44 @@
     },
     "My Category": {
       "My Category": "Salary"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/30/2024",
+      "Description": "Chick-fil-A",
+      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.95",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/30/2024",
+      "Description": "Chick-fil-A",
+      "Original Description": "CHICK-FIL-A #01291       THORNTON     CO",
+      "Category": "Fast Food",
+      "Amount": "-$10.95",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -7412,14 +9160,14 @@
   {
     "Imported": {
       "Date": "1/19/2024",
-      "Description": "I Hop Ipa",
-      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
-      "Category": "Business Services",
-      "Amount": "-$10.65",
+      "Description": "Account Verification Deposit from Bill.com",
+      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
+      "Category": "Transfer",
+      "Amount": "$0.01",
       "Status": "Posted"
     },
     "Account": {
-      "Account": "CC 8366"
+      "Account": "Chk 1121"
     },
     "Override": {
       "Date": "",
@@ -7431,52 +9179,14 @@
     },
     "Final": {
       "Date": "1/19/2024",
-      "Description": "I Hop Ipa",
-      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
-      "Category": "Business Services",
-      "Amount": "-$10.65",
+      "Description": "Account Verification Deposit from Bill.com",
+      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
+      "Category": "Transfer",
+      "Amount": "$0.01",
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": "Going out"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/19/2024",
-      "Description": "Outlaw Wings",
-      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
-      "Category": "Restaurants",
-      "Amount": "-$21.24",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/19/2024",
-      "Description": "Outlaw Wings",
-      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
-      "Category": "Restaurants",
-      "Amount": "-$21.24",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
+      "My Category": "Income - Other"
     },
     "E": {
       "E": "."
@@ -7564,14 +9274,14 @@
   {
     "Imported": {
       "Date": "1/19/2024",
-      "Description": "Account Verification Deposit from Bill.com",
-      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
-      "Category": "Transfer",
-      "Amount": "$0.01",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-$10.65",
       "Status": "Posted"
     },
     "Account": {
-      "Account": "Chk 1121"
+      "Account": "CC 8366"
     },
     "Override": {
       "Date": "",
@@ -7583,14 +9293,52 @@
     },
     "Final": {
       "Date": "1/19/2024",
-      "Description": "Account Verification Deposit from Bill.com",
-      "Original Description": "Bill.com         ACCTVERIFY ***********MKUO",
-      "Category": "Transfer",
-      "Amount": "$0.01",
+      "Description": "I Hop Ipa",
+      "Original Description": "SQ *I HOP IPA            BROOMFIELD   CO",
+      "Category": "Business Services",
+      "Amount": "-$10.65",
       "Status": "Posted"
     },
     "My Category": {
-      "My Category": "Income - Other"
+      "My Category": "Going out"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/19/2024",
+      "Description": "Outlaw Wings",
+      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
+      "Category": "Restaurants",
+      "Amount": "-$21.24",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/19/2024",
+      "Description": "Outlaw Wings",
+      "Original Description": "SQ *OUTLAW WINGS         Broomfield   CO",
+      "Category": "Restaurants",
+      "Amount": "-$21.24",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -7754,44 +9502,6 @@
   {
     "Imported": {
       "Date": "1/11/2024",
-      "Description": "Snarf's",
-      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
-      "Category": "Fast Food",
-      "Amount": "-$20.06",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/11/2024",
-      "Description": "Snarf's",
-      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
-      "Category": "Fast Food",
-      "Amount": "-$20.06",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/11/2024",
       "Description": "Advs Ed Serv Studntloan",
       "Original Description": "ADVS ED SERV PPD STUDNTLOAN ***********0000",
       "Category": "Student Loan",
@@ -7825,6 +9535,44 @@
     },
     "Comment": {
       "Comment": "Student loans"
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/11/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-$20.06",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/11/2024",
+      "Description": "Snarf's",
+      "Original Description": "SNARFS WESTMINSTER       DENVER       CO",
+      "Category": "Fast Food",
+      "Amount": "-$20.06",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
     }
   },
   {
@@ -8134,6 +9882,44 @@
   {
     "Imported": {
       "Date": "1/4/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
+      "Category": "Uncategorized",
+      "Amount": "-$1,945.00",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/4/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
+      "Category": "Uncategorized",
+      "Amount": "-$1,945.00",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/4/2024",
       "Description": "T-Mobile",
       "Original Description": "TMOBILE*AUTO PAY         800-937-8997 WA",
       "Category": "Mobile Phone",
@@ -8172,44 +9958,6 @@
   {
     "Imported": {
       "Date": "1/4/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
-      "Category": "Uncategorized",
-      "Amount": "-$1,945.00",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/4/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********1WJF",
-      "Category": "Uncategorized",
-      "Amount": "-$1,945.00",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Rent"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/4/2024",
       "Description": "Yardi",
       "Original Description": "YARDI SERVICECHG WEB PMTS   ***********0WJF",
       "Category": "Mortgage & Rent",
@@ -8237,44 +9985,6 @@
     },
     "My Category": {
       "My Category": "Rent"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/3/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$13.35",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "CC 8366"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/3/2024",
-      "Description": "Qdoba",
-      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
-      "Category": "Fast Food",
-      "Amount": "-$13.35",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "E": {
       "E": "."
@@ -8323,6 +10033,82 @@
   },
   {
     "Imported": {
+      "Date": "1/3/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$13.35",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "CC 8366"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/3/2024",
+      "Description": "Qdoba",
+      "Original Description": "QDOBA 2063               WESTMINSTER  CA",
+      "Category": "Fast Food",
+      "Amount": "-$13.35",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Food - nice"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
+      "Category": "Uncategorized",
+      "Amount": "-$99.91",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "Cornerstoneapart Web",
+      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
+      "Category": "Uncategorized",
+      "Amount": "-$99.91",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "Rent"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
       "Date": "1/2/2024",
       "Description": "King Soopers",
       "Original Description": "KING SOOPERS #0057       WHEAT RIDGE  CO",
@@ -8351,6 +10137,44 @@
     },
     "My Category": {
       "My Category": "Groceries"
+    },
+    "E": {
+      "E": "."
+    },
+    "Comment": {
+      "Comment": ""
+    }
+  },
+  {
+    "Imported": {
+      "Date": "1/2/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-$823.79",
+      "Status": "Posted"
+    },
+    "Account": {
+      "Account": "Chk 1121"
+    },
+    "Override": {
+      "Date": "",
+      "Description": "",
+      "Original Description": "",
+      "Category": "",
+      "Amount": null,
+      "Status": ""
+    },
+    "Final": {
+      "Date": "1/2/2024",
+      "Description": "USAA Credit Card",
+      "Original Description": "USAA CREDIT CARD PAYMENT",
+      "Category": "Credit Card Payment",
+      "Amount": "-$823.79",
+      "Status": "Posted"
+    },
+    "My Category": {
+      "My Category": "CC Payments"
     },
     "E": {
       "E": "."
@@ -8395,82 +10219,6 @@
     },
     "Comment": {
       "Comment": "Date-shifted to match withdrawal"
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/2/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
-      "Category": "Uncategorized",
-      "Amount": "-$99.91",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/2/2024",
-      "Description": "Cornerstoneapart Web",
-      "Original Description": "CORNERSTONEAPART WEB PMTS   ***********Q9HF",
-      "Category": "Uncategorized",
-      "Amount": "-$99.91",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "Rent"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
-    }
-  },
-  {
-    "Imported": {
-      "Date": "1/2/2024",
-      "Description": "USAA Credit Card",
-      "Original Description": "USAA CREDIT CARD PAYMENT",
-      "Category": "Credit Card Payment",
-      "Amount": "-$823.79",
-      "Status": "Posted"
-    },
-    "Account": {
-      "Account": "Chk 1121"
-    },
-    "Override": {
-      "Date": "",
-      "Description": "",
-      "Original Description": "",
-      "Category": "",
-      "Amount": null,
-      "Status": ""
-    },
-    "Final": {
-      "Date": "1/2/2024",
-      "Description": "USAA Credit Card",
-      "Original Description": "USAA CREDIT CARD PAYMENT",
-      "Category": "Credit Card Payment",
-      "Amount": "-$823.79",
-      "Status": "Posted"
-    },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
-    "E": {
-      "E": "."
-    },
-    "Comment": {
-      "Comment": ""
     }
   },
   {
