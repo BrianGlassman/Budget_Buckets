@@ -104,7 +104,8 @@ class MoneyDecoder(json.JSONDecoder):
         super().__init__(object_pairs_hook=self.object_pairs_hook, *args, **kwargs)
     def object_pairs_hook(self, dct) -> dict:
         # Use object_pairs_hook instead of object_hook in case there are repeat keys
-        # Example: [('Date', '12/30/2023'), ('Description', 'USAA Credit Card'), ('Original Description', 'USAA CREDIT CARD PAYMENT SAN ANTONIO  TX'), ('Category', 'Transfer'), ('Amount', '82379.00'), ('Status', 'Posted')]
+        #   Not seen yet, but could happen
+        # Example `dct`: [('Date', '12/30/2023'), ('Description', 'USAA Credit Card'), ('Original Description', 'USAA CREDIT CARD PAYMENT SAN ANTONIO  TX'), ('Category', 'Transfer'), ('Amount', '82379.00'), ('Status', 'Posted')]
         ret = []
         for key, value in dct:
             if isinstance(value, str) and (value.startswith(symbol) or value.startswith(f'-{symbol}')):
