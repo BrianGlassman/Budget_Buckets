@@ -5,7 +5,7 @@ from dash.dash_table import DataTable
 
 
 # Project imports
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 from Validation.Buckets import Types
 
 
