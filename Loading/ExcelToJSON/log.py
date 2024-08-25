@@ -63,10 +63,14 @@ def handle_data(tag: str, raw_lines: list, section_header_template, is_validatio
         item['Override'] = {k:v for k,v in zip(section_header_template, raw_line[7:])}
         if is_validation:
             item['Final'] = {k:v for k,v in zip(section_header_template, raw_line[13:])}
-        for i,key in enumerate(['My Category', 'E', 'Comment']):
-            if key == 'E' and not is_validation:
-                continue
-            item[key] = {key: raw_line[19+i]}
+            meta_keys = ['My Category', 'E', 'Comment']
+            meta_idx = 19
+        else:
+            meta_keys = ['Comment']
+            meta_idx = 21
+
+        for i,key in enumerate(meta_keys):
+            item[key] = {key: raw_line[meta_idx+i]}
 
         # Enforce consistent amount formatting
         for key in ['Imported', 'Override', 'Final']:
@@ -81,13 +85,14 @@ def handle_data(tag: str, raw_lines: list, section_header_template, is_validatio
             item[key]['Amount'] = amount
         
         # Enforce consistent category capitalization
-        category = item['My Category']['My Category']
-        assert isinstance(category, str)
-        for cat in categories:
-            if category.lower() == cat.lower() and category != cat:
-                # Same category, just wrong capitalization
-                item['My Category']['My Category'] = cat
-                break
+        if is_validation:
+            category = item['My Category']['My Category']
+            assert isinstance(category, str)
+            for cat in categories:
+                if category.lower() == cat.lower() and category != cat:
+                    # Same category, just wrong capitalization
+                    item['My Category']['My Category'] = cat
+                    break
         
         data.append(item)
     print(f"{tag.capitalize()} parsing complete")

@@ -19,9 +19,6 @@
       "Amount": "$0.00",
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": "Date-shifted to match withdrawal, non-zero amount on 2024 sheet"
     }
@@ -45,9 +42,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Christmas travel"
@@ -73,9 +67,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Christmas travel"
     }
@@ -99,9 +90,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -127,9 +115,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Salary"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -154,9 +139,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Other - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -180,9 +162,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -208,9 +187,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Christmas dinner"
     }
@@ -234,9 +210,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -262,9 +235,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Books"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -288,9 +258,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Books"
     },
     "Comment": {
       "Comment": ""
@@ -316,9 +283,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Christmas travel"
     }
@@ -343,9 +307,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -369,9 +330,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -397,9 +355,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Other - Other"
-    },
     "Comment": {
       "Comment": "Jill Christmas gift"
     }
@@ -423,9 +378,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Groceries"
     },
     "Comment": {
       "Comment": ""
@@ -451,9 +403,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Dates"
-    },
     "Comment": {
       "Comment": "Hope"
     }
@@ -477,9 +426,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Dates"
     },
     "Comment": {
       "Comment": "Hope"
@@ -505,9 +451,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Entertainment - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -531,9 +474,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Going out"
     },
     "Comment": {
       "Comment": ""
@@ -559,9 +499,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -585,9 +522,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Games"
     },
     "Comment": {
       "Comment": ""
@@ -613,9 +547,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car/Rental Insurance"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -639,9 +570,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Entertainment - Other"
     },
     "Comment": {
       "Comment": ""
@@ -667,9 +595,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Dates"
-    },
     "Comment": {
       "Comment": "Mercedes"
     }
@@ -693,9 +618,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Dates"
     },
     "Comment": {
       "Comment": "Mercedes"
@@ -721,9 +643,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -748,9 +667,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -774,9 +690,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": ""
@@ -802,9 +715,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Medical - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -828,9 +738,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Self-improvement"
     },
     "Comment": {
       "Comment": ""
@@ -856,9 +763,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Self-improvement"
-    },
     "Comment": {
       "Comment": "Student loans"
     }
@@ -882,9 +786,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": ""
@@ -910,9 +811,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Note"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -936,9 +834,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": ""
@@ -964,9 +859,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -990,9 +882,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Utilities"
     },
     "Comment": {
       "Comment": ""
@@ -1018,9 +907,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1044,9 +930,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1072,9 +955,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": "First Friday with Sky"
     }
@@ -1098,9 +978,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1126,9 +1003,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": "Phone"
     }
@@ -1152,9 +1026,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Salary"
     },
     "Comment": {
       "Comment": ""
@@ -1180,9 +1051,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1206,9 +1074,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Clothes/Personal care"
     },
     "Comment": {
       "Comment": "Florsheim"
@@ -1234,9 +1099,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1260,9 +1122,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": "Jill Christmas gift"
@@ -1288,9 +1147,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": "Headset"
     }
@@ -1314,9 +1170,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1342,9 +1195,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1368,9 +1218,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Dates"
     },
     "Comment": {
       "Comment": ""
@@ -1396,9 +1243,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Self-improvement"
-    },
     "Comment": {
       "Comment": "Elective class"
     }
@@ -1422,9 +1266,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Dates"
     },
     "Comment": {
       "Comment": "Sky"
@@ -1450,9 +1291,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1476,9 +1314,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1504,9 +1339,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1530,9 +1362,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": "Board games"
@@ -1558,9 +1387,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Clothes/Personal care"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1584,9 +1410,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -1612,9 +1435,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1638,9 +1458,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Entertainment - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1666,9 +1483,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Salary"
-    },
     "Comment": {
       "Comment": "Bonus?"
     }
@@ -1692,9 +1506,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car/Rental Insurance"
     },
     "Comment": {
       "Comment": ""
@@ -1720,9 +1531,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1747,9 +1555,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Entertainment - Other"
-    },
     "Comment": {
       "Comment": "Spotify"
     }
@@ -1773,9 +1578,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -1801,9 +1603,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1827,9 +1626,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": "Security deposit refund"
@@ -1855,9 +1651,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Internet"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1882,9 +1675,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -1908,9 +1698,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": ""
@@ -1936,9 +1723,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Self-improvement"
-    },
     "Comment": {
       "Comment": "Student loans"
     }
@@ -1962,9 +1746,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -1990,9 +1771,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Self-improvement"
-    },
     "Comment": {
       "Comment": "Swing class"
     }
@@ -2016,9 +1794,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car - Other"
     },
     "Comment": {
       "Comment": ""
@@ -2044,9 +1819,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2071,9 +1843,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Utilities"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2097,9 +1866,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2125,9 +1891,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Rent"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2151,9 +1914,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -2179,9 +1939,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Rent"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2205,9 +1962,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car - Note"
     },
     "Comment": {
       "Comment": ""
@@ -2233,9 +1987,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2259,9 +2010,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2287,9 +2035,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2313,9 +2058,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "CC Payments"
     },
     "Comment": {
       "Comment": ""
@@ -2341,9 +2083,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2367,9 +2106,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Groceries"
     },
     "Comment": {
       "Comment": ""
@@ -2395,9 +2131,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Salary"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2422,9 +2155,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Halloween"
     }
@@ -2448,9 +2178,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Games"
     },
     "Comment": {
       "Comment": ""
@@ -2476,9 +2203,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Going out"
-    },
     "Comment": {
       "Comment": "After work drinks"
     }
@@ -2502,9 +2226,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Halloween"
@@ -2530,9 +2251,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2556,9 +2274,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2584,9 +2299,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Utilities"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2610,9 +2322,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2638,9 +2347,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Income - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2664,9 +2370,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Halloween"
@@ -2692,9 +2395,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Halloween"
     }
@@ -2718,9 +2418,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2746,9 +2443,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2772,9 +2466,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2800,9 +2491,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Other - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2826,9 +2514,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Utilities"
     },
     "Comment": {
       "Comment": ""
@@ -2854,9 +2539,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2880,9 +2562,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2908,9 +2587,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2934,9 +2610,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -2962,9 +2635,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Internet"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -2988,9 +2658,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Utilities"
     },
     "Comment": {
       "Comment": ""
@@ -3016,9 +2683,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3043,9 +2707,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Utilities"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3069,9 +2730,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Entertainment - Other"
     },
     "Comment": {
       "Comment": ""
@@ -3097,9 +2755,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Going out"
-    },
     "Comment": {
       "Comment": "Besties board games"
     }
@@ -3123,9 +2778,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "CC Payments"
     },
     "Comment": {
       "Comment": ""
@@ -3151,9 +2803,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Parental Funds"
-    },
     "Comment": {
       "Comment": "Repay Jill loan"
     }
@@ -3177,9 +2826,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Going out"
     },
     "Comment": {
       "Comment": "D and D supplies"
@@ -3205,9 +2851,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3231,9 +2874,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "CC Payments"
     },
     "Comment": {
       "Comment": ""
@@ -3259,9 +2899,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3285,9 +2922,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -3313,9 +2947,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3339,9 +2970,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -3367,9 +2995,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3393,9 +3018,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car/Rental Insurance"
     },
     "Comment": {
       "Comment": ""
@@ -3421,9 +3043,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3447,9 +3066,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Entertainment - Other"
     },
     "Comment": {
       "Comment": "Spotify"
@@ -3475,9 +3091,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "ATM"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3501,9 +3114,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "ATM"
     },
     "Comment": {
       "Comment": ""
@@ -3529,9 +3139,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3555,9 +3162,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -3583,9 +3187,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Wedding trip"
     }
@@ -3610,9 +3211,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Big Fun"
-    },
     "Comment": {
       "Comment": "Wedding trip"
     }
@@ -3636,9 +3234,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -3664,9 +3259,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3690,9 +3282,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": "Drexel swag"
@@ -3718,9 +3307,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Other - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3744,9 +3330,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -3772,9 +3355,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Clothes/Personal care"
-    },
     "Comment": {
       "Comment": "Belt"
     }
@@ -3798,9 +3378,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -3826,9 +3403,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3852,9 +3426,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Books"
     },
     "Comment": {
       "Comment": ""
@@ -3880,9 +3451,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Medical - Other"
-    },
     "Comment": {
       "Comment": "Dramamine"
     }
@@ -3906,9 +3474,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -3934,9 +3499,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Clothes/Personal care"
-    },
     "Comment": {
       "Comment": "Suit cleaning"
     }
@@ -3961,9 +3523,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -3987,9 +3546,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Utilities"
     },
     "Comment": {
       "Comment": ""
@@ -4015,9 +3571,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4041,9 +3594,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4069,9 +3619,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4095,9 +3642,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": ""
@@ -4123,9 +3667,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Note"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4149,9 +3690,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -4177,9 +3715,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4203,9 +3738,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4231,9 +3763,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Dates"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4257,9 +3786,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4285,9 +3811,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Going out"
-    },
     "Comment": {
       "Comment": "Cat cafe"
     }
@@ -4311,9 +3834,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4339,9 +3859,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Income - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4365,9 +3882,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": "Bluff St move-out"
@@ -4393,9 +3907,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4419,9 +3930,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4447,9 +3955,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4473,9 +3978,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Salary"
     },
     "Comment": {
       "Comment": ""
@@ -4501,9 +4003,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4527,9 +4026,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": "Bluff St move-out"
@@ -4555,9 +4051,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": "Bluff St move-out"
     }
@@ -4581,9 +4074,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4609,9 +4099,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4635,9 +4122,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -4663,9 +4147,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Income - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4689,9 +4170,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Big Fun"
     },
     "Comment": {
       "Comment": "Wedding trip"
@@ -4717,9 +4195,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Rent"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4743,9 +4218,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": ""
@@ -4771,9 +4243,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4797,9 +4266,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -4825,9 +4291,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": "Bluff St move-out"
     }
@@ -4851,9 +4314,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -4879,9 +4339,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -4905,9 +4362,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -4933,9 +4387,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Other - Other"
-    },
     "Comment": {
       "Comment": "Hank gift"
     }
@@ -4959,9 +4410,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -4987,9 +4435,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Internet"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5013,9 +4458,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Rent"
     },
     "Comment": {
       "Comment": "Probably pro-rated rent?"
@@ -5041,9 +4483,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5067,9 +4506,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Groceries"
     },
     "Comment": {
       "Comment": ""
@@ -5095,9 +4531,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Games"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5121,9 +4554,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -5149,9 +4579,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Utilities"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5175,9 +4602,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car - Other"
     },
     "Comment": {
       "Comment": ""
@@ -5203,9 +4627,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Entertainment - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5229,9 +4650,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Income - Other"
     },
     "Comment": {
       "Comment": ""
@@ -5257,9 +4675,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Parental Funds"
-    },
     "Comment": {
       "Comment": "Alan loan"
     }
@@ -5283,9 +4698,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -5311,9 +4723,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5337,9 +4746,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "CC Payments"
     },
     "Comment": {
       "Comment": ""
@@ -5365,9 +4771,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5391,9 +4794,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -5419,9 +4819,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "CC Payments"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5445,9 +4842,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Car/Rental Insurance"
     },
     "Comment": {
       "Comment": ""
@@ -5473,9 +4867,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Rent"
-    },
     "Comment": {
       "Comment": "Bluff St"
     }
@@ -5499,9 +4890,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Entertainment - Other"
     },
     "Comment": {
       "Comment": "Spotify"
@@ -5527,9 +4915,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Housing - Other"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5553,9 +4938,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Housing - Other"
     },
     "Comment": {
       "Comment": ""
@@ -5581,9 +4963,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5607,9 +4986,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Groceries"
     },
     "Comment": {
       "Comment": ""
@@ -5635,9 +5011,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Salary"
-    },
     "Comment": {
       "Comment": "Bonus?"
     }
@@ -5661,9 +5034,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Salary"
     },
     "Comment": {
       "Comment": "Bonus?"
@@ -5689,9 +5059,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Food - nice"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5715,9 +5082,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Food - nice"
     },
     "Comment": {
       "Comment": ""
@@ -5743,9 +5107,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Car - Note"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5769,9 +5130,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Utilities"
     },
     "Comment": {
       "Comment": ""
@@ -5797,9 +5155,6 @@
       "Amount": null,
       "Status": ""
     },
-    "My Category": {
-      "My Category": "Groceries"
-    },
     "Comment": {
       "Comment": ""
     }
@@ -5823,9 +5178,6 @@
       "Category": "",
       "Amount": null,
       "Status": ""
-    },
-    "My Category": {
-      "My Category": "Other - Other"
     },
     "Comment": {
       "Comment": "Pins for Abby"
