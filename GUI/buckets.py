@@ -71,27 +71,15 @@ def Buckets(data: Types.BucketsFull):
     return combined
 
 def make_month(month: str, data: Types.MonthFull):
-    width = 17
-    # table_data: list of rows
-    # Can't do [{}]*# because it re-uses the dict
-    # Add an extra row for the total
-    # table_data: list[dict] = [{} for _ in range(len(categories) + 1)]
-    # for c, (header, column) in enumerate(data.columns.items()):
-    #     for r, (category, value) in enumerate(column.items()):
-    #         table_data[r][header] = value
-
-            
-
     table_data = [d.values() for d in data.columns.values()]
     table_data = [
         dict((id, value) for id, value in zip(header, row))
         for row in zip(*table_data)
     ]
-        
 
     # First cell is the month itself
     # Rest of that row is blank
-    top = [month] + [''] * (width - 1)
+    top = [month] + [''] * (len(header) - 1)
 
     names = list(zip(top, header))
     tooltips = {i:d for i, d in zip(header, descriptions)}
