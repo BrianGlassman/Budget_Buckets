@@ -55,16 +55,12 @@ tt_indicator = {'textDecoration': 'underline', 'textDecorationStyle': 'dotted'}
 
 
 def Buckets(data: Types.BucketsFull):
-    # for item in data.months.items():
-    #     make_month(*item, ids, names, table_data)
-    item = next(iter(data.months.items()))
-
-    # Turn lists into a single dict
-    # --- Table ---
     combined = html.Div([
         html.Div([make_categories()], style={'display': 'inline-block'}),
         html.Div([make_initial(data.initial)], style={'display': 'inline-block'}),
-        html.Div([make_month(*item)], style={'display': 'inline-block'}),
+        html.Div([
+            html.Div([make_month(*item)], style={'display': 'inline-block'}) for item in data.months.items()
+            ], style={'display': 'inline-block'}),
         ],
         style={'overflow-x': 'scroll', 'white-space': 'nowrap'},
     )
@@ -77,9 +73,10 @@ def make_month(month: str, data: Types.MonthFull):
         for row in zip(*table_data)
     ]
 
-    # First cell is the month itself
-    # Rest of that row is blank
-    top = [month] + [''] * (len(header) - 1)
+    # First cell is the month itself (using the whole row because it looks better)
+    m, d, y = month.split('/')
+    month = f"{m}/{y}"
+    top = [month] * len(header)
 
     names = list(zip(top, header))
     tooltips = {i:d for i, d in zip(header, descriptions)}
