@@ -9,19 +9,19 @@ import GUI
 
 # Wrappers around GUI elements
 def log():
-    from Validation.Log.xls_to_json import xls_to_json
+    from Loading.ExcelToJSON.log import xls_to_json
     from Validation.Log import load_log_data
     xls_to_json()
     data = load_log_data()
     return GUI.Log(data)
 def aggregate():
-    from Validation.Aggregate.xls_to_json import xls_to_json
+    from Loading.ExcelToJSON.aggregate import xls_to_json
     from Validation.Aggregate import load_aggregate_data
     xls_to_json()
     data = load_aggregate_data()
     return GUI.Aggregate(data)
 def buckets():
-    from Validation.Buckets.xls_to_json import xls_to_json
+    from Loading.ExcelToJSON.buckets import xls_to_json
     from Validation.Buckets import load_buckets_data
     xls_to_json()
     data = load_buckets_data()
