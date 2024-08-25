@@ -23,12 +23,12 @@ def print_diff(data, validation):
         # Make sure keys match
         if d.keys() != v.keys():
             found = True
-            print(f"{d.keys()=}\n!=\n{v.keys()=}")
+            print(f"\n{d.keys()=}\n!=\n{v.keys()=}")
         else:
             # Find mismatched values
             for k in v.keys():
                 if d[k] != v[k]:
-                    print(f"d[{k}]={d[k]}\n!=\nv[{k}]={v[k]}")
+                    print(f"\nd[{k}]={d[k]}\n!=\nv[{k}]={v[k]}")
                     found = True
                     break
         

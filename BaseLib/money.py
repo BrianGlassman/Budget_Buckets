@@ -81,6 +81,10 @@ class Money:
     def __eq__(self, value: object) -> bool:
         value = self._prep(value)
         return self.value.__eq__(value.value)
+    def __le__(self, value) -> bool:
+        return self < value or self == value
+    def __ge__(self, value) -> bool:
+        return self == value or self > value
 
     def pretty_str(self):
         """Copy Excel's money formatting (assuming symbol='$')"""
