@@ -341,7 +341,7 @@ def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, outfile):
 
 # Call it this instead of "main" to make imports easier
 def xls_to_json():
-    from Loading import is_json_stale
+    from Loading.ExcelToJSON import is_json_stale
     # Check both to avoid confusing printouts
     data_stale = is_json_stale(
         script_path=__file__,

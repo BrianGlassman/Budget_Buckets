@@ -86,7 +86,7 @@ def save_to_file(tag: str, contents, outfile):
 # Call it this instead of "main" to make imports easier
 def xls_to_json():
     from Loading import years
-    from Loading import is_json_stale
+    from Loading.ExcelToJSON import is_json_stale
     for year in years:
         # data_stale = is_json_stale(...) # Note: no user input for aggregate
         val_stale = is_json_stale(
