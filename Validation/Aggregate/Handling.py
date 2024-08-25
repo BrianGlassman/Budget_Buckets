@@ -22,6 +22,7 @@ def handle(log_data, date_ranges):
     # Aggregate the log data
     for item in log_data:
         category = item['My Category']['My Category']
+        if category == '': continue
         date = utils.parse_date(item['Final']['Date'])
         for data_item in data:
             if data_item['start'] <= date <= data_item['end']:
