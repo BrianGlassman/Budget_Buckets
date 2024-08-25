@@ -4,7 +4,7 @@ import os as _os
 
 # Project imports
 from BaseLib.utils import json_load
-from Loading.JSON import buckets_data_path as data_path, buckets_validation_path as validation_path
+from Loading import buckets_data_path as data_path, buckets_validation_path as validation_path
 from Validation.Buckets.Types import BucketsFull
 
 
