@@ -7,7 +7,7 @@ from typing import Literal
 
 # Project imports
 from Validation.Buckets import spec
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 from BaseLib.utils import unparse_date, json_dump
 from BaseLib.money import Money
 from . import Types

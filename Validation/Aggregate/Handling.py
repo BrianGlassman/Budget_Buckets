@@ -10,7 +10,7 @@ from decimal import Decimal
 # Project imports
 from BaseLib import utils
 from BaseLib.money import Money
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 
 
 def handle(log_data, date_ranges):

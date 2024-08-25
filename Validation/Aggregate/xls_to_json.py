@@ -6,7 +6,7 @@ import openpyxl.worksheet._read_only
 
 # Project imports
 from Validation.Aggregate import spec
-from CategoryList import categories
+from BaseLib.CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import unparse_date, json_dump
 

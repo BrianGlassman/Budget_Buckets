@@ -1,3 +1,20 @@
+_archive/
+_reference/
+
+# pyLint (probably from Kite)
+.pylint.d/
+
+# Weird file that git seems to output
+.goutputstream*
+
+# Office autosaves
+~$*
+
+
+#--------------------
+# End custom section
+#--------------------
+
 # Nuitka
 *.build/
 *.dist/
@@ -136,12 +153,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# pyLint (probably from Kite)
-.pylint.d/
-
-# Weird file that git seems to output
-.goutputstream*
-
-# Office autosaves
-~$*
