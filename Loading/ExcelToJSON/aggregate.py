@@ -1,13 +1,12 @@
 # General imports
 
-
 # Project imports
-from Loading import excel_path, aggregates as sheets
-from Validation.Aggregate import spec
 from BaseLib.CategoryList import categories
 from BaseLib.money import Money
 from BaseLib.utils import format_cell_value, json_dump
-
+from Loading.OpenExcel import aggregate_sheets as sheets
+# from Loading.JSON import aggregate_data_paths as data_paths # Note: no user input for aggregate
+from Loading.JSON import aggregate_validation_paths as validation_paths
 
 # Logging
 from BaseLib.logger import delegate_print as print
@@ -20,7 +19,7 @@ Category = str
 log_starts = {'2023': '9/1/2023', '2024': '1/1/2024'}
 
 
-def _xls_to_json(year: str):
+def process_year(year: str):
     sheet = sheets[year]
     # Cell C1, the first month of the logged period
     log_start = log_starts[year]
@@ -51,13 +50,15 @@ def _xls_to_json(year: str):
     print("Totals line as-expected")
 
     # Remaining lines are data
-    validation = handle_data(raw_lines, True)
+    print("<No user input for Aggregate>")
+    validation = handle_data("input", raw_lines, True)
 
     # Save to file
-    save_to_file(validation, spec.validation_paths[year])
+    print("<No user input for Aggregate>")
+    save_to_file("validation", validation, validation_paths[year])
 
 
-def handle_data(raw_lines: list, validation: bool):
+def handle_data(tag: str, raw_lines: list, validation: bool):
     assert validation, "No non-validation data for Aggregate"
 
     # Remaining lines are data
@@ -73,29 +74,29 @@ def handle_data(raw_lines: list, validation: bool):
         assert total == sum(vals.values())
         item['data'] = vals
         data.append(item)
-    print("Data parsing complete")
+    print(f"{tag.capitalize()} parsing complete")
     return data
 
 
-def save_to_file(contents, outfile):
+def save_to_file(tag: str, contents, outfile):
     json_dump(outfile, contents, 2)
-    print("Export complete")
+    print(f"{tag.capitalize()} export complete")
+    
 
-
+# Call it this instead of "main" to make imports easier
 def xls_to_json():
-    from Validation import is_json_stale
-    # No data JSON, only validation
-    # FIXME, actually, uses Log data
-    for year in spec.years:
-        print(year)
-        if is_json_stale(
-            excel_path,
-            spec.export_script_path,
-            spec.validation_paths[year]
-        ):
-            # FIXME don't hard-code date
-            _xls_to_json(year)
+    from Loading import years
+    from Loading import is_json_stale
+    for year in years:
+        # data_stale = is_json_stale(...) # Note: no user input for aggregate
+        val_stale = is_json_stale(
+            tag=f"{year} validation",
+            script_path=__file__,
+            json_path=validation_paths[year]
+        )
+        if val_stale:
+            process_year(year)
+
 
 if __name__ == "__main__":
     xls_to_json()
-

@@ -1,15 +1,14 @@
 # General imports
 from typing import Literal
 
-
 # Project imports
-from Loading import excel_path, buckets as sheet
-from Validation.Buckets import spec
 from BaseLib.CategoryList import categories
-from BaseLib.utils import format_cell_value, json_dump
 from BaseLib.money import Money
-from . import Types
-
+from BaseLib.utils import format_cell_value, json_dump
+from Loading.OpenExcel import buckets_sheet as sheet
+from Loading.JSON import buckets_data_path as data_path
+from Loading.JSON import buckets_validation_path as validation_path
+from Validation.Buckets import Types
 
 # Logging
 from BaseLib.logger import delegate_print as print
@@ -65,7 +64,7 @@ def make_ChangeSet(data_cols: list[tuple[str, ...]]) -> Types.ChangeSet:
     return ret
 
 
-def _xls_to_json():
+def process():
     # Do some manipulating so it looks like the CSV version
     raw_rows = [[format_cell_value(value) for value in row] for row in sheet.values]
     raw_columns = list(zip(*raw_rows))
@@ -104,8 +103,8 @@ def _xls_to_json():
         raise
 
     # Save to file
-    save_to_file(data, spec.data_path)
-    save_to_file(validation, spec.validation_path)
+    save_to_file(data, data_path)
+    save_to_file(validation, validation_path)
 
 
 def handle_categories(raw_columns, c):
@@ -340,14 +339,20 @@ def save_to_file(contents: Types.BucketsInput | Types.BucketsFull, outfile):
     print("Export complete")
 
 
+# Call it this instead of "main" to make imports easier
 def xls_to_json():
-    from Validation import is_json_stale
-    if (is_json_stale(excel_path, spec.export_script_path, spec.data_path)
-        or
-        is_json_stale(excel_path, spec.export_script_path, spec.validation_path)
-        ):
-        _xls_to_json()
+    from Loading import is_json_stale
+    # Check both to avoid confusing printouts
+    data_stale = is_json_stale(
+        script_path=__file__,
+        json_path=data_path
+    )
+    val_stale = is_json_stale(
+        script_path=__file__,
+        json_path=validation_path
+    )
+    if data_stale or val_stale:
+        process()
 
 if __name__ == "__main__":
     xls_to_json()
-

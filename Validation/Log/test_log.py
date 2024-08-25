@@ -40,7 +40,7 @@ def print_diff(data, validation):
         if found: break
 
 def test_log_duplication():
-    from .xls_to_json import xls_to_json
+    from Loading.ExcelToJSON.log import xls_to_json
     xls_to_json()
 
     data, validation = load()

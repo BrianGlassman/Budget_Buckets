@@ -46,7 +46,7 @@ def print_diff(data: list[dict], validation: list[dict]):
 
 
 def test_aggregate_duplication():
-    from .xls_to_json import xls_to_json
+    from Loading.ExcelToJSON.aggregate import xls_to_json
     xls_to_json()
     
     data, validation = load()
