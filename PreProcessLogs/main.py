@@ -1,14 +1,12 @@
 """
-Process the input data
+Handle original/override/final Log logic
 """
 
 # General imports
 from copy import deepcopy
 
-
 # Project imports
 from BaseLib.CategoryList import categories
-
 
 # Logging
 from BaseLib.logger import delegate_print as print

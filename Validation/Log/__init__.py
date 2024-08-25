@@ -1,14 +1,12 @@
 # General imports
 
-
 # Project imports
 from BaseLib.utils import json_load
 from Loading import log_data_paths as data_paths, log_validation_paths as validation_paths
-from .Handling import Item as LogItem
+from PreProcessLogs import Item as LogItem, handle
 
 
 def load_log_data():
-    from .Handling import handle
     raw = []
     for data_path in data_paths.values():
         raw.extend(json_load(data_path))
