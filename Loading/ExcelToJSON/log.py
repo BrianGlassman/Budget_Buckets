@@ -111,12 +111,12 @@ def xls_to_json():
     for year in years:
         # Check both to avoid confusing printouts
         data_stale = is_json_stale(
-            tag=f"{year} input",
+            tag=f"{year} Log input",
             script_path=__file__,
             json_path=data_paths[year]
         )
         val_stale = is_json_stale(
-            tag=f"{year} validation",
+            tag=f"{year} Log validation",
             script_path=__file__,
             json_path=validation_paths[year]
         )

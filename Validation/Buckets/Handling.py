@@ -46,7 +46,7 @@ def _generate_month(start: _column_t, transactions: _column_t, prev_crit: _crit_
         return {key: Money.from_dollars(column[key].to_dollars() * scale) for key in column.keys()}
     
     def sum_column(a: _column) -> Money:
-        return sum(a.values())
+        return sum(a.values(), Money(0, 0))
     
     def this_or_that(condition: _crit_colum, true_val, false_val) -> _column:
         """true_val and false_val can be columns or scalars"""
@@ -167,6 +167,7 @@ def _generate_month(start: _column_t, transactions: _column_t, prev_crit: _crit_
         "Scaled to Fill": "ERROR: Scaled doesn't match slush fund" if sum_column(scaled) != slush_after_crit else "good",
         "Final": "ERROR: Refilling changed the total" if sum_column(final) != sum_column(after_t) else "good"
     }
+    assert not (failures := [v for v in error_checks.values() if v != "good"]), failures
     return Types.MonthFull(columns=columns, intermediate=intermediate, error_checks=error_checks)
 
 def handle(aggregate_data: list[dict], data: dict[str, Any]) -> Types.BucketsFull:

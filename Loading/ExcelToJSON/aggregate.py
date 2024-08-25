@@ -90,7 +90,7 @@ def xls_to_json():
     for year in years:
         # data_stale = is_json_stale(...) # Note: no user input for aggregate
         val_stale = is_json_stale(
-            tag=f"{year} validation",
+            tag=f"{year} Aggregate validation",
             script_path=__file__,
             json_path=validation_paths[year]
         )

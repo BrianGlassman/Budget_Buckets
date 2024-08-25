@@ -1,6 +1,17 @@
 # Budget_Buckets
 Budgeting tool that focuses on continuous operation rather than month-by-month discrete units
 
+TODO: implement print redirect (either context handler or via Logger) and use when loading previous steps as part of validation
+
+## Update Process
+1. Download the new data and add to the Excel sheet Log tab(s)
+2. Manually categorize transactions
+3. Copy the categorizations to the Rules.csv
+    - Log should now pass testing
+4. Add row(s) to the Excel sheet Aggregate tab(s)
+    - Aggregate should now pass testing
+5. Add section(s) to the Excel sheet Buckets tab. Change date(s) and table name(s)
+    - Buckets should now pass testing
 
 ## Details
 BaseLib/CategoryList is the list of all possible categories (imported to various places)

@@ -344,10 +344,12 @@ def xls_to_json():
     from Loading.ExcelToJSON import is_json_stale
     # Check both to avoid confusing printouts
     data_stale = is_json_stale(
+        tag="Buckets input",
         script_path=__file__,
         json_path=data_path
     )
     val_stale = is_json_stale(
+        tag="Buckets validation",
         script_path=__file__,
         json_path=validation_path
     )

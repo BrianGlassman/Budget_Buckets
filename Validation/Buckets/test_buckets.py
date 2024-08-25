@@ -47,8 +47,12 @@ def print_diff(data: Types.BucketsFull, validation: Types.BucketsFull):
             break
 
 def test_buckets_duplication():
-    from Loading.ExcelToJSON.log import xls_to_json
-    xls_to_json()
+    from Loading.ExcelToJSON.log import xls_to_json as log_to_json
+    log_to_json()
+    from Loading.ExcelToJSON.aggregate import xls_to_json as aggregate_to_json
+    aggregate_to_json()
+    from Loading.ExcelToJSON.buckets import xls_to_json as buckets_to_json
+    buckets_to_json()
 
     data = load_data()
     validation = load_validation()
