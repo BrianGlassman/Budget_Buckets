@@ -1,5 +1,4 @@
 # General imports
-import os as _os
 
 
 # Project imports
