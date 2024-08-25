@@ -33,3 +33,12 @@ def unparse_date(date: _datetime.date) -> str:
     # Can't just use strftime because it includes leading zeroes
     # Can remove leading zeroes using "-" (Unix) or "#" (Windows), but this way is more portable
     return f'{date.month}/{date.day}/{date.year}'
+
+def format_cell_value(value) -> str:
+    """Convert an openpyxl Cell value to a string the same as in a CSV"""
+    if value is None:
+        return ''
+    elif isinstance(value, _datetime.datetime):
+        return unparse_date(value)
+    else:
+        return str(value)
