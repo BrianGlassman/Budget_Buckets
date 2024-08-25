@@ -3,7 +3,6 @@ import datetime
 import openpyxl
 from openpyxl.worksheet._read_only import ReadOnlyWorksheet
 
-
 # Project imports
 from Validation.Log import spec
 from CategoryList import categories

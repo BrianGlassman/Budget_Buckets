@@ -36,9 +36,13 @@ def is_json_stale(excel_path: str, script_path: str, json_path: str):
     script_mtime = _os.path.getmtime(script_path)
     json_mtime = _os.path.getmtime(json_path)
 
-    if (excel_diff := excel_mtime - json_mtime) > 0 or (script_diff := script_mtime - json_mtime) > 0:
-        diff = _datetime.timedelta(seconds=max(excel_diff, script_diff))
-        print(f"JSON out of date by {diff}.")
+    if (excel_diff := excel_mtime - json_mtime) > 0:
+        diff = _datetime.timedelta(seconds=excel_diff)
+        print(f"JSON behind Excel by {diff}.")
+        return True
+    if (script_diff := script_mtime - json_mtime) > 0:
+        diff = _datetime.timedelta(seconds=script_diff)
+        print(f"JSON behind script by {diff}.")
         return True
     else:
         print(f"JSON from {_datetime.datetime.fromtimestamp(json_mtime).strftime("%D %H:%M:%S")} is up to date.")
